@@ -1,0 +1,58 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   philo_m.h                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: min-kang <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/02/11 16:31:21 by min-kang          #+#    #+#             */
+/*   Updated: 2022/02/11 16:32:10 by min-kang         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#ifndef PHILO_M_H
+# define PHILO_M_H
+
+# include "philo_c.h"
+
+typedef struct s_philo {
+	int				id;
+	int				t_die;
+	int				t_eat;
+	int				t_sleep;
+	int				e_nb;
+	double			start;
+	pthread_mutex_t	*f_l;
+	pthread_mutex_t	*f_r;
+	pthread_mutex_t	*done;
+	double			*last_meal;
+}	t_philo;
+
+typedef struct s_thm {
+	pthread_t		*th;
+	pthread_mutex_t	*m;
+	pthread_mutex_t	*done;
+}	t_thm;
+
+typedef struct s_starve {
+	int				p_nb;
+	int				t_die;
+	double			start;
+	double			*last_meal;
+	pthread_mutex_t	*done;
+}	t_starve;
+
+/* philosophers */
+void		philosophers(t_arg args);
+
+/* die */
+void		*die(void *arg);
+t_starve	die_initialise(t_thm thm, t_arg args);
+void		eat(t_philo *p, int *meal_nb);
+void		sleep_think(t_philo *p);
+void		*eat_sleep_think(void *arg);
+
+/* free */
+void		free_n_destroy(t_thm thm, t_philo *philo, t_starve starve);
+
+#endif

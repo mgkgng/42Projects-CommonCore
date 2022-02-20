@@ -1,0 +1,12 @@
+*.out
+*.o
+*.a
+*.dSYM
+/minishell
+/minishell_debug
+/minishell_sanitize
+/minishell_leaks
+/minishell-tester
+/vendor/readline
+/*.txt
+.tmp_*

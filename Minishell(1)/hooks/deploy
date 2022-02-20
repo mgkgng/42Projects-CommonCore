@@ -1,0 +1,72 @@
+#!/bin/sh
+# ########################################################################## #
+#                                                                            #
+#                                                        :::      ::::::::   #
+#   deploy                                             :+:      :+:    :+:   #
+#                                                    +:+ +:+         +:+     #
+#   By: GlaceCoding <github.com/GlaceCoding>       +#+  +:+       +#+        #
+#                                                +#+#+#+#+#+   +#+           #
+#   Created: 2021/10/10 16:10:10 by GlaceCoding       #+#    #+#             #
+#   Updated: 2021/10/11 14:10:51 by GlaceCoding      ###   ########.fr       #
+#                                                                            #
+# ########################################################################## #
+
+cd "$(git rev-parse --show-cdup)"
+
+function print_head {
+	echo "\033[0;36m"
+	echo "$1"
+	echo "\033[00m"
+}
+
+function print_error {
+	echo "\033[31;1m"
+	echo "$1"
+	echo "\033[00m"
+}
+
+current_branch=$(git symbolic-ref HEAD | sed -e 's,.*/\(.*\),\1,')
+
+print_head '> stash changes'
+oldstash=$(git rev-parse -q --verify refs/stash)
+git stash push -m iceberg_temp_stash
+newstash=$(git rev-parse -q --verify refs/stash)
+
+print_head '1) Create `titanic_temp_branch` branch'
+git checkout -b titanic_temp_branch
+if [[ $? != 0 ]]; then
+	print_error '> the temp branch already exists, deleting the temp branch...'
+	git branch -D titanic_temp_branch
+	if [[ $? != 0 ]]; then
+		print_error '! error during branch deletion.'
+		exit 1
+	fi
+	git checkout -b titanic_temp_branch
+	if [[ $? != 0 ]]; then
+		print_error '! error we are unable to make the branch after a second try.'
+		exit 1
+	fi
+fi
+
+print_head '2) Apply .vogignore'
+echo "$(cat .gitignore)\n# .vogignore :\n$(cat .vogignore)\n" | sed 's/\n\n//g' >> .a2k4
+mv -f .a2k4 .gitignore
+untraked=$(git ls-files --ignored --exclude-standard)
+git ls-files --ignored --exclude-standard | xargs git rm -r --cached 
+
+print_head '3) Push to vogsphere/master'
+git commit -m '[Glace build] Untrack ignored files for vogsphere'
+git push -f vogsphere titanic_temp_branch:master
+
+print_head '4) Blank commit'
+git checkout "$current_branch"
+git commit --allow-empty -m "[Glace build] Push to vogsphere/master$(echo "\nUntrack ignored files for vogsphere :\n$untraked")"
+
+print_head '5) Revert .gitignore changes' # Delete temp branch'
+git checkout "$current_branch" -- .gitignore
+#git branch -D titanic_temp_branch
+
+if [ "$oldstash" != "$newstash" ]; then
+  print_head '> pop stash'
+  git stash pop
+fi
