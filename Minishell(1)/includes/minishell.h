@@ -22,12 +22,9 @@
 # include <readline/readline.h>
 # include <readline/history.h>
 
-extern int  res_shell;
+# define HEREDOC "here_doc"
 
-typedef struct s_app
-{
-	char	*workdir;
-}			t_app;
+extern int  res_shell;
 
 typedef enum e_token {
    ARG,
@@ -111,11 +108,11 @@ char     *ft_itoa(int n);
 /* lexer */
 t_token	*lexer(char *s, char **envp);
 void	token_addback(t_token **tokens, t_token *new);
-int	give_token(t_token **tokens, int token, int index);
-int	lexer_error(t_token *tokens);
-void	*free_tokens(t_token *tokens);
+int	   give_token(t_token **tokens, int token, int index);
+int	   lexer_error(t_token *tokens);
+void	   *free_tokens(t_token *tokens);
 void	put_token_index(t_token **tokens);
-void	put_begin(t_token **tokens);
+void	   put_begin(t_token **tokens);
 
 /* parser */
 void	parse_cmd(t_node **node, char *new_arg);
