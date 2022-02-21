@@ -31,6 +31,7 @@ void	*die(void *arg)
 				pthread_mutex_unlock(starve->done);
 				return (NULL);
 			}
+			usleep(100);
 		}
 		usleep(100);
 	}

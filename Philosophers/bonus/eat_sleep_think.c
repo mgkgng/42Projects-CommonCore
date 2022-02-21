@@ -19,16 +19,14 @@ void	eat_sleep_think(t_philo *p, t_sem sem, int *meal_nb)
 	sem_wait(sem.forks);
 	sem_wait(sem.forks);
 	now = get_now(p->start);
+	*(p->last_meal) = now;
 	printf("%.0f %d has taken a fork\n", now, p->id);
 	printf("%.0f %d has taken a fork\n", now, p->id);
 	printf("%.0f %d is eating\n", now, p->id);
 	*meal_nb += 1;
 	if (p->e_nb && *meal_nb == p->e_nb)
 		sem_post(sem.game_over);
-	if (p->t_die > 400)
-		last_meal(p->last_meal, p->start);
 	usleep(p->t_eat * 1000);
-	last_meal(p->last_meal, p->start);
 	sem_post(sem.forks);
 	sem_post(sem.forks);
 	printf("%.0f %d is sleeping\n", get_now(p->start), p->id);

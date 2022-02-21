@@ -32,7 +32,6 @@ typedef struct s_arg {
 t_arg	parser(int argc, char **argv);
 
 /* time */
-void	last_meal(double *last_meal, double start);
 double	get_now(double start);
 
 /* utils */

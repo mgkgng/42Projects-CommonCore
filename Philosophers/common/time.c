@@ -12,14 +12,6 @@
 
 #include "../includes/philo_c.h"
 
-void	last_meal(double *last_meal, double start)
-{
-	struct timeval	t;
-
-	gettimeofday(&t, NULL);
-	*last_meal = t.tv_sec * 1000 + t.tv_usec / 1000 - start;
-}
-
 double	get_now(double start)
 {
 	struct timeval	t;

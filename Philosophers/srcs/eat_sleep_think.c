@@ -15,22 +15,18 @@
 void	eat(t_philo *p, int *meal_nb)
 {
 	double	now;
-	int		n;
 
 	pthread_mutex_lock(p->f_l);
 	pthread_mutex_lock(p->f_r);
 	now = get_now(p->start);
-	//if (p->t_die > 400)
-	*p->last_meal = now;
+	*(p->last_meal) = now;
 	printf("%.0f %d has taken a fork\n", now, p->id);
 	printf("%.0f %d has taken a fork\n", now, p->id);
 	printf("%.0f %d is eating\n", now, p->id);
 	*meal_nb += 1;
-	n = *meal_nb;
-	if (p->e_nb && n == p->e_nb)
+	if (p->e_nb && *meal_nb == p->e_nb)
 		pthread_mutex_unlock(p->done);
 	usleep(p->t_eat * 1000);
-	last_meal(p->last_meal, p->start);
 	pthread_mutex_unlock(p->f_l);
 	pthread_mutex_unlock(p->f_r);
 }
