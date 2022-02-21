@@ -60,7 +60,10 @@ void	launch_philo(t_philo *philo, t_thm thm, t_starve starve, t_arg args)
 	pthread_detach(th_die);
 	i = -1;
 	while (++i < args.p_nb)
+	{
 		pthread_create(&thm.th[i], NULL, &eat_sleep_think, &philo[i]);
+		usleep(100);
+	}
 	i = 0;
 	while (i < args.p_nb)
 		pthread_detach(thm.th[i++]);

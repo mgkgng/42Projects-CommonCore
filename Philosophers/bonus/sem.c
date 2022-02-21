@@ -20,8 +20,11 @@ t_sem	sem_initialize(t_arg args)
 	sem_unlink(FORKS);
 	sem_unlink(GAMEOVER);
 	sem_unlink(KILLALL);
+	sem_unlink(DIEALONE);
 	sem.forks = sem_open(FORKS, O_CREAT, 0644, args.p_nb);
 	sem.game_over = sem_open(GAMEOVER, O_CREAT, 0644, 1);
+	sem_wait(sem.game_over);
+	sem.die_alone = sem_open(DIEALONE, O_CREAT, 0644, 1);
 	sem.kill_all = sem_open(KILLALL, O_CREAT, 0644, args.p_nb);
 	i = -1;
 	while (++i < args.p_nb)

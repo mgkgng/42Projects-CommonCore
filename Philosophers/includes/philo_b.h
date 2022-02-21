@@ -16,9 +16,11 @@
 # include <semaphore.h>
 # include <signal.h>
 # include "philo_c.h"
+
 # define FORKS "/forks"
 # define GAMEOVER "/game_over"
 # define KILLALL "/kill_all"
+# define DIEALONE "/die_alone"
 
 typedef struct s_philo {
 	int		id;
@@ -38,12 +40,15 @@ typedef struct s_starve {
 	double	start;
 	double	*last_meal;
 	sem_t	*game_over;
+	sem_t	*kill_all;
+	sem_t	*die_alone;
 }	t_starve;
 
 typedef struct s_sem {
 	sem_t	*forks;
 	sem_t	*game_over;
 	sem_t	*kill_all;
+	sem_t	*die_alone;
 }	t_sem;
 
 /* philosophers */
@@ -51,7 +56,7 @@ void		philosophers(t_arg args);
 
 /* do */
 void		*die(void *arg);
-t_starve	*die_initialize(t_philo *philo, sem_t *game_over, t_arg args);
+t_starve	*die_initialize(t_philo *philo, t_sem sem, t_arg args);
 void		eat_sleep_think(t_philo *p, t_sem sem, int *meal_nb);
 
 /* sem */

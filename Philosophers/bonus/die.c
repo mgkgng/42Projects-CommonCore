@@ -23,6 +23,7 @@ void	*die(void *arg)
 		now = get_now(starve->start);
 		if (now - *(starve->last_meal) >= starve->t_die)
 		{
+			sem_wait(starve->die_alone);
 			printf("%.0f %d died\n", now, starve->p_id);
 			sem_post(starve->game_over);
 			exit(0);
@@ -31,7 +32,7 @@ void	*die(void *arg)
 	}
 }
 
-t_starve	*die_initialize(t_philo *philo, sem_t *game_over, t_arg args)
+t_starve	*die_initialize(t_philo *philo, t_sem sem, t_arg args)
 {
 	t_starve		*starve;
 	int				i;
@@ -44,7 +45,8 @@ t_starve	*die_initialize(t_philo *philo, sem_t *game_over, t_arg args)
 		starve[i].p_nb = args.p_nb;
 		starve[i].t_die = args.t_die;
 		starve[i].last_meal = philo[i].last_meal;
-		starve[i].game_over = game_over;
+		starve[i].game_over = sem.game_over;
+		starve[i].die_alone = sem.die_alone;
 		starve[i].start = philo[i].start;
 	}
 	return (starve);

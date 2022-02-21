@@ -67,7 +67,6 @@ void	create_process(t_philo *philo, t_starve *starve, t_sem sem, t_arg args)
 	pthread_t	th_end;
 	pid_t		*pid;
 
-	sem_wait(sem.game_over);
 	pid = ft_calloc(args.p_nb, sizeof(pid_t));
 	i = -1;
 	while (++i < args.p_nb)
@@ -92,6 +91,6 @@ void	philosophers(t_arg args)
 
 	philo = create_philo(args);
 	sem = sem_initialize(args);
-	starve = die_initialize(philo, sem.game_over, args);
+	starve = die_initialize(philo, sem, args);
 	create_process(philo, starve, sem, args);
 }
