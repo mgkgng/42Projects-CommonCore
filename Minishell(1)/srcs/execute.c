@@ -83,6 +83,8 @@ int	here_doc(char *limiter)
 	}
 	fd_tmp = open(HEREDOC, O_CREAT | O_WRONLY | O_TRUNC, S_IRUSR | S_IWUSR);
 	write(fd_tmp, txt, ft_strlen(txt));
+	close(fd_tmp);
+	fd_tmp = open(HEREDOC, O_RDONLY);
 	free(txt);
 	return (fd_tmp);
 }
@@ -161,7 +163,7 @@ void	redir_define(t_redir *redir, char **name, int *type)
 		else if (type[i] == DOUBLE_CHEVRON_I)
 			redir->input = here_doc(name[i]);
 		else
-			redir->output = open(name[i], O_CREAT | O_WRONLY | O_APPEND);
+			redir->output = open(name[i], O_CREAT | O_WRONLY | O_APPEND, S_IRUSR | S_IWUSR);
 		if (redir->input == -1 || redir->output == -1)
 		{
 			ft_putstr_fd("Error : Wrong filename.\n", 2);
@@ -178,7 +180,6 @@ int	cmd_execute(t_node *node, int fd_in, int fd_out, char **envp)
 	redir = redir_initialize(fd_in, fd_out);
 	if (node->right)
 		redir_define(&redir, node->right->redir_name, node->right->redir_type);
-	printf("so? %d\n", redir.input);
 	dup2(redir.input, 0);
 	dup2(redir.output, 1);
 	cmd_path = path_define(node->left->args[0], envp);
@@ -193,7 +194,7 @@ int	execute(t_node *node, char **envp)
 	int	success;
 
 	success = execute_loop(node->root, envp, 0);
-	unlink(HEREDOC);
+	//unlink(HEREDOC);
 	// free_node(node);
 	return (success);
 }
