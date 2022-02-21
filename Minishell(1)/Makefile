@@ -1,5 +1,4 @@
 SRCS =	srcs/main.c \
-		srcs/execute.c \
 		srcs/minishell.c \
 		srcs/lexer/lexer.c \
 		srcs/lexer/lexer_utils.c \
@@ -11,6 +10,10 @@ SRCS =	srcs/main.c \
 		srcs/parser/arg.c \
 		srcs/parser/pipe.c \
 		srcs/parser/redir.c \
+		srcs/execute/execute.c \
+		srcs/execute/path.c \
+		srcs/execute/redir.c \
+		srcs/execute/free.c \
 		srcs/utils/minishell_utils1.c \
 		srcs/utils/minishell_utils2.c \
 		srcs/utils/minishell_utils3.c \

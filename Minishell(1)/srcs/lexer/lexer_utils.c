@@ -62,21 +62,6 @@ int	lexer_error(t_token *tokens)
 	return (1);
 }
 
-void	*free_tokens(t_token *tokens)
-{
-	t_token	*tmp;
-
-	while (tokens)
-	{
-		tmp = tokens->next;
-		if (tokens->content)
-			free(tokens->content);
-		free(tokens);
-		tokens = tmp;
-	}
-	return (NULL);
-}
-
 void	put_token_index(t_token **tokens)
 {
 	t_token	*begin;
@@ -101,7 +86,8 @@ void	put_begin(t_token **tokens)
 	flag = 1;
 	while (*tokens)
 	{
-		if ((*tokens)->token == P_OPEN || (*tokens)->token == AND || (*tokens)->token == OR)
+		if ((*tokens)->token == P_OPEN || (*tokens)->token == AND
+			|| (*tokens)->token == OR)
 			flag = 1;
 		else if (flag)
 		{

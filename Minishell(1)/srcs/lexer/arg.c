@@ -40,14 +40,14 @@ int	arg_len(char *s, int index, int flag)
 			while (s[++i] != '\'')
 				count++;
 			if (!s[++i] || s[i] == ' ')
-				break;
+				break ;
 		}
 		if (s[i] == '\"')
 		{
 			while (s[++i] != '\"')
 				count++;
 			if (!s[++i] || s[i] == ' ')
-				break;
+				break ;
 		}
 		else
 		{
@@ -62,9 +62,9 @@ int	arg_len(char *s, int index, int flag)
 
 char	*put_arg(char *s, int index)
 {
-	int	i;
-	int	j;
-	int len;
+	int		i;
+	int		j;
+	int		len;
 	char	*result;
 
 	len = arg_len(s, index, 1);
@@ -121,7 +121,7 @@ char	*put_arg2(char *s, int i, char **envp)
 
 int	get_arg(t_token **tokens, char *s, int index, char **envp)
 {
-	t_token *new;
+	t_token	*new;
 
 	new = ft_calloc(1, sizeof(t_token));
 	new->token = ARG;

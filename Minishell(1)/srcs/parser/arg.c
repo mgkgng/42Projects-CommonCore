@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   arg.c                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: min-kang <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/02/21 14:24:20 by min-kang          #+#    #+#             */
+/*   Updated: 2022/02/21 14:24:21 by min-kang         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../includes/minishell.h"
 
 char	**arg_begin(char *s)
@@ -13,7 +25,7 @@ char	**arg_begin(char *s)
 void	arg_join(t_node **node, char *join)
 {
 	int		i;
-	int 	count;
+	int		count;
 	char	**new;
 
 	i = -1;

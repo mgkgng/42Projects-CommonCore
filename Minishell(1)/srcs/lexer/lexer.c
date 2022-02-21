@@ -46,4 +46,3 @@ t_token	*lexer(char *s, char **envp)
 	put_begin(&tokens);
 	return (tokens);
 }	
-

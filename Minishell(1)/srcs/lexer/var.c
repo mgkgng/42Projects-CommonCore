@@ -79,7 +79,7 @@ int	put_var(char **res, char *s, int i, char **envp)
 		*res = ft_strcat(*res, '$');
 	else if (s[i + 1] == '?')
 	{
-		var = ft_itoa(res_shell);
+		var = ft_itoa(g_res);
 		i += 2;
 		*res = ft_strjoin(*res, var, 0);
 		free(var);

@@ -27,7 +27,7 @@ int	index_count(char *s, char c)
 			while (s[i] && s[i] != c)
 				i++;
 			if (!s[i])
-				break;
+				break ;
 		}
 	}
 	return (count);

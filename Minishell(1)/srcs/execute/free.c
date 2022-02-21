@@ -1,35 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipe.c                                             :+:      :+:    :+:   */
+/*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: min-kang <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/21 14:24:43 by min-kang          #+#    #+#             */
-/*   Updated: 2022/02/21 14:24:44 by min-kang         ###   ########.fr       */
+/*   Created: 2022/02/21 14:52:42 by min-kang          #+#    #+#             */
+/*   Updated: 2022/02/21 14:52:43 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-void	parse_pipe(t_node **node)
+void	preorder_traversal(t_node *node)
 {
-	t_node	*new;
-	t_node	*tmp;
+	printf("====brrr===%d\n", node->node_type);
+	if (node->left)
+		preorder_traversal(node->left);
+	if (node->right)
+		preorder_traversal(node->right);
+}
 
-	new = ft_calloc(1, sizeof(t_node));
-	new->node_type = 3;
-	new->left = (*node)->current_cmd;
-	(*node)->current_cmd = NULL;
-	if ((*node)->current_pipe)
-	{
-		tmp = last_node((*node)->current_pipe);
-		tmp->right = new;
-	}
-	else
-	{
-		(*node)->current_pipe = new;
-		if ((*node)->root->node_type < 3)
-			(*node)->root = (*node)->current_pipe;
-	}
+void	free_node(t_node *node)
+{
 }
