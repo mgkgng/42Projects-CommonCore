@@ -57,11 +57,10 @@ char	*here_doc_join(char *txt, char *r)
 	i = -1;
 	while (txt[++i])
 		res[i] = txt[i];
-	if (ft_strlen(txt))
-		res[i++] = '\n';
 	j = -1;
 	while (r[++j])
 		res[i + j] = r[j];
+	res[i + j++] = '\n';
 	res[i + j] = '\0';
 	free(txt);
 	free(r);
@@ -147,6 +146,7 @@ t_redir	redir_initialize(int fd_in, int fd_out)
 		res.output = fd_out;
 	return (res);
 }
+
 void	redir_define(t_redir *redir, char **name, int *type)
 {
 	int		i;
@@ -163,7 +163,10 @@ void	redir_define(t_redir *redir, char **name, int *type)
 		else
 			redir->output = open(name[i], O_CREAT | O_WRONLY | O_APPEND);
 		if (redir->input == -1 || redir->output == -1)
+		{
 			ft_putstr_fd("Error : Wrong filename.\n", 2);
+			exit(1);
+		}
 	}
 }
 
@@ -175,7 +178,7 @@ int	cmd_execute(t_node *node, int fd_in, int fd_out, char **envp)
 	redir = redir_initialize(fd_in, fd_out);
 	if (node->right)
 		redir_define(&redir, node->right->redir_name, node->right->redir_type);
-	//printf("so? %d\n", redir.input);
+	printf("so? %d\n", redir.input);
 	dup2(redir.input, 0);
 	dup2(redir.output, 1);
 	cmd_path = path_define(node->left->args[0], envp);
@@ -190,7 +193,7 @@ int	execute(t_node *node, char **envp)
 	int	success;
 
 	success = execute_loop(node->root, envp, 0);
-	//unlink(HEREDOC);
+	unlink(HEREDOC);
 	// free_node(node);
 	return (success);
 }
