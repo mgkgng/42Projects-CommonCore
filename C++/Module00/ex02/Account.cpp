@@ -10,7 +10,7 @@ int Account::getTotalAmount(void){
 
 }
 
-Account::Account(void) () {
+void    Account::Account(void) () {
     int i;
     
     for (i = 0; )
