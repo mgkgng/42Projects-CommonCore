@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/13 19:14:28 by min-kang          #+#    #+#             */
-/*   Updated: 2022/02/23 12:28:37 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/02/23 14:51:38 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,28 +32,20 @@ t_philo	*create_philo(t_arg args)
 		philo[i].last_meal = ft_calloc(1, sizeof(double));
 		philo[i].start = start;
 		if (args.e_max)
-			philo[i].e_nb = args.e_max;
+			philo[i].e_max = args.e_max;
 	}
 	return (philo);
 }
 
-void	*quit(void *arg)
-{
-	sem_t	*quit;
-
-	quit = (sem_t *) arg;
-	sem_wait(quit);
-	exit(0);
-}
-
-void	launch_philo(t_philo *p, t_over *over, t_sem sem)
+void	launch_philo(t_philo *p, t_starve *starve, t_sem sem)
 {
 	pthread_t	th_die;
 	pthread_t	th_quit;
+	pthread_t	th_enough;
 	int			meal_nb;
 
 	meal_nb = 0;
-	pthread_create(&th_die, NULL, &gameover, (void *) over);
+	pthread_create(&th_die, NULL, &die, (void *) starve);
 	pthread_create(&th_quit, NULL, &quit, (void *) sem.kill_all);
 	pthread_detach(th_die);
 	pthread_detach(th_quit);
@@ -61,36 +53,41 @@ void	launch_philo(t_philo *p, t_over *over, t_sem sem)
 		eat_sleep_think(p, sem, &meal_nb);
 }
 
-void	create_process(t_philo *philo, t_over *over, t_sem sem, t_arg args)
+void	create_process(t_philo *philo, t_starve *starve, t_sem sem, t_arg args)
 {
 	int			i;
-	pthread_t	th_end;
+	pthread_t	th_enough;
 	pid_t		*pid;
 
+	if (args.e_max)
+	{
+		pthread_create(&th_enough, NULL, &enough, &sem);
+		pthread_detach(th_enough);
+	}
 	pid = ft_calloc(args.p_nb, sizeof(pid_t));
 	i = -1;
 	while (++i < args.p_nb)
 	{
 		pid[i] = fork();
 		if (!pid[i])
-			launch_philo(&philo[i], &over[i], sem);
+			launch_philo(&philo[i], &starve[i], sem);
 	}
 	sem_wait(sem.game_over);
 	i = -1;
 	while (++i < args.p_nb)
 		sem_post(sem.kill_all);
 	sem_terminate(&sem);
-	free_everything(philo, pid, over, args);
+	free_everything(philo, pid, starve, args);
 }
 
 void	philosophers(t_arg args)
 {
-	t_philo	*philo;
-	t_sem	sem;
-	t_over	*over;
+	t_philo		*philo;
+	t_sem		sem;
+	t_starve	*starve;
 
 	philo = create_philo(args);
 	sem = sem_initialize(args);
-	over = gameover_initialize(philo, sem, args);
-	create_process(philo, over, sem, args);
+	starve = die_initialize(philo, sem, args);
+	create_process(philo, starve, sem, args);
 }

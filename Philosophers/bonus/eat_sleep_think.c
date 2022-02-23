@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/13 19:05:51 by min-kang          #+#    #+#             */
-/*   Updated: 2022/02/22 16:47:30 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/02/23 14:33:31 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,8 @@ void	eat_sleep_think(t_philo *p, t_sem sem, int *meal_nb)
 	printf("%.0f %d has taken a fork\n", now, p->id);
 	printf("%.0f %d has taken a fork\n", now, p->id);
 	printf("%.0f %d is eating\n", now, p->id);
-	*meal_nb += 1;
-	if (p->e_nb && *meal_nb == p->e_nb)
-		sem_post(sem.game_over);
+	if (p->e_max && ++(*meal_nb) == p->e_max)
+		sem_post(sem.enough);
 	usleep(p->t_eat * 1000);
 	sem_post(sem.forks);
 	sem_post(sem.forks);

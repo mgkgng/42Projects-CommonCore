@@ -15,6 +15,7 @@ SRCS_B =	bonus/main.c \
 			bonus/free.c \
 			bonus/sem.c \
 			bonus/die.c \
+			bonus/gameover.c \
 			bonus/eat_sleep_think.c
 
 ifndef WITH_BONUS
