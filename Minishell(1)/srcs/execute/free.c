@@ -23,4 +23,5 @@ void	preorder_traversal(t_node *node)
 
 void	free_node(t_node *node)
 {
+	(void) node;
 }

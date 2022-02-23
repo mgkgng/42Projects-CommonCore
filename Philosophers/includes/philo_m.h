@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo_m.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: min-kang <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/11 16:31:21 by min-kang          #+#    #+#             */
-/*   Updated: 2022/02/11 16:32:10 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/02/23 12:23:19 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ typedef struct s_philo {
 	int				t_die;
 	int				t_eat;
 	int				t_sleep;
-	int				e_nb;
+	int				e_max;
+	int				*e_nb;
 	double			start;
 	pthread_mutex_t	*f_l;
 	pthread_mutex_t	*f_r;
@@ -34,25 +35,26 @@ typedef struct s_thm {
 	pthread_mutex_t	*done;
 }	t_thm;
 
-typedef struct s_starve {
+typedef struct s_over {
 	int				p_nb;
+	int				e_nb;
 	int				t_die;
 	double			start;
 	double			*last_meal;
 	pthread_mutex_t	*done;
-}	t_starve;
+}	t_over;
 
 /* philosophers */
 void		philosophers(t_arg args);
 
 /* die */
-void		*die(void *arg);
-t_starve	die_initialise(t_thm thm, t_arg args);
+void		*gameover(void *arg);
+t_over		gameover_initialise(t_thm thm, t_arg args);
 void		eat(t_philo *p, int *meal_nb);
 void		sleep_think(t_philo *p);
 void		*eat_sleep_think(void *arg);
 
 /* free */
-void		free_n_destroy(t_thm thm, t_philo *philo, t_starve starve);
+void		free_n_destroy(t_thm thm, t_philo *philo, t_over over);
 
 #endif

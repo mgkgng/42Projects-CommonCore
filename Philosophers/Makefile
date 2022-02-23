@@ -1,7 +1,7 @@
 SRCS_M =	srcs/main.c \
 			srcs/philo.c \
 			srcs/free.c \
-			srcs/die.c \
+			srcs/gameover.c \
 			srcs/eat_sleep_think.c
 
 SRCS_C = 	common/utils1.c \

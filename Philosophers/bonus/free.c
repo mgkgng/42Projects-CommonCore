@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: min-kang <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/13 19:22:41 by min-kang          #+#    #+#             */
-/*   Updated: 2022/02/13 19:22:42 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/02/23 12:28:18 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo_b.h"
 
-void	free_everything(t_philo *p, pid_t *pid, t_starve *s, t_arg args)
+void	free_everything(t_philo *p, pid_t *pid, t_over *s, t_arg args)
 {
 	int	i;
 

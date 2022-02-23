@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo_c.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: min-kang <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/11 16:29:58 by min-kang          #+#    #+#             */
-/*   Updated: 2022/02/11 16:31:14 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/02/23 11:59:41 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ typedef struct s_arg {
 	int	t_die;
 	int	t_eat;
 	int	t_sleep;
-	int	e_nb;
+	int	e_max;
 }	t_arg;
 
 /* parser */

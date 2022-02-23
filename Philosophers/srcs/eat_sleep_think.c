@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   eat_sleep_think.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: min-kang <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/11 16:18:14 by min-kang          #+#    #+#             */
-/*   Updated: 2022/02/13 19:11:55 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/02/23 12:15:54 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,8 @@ void	eat(t_philo *p, int *meal_nb)
 	printf("%.0f %d has taken a fork\n", now, p->id);
 	printf("%.0f %d has taken a fork\n", now, p->id);
 	printf("%.0f %d is eating\n", now, p->id);
-	*meal_nb += 1;
-	if (p->e_nb && *meal_nb == p->e_nb)
-		pthread_mutex_unlock(p->done);
+	if (p->e_max && ++(*meal_nb) == p->e_max)
+		*(p->e_nb) += 1;
 	usleep(p->t_eat * 1000);
 	pthread_mutex_unlock(p->f_l);
 	pthread_mutex_unlock(p->f_r);
