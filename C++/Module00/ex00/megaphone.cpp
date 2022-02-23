@@ -1,4 +1,5 @@
 #include <iostream>
+#include <cctype>
 
 char    only_maj(char c)
 {
@@ -17,7 +18,7 @@ int main(int argc, char **argv)
     {
         for (i = 1; i < argc; i++)
             for (j = 0; argv[i][j]; j++)
-                std::cout << only_maj(argv[i][j]);
+                std::cout << toupper(argv[i][j]);
         std::cout << std::endl;
     }
     return 0;
