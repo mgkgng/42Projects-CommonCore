@@ -1,4 +1,4 @@
-displayAccountsInfos:
+created
 [19920104_091532] index:0;amount:42;created
 [19920104_091532] index:1;amount:54;created
 [19920104_091532] index:2;amount:957;created
@@ -29,6 +29,7 @@ makeDeposit
 [19920104_091532] index:5;p_amount:0;deposit:23;amount:23;nb_deposits:1
 [19920104_091532] index:6;p_amount:754;deposit:9;amount:763;nb_deposits:1
 [19920104_091532] index:7;p_amount:16576;deposit:20;amount:16596;nb_deposits:1
+
 [19920104_091532] accounts:8;total:21524;deposits:8;withdrawals:0
 
 displayStatus():
@@ -63,7 +64,7 @@ displayAccountsInfos:
 [19920104_091532] index:6;amount:106;deposits:1;withdrawals:1
 [19920104_091532] index:7;amount:8942;deposits:1;withdrawals:1
 
-displayStatus:
+destroyed
 [19920104_091532] index:0;amount:47;closed
 [19920104_091532] index:1;amount:785;closed
 [19920104_091532] index:2;amount:864;closed
