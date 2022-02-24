@@ -21,7 +21,8 @@ void    Account::Account(void) () {
 }
 
 void	Account::displayAccountsInfos(void){
-
+    time_t now = time(0);
+    struct tm *time = localtime(&now);
     std::cout << "[19920104_091532] accounts:" << _nbAccounts << ";total:" << _totalAmount << ";deposits:" << _totalNbDeposits << ";withdrawals:" << _totalNbWithdrawals << std::endl;
     for (i = 0; i < _nbAccounts; i++)
         std::cout << "[19920104_091532] index:" << i << ";amount:" << t[i] << ";created" << std::endl;
