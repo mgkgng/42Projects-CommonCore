@@ -8,6 +8,7 @@ created
 [19920104_091532] index:6;amount:754;created
 [19920104_091532] index:7;amount:16576;created
 
+displayAccountsInfos:
 [19920104_091532] accounts:8;total:20049;deposits:0;withdrawals:0
 
 displayStatus:
@@ -30,6 +31,7 @@ makeDeposit
 [19920104_091532] index:6;p_amount:754;deposit:9;amount:763;nb_deposits:1
 [19920104_091532] index:7;p_amount:16576;deposit:20;amount:16596;nb_deposits:1
 
+displayAccountsInfos:
 [19920104_091532] accounts:8;total:21524;deposits:8;withdrawals:0
 
 displayStatus():
@@ -52,9 +54,10 @@ makeWithdrawal
 [19920104_091532] index:6;p_amount:763;withdrawal:657;amount:106;nb_withdrawals:1
 [19920104_091532] index:7;p_amount:16596;withdrawal:7654;amount:8942;nb_withdrawals:1
 
+displayAccountsInfos:
 [19920104_091532] accounts:8;total:12442;deposits:8;withdrawals:6
 
-displayAccountsInfos:
+displayStatus:
 [19920104_091532] index:0;amount:47;deposits:1;withdrawals:0
 [19920104_091532] index:1;amount:785;deposits:1;withdrawals:1
 [19920104_091532] index:2;amount:864;deposits:1;withdrawals:1

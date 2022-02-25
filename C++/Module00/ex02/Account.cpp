@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Account.cpp                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/02/25 12:11:07 by min-kang          #+#    #+#             */
+/*   Updated: 2022/02/25 12:18:29 by min-kang         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "Account.hpp"
 #include <iostream>
 #include <string>
@@ -38,9 +50,12 @@ int	Account::getNbWithdrawals(void){
 }
 
 void	Account::displayAccountsInfos(void){
-	time_t now = time(0);
-	struct tm *time = localtime(&now);
-
+	_displayTimestamp();
+	std::cout	<< "accounts:" << _nbAccounts 
+				<< ";total:" << _totalAmount
+				<< ";deposits:" << _totalNbDeposits
+				<< ";withdrawals:" << _totalNbWithdrawals
+				<< std::endl;
 }
 
 void	Account::makeDeposit( int deposit ){
@@ -63,7 +78,15 @@ int		Account::checkAmount( void ) const {
 
 }
 void	Account::displayStatus( void ) const {
-	
+	int i;
+	for (i = this->_accountIndex; i < this->_nbAccounts; i++) {
+		_displayTimestamp();
+		std::cout	<< "index:" << i 
+					<< ";amount:" << _amount
+					<< ";deposits:" << _nbDeposits
+					<< ";withdrawals:" << _nbWithdrawals
+					<< std::endl;
+	}
 }
 
 void	Account::_displayTimestamp( void ){
