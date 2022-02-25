@@ -1,26 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   HumanA.cpp                                         :+:      :+:    :+:   */
+/*   HumanB.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/25 21:27:59 by min-kang          #+#    #+#             */
-/*   Updated: 2022/02/25 21:45:28 by min-kang         ###   ########.fr       */
+/*   Created: 2022/02/25 21:33:18 by min-kang          #+#    #+#             */
+/*   Updated: 2022/02/25 21:41:02 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "HumanA.hpp"
+#include <iostream>
+#include <string>
 
-HumanA::HumanA(std::string name, Weapon weapon) : _name(name) {
-	std::cout << this->_name << "is created." << std::endl;
-}
+class HumanB {
 
-HumanA::~HumanA(void) {
-	std::cout << this->_name << "is deleted." << std::endl;
-}
+	public:
+		HumanB(std::string name);
+		~HumanB(void);
 
-void attack(void) const {
-	std::cout	<< this->_name << "attacks with his "
-				<< this->_weapon << std::endl;
-}
+		void attack(void) const;
+	private:
+		std::string _name;
+		std::string _weapon;
+};
