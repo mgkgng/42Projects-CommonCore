@@ -1,11 +1,10 @@
 SRCS =	./main.cpp \
 		./Zombie.cpp \
-		./newZombie.cpp \
-		./randomChump.cpp \
-
+		./zombieHorde.cpp
+		
 OBJS =	${SRCS:.cpp=.o}
 
-NAME =	Zombie
+NAME =	ZombieHorde
 
 CFLAGS	= -Wall -Wextra -Werror
 
