@@ -6,17 +6,23 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/25 12:11:07 by min-kang          #+#    #+#             */
-/*   Updated: 2022/02/25 13:10:12 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/02/25 13:49:45 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Account.hpp"
 #include <iostream>
+#include <iomanip>
 #include <string>
+
+int Account::_nbAccounts = 0;
+int Account::_totalAmount = 0;
+int Account::_totalNbDeposits = 0;
+int Account::_totalNbWithdrawals = 0;
 
 Account::Account(int initial_deposit) {
 	// this init.
-	this->_accountIndex = this->_amount;
+	this->_accountIndex = _nbAccounts;
 	this->_amount += initial_deposit;
 
 	// static init.
@@ -39,18 +45,18 @@ Account::~Account(void){
 	return ;
 }
 
-int Account::getNbAccounts(void){
+int Account::getNbAccounts (void) {
 	return (_nbAccounts);
 }
 
-int Account::getTotalAmount(void){
+int Account::getTotalAmount(void) {
 	return (_totalAmount);
 }
 
-int	Account::getNbDeposits(void){
+int	Account::getNbDeposits(void) {
 	return (_totalNbDeposits);
 }
-int	Account::getNbWithdrawals(void){
+int	Account::getNbWithdrawals(void) {
 	return (_totalNbWithdrawals);
 }
 
@@ -99,10 +105,11 @@ bool	Account::makeWithdrawal( int withdrawal ){
 		return (false);
 	}
 }
-int		Account::checkAmount( void ) const {
+
+int		Account::checkAmount(void) const {
 	return (this->_amount);
 }
-void	Account::displayStatus( void ) const {
+void	Account::displayStatus(void) const {
 	_displayTimestamp();
 	std::cout	<< "index:" << _accountIndex
 				<< ";amount:" << _amount
@@ -116,7 +123,11 @@ void	Account::_displayTimestamp( void ){
 	time_t now = time(0);
 	struct tm *t = localtime(&now);
 
-	std::cout << "[" << (t->tm_year + 1900) << std::to_string(t->tm_mon)
-		<< "_" + std::to_string(t->tm_hour) << std::to_string(t->tm_min)
-		<< std::to_string(t->tm_sec) + "] ";
+	std::cout	<< "[" << (t->tm_year + 1900)
+				<< std::setfill('0') << std::setw(2) << std::to_string(t->tm_mon + 1)
+				<< std::setfill('0') << std::setw(2) << std::to_string(t->tm_mday)
+				<< "_" << std::setfill('0') << std::setw(2) << std::to_string(t->tm_hour)
+				<< std::setfill('0') << std::setw(2) << std::to_string(t->tm_min)
+				<< std::setfill('0') << std::setw(2) << std::to_string(t->tm_sec)
+				<< "] ";
 }
