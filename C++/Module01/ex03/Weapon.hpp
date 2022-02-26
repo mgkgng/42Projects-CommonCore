@@ -6,20 +6,28 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/25 21:25:10 by min-kang          #+#    #+#             */
-/*   Updated: 2022/02/25 21:28:50 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/02/26 12:55:17 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#ifndef WEAPON_HPP
+#define WEAPON_HPP
 
 #include <iostream>
 #include <string>
 
 class Weapon {
+
 	public:
-		std::string weaponType;
-		Weapon(std::string weaponType);
+		std::string type;
+
+		Weapon(std::string weapon);
 		~Weapon(void);
 
-		void	setType();
+		void setType(std::string weapon);
 		std::string const &getType(void);
+
 	private:
 };
+
+#endif

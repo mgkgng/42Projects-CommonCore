@@ -1,30 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Weapon.cpp                                         :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/25 21:23:50 by min-kang          #+#    #+#             */
-/*   Updated: 2022/02/26 13:08:33 by min-kang         ###   ########.fr       */
+/*   Created: 2022/02/25 23:08:20 by min-kang          #+#    #+#             */
+/*   Updated: 2022/02/25 23:17:11 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Weapon.hpp"
+#include <iostream>
+#include <string>
 
-Weapon::Weapon(std::string weapon) : type(weapon) {
-	std::cout << "Weapon created." << std::endl;
-	return ;
-}
-
-Weapon::~Weapon(void) {
-	return ;
-}
-
-std::string const&	Weapon::getType(void) {
-	return (this->type);
-}
-
-void	Weapon::setType(std::string weapon) {
-	this->type = weapon;
+int main(void) {
+	std::ifstream input = "yo";
 }
