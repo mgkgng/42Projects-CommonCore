@@ -6,12 +6,11 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/25 21:25:10 by min-kang          #+#    #+#             */
-/*   Updated: 2022/02/26 12:55:17 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/02/26 16:00:05 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef WEAPON_HPP
-#define WEAPON_HPP
+#pragma once
 
 #include <iostream>
 #include <string>
@@ -29,5 +28,3 @@ class Weapon {
 
 	private:
 };
-
-#endif
