@@ -3,25 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: min-kang <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/21 14:52:42 by min-kang          #+#    #+#             */
-/*   Updated: 2022/02/21 14:52:43 by min-kang         ###   ########.fr       */
+/*   Created: 2022/02/21 14:58:04 by min-kang          #+#    #+#             */
+/*   Updated: 2022/02/27 14:44:44 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-void	preorder_traversal(t_node *node)
+void	*free_tokens(t_token *tokens)
 {
-	printf("====brrr===%d\n", node->node_type);
-	if (node->left)
-		preorder_traversal(node->left);
-	if (node->right)
-		preorder_traversal(node->right);
-}
+	t_token	*tmp;
 
-void	free_node(t_node *node)
-{
-	(void) node;
+	while (tokens)
+	{
+		tmp = tokens->next;
+		if (tokens->content)
+			free(tokens->content);
+		free(tokens);
+		tokens = tmp;
+	}
+	return (NULL);
 }

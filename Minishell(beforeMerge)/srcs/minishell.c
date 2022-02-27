@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: min-kang <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 14:25:23 by min-kang          #+#    #+#             */
-/*   Updated: 2022/02/21 14:25:24 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/02/27 15:10:04 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	p_jump(t_token **tokens)
 	*tokens = (*tokens)->next;
 }
 
-int	subshell(t_token *tokens, char **envp)
+int	subshell(t_token **tokens, char **envp)
 {
 	pid_t	pid;
 	int		p_end;
@@ -47,57 +47,48 @@ int	subshell(t_token *tokens, char **envp)
 	pid = fork();
 	if (pid == 0)
 	{
-		p_end = p_couple(tokens);
-		res = minishell(tokens->next, p_end, envp);
+		p_end = p_couple(*tokens);
+		res = minishell((*tokens)->next, p_end, envp);
 		exit(res);
 	}
 	else
 		waitpid(pid, &res, 0);
+	p_jump(tokens);
 	return (WEXITSTATUS(res));
+}
+
+int	break_or_continue(int res, int token)
+{
+	if ((res && token == AND) || (!res && token == OR))
+		return (0);
+	else
+		return (1);
 }
 
 int	minishell(t_token *tokens, int index, char **envp)
 {
-	t_node	*node;
 	t_token	*begin;
 	int		res;
-	int		subsh;
 
-	subsh = 0;
 	while (tokens && (tokens->index <= index || !index))
 	{
 		if (tokens->token == P_OPEN)
 		{
-			subsh = 0;
-			res = subshell(tokens, envp);
-			p_jump(&tokens);
-			subsh++;
-			if (!tokens)
+			res = subshell(&tokens, envp);
+			if (!tokens || !break_or_continue(res, tokens->token))
 				break ;
+			tokens = tokens->next;
 		}
 		if (tokens->begin)
 			begin = tokens;
-		if (tokens->token == AND || tokens->token == OR
+		if (tokens->token == OR || tokens->token == AND
 			|| tokens->token == P_CLOSE || !tokens->next)
 		{
-			if (subsh && ((res && tokens->token == AND)
-					|| (!res && tokens->token == OR)))
-				break ;
-			else if (subsh && ((!res && tokens->token == AND)
-					|| (res && tokens->token == OR)))
-			{
-				tokens = tokens->next;
-				continue ;
-			}
-			node = parser(begin, tokens->index);
-			res = execute(node, envp);
-			if (!tokens->next || (res && tokens->token == AND)
-				|| (!res && tokens->token == OR))
+			res = parse_execute(begin, tokens->index, envp);
+			if (!tokens->next || !break_or_continue(res, tokens->token))
 				break ;
 		}
 		tokens = tokens->next;
 	}
-	if (!index)
-		free_tokens(tokens);
 	return (res);
 }

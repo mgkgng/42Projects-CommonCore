@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: min-kang <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/16 15:54:12 by min-kang          #+#    #+#             */
-/*   Updated: 2022/01/16 15:54:14 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/02/27 15:08:22 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,12 +58,14 @@ int	execute_loop(t_node *node, char **envp, int fd_in)
 	return (WEXITSTATUS(g_res));
 }
 
-int	execute(t_node *node, char **envp)
+int	parse_execute(t_token *begin, int index, char **envp)
 {
-	int	success;
+	t_node	*node;
+	int		res;
 
-	success = execute_loop(node->root, envp, 0);
+	node = parser(begin, index);
+	res = execute_loop(node->root, envp, 0);
 	unlink(HEREDOC);
-	// free_node(node);
-	return (success);
+	free_node(node);
+	return (res);
 }

@@ -3,26 +3,39 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: min-kang <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/21 14:58:04 by min-kang          #+#    #+#             */
-/*   Updated: 2022/02/21 14:58:20 by min-kang         ###   ########.fr       */
+/*   Created: 2022/02/21 14:52:42 by min-kang          #+#    #+#             */
+/*   Updated: 2022/02/27 13:49:52 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-void	*free_tokens(t_token *tokens)
+void	free_node(t_node *node)
 {
-	t_token	*tmp;
+	int	i;
 
-	while (tokens)
+	if (node->left)
+		free_node(node->left);
+	if (node->right)
+		free_node(node->right);
+	if (node->node_type < 2)
 	{
-		tmp = tokens->next;
-		if (tokens->content)
-			free(tokens->content);
-		free(tokens);
-		tokens = tmp;
+		if (!node->node_type)
+			free(node->args);
+		else
+		{
+			free(node->redir_type);
+			i = 0;
+			while (node->redir_name[i])
+				free(node->redir_name[i++]);
+			free(node->redir_name);
+			i = 0;
+			while (node->heredoc[i])
+				free(node->heredoc[i++]);
+			free(node->heredoc);
+		}
 	}
-	return (NULL);
+	free(node);
 }
