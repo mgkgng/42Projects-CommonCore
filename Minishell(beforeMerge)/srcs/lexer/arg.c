@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   arg.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: min-kang <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/16 17:02:06 by min-kang          #+#    #+#             */
-/*   Updated: 2022/02/16 17:02:17 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/02/27 13:18:47 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,36 +24,28 @@ int	is_arg(char c)
 	return (0);
 }
 
-int	arg_len(char *s, int index, int flag)
+int	arg_len(char *s, int i, int flag)
 {
-	int		i;
 	int		count;
+	char	quote;
 
-	i = index;
 	count = 0;
 	while (s[i] == ' ')
 		i++;
 	while (s[i] && s[i] != ' ' && is_arg(s[i]))
 	{
-		if (s[i] == '\'')
+		quote = 0;
+		if (s[i] == '\'' || s[i] == '\"')
+			quote = s[i];
+		if (quote)
 		{
-			while (s[++i] != '\'')
+			while (s[++i] != quote)
 				count++;
 			if (!s[++i] || s[i] == ' ')
 				break ;
 		}
-		if (s[i] == '\"')
-		{
-			while (s[++i] != '\"')
-				count++;
-			if (!s[++i] || s[i] == ' ')
-				break ;
-		}
-		else
-		{
-			i++;
+		else if (s[i++])
 			count++;
-		}
 	}
 	if (flag)
 		return (count);
@@ -79,10 +71,8 @@ char	*put_arg(char *s, int index)
 			while (s[++i] != '\'')
 				result[j++] = s[i];
 		else if (s[i] == '\"')
-		{
 			while (s[++i] != '\"')
 				result[j++] = s[i];
-		}
 		else
 			result[j++] = s[i++];
 	}

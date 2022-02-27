@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: min-kang <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 14:25:07 by min-kang          #+#    #+#             */
-/*   Updated: 2022/02/21 14:25:11 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/02/27 13:48:32 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,9 @@ int	main(int argc, char const *argv[], char **envp)
 		r = readline("input: ");
 		if (!r)
 			break ;
-		//add_history
 		tokens = lexer(r, env);
 		g_res = minishell(tokens, 0, env);
+		free_tokens(tokens);
 		free(r);
 	}
 	return (g_res);

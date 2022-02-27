@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gphilipp <gphilipp@student.42.fr>          +#+  +:+       +#+        */
+/*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 10:50:45 by gkgpteam          #+#    #+#             */
-/*   Updated: 2022/01/19 15:28:14 by gphilipp         ###   ########.fr       */
+/*   Updated: 2022/02/27 13:55:03 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,7 @@ char		*ft_itoa(int n);
 /* lexer */
 t_token		*lexer(char *s, char **envp);
 void		token_addback(t_token **tokens, t_token *new);
-int			give_token(t_token **tokens, int token, int index);
+int			give_token(t_token **tokens, char *s, int index);
 int			lexer_error(t_token *tokens);
 void		*free_tokens(t_token *tokens);
 void		put_token_index(t_token **tokens);
@@ -144,5 +144,6 @@ char		*here_doc_join(char *txt, char *r);
 int			here_doc(char *limiter);
 t_redir		redir_initialize(int fd_in, int fd_out);
 void		redir_define(t_redir *redir, char **name, int *type);
+void		free_node(t_node *node);
 
 #endif

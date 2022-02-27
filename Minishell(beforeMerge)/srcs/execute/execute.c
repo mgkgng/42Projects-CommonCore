@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: min-kang <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/16 15:54:12 by min-kang          #+#    #+#             */
-/*   Updated: 2022/01/16 15:54:14 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/02/27 13:12:17 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,6 @@ int	execute(t_node *node, char **envp)
 
 	success = execute_loop(node->root, envp, 0);
 	unlink(HEREDOC);
-	// free_node(node);
+	free_node(node);
 	return (success);
 }
