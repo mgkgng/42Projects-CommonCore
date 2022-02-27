@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 10:50:45 by gkgpteam          #+#    #+#             */
-/*   Updated: 2022/02/27 13:55:03 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/02/27 15:09:45 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,7 +136,7 @@ char		**parse_path(char **envp);
 char		*define_path(char *cmd, char **paths);
 
 /* execute */
-int			execute(t_node *node, char **envp);
+int			parse_execute(t_token *begin, int index, char **envp);
 char		*pathname_creator(char *s, char **paths);
 char		**possible_path(char **envp);
 char		*path_define(char *cmd, char **envp);
