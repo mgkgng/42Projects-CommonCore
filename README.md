@@ -1,0 +1,1 @@
+# 42projects_commoncore
