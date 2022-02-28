@@ -1,34 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Fixed.hpp                                          :+:      :+:    :+:   */
+/*   ClapTrap.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/27 21:21:56 by min-kang          #+#    #+#             */
-/*   Updated: 2022/02/28 14:13:57 by min-kang         ###   ########.fr       */
+/*   Created: 2022/02/28 14:50:44 by min-kang          #+#    #+#             */
+/*   Updated: 2022/02/28 15:34:47 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#pragma once
 
 #include <iostream>
 #include <string>
 
-class	Fixed {
-
+class ClapTrap {
+	
 	public:
-		Fixed(void);
-		Fixed(Fixed const &src);
-		~Fixed(void);
+		ClapTrap(std::string n);
+		ClapTrap(ClapTrap const &src);
+		~ClapTrap(void);
 
-		Fixed	&operator=(Fixed const &rhs);
-		int		getRawBits(void) const;
-		void	setRawBits(int const raw);
-
-	private:
-		int	_n;
-		static const int _f;
-
+		ClapTrap &operator=(ClapTrap const &rhs);
 		
+		void attack(const std::string &target);
+		void takeDamage(unsigned int amount);
+		void beRepaired(unsigned int amount);
+		
+	private:
+		std::string	_name;
+		int			_hitPoints;
+		int			_energyPoints;
+		int			_attackDamage;
+
 };
