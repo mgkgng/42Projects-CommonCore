@@ -3,66 +3,61 @@
 /*                                                        :::      ::::::::   */
 /*   flag_width_precision_bonus.c                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: min-kang <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/15 18:15:53 by min-kang          #+#    #+#             */
-/*   Updated: 2021/11/15 18:15:57 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/01 19:32:32 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf_bonus.h"
 
-t_flag	*ft_flag(const char *s, int i)
+char	*get_flag(const char *s, int *i)
 {
 	char	*fl;
-	int		index;
-	t_flag	*result;
+	int		a;
+	char	*res;
 
-	index = 0;
+	a = 0;
 	fl = ft_strdup("0- #+");
-	result = ft_calloc(1, sizeof(t_flag));
-	if (!ft_strchr(fl, s[i]))
+	if (!ft_strchr(fl, s[*i]))
 	{
 		free(fl);
-		return (result);
+		return (NULL);
 	}
-	result->flags = malloc(6);
-	while (ft_strchr(fl, s[i]))
-		result->flags[index++] = s[i++];
-	result->flags[index] = '\0';
-	result->index = i;
+	res = ft_calloc(6, sizeof(char));
+	while (ft_strchr(fl, s[*i]))
+		res[a++] = s[*i++];
+	res[a] = '\0';
 	free(fl);
-	return (result);
+	return (res);
 }
 
-t_wp	*ft_width_min(const char *s, int i, t_wp *s_wp)
+int	get_width(const char *s, int *i)
 {
-	while (ft_isdigit(s[i]))
-		s_wp->w_value = s_wp->w_value * 10 + (s[i++] - '0');
-	s_wp->w_index = i;
-	return (s_wp);
+	int	res;
+
+	while (ft_isdigit(s[*i]))
+		res = res * 10 + (s[*i++] - '0');
+	return (res);
 }
 
-t_wp	*ft_precision(const char *s, int i, t_wp *s_wp)
+int	get_precis(const char *s, int *i)
 {
-	if (s[i++] != '.')
-		return (s_wp);
-	if (!ft_isdigit(s[i]))
-	{
-		s_wp->p_value = -1;
-		s_wp->p_index = i;
-		return (s_wp);
-	}
-	else
-		while (ft_isdigit(s[i]))
-			s_wp->p_value = s_wp->p_value * 10 + (s[i++] - '0');
-	if (s_wp->p_value == 0)
-		s_wp->p_value = -1;
-	s_wp->p_index = i;
-	return (s_wp);
+	int	res;
+
+	if (s[*i] != '.')
+		return (0);
+	if (!ft_isdigit(s[++*i]))
+		return (-1);
+	while (ft_isdigit(s[*i]))
+		res = res * 10 + (s[*i++] - '0');
+	if (!res)
+		res = -1;
+	return (res);
 }
 
-char	*only_width_min(char *arg, int width_min)
+char	*only_width(char *arg, int width_min)
 {
 	char	*result;
 	int		i;

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcopy.c                                       :+:      :+:    :+:   */
+/*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: min-kang <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/20 12:23:21 by min-kang          #+#    #+#             */
-/*   Updated: 2021/10/27 16:25:40 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/01 18:33:20 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,18 @@
 
 void	*ft_memcpy(void *dst, const void *src, size_t n)
 {
-	int		i;
+	size_t	i;
 	char	*dst_b;
 	char	*src_b;
 
-	if (n == 0)
+	if (!n)
 		return (dst);
 	if (!dst && !src)
 		return (NULL);
 	dst_b = (char *) dst;
 	src_b = (char *) src;
 	i = 0;
-	while ((size_t) i < n)
+	while (i < n)
 	{
 		dst_b[i] = src_b[i];
 		i++;

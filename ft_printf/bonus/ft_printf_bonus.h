@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf_bonus.h                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: min-kang <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/15 18:50:36 by min-kang          #+#    #+#             */
-/*   Updated: 2021/11/17 14:31:52 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/01 19:36:25 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,25 +17,18 @@
 # include <unistd.h>
 # include "../libft/libft.h"
 
-typedef struct s_flag
+typedef struct s_len
 {
-	char	*flags;
-	int		index;
-}	t_flag;
-
-typedef struct s_value
-{
-	int	value;
+	int	length;
 	int	index;
-}	t_value;
+}	t_len;
 
-typedef struct s_wp
+typedef struct s_opt
 {
-	int	w_value;
-	int	w_index;
-	int	p_value;
-	int	p_index;
-}	t_wp;
+	char	*flag;
+	int		width;
+	int		precis;
+}	t_opt;
 
 typedef struct s_arg
 {
@@ -53,17 +46,17 @@ char	*space_flag(char *arg);
 char	*hashtag_flag(char *arg, char convert);
 char	*minus_flag(char *arg, int width_min);
 char	*precision_app(char *arg, char convert, int precision);
-t_value	*print_factory(int i, const char *s, va_list arg_n);
-int		print_and_return(char *arg, char convert, char *flags, t_wp *s_wp);
-t_flag	*ft_flag(const char *s, int i);
-t_wp	*ft_width_min(const char *s, int i, t_wp *s_wp);
-t_wp	*ft_precision(const char *s, int i, t_wp *s_wp);
+t_len	print_factory(const char *s, int i, va_list arg_n);
+int		print_and_return(char *arg, char convert, t_opt opt);
+char	*get_flag(const char *s, int *i);
+int		get_width(const char *s, int *i);
+int		ft_precision(const char *s, int *i);
 int		ft_printf(const char *s, ...);
 char	*char_to_string(int c);
-char	*only_width_min(char *arg, int width_min);
-char	*flag_converter(char *arg, char convert, char *flags, t_wp *s_wp);
+char	*only_width(char *arg, int width_min);
+char	*flag_converter(char *arg, char convert, t_opt opt);
 t_arg	*ft_conversion(char convert, t_arg *arg, \
-t_value *result, va_list arg_n);
+t_len *result, va_list arg_n);
 char	*ft_precision_num(char *arg, int precision);
 char	*ft_precision_str(char *arg, int precision);
 char	*ft_strdup_printf(char *s);

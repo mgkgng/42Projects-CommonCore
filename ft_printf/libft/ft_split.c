@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: min-kang <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/18 17:33:35 by min-kang          #+#    #+#             */
-/*   Updated: 2021/10/31 19:03:31 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/01 18:36:12 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static int	index_count(char const *s, char c)
 
 char	**ft_split(char const *s, char c)
 {
-	char		**result;
+	char		**res;
 	char const	*start;
 	int			i;
 	int			len;
@@ -42,8 +42,8 @@ char	**ft_split(char const *s, char c)
 	if (!s)
 		return (NULL);
 	i = 0;
-	result = malloc(sizeof(char *) * (index_count(s, c) + 1));
-	if (!result)
+	res = malloc(sizeof(char *) * (index_count(s, c) + 1));
+	if (!res)
 		return (NULL);
 	while (*s)
 	{
@@ -54,8 +54,8 @@ char	**ft_split(char const *s, char c)
 		while (*s && *s != c && len++ != -1)
 			s++;
 		if (*(s - 1) != c)
-			result[i++] = ft_substr(start, 0, len);
+			res[i++] = ft_substr(start, 0, len);
 	}
-	result[i] = 0;
-	return (result);
+	res[i] = NULL;
+	return (res);
 }

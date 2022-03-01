@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: min-kang <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/19 19:01:24 by min-kang          #+#    #+#             */
-/*   Updated: 2021/10/27 16:46:18 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/01 18:39:30 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,9 @@ size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 	srclen = ft_strlen(src);
 	i = dstlen;
 	j = 0;
-	if (dstsize > 0 && (size_t) dstlen < dstsize - 1)
+	if (dstsize > 0 && dstlen < dstsize - 1)
 	{
-		while (src[j] && (size_t) i + (size_t) j < dstsize - 1)
+		while (src[j] && i + j < dstsize - 1)
 		{
 			dst[i + j] = src[j];
 			j++;

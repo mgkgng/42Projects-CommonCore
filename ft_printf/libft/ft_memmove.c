@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: min-kang <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/19 19:17:59 by min-kang          #+#    #+#             */
-/*   Updated: 2021/10/27 16:40:52 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/01 18:34:12 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,15 @@ void	*ft_memmove(void *dst, const void *src, size_t len)
 {
 	char	*dst_b;
 	char	*src_b;
-	int		i;
+	size_t	i;
 
-	if (len == 0)
+	if (!len)
 		return (dst);
 	if (!dst && !src)
 		return (NULL);
 	dst_b = (char *) dst;
 	src_b = (char *) src;
-	i = (int) len;
+	i = len;
 	if (dst < src)
 		ft_memcpy(dst, src, len);
 	else

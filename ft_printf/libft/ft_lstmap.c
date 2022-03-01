@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: min-kang <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/21 18:22:39 by min-kang          #+#    #+#             */
-/*   Updated: 2021/10/27 14:43:36 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/01 18:29:18 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,13 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 	{
 		begin->next = ft_lstnew(f(lst->content));
 		begin = begin->next;
-		if (begin == NULL)
+		if (!begin)
 		{
 			ft_lstclear(&result, del);
 			return (NULL);
 		}
 		lst = lst->next;
 	}
-	begin->next = 0;
+	begin->next = NULL;
 	return (result);
 }
