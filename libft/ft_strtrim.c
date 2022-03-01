@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: min-kang <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/18 17:34:44 by min-kang          #+#    #+#             */
-/*   Updated: 2021/10/31 18:05:28 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/01 18:47:22 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static int	ft_check_set(char const c, char const *set)
 
 char	*ft_strtrim(char const *s1, char const *set)
 {
-	char	*new;
+	char	*res;
 	int		start;
 	int		end;
 	int		i;
@@ -35,7 +35,7 @@ char	*ft_strtrim(char const *s1, char const *set)
 	start = 0;
 	end = ft_strlen(s1) - 1;
 	i = 0;
-	while (ft_check_set(s1[start], set) && s1[start])
+	while (s1[start] && ft_check_set(s1[start], set))
 		start++;
 	if (!(s1[start]))
 		return (ft_strdup(""));
@@ -43,11 +43,11 @@ char	*ft_strtrim(char const *s1, char const *set)
 		end--;
 	if (start > end || end == 0)
 		return (ft_strdup(""));
-	new = malloc(end - start + 2);
-	if (new == NULL)
+	res = malloc(end - start + 2);
+	if (!res)
 		return (NULL);
 	while (start <= end)
-		new[i++] = (char) s1[start++];
-	new[i] = '\0';
-	return (new);
+		res[i++] = (char) s1[start++];
+	res[i] = '\0';
+	return (res);
 }

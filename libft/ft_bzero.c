@@ -3,22 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: min-kang <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/19 15:56:25 by min-kang          #+#    #+#             */
-/*   Updated: 2021/10/23 16:40:00 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/01 18:11:53 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_bzero(void *s, size_t n)
+void ft_bzero(void *s, size_t n)
 {
-	int		i;
+	size_t	i;
 	char	*str;
 
-	str = (char *) s;
+	str = (char *)s;
 	i = 0;
-	while ((size_t) i < n)
+	while (i < n)
 		str[i++] = '\0';
 }

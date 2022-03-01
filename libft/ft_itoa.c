@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: min-kang <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/18 18:09:04 by min-kang          #+#    #+#             */
-/*   Updated: 2021/10/27 16:54:27 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/01 18:21:28 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static int	count_int(int n)
 	int	count;
 
 	count = 1;
-	if (n == -2147483648)
+	if (n == INT32_MIN)
 		return (11);
 	if (n < 0)
 	{
@@ -34,27 +34,27 @@ static int	count_int(int n)
 
 char	*ft_itoa(int n)
 {
-	char	*result;
-	int		i;
-	int		count;
+	char	*res;
+	int		begin;
+	int		len;
 
-	count = count_int(n);
-	if (n == -2147483648)
+	if (n == INT32_MIN)
 		return (ft_strdup("-2147483648"));
-	result = malloc(count + 1);
-	if (!result)
+	len = count_int(n);
+	res = malloc(len + 1);
+	if (!res)
 		return (NULL);
-	i = 0;
+	begin = 0;
 	if (n < 0)
 	{
-		result[i++] = '-';
+		res[begin++] = '-';
 		n *= -1;
 	}
-	result[count--] = '\0';
-	while (count >= i)
+	res[len--] = '\0';
+	while (len >= begin)
 	{
-		result[count--] = n % 10 + '0';
+		res[len--] = n % 10 + '0';
 		n /= 10;
 	}
-	return (result);
+	return (res);
 }
