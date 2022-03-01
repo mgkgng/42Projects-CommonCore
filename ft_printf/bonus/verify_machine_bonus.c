@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/15 18:23:48 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/01 19:38:24 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/01 19:52:56 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,17 +22,17 @@ t_len	print_factory(const char *s, int i, va_list arg_n)
 	opt.width = ft_width_min(s, &i);
 	opt.precis = ft_precision(s, &i);
 	
-	arg = malloc(sizeof(t_arg));
-	res.length = 0;
-	arg = ft_conversion(s[i], arg, &res, arg_n);
+	arg = ft_conversion(s[i], &res, arg_n);
 	res.length = print_and_return(arg->data, arg->type, opt);
 	res.index = i + 1;
 	free(arg);
 	return (res);
 }
 
-t_arg	*ft_conversion(char convert, t_arg *arg, t_len *result, va_list arg_n)
+t_arg	*ft_conversion(char convert, t_len *result, va_list arg_n)
 {
+	t_arg	*arg;
+	
 	if (convert == 'd' || convert == 'i')
 		arg->data = ft_itoa(va_arg(arg_n, int));
 	else if (convert == 'u')

@@ -3,83 +3,83 @@
 /*                                                        :::      ::::::::   */
 /*   precision_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: min-kang <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/15 15:45:57 by min-kang          #+#    #+#             */
-/*   Updated: 2021/11/15 18:17:15 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/01 19:59:28 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf_bonus.h"
 
-char	*precision_app(char *arg, char convert, int precision)
+char	*precision_app(char *arg, char convert, int precis)
 {
 	char	*result;
 	char	*set;
 
 	set = ft_strdup("diuxX");
-	if (!precision || (!ft_strchr(set, convert) && convert != 's'))
+	if (!precis || (!ft_strchr(set, convert) && convert != 's'))
 	{
 		free(set);
 		return (arg);
 	}
 	if (ft_strchr(set, convert))
-		result = ft_precision_num(arg, precision);
+		result = ft_precision_num(arg, precis);
 	else
-		result = ft_precision_str(arg, precision);
+		result = ft_precision_str(arg, precis);
 	free(arg);
 	free(set);
 	return (result);
 }
 
-char	*ft_precision_num(char *arg, int precision)
+char	*ft_precision_num(char *arg, int precis)
 {
-	char	*result;
+	char	*res;
 	int		i;
 	int		j;
 
 	i = 0;
 	j = 0;
 	if (arg[j] == '-')
-		precision++;
-	if (precision == -1)
-		precision++;
-	if (!precision && !ft_strncmp(arg, "0", ft_strlen(arg)))
+		precis++;
+	if (precis == -1)
+		precis++;
+	if (!precis && !ft_strncmp(arg, "0", ft_strlen(arg)))
 		return(ft_strdup(""));
-	if (ft_strlen(arg) >= (size_t) precision)
+	if (ft_strlen(arg) >= precis)
 		return(ft_strdup(arg));
 	else
 	{
-		result = malloc(precision + 1);
+		res = malloc(precis + 1);
 		if (arg[j] == '-')
-			result[i++] = arg[j++];
-		while (i < precision - (int) ft_strlen(arg + j))
-			result[i++] = '0';
+			res[i++] = arg[j++];
+		while (i < precis - ft_strlen(arg + j))
+			res[i++] = '0';
 		while (arg[j])
-			result[i++] = arg[j++];
-		result[i] = '\0';
+			res[i++] = arg[j++];
+		res[i] = '\0';
 	}
-	return (result);
+	return (res);
 }
 
-char	*ft_precision_str(char *arg, int precision)
+char	*ft_precision_str(char *arg, int precis)
 {
-	char	*result;
+	char	*res;
 	int		i;
 	int		j;
 
 	i = 0;
 	j = 0;
-	if (precision == -1)
+	if (precis == -1)
 		return (ft_strdup(""));
-	else if (ft_strlen(arg) <= (size_t) precision)
+	else if (ft_strlen(arg) <= precis)
 		return (ft_strdup(arg));
 	else
 	{
-		result = malloc(precision + 1);
-		while (i < precision)
-			result[i++] = arg[j++];
+		res = malloc(precis + 1);
+		while (i < precis)
+			res[i++] = arg[j++];
 	}
-	result[i] = '\0';
-	return (result);
+	res[i] = '\0';
+	return (res);
 }

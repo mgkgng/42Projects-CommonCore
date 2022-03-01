@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/15 18:15:53 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/01 19:32:32 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/01 19:50:23 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,23 +59,23 @@ int	get_precis(const char *s, int *i)
 
 char	*only_width(char *arg, int width_min)
 {
-	char	*result;
+	char	*res;
 	int		i;
 	int		j;
 
 	i = 0;
 	j = 0;
-	if (ft_strlen(arg) >= (size_t) width_min)
+	if (ft_strlen(arg) >= width_min)
 		return (arg);
-	result = malloc(width_min + 1);
-	while (i < width_min - (int) ft_strlen(arg))
-		result[i++] = ' ';
+	res = ft_calloc(width_min + 1, sizeof(char));
+	while (i < width_min - ft_strlen(arg))
+		res[i++] = ' ';
 	while (arg[j])
-		result[i++] = arg[j++];
-	result[i] = '\0';
-	ft_putstr(result);
-	if (!ft_strlen(arg))
+		res[i++] = arg[j++];
+	res[i] = '\0';
+	ft_putstr(res);
+	if (!ft_strlen(arg)) // wtf??
 		ft_putchar('\0');
 	free(arg);
-	return (result);
+	return (res);
 }
