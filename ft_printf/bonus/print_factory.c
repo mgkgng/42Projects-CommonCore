@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/15 18:23:48 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/02 12:07:28 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/02 12:27:18 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,24 +39,6 @@ char	*get_print(char convert, va_list arg_n)
 	*/
 }
 
-int	print(t_arg arg, t_opt opt)
-{
-	int		len;
-
-	if (!opt.flag && !opt.width && !opt.precis)
-		return (without_opt(arg));
-	app_precis(&arg, opt.precis);
-	if (arg.type == CONV_C && !ft_strlen(arg.print))
-	{
-		if (opt.width)
-			opt.width--;
-		len++;
-	}
-	app_flag(&arg, opt);
-	ft_putstr(arg.print);
-	return (ft_strlen(arg.print));
-}
-
 void	app_flag(t_arg *arg, t_opt opt)
 {
 	if (!opt.flag && opt.width)
@@ -66,17 +48,17 @@ void	app_flag(t_arg *arg, t_opt opt)
 	}
 	if (ft_strchr(opt.flag, '0') && !(ft_strchr(opt.flag, '-')) \
 		&& arg->type <= CONV_XU && !opt.precis)
-		zero_flag(arg, opt.width);
+		arg->print = zero_flag(arg->print, opt.width);
 	if (ft_strchr(opt.flag, '+') && arg->type == CONV_DI)
-		plus_flag(arg);
+		arg->print = plus_flag(arg->print);
 	if (ft_strchr(opt.flag, ' ') && !ft_strchr(opt.flag, '+') \
 		&& (arg->type == CONV_DI \
 			|| (arg->type == CONV_S && !ft_strlen(arg->print) && opt.width)))
-		space_flag(arg);
+		arg->print = space_flag(arg->print);
 	if (ft_strchr(opt.flag, '#') && (arg->type == CONV_XL || arg->type == CONV_XU))
-		hashtag_flag(arg);
+		arg->print = hashtag_flag(arg->print, arg->type);
 	if (ft_strchr(opt.flag, '-'))
-		minus_flag(arg, opt.width);
+		arg->print = minus_flag(arg->print, opt.width);
 }
 
 int	without_opt(t_arg arg)
@@ -112,6 +94,24 @@ int	get_argtype(char type)
 		return (CONV_PERC);
 }
 
+int	print(t_arg arg, t_opt opt)
+{
+	int		len;
+
+	if (!opt.flag && !opt.width && !opt.precis)
+		return (without_opt(arg));
+	app_precis(&arg, opt.precis);
+	/*if (arg.type == CONV_C && !ft_strlen(arg.print))
+	{
+		if (opt.width)
+			opt.width--;
+		len++;
+	}*/
+	app_flag(&arg, opt);
+	ft_putstr(arg.print);
+	return (ft_strlen(arg.print));
+}
+
 int	print_factory(const char *s, int i, va_list arg_n)
 {
 	t_opt	opt;
@@ -125,5 +125,6 @@ int	print_factory(const char *s, int i, va_list arg_n)
 	arg.print = get_print(s[i], arg_n);
 	len = print(arg, opt);
 	free(arg.print);
+	free(opt.flag);
 	return (len);
 }

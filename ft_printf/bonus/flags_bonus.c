@@ -3,96 +3,83 @@
 /*                                                        :::      ::::::::   */
 /*   flags_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: min-kang <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/15 18:24:45 by min-kang          #+#    #+#             */
-/*   Updated: 2021/11/15 18:24:50 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/02 12:30:32 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf_bonus.h"
 
-char	*zero_flag(char *arg, int width_min)
+char	*zero_flag(char *arg, int width)
 {
-	char	*result;
+	char	*res;
 	int		i;
 	int		j;
 
+	if (ft_strlen(arg) >= width)
+		return (arg);
+	res = ft_calloc(width + 1, sizeof(char));
 	i = 0;
 	j = 0;
-	if (ft_strlen(arg) >= (size_t) width_min)
-		return (arg);
-	else
+	if (arg[0] == '-')
 	{
-		result = malloc(width_min + 1);
-		if (arg[j] == '-')
-		{
-			result[i++] = '-';
-			j++;
-		}
-		while (i < width_min - (int) ft_strlen(arg + j))
-			result[i++] = '0';
-		while (arg[j])
-			result[i++] = arg[j++];
+		res[i++] = '-';
+		j++;
 	}
-	result[i] = '\0';
+	while (i < width - ft_strlen(arg + j))
+		res[i++] = '0';
+	while (arg[j])
+		res[i++] = arg[j++];
+	res[i] = '\0';
 	free(arg);
-	return (result);
+	return (res);
 }
 
 char	*plus_flag(char *arg)
 {
-	char	*result;
+	char	*res;
 	int		i;
+	int		j;
 
-	i = -1;
+	j = 0;
 	if (ft_atoi(arg) >= 0)
-	{
-		result = malloc(ft_strlen(arg) + 2);
-		result[0] = '+';
-		while (arg[++i])
-			result[i + 1] = arg[i];
-		result[i + 1] = '\0';
-	}
-	else
-	{
-		result = malloc(ft_strlen(arg) + 1);
-		while (arg[++i])
-			result[i] = arg[i];
-		result[i] = '\0';
-	}
+		j++;
+	res = ft_calloc(ft_strlen(arg) + 1 + j, sizeof(char));
+	i = 0;
+	if (j)
+		res[i++] = '+';
+	while (arg[++i])
+		res[i + j] = arg[i];
+	res[i + j] = '\0';
 	free(arg);
-	return (result);
+	return (res);
 }
 
 char	*space_flag(char *arg)
 {
-	char	*result;
+	char	*res;
 	int		i;
+	int		j;
 
-	i = -1;
+	j = 0;
 	if (ft_atoi(arg) >= 0)
-	{
-		result = malloc(ft_strlen(arg) + 2);
-		result[0] = ' ';
-		while (arg[++i])
-			result[i + 1] = arg[i];
-		result[i + 1] = '\0';
-	}
-	else
-	{
-		result = malloc(ft_strlen(arg) + 1);
-		while (arg[++i])
-			result[i] = arg[i];
-		result[i] = '\0';
-	}
+		j++;
+	res = ft_calloc(ft_strlen(arg) + 1 + j, sizeof(char));
+	i = 0;
+	if (j)
+		res[i++] = ' ';
+	while (arg[++i])
+		res[i + j] = arg[i];
+	res[i + j] = '\0';
 	free(arg);
-	return (result);
+	return (res);
 }
 
-char	*hashtag_flag(char *arg, char convert)
+char	*hashtag_flag(char *arg, int convert)
 {
-	char	*result;
+	char	*res;
 	int		i;
 
 	if (ft_strncmp(arg, "0", ft_strlen(arg)) == 0)
@@ -100,39 +87,37 @@ char	*hashtag_flag(char *arg, char convert)
 		free(arg);
 		return (ft_strdup("0"));
 	}
-	i = -1;
-	result = malloc(ft_strlen(arg) + 3);
-	result[0] = '0';
-	if (convert == 'x')
-		result[1] = 'x';
+	res = ft_calloc(ft_strlen(arg) + 3, sizeof(char));
+	res[0] = '0';
+	if (convert == CONV_XL)
+		res[1] = 'x';
 	else
-		result[1] = 'X';
+		res[1] = 'X';
+	i = -1;
 	while (arg[++i])
-		result[i + 2] = arg[i];
-	result[i + 2] = '\0';
+		res[i + 2] = arg[i];
+	res[i + 2] = '\0';
 	free(arg);
-	return (result);
+	return (res);
 }
 
-char	*minus_flag(char *arg, int width_min)
+char	*minus_flag(char *arg, int width)
 {
-	char	*result;
+	char	*res;
 	int		i;
-	int		j;
 
-	i = 0;
-	j = 0;
-	if (ft_strlen(arg) >= (size_t) width_min)
+	if (ft_strlen(arg) >= width)
 		return (arg);
 	else
 	{
-		result = malloc(width_min + 1);
-		while (arg[j])
-			result[i++] = arg[j++];
-		while (i < width_min)
-			result[i++] = ' ';
+		res = ft_calloc(width + 1, sizeof(char));
+		i = -1;
+		while (arg[++i])
+			res[i] = arg[i];
+		while (i < width)
+			res[i++] = ' ';
 	}
-	result[i] = '\0';
+	res[i] = '\0';
 	free(arg);
-	return (result);
+	return (res);
 }
