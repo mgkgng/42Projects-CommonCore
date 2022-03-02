@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/15 18:16:27 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/02 14:11:02 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/02 16:20:12 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,7 @@ char	*ft_ltoa_base(unsigned long int n)
 	i = 0;
 	save = n;
 	count = 1;
+	hex = ft_strdup("0123456789abcdef");
 	while (save > (unsigned long int) ft_strlen(hex) - 1)
 	{
 		count++;

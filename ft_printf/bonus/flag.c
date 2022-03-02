@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/15 18:24:45 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/02 13:49:48 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/02 16:24:41 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,44 +18,43 @@ void	zero(t_print *print, int width)
 	int		i;
 	int		j;
 
-	if (ft_strlen(print->s) >= width)
+	if (ft_strlen(print->str) >= width)
 		return ;
 	nov = ft_calloc(width + 1, sizeof(char));
 	i = 0;
 	j = 0;
-	if (print->s[0] == '-')
+	if (print->str[0] == '-')
 	{
 		nov[i++] = '-';
 		j++;
 	}
-	while (i < width - ft_strlen(print->s + j))
+	while (i < width - ft_strlen(print->str + j))
 		nov[i++] = '0';
-	while (print->s[j])
-		nov[i++] = print->s[j++];
+	while (print->str[j])
+		nov[i++] = print->str[j++];
 	nov[i] = '\0';
-	free(print->s);
-	print->s = nov;
+	free(print->str);
+	print->str = nov;
 }
 
 void	plus_space(t_print *print, char flag)
 {
 	char	*nov;
-	char	c;
 	int		i;
 	int		j;
 
 	j = 0;
-	if (ft_atoi(print->s) >= 0)
+	if (ft_atoi(print->str) >= 0)
 		j++;
-	nov = ft_calloc(ft_strlen(print->s) + 1 + j, sizeof(char));
+	nov = ft_calloc(ft_strlen(print->str) + 1 + j, sizeof(char));
 	i = 0;
 	if (j)
 		nov[i++] = flag;
-	while (print->s[++i])
-		nov[i + j] = print->s[i];
+	while (print->str[++i])
+		nov[i + j] = print->str[i];
 	nov[i + j] = '\0';
-	free(print->s);
-	print->s = nov;
+	free(print->str);
+	print->str = nov;
 }
 
 void	hashtag(t_print *print, int convert)
@@ -63,24 +62,24 @@ void	hashtag(t_print *print, int convert)
 	char	*nov;
 	int		i;
 
-	if (ft_strncmp(print->s, "0", ft_strlen(print->s)) == 0)
+	if (ft_strncmp(print->str, "0", ft_strlen(print->str)) == 0)
 	{
-		free(print->s);
-		print->s = ft_strdup("0");
+		free(print->str);
+		print->str = ft_strdup("0");
 		return ;
 	}
-	nov = ft_calloc(ft_strlen(print->s) + 3, sizeof(char));
+	nov = ft_calloc(ft_strlen(print->str) + 3, sizeof(char));
 	nov[0] = '0';
 	if (convert == CONV_XL)
 		nov[1] = 'x';
 	else
 		nov[1] = 'X';
 	i = -1;
-	while (print->s[++i])
-		nov[i + 2] = print->s[i];
+	while (print->str[++i])
+		nov[i + 2] = print->str[i];
 	nov[i + 2] = '\0';
-	free(print->s);
-	return (nov);
+	free(print->str);
+	print->str = nov;
 }
 
 void	minus(t_print *print, int width)
@@ -88,20 +87,20 @@ void	minus(t_print *print, int width)
 	char	*nov;
 	int		i;
 
-	if (ft_strlen(print->s) >= width)
+	if (ft_strlen(print->str) >= width)
 		return ;
 	else
 	{
 		nov = ft_calloc(width + 1, sizeof(char));
 		i = -1;
-		while (print->s[++i])
-			nov[i] = print->s[i];
+		while (print->str[++i])
+			nov[i] = print->str[i];
 		while (i < width)
 			nov[i++] = ' ';
 	}
 	nov[i] = '\0';
-	free(print->s);
-	print->s = nov;
+	free(print->str);
+	print->str = nov;
 }
 
 void	app_flag(t_print *print, t_opt opt)
@@ -115,7 +114,7 @@ void	app_flag(t_print *print, t_opt opt)
 		plus_space(print, '+');
 	if (ft_strchr(opt.flag, ' ') && !ft_strchr(opt.flag, '+') \
 		&& (print->type == CONV_DI \
-			|| (print->type == CONV_S && !ft_strlen(print->s) && opt.width)))
+			|| (print->type == CONV_S && !ft_strlen(print->str) && opt.width)))
 		plus_space(print, ' ');
 	if (ft_strchr(opt.flag, '#') && (print->type == CONV_XL || print->type == CONV_XU))
 		hashtag(print, print->type);

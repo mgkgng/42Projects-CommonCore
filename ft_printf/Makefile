@@ -1,14 +1,14 @@
-SRCS =	srcs/ft_printf.c	\
+SRCS =	srcs/ft_printf.c \
 		srcs/ft_printf_utils.c \
-		srcs/verify_machine.c	\
+		srcs/verify_machine.c \
 
-BSRCS = bonus/flag_width_precision_bonus.c	\
-		bonus/flags_bonus.c					\
-		bonus/ft_printf_bonus.c				\
-		bonus/ft_printf_utils_bonus.c		\
-		bonus/ft_printf_utils_bonus2.c		\
-		bonus/precision_bonus.c				\
-		bonus/verify_machine_bonus.c		\
+BSRCS = bonus/ft_printf_bonus.c \
+		bonus/ft_printf_utils_bonus.c \
+		bonus/get.c \
+		bonus/precision.c \
+		bonus/print.c \
+		bonus/width.c \
+		bonus/flag.c
 
 ifndef WITH_BONUS
 	OBJS =	${SRCS:.c=.o}

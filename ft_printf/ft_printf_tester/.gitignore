@@ -1,0 +1,9 @@
+*.o
+vgcore*
+tester
+files
+tester.dSYM
+myleaks.txt
+compile_commands.json
+.cache/
+main.c

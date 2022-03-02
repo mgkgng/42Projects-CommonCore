@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/15 18:50:36 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/02 14:11:59 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/02 16:38:27 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,13 +41,14 @@ typedef struct s_print
 	int		type;	
 }	t_print;
 
+int	ft_printf(const char *s, ...);
 
 /* flag */
 void	zero(t_print *print, int width);
 void	plus_space(t_print *print, char flag);
 void	hashtag(t_print *print, int convert);
 void	minus(t_print *print, int width);
-char	*app_width(t_print *print, int width);
+void	app_width(t_print *print, int width);
 void	app_flag(t_print *print, t_opt opt);
 
 /* precision */
@@ -67,7 +68,7 @@ int		get_type(char type);
 char	*to_string(int c);
 void	ft_putchar(int c);
 void	ft_putstr(char *s);
-char	*ft_itoa_base(unsigned int n, int flag);
+char	*hex(unsigned int n, int flag);
 char	*ft_ltoa_base(unsigned long int n);
 char	*get_pointer(unsigned long int n);
 

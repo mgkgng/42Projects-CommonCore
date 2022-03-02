@@ -6,16 +6,15 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/15 18:23:48 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/02 14:01:47 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/02 16:45:14 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf_bonus.h"
+#include <stdio.h>
 
 void	get_print(t_print *print, t_opt opt)
 {
-	int		len;
-
 	if (!opt.flag && !opt.width && !opt.precis)
 		return ;
 	app_precis(print, opt.precis);

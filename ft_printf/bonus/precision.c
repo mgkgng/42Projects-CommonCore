@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/15 15:45:57 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/02 14:08:53 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/02 16:22:41 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	app_precis_num(t_print *print, int precis)
 		j = 0;
 		nov = ft_calloc(precis + 1, sizeof(char));
 		if (print->str[j] == '-')
-			nov[i++] = print[j++];
+			nov[i++] = print->str[j++];
 		while (i < precis - ft_strlen(print->str + j))
 			nov[i++] = '0';
 		while (print->str[j])
@@ -67,8 +67,6 @@ void	app_precis_str(t_print *print, int precis)
 
 void	app_precis(t_print *print, int precis)
 {
-	char	*nov;
-
 	if (!precis || (print->type > CONV_S))
 		return ;
 	else if (print->type == CONV_S)

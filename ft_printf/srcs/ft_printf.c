@@ -3,37 +3,37 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: min-kang <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/16 11:08:06 by min-kang          #+#    #+#             */
-/*   Updated: 2021/11/16 11:08:09 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/02 16:29:08 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_printf(const char *str, ...)
+int	ft_printf(const char *s, ...)
 {
 	va_list		arg_n;
-	int			index;
-	int			sum;
+	int			i;
+	int			len;
 
-	index = 0;
-	sum = 0;
-	va_start(arg_n, str);
-	while (str[index])
+	va_start(arg_n, s);
+	i = 0;
+	len = 0;
+	while (s[i])
 	{
-		if (str[index] == '%')
+		if (s[i] == '%')
 		{
-			sum += print_factory(++index, str, arg_n);
-			index++;
+			len += print_factory(++i, s, arg_n);
+			i++;
 		}
 		else
 		{
-			ft_putchar(str[index++]);
-			sum++;
+			ft_putchar(s[i++]);
+			len++;
 		}
 	}
 	va_end(arg_n);
-	return (sum);
+	return (len);
 }
