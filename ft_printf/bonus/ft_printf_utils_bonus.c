@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/15 18:16:27 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/02 11:34:25 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/02 14:11:02 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	ft_putstr(char *s)
 		ft_putchar((int) s[i++]);
 }
 
-char	*char_to_string(int c)
+char	*to_string(int c)
 {
 	char	*result;
 
