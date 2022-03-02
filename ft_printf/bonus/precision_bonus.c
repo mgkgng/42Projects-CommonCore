@@ -6,80 +6,72 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/15 15:45:57 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/01 19:59:28 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/02 11:51:44 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf_bonus.h"
 
-char	*precision_app(char *arg, char convert, int precis)
-{
-	char	*result;
-	char	*set;
-
-	set = ft_strdup("diuxX");
-	if (!precis || (!ft_strchr(set, convert) && convert != 's'))
-	{
-		free(set);
-		return (arg);
-	}
-	if (ft_strchr(set, convert))
-		result = ft_precision_num(arg, precis);
-	else
-		result = ft_precision_str(arg, precis);
-	free(arg);
-	free(set);
-	return (result);
-}
-
-char	*ft_precision_num(char *arg, int precis)
+char	*app_precis_num(char *print, int precis)
 {
 	char	*res;
 	int		i;
 	int		j;
 
-	i = 0;
-	j = 0;
-	if (arg[j] == '-')
+	if (*print == '-')
 		precis++;
 	if (precis == -1)
 		precis++;
-	if (!precis && !ft_strncmp(arg, "0", ft_strlen(arg)))
-		return(ft_strdup(""));
-	if (ft_strlen(arg) >= precis)
-		return(ft_strdup(arg));
+	if (ft_strlen(print) >= precis)
+		return (print);
+	else if (!precis && !ft_strncmp(print, "0", ft_strlen(print)))
+		res = ft_strdup("");
 	else
 	{
-		res = malloc(precis + 1);
-		if (arg[j] == '-')
-			res[i++] = arg[j++];
-		while (i < precis - ft_strlen(arg + j))
+		i = 0;
+		j = 0;
+		res = ft_calloc(precis + 1, sizeof(char));
+		if (print[j] == '-')
+			res[i++] = print[j++];
+		while (i < precis - ft_strlen(print + j))
 			res[i++] = '0';
-		while (arg[j])
-			res[i++] = arg[j++];
+		while (print[j])
+			res[i++] = print[j++];
 		res[i] = '\0';
 	}
+	free(print);
 	return (res);
 }
 
-char	*ft_precision_str(char *arg, int precis)
+char	*app_precis_str(char *print, int precis)
 {
 	char	*res;
 	int		i;
-	int		j;
 
-	i = 0;
-	j = 0;
+	if (ft_strlen(print) <= precis)
+		return (print);
 	if (precis == -1)
-		return (ft_strdup(""));
-	else if (ft_strlen(arg) <= precis)
-		return (ft_strdup(arg));
+		res = ft_strdup("");
 	else
 	{
 		res = malloc(precis + 1);
-		while (i < precis)
-			res[i++] = arg[j++];
+		i = -1;
+		while (++i < precis)
+			res[i] = print[i];
+		res[i] = '\0';
 	}
-	res[i] = '\0';
+	free(print);
 	return (res);
+}
+
+void	app_precis(t_arg *arg, int precis)
+{
+	char	*res;
+
+	if (!precis || (arg->type > CONV_S))
+		return (arg);
+	else if (arg->type == CONV_S)
+		arg->print = app_precis_str(arg, precis);
+	else
+		arg->print = app_precis_num(arg, precis);
 }

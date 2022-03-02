@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/15 18:49:47 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/01 19:26:09 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/02 11:15:20 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 int	ft_printf(const char *s, ...)
 {
 	va_list		arg_n;
-	t_len		tmp;
 	int			i;
 	int			len;
 
@@ -26,9 +25,8 @@ int	ft_printf(const char *s, ...)
 	{
 		if (s[i] == '%')
 		{
-			tmp = print_factory(s, ++i, arg_n);
-			len += tmp.length;
-			i = tmp.index;
+			i++;
+			len += print_factory(s, &i, arg_n);
 		}
 		else
 		{
