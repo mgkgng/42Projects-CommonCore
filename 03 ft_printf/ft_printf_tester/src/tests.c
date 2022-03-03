@@ -23,7 +23,7 @@ int run_tests(int test_cat)
 	PRINTF(("1, 2, 3, -d test, testing, 0.4s sound, 1, 2, 3xp, sound, -*dtest"));
 
 	// if no cateogry was specified, then  run all of the categories
-	right_cat = test_cat ? test_cat & (CAT_C | CAT_MANDATORY) : 1;
+	/*right_cat = test_cat ? test_cat & (CAT_C | CAT_MANDATORY) : 1;
 	describe("\n%c basic");
 
 	PRINTF(("%c", 'a'));
@@ -166,7 +166,7 @@ int run_tests(int test_cat)
 	PRINTF(("%i - %s - %p %d - %c - %u - %x %X %%", 20, "", (void *)-1, '\0', -20, -1, -1, 200000000));
 	PRINTF(("%c - %s - %p %d - %i - %u - %x %X %%", 'b', null_str, NULL, 20, -20, -1, -1, 200000000));
 	PRINTF(("%c %s - %p - %d - %i %u - %x - %X %%", '\0', null_str, (void *)0xdeadc0de, 0, (int)-2147483648, -1, -1, 200000000));
-
+	*/
 	right_cat = (g_all_bonus & CAT_BONUS_1) ? 1
 		: test_cat ? (test_cat & CAT_C && test_cat & CAT_BONUS_1)
 		: 1;

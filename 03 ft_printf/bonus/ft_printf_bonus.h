@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/15 18:50:36 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/02 16:38:27 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/03 15:35:50 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 # include <stdarg.h>
 # include <unistd.h>
 # include "../libft/libft.h"
+#include <stdio.h>
+
 
 typedef enum e_convert {
 	CONV_DI,
@@ -68,8 +70,11 @@ int		get_type(char type);
 char	*to_string(int c);
 void	ft_putchar(int c);
 void	ft_putstr(char *s);
+void	ft_printstr(t_print print);
 char	*hex(unsigned int n, int flag);
 char	*ft_ltoa_base(unsigned long int n);
 char	*get_pointer(unsigned long int n);
+char	*dup_string(char *s);
+
 
 #endif

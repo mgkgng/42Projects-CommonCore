@@ -6,19 +6,17 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/18 18:09:04 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/01 18:21:28 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/03 15:30:28 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	count_int(int n)
+static int	count_int(long long int n)
 {
 	int	count;
 
 	count = 1;
-	if (n == INT32_MIN)
-		return (11);
 	if (n < 0)
 	{
 		count++;
@@ -32,14 +30,12 @@ static int	count_int(int n)
 	return (count);
 }
 
-char	*ft_itoa(int n)
+char	*ft_itoa(long long int n)
 {
 	char	*res;
 	int		begin;
 	int		len;
 
-	if (n == INT32_MIN)
-		return (ft_strdup("-2147483648"));
 	len = count_int(n);
 	res = malloc(len + 1);
 	if (!res)

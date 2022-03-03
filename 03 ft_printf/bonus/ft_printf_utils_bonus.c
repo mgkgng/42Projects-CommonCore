@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/15 18:16:27 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/02 16:20:12 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/03 15:57:01 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,6 @@ void	ft_putstr(char *s)
 	int	i;
 
 	i = 0;
-	if (!s)
-		ft_putstr("(null)");
 	while (s[i])
 		ft_putchar((int) s[i++]);
 }
@@ -32,10 +30,8 @@ char	*to_string(int c)
 {
 	char	*result;
 
-	if (c == 0)
-		return (ft_strdup(""));
 	result = malloc(2);
-	result[0] = (char) c;
+	result[0] = c;
 	result[1] = '\0';
 	return (result);
 }
@@ -68,6 +64,7 @@ char	*hex(unsigned int n, int flag)
 		n /= (unsigned int) ft_strlen(hex);
 	}
 	res[count] = hex[n % (unsigned int) ft_strlen(hex)];
+	free(hex);
 	return (res);
 }
 
@@ -96,15 +93,17 @@ char	*ft_ltoa_base(unsigned long int n)
 		n /= (unsigned long int) ft_strlen(hex);
 	}
 	res[count] = hex[n % (unsigned long int) ft_strlen(hex)];
+	free(hex);
 	return (res);
 }
 
 char	*get_pointer(unsigned long int n)
 {
+	char	*add;
 	char	*res;
 
-	res = ft_ltoa_base(n);
-	res = ft_strjoin("0x", res);
-	// think about free;
+	add = ft_ltoa_base(n);
+	res = ft_strjoin("0x", add);
+	free(add);
 	return (res);
 }

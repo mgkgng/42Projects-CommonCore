@@ -1,36 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   width.c                                            :+:      :+:    :+:   */
+/*   utils2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/02 13:34:20 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/03 15:55:33 by min-kang         ###   ########.fr       */
+/*   Created: 2022/03/03 15:13:43 by min-kang          #+#    #+#             */
+/*   Updated: 2022/03/03 15:56:31 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf_bonus.h"
 
-void	app_width(t_print *print, int width)
+char	*dup_string(char *s)
 {
-	char	*nov;
 	int		i;
-	int		j;
+	char	*result;
 
+	if (!s)
+		return (ft_strdup("(null)"));
+	result = malloc(ft_strlen(s) + 1);
+	i = -1;
+	while (s[++i])
+		result[i] = s[i];
+	result[i] = '\0';
+	return (result);
+}
 
-	if (ft_strlen(print->str) >= width)
-		return ;
-	nov = ft_calloc(width + 1, sizeof(char));
-	i = 0;
-	while (i < width - ft_strlen(print->str))
-		nov[i++] = ' ';
-	j = 0;
-	while (print->str[j])
-		nov[i++] = print->str[j++];
-	if (print->str[0] == '\0' && print->type == CONV_C)
-		nov[i - 1] = '\0';
-	nov[i] = '\0';
-	free(print->str);
-	print->str = nov;
+void	ft_printstr(t_print print)
+{
+	int	i;
+
+	if (print.str[0] == '\0' && print.type == CONV_C)
+		ft_putchar(0);
+	else
+		ft_putstr(print.str);
 }

@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/15 18:15:53 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/02 16:44:50 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/03 15:38:00 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,10 @@ char	*get_flag(const char *s, int *i)
 	}
 	res = ft_calloc(6, sizeof(char));
 	while (ft_strchr(set, s[*i]))
-		res[a++] = s[*i++];
+	{
+		res[a++] = s[*i];
+		*i += 1;
+	}
 	res[a] = '\0';
 	free(set);
 	return (res);
@@ -39,7 +42,10 @@ int	get_width(const char *s, int *i)
 
 	res = 0;
 	while (ft_isdigit(s[*i]))
-		res = res * 10 + (s[*i++] - '0');
+	{
+		res = res * 10 + (s[*i] - '0');
+		*i += 1;
+	}
 	return (res);
 }
 
@@ -49,10 +55,14 @@ int	get_precis(const char *s, int *i)
 
 	if (s[*i] != '.')
 		return (0);
-	if (!ft_isdigit(s[++*i]))
+	*i += 1;
+	if (!ft_isdigit(s[*i]))
 		return (-1);
 	while (ft_isdigit(s[*i]))
-		res = res * 10 + (s[*i++] - '0');
+	{
+		res = res * 10 + (s[*i] - '0');
+		*i += 1;
+	}
 	if (!res)
 		res = -1;
 	return (res);
@@ -71,7 +81,7 @@ char	*get_str(char type, va_list arg_n)
 	else if (type == 'c')
 		return (to_string(va_arg(arg_n, int)));
 	else if (type == 's')
-		return (ft_strdup(va_arg(arg_n, char *)));
+		return (dup_string(va_arg(arg_n, char *)));
 	else if (type == 'p')
 		return (get_pointer((unsigned long int) va_arg(arg_n, void *)));
 	else if (type == '%')

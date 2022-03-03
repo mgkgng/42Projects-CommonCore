@@ -8,7 +8,8 @@ BSRCS = bonus/ft_printf_bonus.c \
 		bonus/precision.c \
 		bonus/print.c \
 		bonus/width.c \
-		bonus/flag.c
+		bonus/flag.c \
+		bonus/utils2.c
 
 ifndef WITH_BONUS
 	OBJS =	${SRCS:.c=.o}

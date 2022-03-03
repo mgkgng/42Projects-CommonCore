@@ -6,12 +6,11 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/15 18:23:48 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/02 16:45:14 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/03 15:38:46 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf_bonus.h"
-#include <stdio.h>
 
 void	get_print(t_print *print, t_opt opt)
 {
@@ -26,9 +25,9 @@ int	do_print(t_print print)
 {
 	int	len;
 	
-	ft_putstr(print.str);
+	ft_printstr(print);
 	len = ft_strlen(print.str);
-	if (!len)
+	if (!len && print.type == CONV_C)
 		len++;
 	free(print.str);
 	return (len);
