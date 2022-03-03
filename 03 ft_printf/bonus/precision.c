@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/15 15:45:57 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/02 16:22:41 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/03 20:43:40 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,11 @@ void	app_precis_num(t_print *print, int precis)
 		precis++;
 	if (precis == -1)
 		precis++;
-	if (ft_strlen(print->str) >= precis)
-		return ;
-	else if (!precis && !ft_strncmp(print->str, "0", ft_strlen(print->str)))
+	if (!precis && !ft_atoi(print->str)
+		&& !ft_isalpha(print->str[0]))
 		nov = ft_strdup("");
+	else if (ft_strlen(print->str) >= precis)
+		return ;
 	else
 	{
 		i = 0;

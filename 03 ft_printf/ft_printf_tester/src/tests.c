@@ -166,7 +166,7 @@ int run_tests(int test_cat)
 	PRINTF(("%i - %s - %p %d - %c - %u - %x %X %%", 20, "", (void *)-1, '\0', -20, -1, -1, 200000000));
 	PRINTF(("%c - %s - %p %d - %i - %u - %x %X %%", 'b', null_str, NULL, 20, -20, -1, -1, 200000000));
 	PRINTF(("%c %s - %p - %d - %i %u - %x - %X %%", '\0', null_str, (void *)0xdeadc0de, 0, (int)-2147483648, -1, -1, 200000000));
-	*/
+	
 	right_cat = (g_all_bonus & CAT_BONUS_1) ? 1
 		: test_cat ? (test_cat & CAT_C && test_cat & CAT_BONUS_1)
 		: 1;
@@ -502,7 +502,7 @@ int run_tests(int test_cat)
 	PRINTF(("the number is %.5u", 0))
 	PRINTF(("%u%.5u%.0u%.u%.9u", 5, 55, 2, 0, 42))
 	PRINTF(("%us%.5ui%.0uc%.up%.9ux", 5, 55, 2, 0, 42))
-
+*
 	right_cat = (g_all_bonus & CAT_BONUS_1) ? 1
 		: test_cat ? (test_cat & CAT_X && test_cat & CAT_BONUS_1)
 		: 1;
@@ -580,7 +580,7 @@ int run_tests(int test_cat)
 	PRINTF(("the number is %.5X", 0))
 	PRINTF(("%X%.5X%.0X%.X%.9X", 5, 55, 2, 0, 42))
 	PRINTF(("%Xs%.5Xi%.0Xc%.Xp%.9Xu", 5, 55, 2, 0, 42))
-
+*/
 	right_cat = (g_all_bonus & CAT_BONUS_1) ? 1
 		: test_cat ? (test_cat & CAT_C && test_cat & CAT_BONUS_1)
 		: 1;

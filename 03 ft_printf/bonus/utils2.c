@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 15:13:43 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/03 15:56:31 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/03 20:05:50 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,4 @@ char	*dup_string(char *s)
 		result[i] = s[i];
 	result[i] = '\0';
 	return (result);
-}
-
-void	ft_printstr(t_print print)
-{
-	int	i;
-
-	if (print.str[0] == '\0' && print.type == CONV_C)
-		ft_putchar(0);
-	else
-		ft_putstr(print.str);
 }
