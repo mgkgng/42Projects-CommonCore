@@ -1,6 +1,6 @@
 # 42projects_commoncore
 
-**01 Libft**
+**01 libft**
 validated : Yes (125 / 100)
 explain :
 
