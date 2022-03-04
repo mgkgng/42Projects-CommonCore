@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 12:19:37 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/04 14:28:02 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/04 15:27:58 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ int	print_x(unsigned int n, t_opt opt, int flag)
 	hashtag = 0;
 	if (ft_strchr(opt.flag, '-'))
 		hyphen = 1;
-	if (ft_strchr(opt.flag))
+
 	if (opt.width)
 	{
 		if (hyphen) {}
@@ -132,6 +132,7 @@ int	print_s(char *s, t_opt opt)
 	int	hyphen;
 	char	*null_str;
 
+	// flag ' '
 	len = 0;
 	hyphen = 0;
 	null_str = ft_strdup("(null)");
@@ -153,6 +154,59 @@ int	print_s(char *s, t_opt opt)
 	return (len);
 }
 
+int	print_p(void *n, t_opt opt)
+{
+	int	len;
+
+	len = ft_putstr("0x");
+	// should be unsigned long int
+	len += ft_printhex((unsigned long int) n, opt.precis, 0);
+	return (len);
+}
+
+int	ft_nbrlen(long long int n, int base)
+{
+	int	len;
+
+	len = 1;
+	if (n < 0)
+	{
+		n *= -1;
+		len++;
+	}
+	while (n > base - 1)
+	{
+		len++;
+		n /= base;
+	}
+	return (len);
+}
+
+int	ft_printnbr(long long int n)
+{
+	if (n < 0)
+	{
+		ft_putchar('-');
+		n *= -1;
+	}
+	if (n > 9)
+		ft_printnbr(n / 10);
+	ft_putchar(n % 10 + '0');
+	return (ft_nbrlen(n, 10));
+}
+
+int print_d(int n, t_opt opt)
+{
+	// precision, width
+	// flag: '+', '0', ' ', '-'
+}
+
+int	print_u(unsigned int n, t_opt opt)
+{
+	// precision, width
+	// flag: '+', '0', '-'
+}
+
 int	do_print2(char type, va_list arg_n, t_opt opt)
 {
 	if (type == 'd' || type == 'i')
@@ -168,9 +222,9 @@ int	do_print2(char type, va_list arg_n, t_opt opt)
 	else if (type == 's')
 		return (print_s(va_arg(arg_n, char *), opt));
 	else if (type == 'p')
-		return (get_pointer((unsigned long int) va_arg(arg_n, void *)));
+		return (print_p(va_arg(arg_n, void *), opt));
 	else if (type == '%')
-		return (to_string('%'));
+		return (print_c('%', opt));
 	else
 		return (0);
 }
