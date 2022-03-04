@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/15 18:24:45 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/03 21:29:55 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/04 17:47:01 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,52 +53,6 @@ void	plus_space(t_print *print, char flag)
 	while (print->str[++i])
 		nov[i + j] = print->str[i];
 	nov[i + j] = '\0';
-	free(print->str);
-	print->str = nov;
-}
-
-void	hashtag(t_print *print, int convert)
-{
-	char	*nov;
-	int		i;
-
-	if (ft_strncmp(print->str, "0", ft_strlen(print->str)) == 0)
-	{
-		free(print->str);
-		print->str = ft_strdup("0");
-		return ;
-	}
-	nov = ft_calloc(ft_strlen(print->str) + 3, sizeof(char));
-	nov[0] = '0';
-	if (convert == CONV_XL)
-		nov[1] = 'x';
-	else
-		nov[1] = 'X';
-	i = -1;
-	while (print->str[++i])
-		nov[i + 2] = print->str[i];
-	nov[i + 2] = '\0';
-	free(print->str);
-	print->str = nov;
-}
-
-void	minus(t_print *print, int width)
-{
-	char	*nov;
-	int		i;
-
-	if (ft_strlen(print->str) >= width)
-		return ;
-	else
-	{
-		nov = ft_calloc(width + 1, sizeof(char));
-		i = -1;
-		while (print->str[++i])
-			nov[i] = print->str[i];
-		while (i < width)
-			nov[i++] = ' ';
-	}
-	nov[i] = '\0';
 	free(print->str);
 	print->str = nov;
 }

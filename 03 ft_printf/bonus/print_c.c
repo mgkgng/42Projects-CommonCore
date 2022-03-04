@@ -1,36 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   width.c                                            :+:      :+:    :+:   */
+/*   print_c.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/02 13:34:20 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/03 15:55:33 by min-kang         ###   ########.fr       */
+/*   Created: 2022/03/04 17:40:46 by min-kang          #+#    #+#             */
+/*   Updated: 2022/03/04 18:18:11 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf_bonus.h"
 
-void	app_width(t_print *print, int width)
+int	print_c(int c, t_spec spec)
 {
-	char	*nov;
-	int		i;
-	int		j;
-
-
-	if (ft_strlen(print->str) >= width)
-		return ;
-	nov = ft_calloc(width + 1, sizeof(char));
-	i = 0;
-	while (i < width - ft_strlen(print->str))
-		nov[i++] = ' ';
-	j = 0;
-	while (print->str[j])
-		nov[i++] = print->str[j++];
-	if (print->str[0] == '\0' && print->type == CONV_C)
-		nov[i - 1] = '\0';
-	nov[i] = '\0';
-	free(print->str);
-	print->str = nov;
+	int	len;
+	
+	len = 0;
+	if (spec.width)
+	{
+		if (!(spec.flag % 2))
+			ft_putchar(c);
+		len += print_width(spec.width, 1);
+		if ((spec.flag % 2))
+			ft_putchar(c);
+	}
+	else
+		ft_putchar(c);
+	return (++len);
 }

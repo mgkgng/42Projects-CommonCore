@@ -5,48 +5,53 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/15 18:23:48 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/04 13:22:38 by min-kang         ###   ########.fr       */
+/*   Created: 2022/03/04 12:19:37 by min-kang          #+#    #+#             */
+/*   Updated: 2022/03/04 18:16:40 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf_bonus.h"
 
-void	get_print(t_print *print, t_opt opt)
+int	print_width(int width, int len)
 {
-	if (!opt.flag && !opt.width && !opt.precis)
-		return ;
-	app_precis(print, opt.precis);
-	app_flag(print, opt);
-	free(opt.flag);
+	int	i;
+
+	if (len >= width)
+		return (0);
+	i = 0;
+	while (i++ < width - len)
+		ft_putchar(' ');
+	return (i);
 }
 
-int	do_print(t_print print, t_opt opt)
+int	do_print(char type, va_list arg_n, t_spec spec)
 {
-	int	len;
-
-	ft_putstr(print.str);
-	len = ft_strlen(print.str);
-	if ((print.str[0] == '\0' && print.type == CONV_C)
-		|| ft_strlen(print.str) + 1 == opt.width)
-	{
-		ft_putchar(0);
-		len++;
-	}
-	free(print.str);
-	return (len);
+	if (type == 'd' || type == 'i')
+		return (print_d(va_arg(arg_n, int), spec));
+	else if (type == 'u')
+		return (print_u(va_arg(arg_n, unsigned int), spec));
+	else if (type == 'x')
+		return (print_x(va_arg(arg_n, unsigned int), spec, 0));
+	else if (type == 'X')
+		return (print_x(va_arg(arg_n, unsigned int), spec, 1));
+	else if (type == 'c')
+		return (print_c(va_arg(arg_n, int), spec));
+	else if (type == 's')
+		return (print_s(va_arg(arg_n, char *), spec));
+	else if (type == 'p')
+		return (print_p(va_arg(arg_n, unsigned long long), spec));
+	else if (type == '%')
+		return (print_c('%', spec));
+	else
+		return (0);
 }
 
 int	print_factory(const char *s, int *i, va_list arg_n)
 {
-	t_opt	opt;
-	t_print	print;
+	t_spec	spec;
 
-	opt.flag = get_flag(s, i);
-	opt.width = get_width(s, i, &opt.flag);
-	opt.precis = get_precis(s, i);
-	print.type = get_type(s[*i]);
-	print.str = get_str(s[*i], arg_n);
-	get_print(&print, opt);
-	return (do_print(print, opt));
+	spec.flag = get_flag(s, i);
+	spec.width = get_width(s, i, &spec.flag);
+	spec.precis = get_precis(s, i);
+	return (do_print(s[*i], arg_n, spec));
 }

@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/15 18:50:36 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/04 14:51:20 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/04 18:18:59 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,61 +18,34 @@
 # include "../libft/libft.h"
 #include <stdio.h>
 
+/* flag corresponding to a prime number
+- : 2
+0 : 3
+  : 5
+# : 7
++ : 11
+*/
 
-typedef enum e_convert {
-	CONV_DI,
-	CONV_U,
-	CONV_XL,
-	CONV_XU,
-	CONV_S,
-	CONV_C,
-	CONV_P,
-	CONV_PERC,
-}	t_convert;
 
-typedef struct s_opt
+typedef struct s_spec
 {
-	char	*flag;
-	int		width;
-	int		precis;
-}	t_opt;
-
-typedef struct s_print
-{
-	char	*str;
-	int		type;	
-}	t_print;
+	int	flag;
+	int	width;
+	int	precis;
+}	t_spec;
 
 int	ft_printf(const char *s, ...);
-
-/* flag */
-void	zero(t_print *print, int width);
-void	plus_space(t_print *print, char flag);
-void	hashtag(t_print *print, int convert);
-void	minus(t_print *print, int width);
-void	app_width(t_print *print, int width);
-void	app_flag(t_print *print, t_opt opt);
-
-/* precision */
-void	app_precis(t_print *print, int precis);
 
 /* print */
 int		print_factory(const char *s, int *i, va_list arg_n);
 
 /* get */
-char	*get_flag(const char *s, int *i);
+int		get_flag(const char *s, int *i);
 int		get_width(const char *s, int *i, char **flag);
 int		get_precis(const char *s, int *i);
-char	*get_str(char type, va_list arg_n);
-int		get_type(char type);
 
 /* utils */
-char	*to_string(int c);
 int		ft_putchar(int c);
 int		ft_putstr(char *s);
-char	*hex(unsigned int n, int flag);
-char	*ft_ltoa_base(unsigned long int n);
-char	*get_pointer(unsigned long int n);
-char	*dup_string(char *s);
 
 #endif

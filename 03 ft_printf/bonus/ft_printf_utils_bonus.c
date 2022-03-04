@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/15 18:16:27 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/04 14:51:06 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/04 17:48:21 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,84 +28,20 @@ int	ft_putstr(char *s)
 	return (i);
 }
 
-char	*to_string(int c)
+int	ft_nbrlen(long long int n, int base)
 {
-	char	*result;
+	int	len;
 
-	result = malloc(2);
-	result[0] = c;
-	result[1] = '\0';
-	return (result);
-}
-
-char	*hex(unsigned int n, int flag)
-{
-	int				i;
-	int				count;
-	unsigned int	save;
-	char			*res;
-	char			*hex;
-
-	i = 0;
-	save = n;
-	count = 1;
-	if (!flag)
-		hex = ft_strdup("0123456789abcdef");
-	else
-		hex = ft_strdup("0123456789ABCDEF");
-	while (save > (unsigned int) ft_strlen(hex) - 1)
+	len = 1;
+	if (n < 0)
 	{
-		count++;
-		save /= (unsigned int) ft_strlen(hex);
+		n *= -1;
+		len++;
 	}
-	res = malloc(count + 1);
-	res[count--] = '\0';
-	while (n > (unsigned int) ft_strlen(hex) - 1)
+	while (n > base - 1)
 	{
-		res[count--] = hex[n % (unsigned int) ft_strlen(hex)];
-		n /= (unsigned int) ft_strlen(hex);
+		len++;
+		n /= base;
 	}
-	res[count] = hex[n % (unsigned int) ft_strlen(hex)];
-	free(hex);
-	return (res);
-}
-
-char	*ft_ltoa_base(unsigned long int n)
-{
-	int					i;
-	int					count;
-	unsigned long int	save;
-	char				*res;
-	char				*hex;
-
-	i = 0;
-	save = n;
-	count = 1;
-	hex = ft_strdup("0123456789abcdef");
-	while (save > (unsigned long int) ft_strlen(hex) - 1)
-	{
-		count++;
-		save /= (unsigned long int) ft_strlen(hex);
-	}
-	res = malloc(count + 1);
-	res[count--] = '\0';
-	while (n > (unsigned long int) ft_strlen(hex) - 1)
-	{
-		res[count--] = hex[n % (unsigned long int) ft_strlen(hex)];
-		n /= (unsigned long int) ft_strlen(hex);
-	}
-	res[count] = hex[n % (unsigned long int) ft_strlen(hex)];
-	free(hex);
-	return (res);
-}
-
-char	*get_pointer(unsigned long int n)
-{
-	char	*add;
-	char	*res;
-
-	add = ft_ltoa_base(n);
-	res = ft_strjoin("0x", add);
-	free(add);
-	return (res);
+	return (len);
 }

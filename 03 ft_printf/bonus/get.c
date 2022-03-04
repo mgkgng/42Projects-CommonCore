@@ -6,32 +6,33 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/15 18:15:53 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/03 21:19:33 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/04 18:16:22 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf_bonus.h"
 
-char	*get_flag(const char *s, int *i)
+int	get_flag(const char *s, int *i)
 {
 	char	*set;
-	int		a;
-	char	*res;
+	int		res;
 
-	a = 0;
+	res = 1;
 	set = ft_strdup("0- #+");
-	if (!ft_strchr(set, s[*i]))
-	{
-		free(set);
-		return (NULL);
-	}
-	res = ft_calloc(6, sizeof(char));
 	while (ft_strchr(set, s[*i]))
 	{
-		res[a++] = s[*i];
+		if (s[*i] == '-')
+			res *= 2;
+		else if (s[*i] == '0')
+			res *= 3;
+		else if (s[*i] == ' ')
+			res *= 5;
+		else if (s[*i] == '#')
+			res *= 7;
+		else if (s[*i] == '+')
+			res *= 11;
 		*i += 1;
 	}
-	res[a] = '\0';
 	free(set);
 	return (res);
 }

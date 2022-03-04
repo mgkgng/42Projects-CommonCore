@@ -1,28 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils2.c                                           :+:      :+:    :+:   */
+/*   print_u.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/03 15:13:43 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/03 20:05:50 by min-kang         ###   ########.fr       */
+/*   Created: 2022/03/04 17:42:43 by min-kang          #+#    #+#             */
+/*   Updated: 2022/03/04 17:54:35 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf_bonus.h"
 
-char	*dup_string(char *s)
+int	ft_printnbr(long long int n)
 {
-	int		i;
-	char	*result;
+	if (n < 0)
+	{
+		ft_putchar('-');
+		n *= -1;
+	}
+	if (n > 9)
+		ft_printnbr(n / 10);
+	ft_putchar(n % 10 + '0');
+	return (ft_nbrlen(n, 10));
+}
 
-	if (!s)
-		return (ft_strdup("(null)"));
-	result = malloc(ft_strlen(s) + 1);
-	i = -1;
-	while (s[++i])
-		result[i] = s[i];
-	result[i] = '\0';
-	return (result);
+int print_d(int n, t_spec spec)
+{
+	// precision, width
+	// flag: '+', '0', ' ', '-'
+}
+
+int	print_u(unsigned int n, t_spec spec)
+{
+	// precision, width
+	// flag: '+', '0', '-'
 }
