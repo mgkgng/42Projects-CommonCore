@@ -6,11 +6,48 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 12:19:37 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/04 13:11:19 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/04 14:28:02 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf_bonus.h"
+
+int	ft_pow(int nb, int pow)
+{
+	if (!pow)
+		return (1);
+	else
+		return (nb * ft_pow(nb, pow - 1));
+}
+
+int	ft_printhex(unsigned int n, int precis, int flag)
+{
+	int				i;
+	char			*set;
+	unsigned int	tmp;
+	int				len;	
+
+	if (!flag)
+		set = ft_strdup("0123456789abcdef");
+	else
+		set = ft_strdup("0123456789ABCDEF");
+	len = 1;
+	tmp = n;
+	while (tmp > 15)
+	{
+		tmp /= 16;
+		len++;
+	}
+	i = len;
+	while (len++ < precis)
+		ft_putchar('0');
+	while (--i)
+	{
+		ft_putchar(set[n / 16 * ft_pow(16, i)]);
+		n %= ft_pow(16, i);
+	}
+	return (len);
+}
 
 int	ft_printstr(char *s, int precis)
 {
@@ -36,10 +73,35 @@ int	print_width(int width, int len)
 	return (i);
 }
 
+int	print_hashtag(int flag)
+{
+	if (!flag)
+		ft_putstr("0x");
+	else
+		ft_putstr("0X");
+	return (2);
+}
 int	print_x(unsigned int n, t_opt opt, int flag)
 {
 	int	len;
 	int	hyphen;
+	int	hashtag;
+
+	len = 0;
+	hyphen = 0;
+	hashtag = 0;
+	if (ft_strchr(opt.flag, '-'))
+		hyphen = 1;
+	if (ft_strchr(opt.flag))
+	if (opt.width)
+	{
+		if (hyphen) {}
+		
+	}
+	else
+	{
+		
+	}
 // precision, width
 //flag = '0', '#', '-'
 
@@ -49,18 +111,14 @@ int	print_x(unsigned int n, t_opt opt, int flag)
 int	print_c(int c, t_opt opt)
 {
 	int	len;
-	int	hyphen;
 	
 	len = 0;
-	hyphen = 0;
-	if (ft_strchr(opt.flag, '-'))
-		hyphen = 1;
 	if (opt.width)
 	{
-		if (hyphen)
+		if (ft_strchr(opt.flag, '-'))
 			ft_putchar(c);
 		len += print_width(opt.width, 1);
-		if (!hyphen)
+		if (!ft_strchr(opt.flag, '-'))
 			ft_putchar(c);
 	}
 	else
