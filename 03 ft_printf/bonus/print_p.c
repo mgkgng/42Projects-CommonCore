@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 17:41:48 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/04 17:53:12 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/04 20:15:17 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,10 @@ int	print_p(unsigned long long n, t_spec spec)
 
 	if (spec.width > len)
 	{
-		if (ft_strchr(spec.flag, '-')) {}
+		if (!(spec.flag % 2)) {}
 			
 		ft_printptr(n, spec, 1);
-		if (!ft_strchr(spec.flag, '-')) {}
+		if ((spec.flag % 2)) {}
 			
 	}
 	return (len);
