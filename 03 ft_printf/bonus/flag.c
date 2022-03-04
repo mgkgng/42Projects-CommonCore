@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/15 18:24:45 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/03 20:17:50 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/03 21:29:55 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,7 @@ void	app_flag(t_print *print, t_opt opt)
 {
 	if (!opt.flag && opt.width)
 		return (app_width(print, opt.width));
-	if (!opt.flag)
+	else if (!opt.flag)
 		return ;
 	if (ft_strchr(opt.flag, '0') && !(ft_strchr(opt.flag, '-')) \
 		&& print->type <= CONV_XU && !opt.precis)
