@@ -7,8 +7,8 @@ int	main() {
 	printf("personal test -----------------------\n");
 	printf("real printf =========================\n");
 	printf("print result: \n");
-	printf("value : %d\n", printf("%.0x\n", (unsigned int) -1));
+	printf("value : %d\n", printf("%-5.2s\n", NULL));
 	printf("my printf ===========================\n");
 	printf("print result: \n");
-	printf("valeur : %d\n", ft_printf("%.0x\n", (unsigned int) -1));
+	printf("valeur : %d\n", ft_printf("%-5.2s\n", NULL));
 }
