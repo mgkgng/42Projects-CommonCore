@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 17:44:50 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/04 18:21:07 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/05 12:37:45 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,28 +42,44 @@ int	ft_printhex(unsigned int n, int precis, int flag)
 	return (len);
 }
 
-int	print_hashtag(int flag)
+int	print_hashtag(int upper)
 {
-	if (!flag)
+	if (!upper)
 		ft_putstr("0x");
 	else
 		ft_putstr("0X");
 	return (2);
 }
 
-int	print_x(unsigned int n, t_spec spec, int flag)
+int	instruction_x(unsigned int n, t_spec spec, int upper, int *ins)
+{
+	int	len;
+	int	i;
+
+	len = 0;
+	i = -1;
+	while (ins[++i])
+	{
+		if (ins[i] == 1)
+			len += ft_printhex(n, spec.precis, upper);
+		else if (ins[i] == 2)
+			len += print_hashtag(upper);
+		else if (ins[i] == 3)
+			len += 
+	}
+	free(ins);
+	return (len);
+}
+
+int	print_x(unsigned int n, t_spec spec, int upper)
 {
 	int	len;
 
 	len = 0;
-	if (spec.width)
+	if (!(spec.flag % 2))
 	{
-		if ()
-		
-	}
-	else
-	{
-		
+		if (!(spec.flag % 7))
+			
 	}
 // precision, width
 //flag = '0', '#', '-'

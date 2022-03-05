@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 17:45:57 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/04 22:01:21 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/05 12:20:55 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,29 @@ int	ft_printstr(char *s, int precis)
 	return (i);
 }
 
-int	print_s(char *s, t_spec spec)
+int	instruction_s(char *s, t_spec spec, int *ins)
 {
 	int	len;
-	int	hyphen;
+	int	i;
+
+	len = 0;
+	i = -1;
+	while (ins[++i])
+	{
+		if (ins[i] == 1)
+			len += ft_printstr(s, spec.precis);
+		if (ins[i] == 2)
+			len += print_width(spec.width, ft_strlen(s) - spec.precis);
+	}
+	free(ins);
+	return (len);
+}
+
+int	print_s(char *s, t_spec spec)
+{
+	int		len;
 	char	*null_str;
+	int		*ins;
 
 	null_str = ft_strdup("(null)");
 	if (!s)
@@ -36,13 +54,13 @@ int	print_s(char *s, t_spec spec)
 	if (spec.width)
 	{
 		if (!(spec.flag % 2))
-			len += ft_printstr(s, spec.precis);
-		len += print_width(spec.width, ft_strlen(s) - spec.precis);
-		if (spec.flag % 2)
-			len += ft_printstr(s, spec.precis);
+			ins = get_instruction(2, 1, 2);
+		else
+			ins = get_instruction(2, 2, 1);
+		len = instruction_s(s, spec, ins);
 	}
 	else
-		len += ft_printstr(s, spec.precis);
+		len = ft_printstr(s, spec.precis);
 	free(null_str);
 	return (len);
 }

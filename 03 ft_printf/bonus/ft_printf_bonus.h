@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/15 18:50:36 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/04 18:18:59 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/05 12:19:34 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@
 + : 11
 */
 
-
 typedef struct s_spec
 {
 	int	flag;
@@ -43,6 +42,7 @@ int		print_factory(const char *s, int *i, va_list arg_n);
 int		get_flag(const char *s, int *i);
 int		get_width(const char *s, int *i, char **flag);
 int		get_precis(const char *s, int *i);
+int		*get_instruction(int n, ...);
 
 /* utils */
 int		ft_putchar(int c);

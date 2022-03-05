@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/15 18:15:53 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/04 18:24:53 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/05 12:16:28 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,4 +90,20 @@ int	get_precis(const char *s, int *i)
 	return (res);
 	// pense aux chiffres negatives, faut ecrire proprement atoi
 	// vaut mieux faire directement atoi, puis *i += fonction atoi_len
+}
+
+int	*get_instruction(int n, ...)
+{
+	va_list arg_n;
+	int		*ins;
+	int		i;
+
+	va_start(arg_n, n);
+	ins = ft_calloc(n + 1, sizeof(int));
+	i = 0;
+	while (i < n)
+		ins[i++] = va_arg(arg_n, int);
+	ins[i] = 0;
+	va_end(arg_n);
+	return (ins);
 }

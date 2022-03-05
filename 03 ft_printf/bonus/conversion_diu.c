@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 17:42:43 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/04 22:14:58 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/05 11:31:19 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	distribution(int n, t_spec spec, int flag)
 	}
 	if (flag == 2) // width -> space
 	{
-		
+		print_wid
 	}
 }
 
@@ -60,9 +60,15 @@ int print_d(int n, t_spec spec)
 	if (spec.width)
 	{
 		if (!(spec.flag % 11) && n >= 0)
+		{
 			len += ft_putchar('+');
+			spec.width--;
+		}
 		else if (!(spec.flag % 5) && n >= 0)
+		{
 			len += ft_putchar(' ');
+			spec.width--;
+		}
 		if (spec.precis != -1)
 			len += print_precis_nbr(spec.precis, ft_nbrlen(n, 10) + len);
 	// precision, width
@@ -70,10 +76,6 @@ int print_d(int n, t_spec spec)
 	{}
 	else if (!(spec.flag % 3)) // '0'
 	{}
-	if (!(spec.flag % 11)) // '+'
-
-	if (!(spec.flag % 5)) // ' '
-	// flag: '+', '0', ' ', '-'
 }
 
 int	print_u(unsigned int n, t_spec spec)

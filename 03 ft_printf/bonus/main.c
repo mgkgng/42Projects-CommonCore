@@ -7,5 +7,5 @@ int	main() {
 	printf("personal test -----------------------\n");
 	printf("real printf =========================\n");
 	printf("print result: \n");
-	printf("value : %d\n", printf("%+10.8d\n", 1));
+	printf("value : %d\n", printf("%010xhmm\n", 155));
 }
