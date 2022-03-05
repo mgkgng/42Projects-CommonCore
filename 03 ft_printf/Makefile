@@ -6,6 +6,7 @@ BSRCS = bonus/ft_printf_bonus.c \
 		bonus/utils_bonus.c \
 		bonus/get.c \
 		bonus/print.c \
+		bonus/print_c.c \
 		bonus/print_d.c \
 		bonus/print_p.c \
 		bonus/print_s.c \

@@ -23,7 +23,7 @@ int run_tests(int test_cat)
 	PRINTF(("1, 2, 3, -d test, testing, 0.4s sound, 1, 2, 3xp, sound, -*dtest"));
 
 	// if no cateogry was specified, then  run all of the categories
-	/*right_cat = test_cat ? test_cat & (CAT_C | CAT_MANDATORY) : 1;
+	right_cat = test_cat ? test_cat & (CAT_C | CAT_MANDATORY) : 1;
 	describe("\n%c basic");
 
 	PRINTF(("%c", 'a'));
@@ -502,7 +502,7 @@ int run_tests(int test_cat)
 	PRINTF(("the number is %.5u", 0))
 	PRINTF(("%u%.5u%.0u%.u%.9u", 5, 55, 2, 0, 42))
 	PRINTF(("%us%.5ui%.0uc%.up%.9ux", 5, 55, 2, 0, 42))
-*
+
 	right_cat = (g_all_bonus & CAT_BONUS_1) ? 1
 		: test_cat ? (test_cat & CAT_X && test_cat & CAT_BONUS_1)
 		: 1;
@@ -580,7 +580,7 @@ int run_tests(int test_cat)
 	PRINTF(("the number is %.5X", 0))
 	PRINTF(("%X%.5X%.0X%.X%.9X", 5, 55, 2, 0, 42))
 	PRINTF(("%Xs%.5Xi%.0Xc%.Xp%.9Xu", 5, 55, 2, 0, 42))
-*/
+
 	right_cat = (g_all_bonus & CAT_BONUS_1) ? 1
 		: test_cat ? (test_cat & CAT_C && test_cat & CAT_BONUS_1)
 		: 1;

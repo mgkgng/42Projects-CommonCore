@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/15 18:50:36 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/05 15:04:55 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/05 15:19:37 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,10 @@ int	print_s(char *s, t_spec spec);
 int	print_u(unsigned int c, t_spec spec);
 int	print_x(unsigned int n, t_spec spec, int upper);
 
+/* flag */
+int	plus_space(int flag);
+int	hashtag(int upper);
+
 /* get */
 int	get_flag(const char *s, int *i);
 int	get_width(const char *s, int *i, int *flag);
@@ -52,7 +56,7 @@ int	*get_instruction(int n, ...);
 
 /* width */
 int	width_nbr(t_spec spec, int n, int nbr_len);
-int	width_unsigned(t_spec spec, int n, int nbr_len);
+int	width_unsigned(t_spec spec, int nbr_len);
 int	width_hex(t_spec spec, int nbr_len, int upper);
 int	print_width(int width, int len, char c);
 

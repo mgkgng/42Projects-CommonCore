@@ -6,13 +6,13 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 17:42:43 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/05 14:41:27 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/05 15:15:49 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf_bonus.h"
 
-int	plus_space(int n, int flag)
+int	plus_space(int flag)
 {
 	char	c;
 
@@ -41,7 +41,7 @@ int	instruction_d(int n, t_spec spec, int *ins)
 		else if (ins[i] == 3)
 			len += width_nbr(spec, n, nbr_len);
 		else if (ins[i] == 4)
-			len += plus_space(n, spec.flag);
+			len += plus_space(spec.flag);
 	}
 	free(ins);
 	return (len);

@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/16 11:08:24 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/02 15:34:39 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/05 15:23:43 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,15 +33,35 @@ int	ft_putstr(char *s)
 	return (i);
 }
 
+int	ft_nbrlen(long long int n, int base)
+{
+	int	len;
+
+	len = 1;
+	if (n < 0)
+	{
+		n *= -1;
+		len++;
+	}
+	while (n > base - 1)
+	{
+		len++;
+		n /= base;
+	}
+	return (len);
+}
+
 int	ft_putnbr(long long int n)
 {
-	char	*s;
-	int		result;
-
-	s = ft_itoa(n);
-	result = ft_putstr(s);
-	free(s);
-	return (result);
+	if (n < 0)
+	{
+		ft_putchar('-');
+		n *= -1;
+	}
+	if (n > 9)
+		ft_putnbr(n / 10);
+	ft_putchar(n % 10 + '0');
+	return (ft_nbrlen(n, 10));
 }
 
 int	ft_putnbr_base(unsigned long int n, char *base, char convert)
@@ -72,3 +92,5 @@ int	ft_putnbr_base(unsigned long int n, char *base, char convert)
 	free(str);
 	return (result);
 }
+
+// should clean it

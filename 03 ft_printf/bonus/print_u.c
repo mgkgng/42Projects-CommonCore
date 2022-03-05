@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/05 14:29:38 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/05 14:44:32 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/05 15:20:20 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	instruction_u(unsigned int n, t_spec spec, int *ins)
 		else if (ins[i] == 2)
 			len += print_precis_nbr(spec.precis, nbr_len);
 		else
-			len += width_unsigned(spec, n, nbr_len);
+			len += width_unsigned(spec, nbr_len);
 	}
 	free(ins);
 	return (len);
