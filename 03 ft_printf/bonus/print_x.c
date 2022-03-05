@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 17:44:50 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/05 13:30:26 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/05 13:52:38 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,63 +54,39 @@ int	print_hashtag(int upper)
 int	instruction_x(unsigned int n, t_spec spec, int upper, int *ins)
 {
 	int	len;
+	int	nbr_len;
 	int	i;
-	int	tmp;
 
 	len = 0;
+	nbr_len = ft_nbrlen(n);
+	if (nbr_len < spec.precis)
+		nbr_len = spec.precis;
 	i = -1;
-	if (ft_nbrlen(n) >= spec.precis)
-		tmp = ft_nbrlen(n);
-	else
-		tmp = spec.precis;
 	while (ins[++i])
 	{
 		if (ins[i] == 1)
 			len += ft_printhex(n, spec.precis, upper);
 		else if (ins[i] == 2)
-			len += width_x(tmp, spec, upper);
+			len += width_hex(nbr_len, spec, upper);
+		else if (ins[i] == 3)
+			len += print_hashtag(upper);
 	}
 	free(ins);
 	return (len);
-}
-
-int	width_x(int len, t_spec spec, int upper)
-{
-	char	c;
-	int		res;
-
-	res = 0;
-	if (!(spec.flag % 7))
-		spec.width -= 2;
-	if (spec.flag % 2 && !(spec.flag % 3)
-		&& (spec.precis <= len || spec.width < spec.precis))
-	{
-		{
-			if (!(spec.flag % 7))
-				res += print_hashtag(upper);
-			res += print_width(spec.width, len, '0');
-		}
-	}
-	else
-	{
-		res += print_width(spec.width, len, ' ');
-		if (!(spec.flag % 7))
-			res += print_hashtag(upper);
-	}
-	return (res);
 }
 
 int	print_x(unsigned int n, t_spec spec, int upper)
 {
 	int	*ins;
 
-	// precision, width
-	// if 0
-		// width > precision > 0
-			// space -> zero
-		// !precision || width < precision
-			// zero
-		// width < precision
-			// zero
-	// '0', '-', '#'
+	if (!(spec.flag % 2))
+	{
+		if (!(spec.flag % 7))
+			ins = get_instruction(3, 3, 1, 2);
+		else
+			ins = get_instruction(2, 1, 2);
+	}
+	else
+		ins = get_instruction(2, 2, 1);
+	return (instruction_x(n, spec, upper, ins));	
 }

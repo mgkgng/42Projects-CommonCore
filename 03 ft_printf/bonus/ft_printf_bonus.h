@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/15 18:50:36 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/05 12:19:34 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/05 13:37:40 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,11 @@ int		get_flag(const char *s, int *i);
 int		get_width(const char *s, int *i, char **flag);
 int		get_precis(const char *s, int *i);
 int		*get_instruction(int n, ...);
+
+/* width */
+int	width_nbr(int len, t_spec spec);
+int	width_hex(int len, t_spec spec, int upper);
+int	print_width(int width, int len, char c);
 
 /* utils */
 int		ft_putchar(int c);
