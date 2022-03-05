@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 17:45:57 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/05 12:20:55 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/05 15:04:33 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,16 +51,10 @@ int	print_s(char *s, t_spec spec)
 	null_str = ft_strdup("(null)");
 	if (!s)
 		s = null_str;
-	if (spec.width)
-	{
-		if (!(spec.flag % 2))
-			ins = get_instruction(2, 1, 2);
-		else
-			ins = get_instruction(2, 2, 1);
-		len = instruction_s(s, spec, ins);
-	}
+	if (!(spec.flag % 2))
+		ins = get_instruction(2, 1, 2);
 	else
-		len = ft_printstr(s, spec.precis);
+		ins = get_instruction(2, 2, 1);
 	free(null_str);
-	return (len);
+	return (instruction_s(s, spec, ins));
 }

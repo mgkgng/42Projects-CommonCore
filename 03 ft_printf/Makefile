@@ -3,13 +3,15 @@ SRCS =	srcs/ft_printf.c \
 		srcs/verify_machine.c \
 
 BSRCS = bonus/ft_printf_bonus.c \
-		bonus/ft_printf_utils_bonus.c \
+		bonus/utils_bonus.c \
 		bonus/get.c \
-		bonus/precision.c \
 		bonus/print.c \
-		bonus/width.c \
-		bonus/flag.c \
-		bonus/utils2.c
+		bonus/print_d.c \
+		bonus/print_p.c \
+		bonus/print_s.c \
+		bonus/print_u.c \
+		bonus/print_x.c \
+		bonus/width.c
 
 ifndef WITH_BONUS
 	OBJS =	${SRCS:.c=.o}

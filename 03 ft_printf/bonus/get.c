@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/15 18:15:53 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/05 12:16:28 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/05 15:00:06 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,21 +37,14 @@ int	get_flag(const char *s, int *i)
 	return (res);
 }
 
-int	get_width(const char *s, int *i, char **flag)
+int	get_width(const char *s, int *i, int *flag)
 {
 	int	res;
 
 	if (s[*i] == '-')
 	{
-		if (!ft_strchr(*flag, '-'))
-		{
-			int x;
-			x = 0;
-			while (*flag[x])
-				x++;
-			*flag[x++] = '-';
-			*flag[x] = '\0';
-		}
+		if (*flag % 2)
+			*flag *= 2;
 		*i += 1;
 	}
 	res = 0;

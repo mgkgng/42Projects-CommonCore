@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/15 18:50:36 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/05 14:42:26 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/05 15:04:55 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,17 @@ typedef struct s_spec
 int	ft_printf(const char *s, ...);
 
 /* print */
-int	print_factory(const char *s, int *i, va_list arg_n);
+int	launch_print(const char *s, int *i, va_list arg_n);
+int	print_c(int c, t_spec spec);
+int	print_d(int n, t_spec spec);
+int	print_p(unsigned long long n, t_spec spec);
+int	print_s(char *s, t_spec spec);
+int	print_u(unsigned int c, t_spec spec);
+int	print_x(unsigned int n, t_spec spec, int upper);
 
 /* get */
 int	get_flag(const char *s, int *i);
-int	get_width(const char *s, int *i, char **flag);
+int	get_width(const char *s, int *i, int *flag);
 int	get_precis(const char *s, int *i);
 int	*get_instruction(int n, ...);
 

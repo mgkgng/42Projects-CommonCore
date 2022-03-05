@@ -6,13 +6,13 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/20 17:01:39 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/02 16:25:06 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/05 14:54:18 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_calloc(size_t count, size_t size)
+void	*ft_calloc(int count, int size)
 {
 	void	*res;
 

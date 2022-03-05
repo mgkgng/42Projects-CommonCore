@@ -6,13 +6,11 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 12:19:37 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/05 13:57:08 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/05 14:46:45 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf_bonus.h"
-
-
 
 int	do_print(char type, va_list arg_n, t_spec spec)
 {
@@ -36,7 +34,7 @@ int	do_print(char type, va_list arg_n, t_spec spec)
 		return (0);
 }
 
-int	print_factory(const char *s, int *i, va_list arg_n)
+int	launch_print(const char *s, int *i, va_list arg_n)
 {
 	t_spec	spec;
 
