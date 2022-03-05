@@ -824,7 +824,7 @@ int run_tests(int test_cat)
 	PRINTF(("%-4.5u%u%4u%-10u-u5%-.3u", -300000, -400000, -500000, -600000, -700000));
 	PRINTF(("%-4.5u%u%4u%-10u-u5%-.3u", 2147483647, 2141483647, 2141483647, 2141483647, 2141483647));
 	PRINTF(("%-4.5u%u%4u%-10u-u5%-.3u", -1, -1, -1, -1, -1));
-*/
+
 	right_cat = (g_all_bonus & CAT_BONUS_1) ? 1
 			: test_cat ? (test_cat & CAT_X && test_cat & CAT_BONUS_1)
 			: 1;
@@ -870,6 +870,7 @@ int run_tests(int test_cat)
 	PRINTF(("%-1.4x", -5000));
 	PRINTF(("%-1.10x", -1));
 	PRINTF(("%-1.12x", 2147483647));
+	
 	PRINTF(("%-10.x", 0));
 	PRINTF(("%-10.10x", 1));
 	PRINTF(("%-10.5x", 10));
@@ -958,7 +959,7 @@ int run_tests(int test_cat)
 	PRINTF(("%-4.5X%X%4X%-10X-X5%-.3X", -300000, -400000, -500000, -600000, -700000));
 	PRINTF(("%-4.5X%X%4X%-10X-X5%-.3X", 2147483647, 2141483647, 2141483647, 2141483647, 2141483647));
 	PRINTF(("%-4.5X%X%4X%-10X-X5%-.3X", -1, -1, -1, -1, -1));
-
+*/
 	right_cat = (g_all_bonus & CAT_BONUS_1) ? 1
 		: test_cat ? (test_cat & CAT_D && test_cat & CAT_BONUS_1)
 		: 1;

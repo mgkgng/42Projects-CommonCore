@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/15 18:15:53 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/05 21:30:54 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/05 22:42:21 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,12 +44,12 @@ int	get_width(const char *s, int *i, int *flag)
 	if (!ft_isdigit(s[*i]) && s[*i] != '-')
 		return (0);
 	res = ft_atoi(s + *i);
-	*i += ft_nbrlen(res, 10);
 	if (res < 0)
 	{
 		res *= -1;
 		*flag *= 2;
 	}
+	*i += ft_nbrlen(res, 10);
 	return (res);
 }
 
@@ -67,8 +67,6 @@ int	get_precis(const char *s, int *i)
 	if (res < 0)
 		res = -1;
 	return (res);
-	// pense aux chiffres negatives, faut ecrire proprement atoi
-	// vaut mieux faire directement atoi, puis *i += fonction atoi_len
 }
 
 int	*get_instruction(int n, ...)
