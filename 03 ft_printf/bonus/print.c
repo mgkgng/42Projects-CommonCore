@@ -6,23 +6,13 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 12:19:37 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/05 13:22:46 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/05 13:57:08 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf_bonus.h"
 
-int	print_width(int width, int len, char c)
-{
-	int	i;
 
-	if (len >= width)
-		return (0);
-	i = 0;
-	while (i++ < width - len)
-		ft_putchar(c);
-	return (i);
-}
 
 int	do_print(char type, va_list arg_n, t_spec spec)
 {

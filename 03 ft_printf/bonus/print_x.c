@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 17:44:50 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/05 13:52:38 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/05 14:18:42 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ int	instruction_x(unsigned int n, t_spec spec, int upper, int *ins)
 		if (ins[i] == 1)
 			len += ft_printhex(n, spec.precis, upper);
 		else if (ins[i] == 2)
-			len += width_hex(nbr_len, spec, upper);
+			len += width_hex(spec, nbr_len, upper);
 		else if (ins[i] == 3)
 			len += print_hashtag(upper);
 	}

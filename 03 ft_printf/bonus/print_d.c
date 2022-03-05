@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   conversion_diu.c                                   :+:      :+:    :+:   */
+/*   print_d.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 17:42:43 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/05 11:31:19 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/05 14:27:45 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,48 +34,56 @@ int	print_precis_nbr(int precis, int len)
 		ft_putchar('0');
 	return (i);
 }
-// got an idea
 
-int	distribution(int n, t_spec spec, int flag)
+int	plus_space(int n, int flag)
+{
+	char	c;
+
+	if (flag % 7)
+		c = '+';
+	else
+		c = ' ';
+	return (ft_putchar(c));
+}
+
+int	instruction_d(int n, t_spec spec, int *ins)
 {
 	int	len;
+	int	nbr_len;
+	int	i;
 
-	if (!flag)
-		return (ft_printnbr(n));
-	if (flag == 1)
+	len = 0;
+	nbr_len = ft_nbrlen(n);
+	i = -1;
+	while (ins[++i])
 	{
-
+		if (ins[i] == 1)
+			len += ft_printnbr(n);
+		else if (ins[i] == 2)
+			len += print_precis_nbr(spec.precis, nbr_len);
+		else if (ins[i] == 3)
+			len += width_nbr(spec, n, nbr_len);
+		else if (ins[i] == 4)
+			len += plus_space(n, spec.flag);
 	}
-	if (flag == 2) // width -> space
-	{
-		print_wid
-	}
+	free(ins);
+	return (len);
 }
 
 int print_d(int n, t_spec spec)
 {
-	int	len;
+	int	*ins;
 
-	len = 0;
-	if (spec.width)
+	if (!(spec.flag % 2))
 	{
-		if (!(spec.flag % 11) && n >= 0)
-		{
-			len += ft_putchar('+');
-			spec.width--;
-		}
-		else if (!(spec.flag % 5) && n >= 0)
-		{
-			len += ft_putchar(' ');
-			spec.width--;
-		}
-		if (spec.precis != -1)
-			len += print_precis_nbr(spec.precis, ft_nbrlen(n, 10) + len);
-	// precision, width
-	if (!(spec.flag % 2) && spec.flag % 3) // '-'
-	{}
-	else if (!(spec.flag % 3)) // '0'
-	{}
+		if (n >= 0 && !(spec.flag % 7 && spec.flag % 11))
+			ins = get_instruction(4, 4, 2, 1, 3);
+		else
+			ins = get_instruction(3, 2, 1, 3);
+	}
+	else
+		ins = get_instruction(3, 3, 1, 2);
+	return (instruction_d(n, spec, ins));
 }
 
 int	print_u(unsigned int n, t_spec spec)

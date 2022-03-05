@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/15 18:50:36 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/05 13:37:40 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/05 14:13:47 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@
 /* flag corresponding to a prime number
 - : 2
 0 : 3
-  : 5
-# : 7
-+ : 11
+# : 5
++ : 7
+  : 11
 */
 
 typedef struct s_spec
@@ -45,8 +45,8 @@ int		get_precis(const char *s, int *i);
 int		*get_instruction(int n, ...);
 
 /* width */
-int	width_nbr(int len, t_spec spec);
-int	width_hex(int len, t_spec spec, int upper);
+int	width_nbr(t_spec spec, int n, int nbr_len);
+int	width_hex(t_spec spec, int nbr_len, int upper);
 int	print_width(int width, int len, char c);
 
 /* utils */
