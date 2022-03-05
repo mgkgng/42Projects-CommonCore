@@ -8,4 +8,5 @@ int	main() {
 	printf("real printf =========================\n");
 	printf("print result: \n");
 	printf("value : %d\n", printf("%+8.5u\n", 155));
+	printf("nbrlen test: %d\n", ft_nbrlen(-31, 10));
 }

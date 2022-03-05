@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 17:45:57 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/05 15:16:46 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/05 21:29:17 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,17 +27,20 @@ int	ft_printstr(char *s, int precis)
 int	instruction_s(char *s, t_spec spec, int *ins)
 {
 	int	len;
+	int	str_len;
 	int	i;
 
 	len = 0;
+	str_len = ft_strlen(s);
+	if (spec.precis != -1 && str_len > spec.precis)
+		str_len = spec.precis;
 	i = -1;
 	while (ins[++i])
 	{
 		if (ins[i] == 1)
 			len += ft_printstr(s, spec.precis);
 		if (ins[i] == 2)
-			len += print_width(spec.width, ft_strlen(s) - spec.precis, ' ');
-		// have to change this length value
+			len += print_width(spec.width, str_len, ' ');
 	}
 	free(ins);
 	return (len);

@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 17:44:50 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/05 15:18:58 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/05 20:26:50 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,15 +30,20 @@ int	ft_printhex(unsigned int n, int precis, int flag)
 		set = ft_strdup("0123456789abcdef");
 	else
 		set = ft_strdup("0123456789ABCDEF");
-	len = ft_nbrlen((long long int) n, 16);
+	len = ft_nbrlen(n, 16);
 	i = len;
-	while (len++ < precis)
-		ft_putchar('0');
-	while (--i)
+	while (len < precis)
 	{
-		ft_putchar(set[n / 16 * ft_pow(16, i)]);
-		n %= ft_pow(16, i);
+		ft_putchar('0');
+		len++;
 	}
+	while (i)
+	{
+		ft_putchar(set[n / ft_pow(16, i - 1)]);
+		n %= ft_pow(16, i - 1);
+		i--;
+	}
+	free(set);
 	return (len);
 }
 

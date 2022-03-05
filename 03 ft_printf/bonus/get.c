@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/15 18:15:53 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/05 15:00:06 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/05 21:30:54 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,44 +41,30 @@ int	get_width(const char *s, int *i, int *flag)
 {
 	int	res;
 
-	if (s[*i] == '-')
+	if (!ft_isdigit(s[*i]) && s[*i] != '-')
+		return (0);
+	res = ft_atoi(s + *i);
+	*i += ft_nbrlen(res, 10);
+	if (res < 0)
 	{
-		if (*flag % 2)
-			*flag *= 2;
-		*i += 1;
-	}
-	res = 0;
-	while (ft_isdigit(s[*i]))
-	{
-		res = res * 10 + (s[*i] - '0');
-		*i += 1;
+		res *= -1;
+		*flag *= 2;
 	}
 	return (res);
-	// pense aux chiffres negatifs
 }
 
 int	get_precis(const char *s, int *i)
 {
 	int	res;
-	int	minus;
 
 	if (s[*i] != '.')
-		return (0);
+		return (-1);
 	*i += 1;
 	if (!ft_isdigit(s[*i]) && s[*i] != '-')
-		return (-1);
-	if (s[*i] == '-')
-	{
-		minus = 1;
-		*i += 1;
-	}
-	res = 0;
-	while (ft_isdigit(s[*i]))
-	{
-		res = res * 10 + (s[*i] - '0');
-		*i += 1;
-	}
-	if (!res || minus)
+		return (0);
+	res = ft_atoi(s + *i);
+	*i += ft_nbrlen(res, 10);
+	if (res < 0)
 		res = -1;
 	return (res);
 	// pense aux chiffres negatives, faut ecrire proprement atoi

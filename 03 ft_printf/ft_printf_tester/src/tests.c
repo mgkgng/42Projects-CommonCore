@@ -23,6 +23,7 @@ int run_tests(int test_cat)
 	PRINTF(("1, 2, 3, -d test, testing, 0.4s sound, 1, 2, 3xp, sound, -*dtest"));
 
 	// if no cateogry was specified, then  run all of the categories
+	/*
 	right_cat = test_cat ? test_cat & (CAT_C | CAT_MANDATORY) : 1;
 	describe("\n%c basic");
 
@@ -357,7 +358,7 @@ int run_tests(int test_cat)
 	PRINTF(("this is the real number: %9X", (unsigned int)-1));
 	PRINTF(("%1X%2X%9X", (unsigned int)-1, 0xf0ca, 123456));
 	PRINTF(("%1Xis doomed%2Xpost%9Xx args", (unsigned int)-1, 0xf0b1a, 7654321));
-
+*/
 	describe("\n%s and precisions");
 
 	right_cat = (g_all_bonus & CAT_BONUS_1) ? 1

@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 17:40:46 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/05 15:25:46 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/05 20:50:11 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ int	print_c(int c, t_spec spec)
 	int	*ins;
 	
 	if (!(spec.flag % 2))
-		ins = get_instruction(2, 2, 1);
-	else
 		ins = get_instruction(2, 1, 2);
+	else
+		ins = get_instruction(2, 2, 1);
 	return (instruction_c(c, spec, ins));
 }

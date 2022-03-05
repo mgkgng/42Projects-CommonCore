@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/05 13:33:07 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/05 15:19:49 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/05 21:27:24 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ int	width_nbr(t_spec spec, int n, int nbr_len)
 {
 	int		len;
 
+	/*if (!spec.width)
+		return (0);*/
 	len = 0;
 	if (n >= 0 && !(spec.flag % 7 && spec.flag % 11))
 		spec.width--;
@@ -75,10 +77,11 @@ int	print_width(int width, int len, char c)
 {
 	int	i;
 
+	//printf("width==%d len==%d", width, len);
 	if (len >= width)
 		return (0);
-	i = 0;
-	while (i++ < width - len)
+	i = -1;
+	while (++i < width - len)
 		ft_putchar(c);
 	return (i);
 }
