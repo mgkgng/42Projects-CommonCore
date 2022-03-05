@@ -6,13 +6,13 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 12:19:37 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/04 18:16:40 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/05 13:22:46 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf_bonus.h"
 
-int	print_width(int width, int len)
+int	print_width(int width, int len, char c)
 {
 	int	i;
 
@@ -20,7 +20,7 @@ int	print_width(int width, int len)
 		return (0);
 	i = 0;
 	while (i++ < width - len)
-		ft_putchar(' ');
+		ft_putchar(c);
 	return (i);
 }
 
