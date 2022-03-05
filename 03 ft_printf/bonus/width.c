@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/05 13:33:07 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/05 21:27:24 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/05 21:58:11 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,24 +50,26 @@ int	width_nbr(t_spec spec, int n, int nbr_len)
 	return (len);
 }
 
-int	width_hex(t_spec spec, int nbr_len, int upper)
+int	width_hex(t_spec spec, unsigned int n, int upper)
 {
 	int		len;
+	int		nbr_len;
 
 	len = 0;
-	if (!(spec.flag % 7))
+	nbr_len = ft_nbrlen(n, 16);
+	if (!(spec.flag % 7) && n && spec.precis)
 		spec.width -= 2;
 	if (spec.flag % 2 && !(spec.flag % 3)
 		&& (spec.precis <= nbr_len || spec.width < spec.precis))
 	{
-		if (!(spec.flag % 7))
+		if (!(spec.flag % 7) && n && spec.precis)
 			len += hashtag(upper);
 		len += print_width(spec.width, nbr_len, '0');
 	}
 	else
 	{
 		len += print_width(spec.width, nbr_len, ' ');
-		if (spec.flag % 2 && !(spec.flag % 7))
+		if (spec.flag % 2 && !(spec.flag % 7) && n && spec.precis)
 			len += hashtag(upper);
 	}
 	return (len);

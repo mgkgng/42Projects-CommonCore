@@ -358,7 +358,7 @@ int run_tests(int test_cat)
 	PRINTF(("this is the real number: %9X", (unsigned int)-1));
 	PRINTF(("%1X%2X%9X", (unsigned int)-1, 0xf0ca, 123456));
 	PRINTF(("%1Xis doomed%2Xpost%9Xx args", (unsigned int)-1, 0xf0b1a, 7654321));
-*/
+
 	describe("\n%s and precisions");
 
 	right_cat = (g_all_bonus & CAT_BONUS_1) ? 1
@@ -824,7 +824,7 @@ int run_tests(int test_cat)
 	PRINTF(("%-4.5u%u%4u%-10u-u5%-.3u", -300000, -400000, -500000, -600000, -700000));
 	PRINTF(("%-4.5u%u%4u%-10u-u5%-.3u", 2147483647, 2141483647, 2141483647, 2141483647, 2141483647));
 	PRINTF(("%-4.5u%u%4u%-10u-u5%-.3u", -1, -1, -1, -1, -1));
-
+*/
 	right_cat = (g_all_bonus & CAT_BONUS_1) ? 1
 			: test_cat ? (test_cat & CAT_X && test_cat & CAT_BONUS_1)
 			: 1;

@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/05 14:29:38 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/05 15:20:20 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/05 22:34:33 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,12 @@ int	instruction_u(unsigned int n, t_spec spec, int *ins)
 	int	i;
 
 	len = 0;
-	nbr_len = ft_nbrlen(n, 10);
+	nbr_len = print_nbr_len(n, spec, 10);
 	i = -1;
 	while (ins[++i])
 	{
 		if (ins[i] == 1)
-			len += ft_printnbr(n);
-		else if (ins[i] == 2)
-			len += print_precis_nbr(spec.precis, nbr_len);
+			len += print_nbr(n, spec);
 		else
 			len += width_unsigned(spec, nbr_len);
 	}
@@ -39,8 +37,8 @@ int	print_u(unsigned int n, t_spec spec)
 	int	*ins;
 
 	if (!(spec.flag % 2))
-		ins = get_instruction(3, 2, 1, 3);
+		ins = get_instruction(2, 1, 2);
 	else
-		ins = get_instruction(3, 3, 2, 1);
+		ins = get_instruction(2, 2, 1);
 	return (instruction_u(n, spec, ins));
 }

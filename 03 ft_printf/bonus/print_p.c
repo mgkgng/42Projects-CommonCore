@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 17:41:48 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/05 15:11:08 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/05 21:50:44 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	ft_printptr(unsigned long long n, t_spec spec, int on)
 	set = ft_strdup("0123456789abcdef");
 	if (on)
 		ft_putstr("0x");
-	if (n > 16)
+	if (n > 15)
 		ft_printptr(n / 16, spec, 0);
 	ft_putchar(set[n % 16]);
 	free(set);

@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/15 18:50:36 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/05 15:19:37 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/05 22:35:28 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,14 +57,16 @@ int	*get_instruction(int n, ...);
 /* width */
 int	width_nbr(t_spec spec, int n, int nbr_len);
 int	width_unsigned(t_spec spec, int nbr_len);
-int	width_hex(t_spec spec, int nbr_len, int upper);
+int	width_hex(t_spec spec, unsigned int n, int upper);
 int	print_width(int width, int len, char c);
 
 /* utils */
 int	ft_putchar(int c);
 int	ft_putstr(char *s);
-int	ft_printnbr(long long int n);
+int	print_nbr(long long int n, t_spec spec);
 int	ft_nbrlen(long long int n, int base);
 int	print_precis_nbr(int precis, int len);
+int	print_nbr_len(long long int n, t_spec spec, int base);
+
 
 #endif

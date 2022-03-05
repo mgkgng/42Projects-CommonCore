@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 17:44:50 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/05 20:26:50 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/05 22:35:06 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ int	ft_printhex(unsigned int n, int precis, int flag)
 	char			*set;
 	int				len;	
 
+	if (!n && !precis)
+		return (0);
 	if (!flag)
 		set = ft_strdup("0123456789abcdef");
 	else
@@ -63,16 +65,14 @@ int	instruction_x(unsigned int n, t_spec spec, int upper, int *ins)
 	int	i;
 
 	len = 0;
-	nbr_len = ft_nbrlen(n, 16);
-	if (nbr_len < spec.precis)
-		nbr_len = spec.precis;
+	nbr_len = print_nbr_len(n, spec, 16);
 	i = -1;
 	while (ins[++i])
 	{
 		if (ins[i] == 1)
 			len += ft_printhex(n, spec.precis, upper);
 		else if (ins[i] == 2)
-			len += width_hex(spec, nbr_len, upper);
+			len += width_hex(spec, n, upper);
 		else if (ins[i] == 3)
 			len += hashtag(upper);
 	}
@@ -84,9 +84,11 @@ int	print_x(unsigned int n, t_spec spec, int upper)
 {
 	int	*ins;
 
+	if (!n && !spec.precis)
+		return (0);
 	if (!(spec.flag % 2))
 	{
-		if (!(spec.flag % 7))
+		if (!(spec.flag % 7) && n && spec.precis)
 			ins = get_instruction(3, 3, 1, 2);
 		else
 			ins = get_instruction(2, 1, 2);
