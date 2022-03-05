@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/15 18:50:36 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/05 14:13:47 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/05 14:42:26 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,21 +36,25 @@ typedef struct s_spec
 int	ft_printf(const char *s, ...);
 
 /* print */
-int		print_factory(const char *s, int *i, va_list arg_n);
+int	print_factory(const char *s, int *i, va_list arg_n);
 
 /* get */
-int		get_flag(const char *s, int *i);
-int		get_width(const char *s, int *i, char **flag);
-int		get_precis(const char *s, int *i);
-int		*get_instruction(int n, ...);
+int	get_flag(const char *s, int *i);
+int	get_width(const char *s, int *i, char **flag);
+int	get_precis(const char *s, int *i);
+int	*get_instruction(int n, ...);
 
 /* width */
 int	width_nbr(t_spec spec, int n, int nbr_len);
+int	width_unsigned(t_spec spec, int n, int nbr_len);
 int	width_hex(t_spec spec, int nbr_len, int upper);
 int	print_width(int width, int len, char c);
 
 /* utils */
-int		ft_putchar(int c);
-int		ft_putstr(char *s);
+int	ft_putchar(int c);
+int	ft_putstr(char *s);
+int	ft_printnbr(long long int n);
+int	ft_nbrlen(long long int n, int base);
+int	print_precis_nbr(int precis, int len);
 
 #endif

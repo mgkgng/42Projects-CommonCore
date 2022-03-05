@@ -6,11 +6,25 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/05 13:33:07 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/05 14:14:26 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/05 14:31:42 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf_bonus.h"
+
+int	width_unsigned(t_spec spec, int n, int nbr_len)
+{
+	char	c;
+	int		len;
+
+	len = 0;
+	if (spec.flag % 2 && !(spec.flag % 3)
+		&& (spec.precis <= nbr_len || spec.width < spec.precis))
+		len += print_width(spec.width, nbr_len, '0');
+	else
+		len += print_width(spec.width, nbr_len, ' ');
+	return (len);
+}
 
 int	width_nbr(t_spec spec, int n, int nbr_len)
 {

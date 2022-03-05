@@ -1,31 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_d.c                                          :+:      :+:    :+:   */
+/*   print_u.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/04 17:42:43 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/05 14:41:27 by min-kang         ###   ########.fr       */
+/*   Created: 2022/03/05 14:29:38 by min-kang          #+#    #+#             */
+/*   Updated: 2022/03/05 14:44:32 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf_bonus.h"
 
-int	plus_space(int n, int flag)
+int	instruction_u(unsigned int n, t_spec spec, int *ins)
 {
-	char	c;
-
-	if (flag % 7)
-		c = '+';
-	else
-		c = ' ';
-	return (ft_putchar(c));
-}
-
-int	instruction_d(int n, t_spec spec, int *ins)
-{
-	int	len;
+	int len;
 	int	nbr_len;
 	int	i;
 
@@ -38,27 +27,20 @@ int	instruction_d(int n, t_spec spec, int *ins)
 			len += ft_printnbr(n);
 		else if (ins[i] == 2)
 			len += print_precis_nbr(spec.precis, nbr_len);
-		else if (ins[i] == 3)
-			len += width_nbr(spec, n, nbr_len);
-		else if (ins[i] == 4)
-			len += plus_space(n, spec.flag);
+		else
+			len += width_unsigned(spec, n, nbr_len);
 	}
 	free(ins);
 	return (len);
 }
 
-int print_d(int n, t_spec spec)
+int	print_u(unsigned int n, t_spec spec)
 {
 	int	*ins;
 
 	if (!(spec.flag % 2))
-	{
-		if (n >= 0 && !(spec.flag % 7 && spec.flag % 11))
-			ins = get_instruction(4, 4, 2, 1, 3);
-		else
-			ins = get_instruction(3, 2, 1, 3);
-	}
+		ins = get_instruction(3, 2, 1, 3);
 	else
-		ins = get_instruction(3, 3, 1, 2);
-	return (instruction_d(n, spec, ins));
+		ins = get_instruction(3, 3, 2, 1);
+	return (instruction_u(n, spec, ins));
 }

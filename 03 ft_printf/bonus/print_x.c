@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 17:44:50 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/05 14:18:42 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/05 14:41:39 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int	instruction_x(unsigned int n, t_spec spec, int upper, int *ins)
 	int	i;
 
 	len = 0;
-	nbr_len = ft_nbrlen(n);
+	nbr_len = ft_nbrlen(n, 16);
 	if (nbr_len < spec.precis)
 		nbr_len = spec.precis;
 	i = -1;

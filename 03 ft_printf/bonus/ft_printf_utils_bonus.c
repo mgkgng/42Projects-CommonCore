@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/15 18:16:27 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/04 21:46:15 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/05 14:40:13 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,4 +44,27 @@ int	ft_nbrlen(long long int n, int base)
 		n /= base;
 	}
 	return (len);
+}
+
+int	ft_printnbr(long long int n)
+{
+	if (n < 0)
+	{
+		ft_putchar('-');
+		n *= -1;
+	}
+	if (n > 9)
+		ft_printnbr(n / 10);
+	ft_putchar(n % 10 + '0');
+	return (ft_nbrlen(n, 10));
+}
+
+int	print_precis_nbr(int precis, int len)
+{
+	int	i;
+
+	i = 0;
+	while (len + i++ < precis)
+		ft_putchar('0');
+	return (i);
 }
