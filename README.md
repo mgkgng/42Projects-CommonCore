@@ -1,35 +1,35 @@
 # 42ProjectsCommonCore
 
 **01 libft**
-validated : Yes (125 / 100)
+validated : Yes (125%)
 explain :
 
 **02 ft_printf**
-validated : Yes (122 / 100)
+validated : Yes (122%)
 explain :
 
 **03 get_next_line**
-validated : Yes (125 / 100)
+validated : Yes (125%)
 explain :
 
 **04 Born2beroot**
-validated : Yes (125 / 100)
+validated : Yes (125%)
 explain :
 
 **05 FdF**
-validated : Yes (125 / 100)
+validated : Yes (125%)
 explain :
 
 **06 pipex**
-validated : Yes (125 / 100)
+validated : Yes (125%)
 explain :
 
 **07 push_swap**
-validated : Yes (125 / 100)
+validated : Yes (125%)
 explain :
 
 **08 Philosophers**
-validated : Yes (125 / 100)
+validated : Yes (125%)
 explain :
 
 **09 Minishell**
