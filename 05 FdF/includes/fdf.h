@@ -3,17 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: min-kang <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/17 16:03:31 by min-kang          #+#    #+#             */
-/*   Updated: 2021/12/20 15:03:42 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/06 11:54:52 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 # define FDF_H
 
-# include "fdf.h"
 # include "../libft/libft.h"
 # include <mlx.h>
 # include <math.h>
@@ -123,5 +122,6 @@ void	ft_putchar(char c);
 void	ft_putstr(char *s);
 int		max_find(t_map data);
 int		min_find(t_map data);
+int		error(int code);
 
 #endif

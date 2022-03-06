@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: min-kang <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/17 16:03:09 by min-kang          #+#    #+#             */
-/*   Updated: 2021/12/20 14:57:00 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/06 11:51:26 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,31 +70,5 @@ int	key_event(int keycode, t_event *event)
 		event->erase = 1;
 	}
 	event->re_draw = 1;
-	return (0);
-}
-
-int	main(int argc, char **argv)
-{
-	t_main	main;
-	int		fd;
-
-	if (argc != 2)
-		return (0);
-	fd = open(argv[1], O_RDONLY);
-	if (fd == -1)
-		return (0);
-	main.data = data_2d_matrice(fd);
-	main.vars.mlx = mlx_init();
-	main.vars.win = mlx_new_window(main.vars.mlx, 1920, 1080, "FdF");
-	main.img.img = mlx_new_image(main.vars.mlx, 1920, 1080);
-	main.img.addr = mlx_get_data_addr(main.img.img, \
-			&main.img.bits_per_pixel, &main.img.line_len, &main.img.endian);
-	ft_bzero(&main.event, sizeof(main.event));
-	main.event.re_draw = 1;
-	mlx_hook(main.vars.win, 2, 1L << 0, key_event, &main.event);
-	draw_fdf(&main);
-	mlx_loop_hook(main.vars.mlx, draw_fdf, &main);
-	mlx_loop(main.vars.mlx);
-	close(fd);
 	return (0);
 }

@@ -11,7 +11,9 @@ SRC =	srcs/fdf.c		\
 		srcs/draw_cavalier.c \
 		srcs/draw2.c \
 		srcs/draw3.c	\
-		srcs/lol.c	
+		srcs/lol.c
+
+BONUS = bonus/draw_cavalier.c	
 OBJ = $(SRC:.c=.o)
 RM = rm -f
 %.o :	%.c

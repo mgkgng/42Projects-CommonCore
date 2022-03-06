@@ -1,26 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstnew.c                                        :+:      :+:    :+:   */
+/*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: min-kang <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/21 15:04:19 by min-kang          #+#    #+#             */
-/*   Updated: 2021/10/25 20:34:24 by min-kang         ###   ########.fr       */
+/*   Created: 2022/03/06 11:52:55 by min-kang          #+#    #+#             */
+/*   Updated: 2022/03/06 11:54:31 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include <stdlib.h>
+#include "../includes/fdf.h"
 
-t_list	*ft_lstnew(void *content)
+int	error(int code)
 {
-	t_list	*result;
-
-	result = malloc(sizeof(t_list));
-	if (result == NULL)
-		return (NULL);
-	result->content = content;
-	result->next = NULL;
-	return (result);
+	if (code == 1)
+		ft_putstr_fd("Error 1: Wrong argument number", 2);
+	else if (code == 2)
+		ft_putstr_fd("Error 2: Unable to read the file", 2);
+	return (code);
 }

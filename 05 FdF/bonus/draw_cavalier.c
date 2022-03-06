@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_cavalier.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: min-kang <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/17 16:01:54 by min-kang          #+#    #+#             */
-/*   Updated: 2021/12/20 14:59:05 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/06 11:46:57 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,8 @@ t_point	define_point_cavalier(t_fdf fdf, t_3d point, t_main main)
 int	define_size_cavalier(t_main main)
 {
 	int	i;
-	int	j;
 
 	i = 0;
-	j = 0;
 	while (i * main.data.len_line < FDF_WIN_SIZE_X * 0.3)
 		i++;
 	return (i);
