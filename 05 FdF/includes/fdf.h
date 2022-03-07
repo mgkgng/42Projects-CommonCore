@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
+/*   By: remylachau <remylachau@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/17 16:03:31 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/06 11:54:52 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/07 12:28:50 by remylachau       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,21 +32,21 @@ typedef struct s_3d{
 	int		h;
 }	t_3d;
 
-typedef struct s_data{
+typedef struct s_img{
 	void	*img;
 	char	*addr;
 	int		bits_per_pixel;
 	int		line_len;
 	int		endian;
-}	t_data;
+}	t_img;
 
 typedef struct s_vars{
 	void	*mlx;
 	void	*win;
-	t_data	fdf;
+	t_img	fdf;
 }				t_vars;
 
-typedef struct s_map{
+typedef struct s_data{
 	int		**mat_2d;
 	int		n_line;
 	int		len_line;
@@ -54,7 +54,7 @@ typedef struct s_map{
 	int		min;
 	t_3d	*mat_3d;
 	int		size;
-}			t_map;
+}			t_data;
 
 typedef struct s_point{
 	int	x;
@@ -88,8 +88,8 @@ typedef struct s_event{
 
 typedef struct s_main{
 	t_vars	vars;
-	t_data	img;
-	t_map	data;
+	t_img	img;
+	t_data	data;
 	t_event	event;
 }	t_main;
 

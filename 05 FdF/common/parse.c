@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
+/*   By: remylachau <remylachau@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/17 16:02:10 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/06 11:55:46 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/07 13:22:35 by remylachau       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,92 +24,78 @@ int	size_count(char **s)
 	return (count);
 }
 
-t_3d	*create_3d_matrice(t_map data)
+t_3d	*get_3d(char ***col, int len_x, int len_y)
 {
-	t_3d	*result;
-	float	i;
-	float	j;
-	int		a;
-
-	result = malloc(data.size * sizeof(t_3d));
-	i = -1;
-	a = 0;
-	while (++i < data.n_line)
-	{
-		j = -1;
-		while (++j < data.len_line)
-		{
-			result[a].x = j;
-			result[a].y = i;
-			result[a].z = (float) data.mat_2d[(int) i][(int) j];
-			result[a++].h = data.mat_2d[(int) i][(int) j];
-		}
-	}
-	return (result);
-}
-
-char	*from_gnl(int fd)
-{
-	char	*r_data;
-	char	*result;
-
-	result = NULL;
-	r_data = get_next_line(fd);
-	while (r_data)
-	{
-		result = ft_strjoin_gnl(result, r_data);
-		r_data = get_next_line(fd);
-	}
-	free(r_data);
-	return (result);
-}
-
-t_map	parsing(char **gnl_data_line, char ***gnl_data_colonne)
-{
-	t_map	result;
+	t_3d	*res;
 	int		i;
 	int		j;
+	int		x;
 
-	result.n_line = size_count(gnl_data_line);
-	result.len_line = size_count(gnl_data_colonne[0]);
-	result.mat_2d = malloc(result.n_line * sizeof(int *));
-	result.size = result.n_line * result.len_line;
+	res = ft_calloc(len_x * len_y, sizeof(t_3d));
 	i = -1;
-	while (++i < result.n_line)
+	a = 0;
+	while (++i < len_y)
 	{
 		j = -1;
-		result.mat_2d[i] = malloc(result.len_line * sizeof(int));
-		while (++j < result.len_line)
+		while (++j < len_x)
 		{
-			if (!gnl_data_colonne[i][j])
-				while (j < result.len_line)
-					result.mat_2d[i][j++] = 0;
-			else
-				result.mat_2d[i][j] = ft_atoi(gnl_data_colonne[i][j]);
+			res[x].x = (float) j;
+			res[x].y = (float) i;
+			res[x].z = (float) col[i][j];
+			//res[x++].h = data.mat_2d[(int) i][(int) j];
 		}
 	}
-	result.mat_3d = create_3d_matrice(result);
 	return (result);
 }
 
-t_map	data_2d_matrice(int fd)
+char	*get_file(int fd)
 {
-	char	*gnl_data;
-	t_map	result;
-	int		i;
-	char	**gnl_data_line;
-	char	***gnl_data_colonne;
+	char	*line;
+	char	*res;
 
-	gnl_data = from_gnl(fd);
-	gnl_data_line = ft_split(gnl_data, '\n');
-	gnl_data_colonne = malloc(sizeof(char **) * size_count(gnl_data_line));
+	line = get_next_line(fd);
+	while (line)
+	{
+		res = ft_strjoin_gnl(res, line);
+		free(line);
+		line = get_next_line(fd);
+	}
+	free(line);
+	return (res);
+}
+
+t_data	get_data(char *r)
+{
+	t_data	res;
+	int		i;
+	int		j;
+	char	**line;
+	char	***col;
+
+	line = ft_split(gnl_data, '\n');
+	col = malloc(sizeof(char **) * size_count(line));
 	i = -1;
-	while (gnl_data_line[++i])
-		gnl_data_colonne[i] = ft_split(gnl_data_line[i], ' ');
-	result = parsing(gnl_data_line, gnl_data_colonne);
-	result.max = max_find(result);
-	result.min = min_find(result);
-	free(gnl_data_line);
-	free(gnl_data_colonne);
-	return (result);
+	while (line[++i])
+		col[i] = ft_split(line[i], ' ');
+	res.n_line = size_count(line);
+	res.len_line = size_count(col[0]);
+	res.size = res.n_line * res.len_line;
+	res.mat_3d = get_3d(col);
+	free(line);
+	free(col);
+	return (res);
+}
+
+t_data	parse(int fd)
+{
+	char	*r;
+	t_data	res;
+	int		i;
+
+	r = get_file(fd);
+	res = get_data(gnl_data_line, gnl_data_colonne);
+	res.max = max_find(result);
+	res.min = min_find(result);
+
+	return (res);
 }

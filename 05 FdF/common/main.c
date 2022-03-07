@@ -3,14 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
+/*   By: remylachau <remylachau@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/06 11:50:13 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/06 11:55:03 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/07 12:24:48 by remylachau       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
+
+void	create_fdf(t_main main)
+{
+	
+}
 
 int	main(int argc, char **argv)
 {
