@@ -6,64 +6,60 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/24 16:27:33 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/07 13:36:33 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/07 20:50:04 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/pipex.h"
 
-void	child_pipex(char *cmd, char *input, t_envp path, int *fd)
+void	child_pipex(t_pipex pipex, int *fd)
 {
-	int		file;
 	char	**args;
-	char	*cmd_path;
+	char	*cmdpath;
 
-	file = open(input, O_RDONLY);
-	if (file == -1)
-	{
-		perror("file name error");
-		exit(0);
-	}
-	dup2(file, STDIN_FILENO);
+	dup2(pipex.in, STDIN_FILENO);
 	dup2(fd[1], STDOUT_FILENO);
 	close(fd[0]);
 	close(fd[1]);
-	args = ft_split(cmd, ' ');
-	cmd_path = pathname_creator(args[0], path.paths);
-	execve(cmd_path, args, path.envp);
-	exit(EXIT_FAILURE);
+	args = ft_split(pipex.cmd1, ' ');
+	cmdpath = get_cmdpath(args[0], pipex.paths);
+	execve(cmdpath, args, pipex.envp);
+	ft_putstr_fd("Error 7: exec failed in child process.\n", 2);
+	exit(7);
 }
 
-void	parent_pipex(char *cmd, char *output, t_envp path, int *fd)
+void	parent_pipex(t_pipex pipex, int *fd)
 {
-	int		file;
 	char	**args;
-	char	*cmd_path;
+	char	*cmdpath;
 
 	dup2(fd[0], STDIN_FILENO);
+	dup2(pipex.out, STDOUT_FILENO);
 	close(fd[0]);
 	close(fd[1]);
-	args = ft_split(cmd, ' ');
-	file = open(output, O_CREAT | O_WRONLY | O_TRUNC, 0644);
-	dup2(file, STDOUT_FILENO);
-	cmd_path = pathname_creator(args[0], path.paths);
-	execve(cmd_path, args, path.envp);
-	exit(EXIT_FAILURE);
+	args = ft_split(pipex.cmd2, ' ');
+	cmdpath = get_cmdpath(args[0], pipex.paths);
+	execve(cmdpath, args, pipex.envp);
+	ft_putstr_fd("Error 8: exec failed in parent process.\n", 2);
+	exit(8);
 }
 
-int	ft_pipex(char **argv, char **envp)
+int	ft_pipex(t_pipex pipex)
 {
 	int		fd[2];
 	pid_t	pid;
 
-	pipe(fd);
+	if (pipe(fd) == -1)
+		return (error(2));
 	pid = fork();
+	if (pid < 0)
+		return (error(3));
 	if (pid == 0)
-		child_pipex(argv[2], argv[1], path, fd);
+		child_pipex(pipex, fd);
 	else
 	{
 		wait(NULL);
-		parent_pipex(argv[3], argv[4], path, fd);
+		parent_pipex(pipex, fd);
 	}
-	return (0);
+	return (free_pipex(pipex));
 }

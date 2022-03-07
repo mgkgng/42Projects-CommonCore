@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/26 19:43:52 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/07 13:53:28 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/07 20:44:21 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,22 +20,24 @@
 # include <fcntl.h>
 
 typedef struct s_pipex{
-	int		input;
-	int		output;
+	int		in;
+	int		out;
 	char	*cmd1;
 	char	*cmd2;
-	char	**path;
+	char	**paths;
 	char	**envp;
 }	t_pipex;
 
-char	*cmd_define(char *s);
-char	*pathname_creator(char *s, char **paths);
-char	**get_path(char **envp);
-void	child_pipex(char *cmd, char *input, t_envp path, int *fd);
-void	parent_pipex(char *cmd, char *output, t_envp path, int *fd);
+/* path */
+char	*get_cmdpath(char *s, char **paths);
+char	**get_paths(char **envp);
+
+void	child_pipex(t_pipex pipex, int *fd);
+void	parent_pipex(t_pipex pipex, int *fd);
 void	ft_putstr(char *s);
-int		ft_pipex(char **argv, char **envp);
+int		ft_pipex(t_pipex pipex);
 int		error(int code);
 t_pipex	parse(char **argv, char **envp);
+int free_pipex(t_pipex pipex);
 
 #endif
