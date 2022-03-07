@@ -3,30 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   path_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: min-kang <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/25 18:34:56 by min-kang          #+#    #+#             */
-/*   Updated: 2021/12/28 17:10:49 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/07 21:07:40 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/pipex_bonus.h"
-
-char	*cmd_define(char *s)
-{
-	char	*result;
-	int		i;
-
-	i = 0;
-	result = NULL;
-	while (s[i] && s[i] != ' ')
-	{
-		result[i] = s[i];
-		i++;
-	}
-	result[i] = '\0';
-	return (result);
-}
 
 char	*pathname_creator(char *s, char **paths)
 {
@@ -46,42 +30,23 @@ char	*pathname_creator(char *s, char **paths)
 	return (NULL);
 }
 
-int	path_detector(char *s)
-{
-	int		i;
-	char	*path;
-
-	path = ft_strdup("PATH");
-	i = -1;
-	while (path[++i])
-	{
-		if (s[i] != path[i])
-		{
-			free(path);
-			return (0);
-		}
-	}
-	free(path);
-	return (1);
-}
-
 char	**possible_path(char **envp)
 {
 	int		i;
-	char	**result;
+	char	**res;
 
 	i = 0;
 	while (envp[i] && !path_detector(envp[i]))
 		i++;
-	result = ft_split(envp[i] + 5, ':');
-	return (result);
+	res = ft_split(envp[i] + 5, ':');
+	return (res);
 }
 
 t_cmd	all_commands(int argc, char **argv, t_envp path)
 {
 	int		i;
 	int		j;
-	t_cmd	result;
+	t_cmd	res;
 	int		cmd_n;
 
 	cmd_n = argc - 2;
@@ -91,16 +56,16 @@ t_cmd	all_commands(int argc, char **argv, t_envp path)
 		cmd_n--;
 		i++;
 	}
-	result.cmd = malloc((cmd_n + 1) * sizeof(char *));
-	result.args = malloc(cmd_n * sizeof(char **));
+	res.cmd = malloc((cmd_n + 1) * sizeof(char *));
+	res.args = malloc(cmd_n * sizeof(char **));
 	j = -1;
 	while (++i < argc - 1)
 	{
-		result.args[++j] = ft_split(argv[i], ' ');
-		result.cmd[j] = pathname_creator(result.args[j][0], path.paths);
-		if (!result.cmd[j])
-			ft_free(&result);
+		res.args[++j] = ft_split(argv[i], ' ');
+		res.cmd[j] = pathname_creator(res.args[j][0], path.paths);
+		if (!res.cmd[j])
+			ft_free(&res);
 	}
-	result.cmd[++j] = NULL;
-	return (result);
+	res.cmd[++j] = NULL;
+	return (res);
 }
