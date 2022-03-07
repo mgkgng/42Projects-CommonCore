@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: min-kang <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/24 16:27:33 by min-kang          #+#    #+#             */
-/*   Updated: 2021/12/24 16:29:26 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/07 13:36:33 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	parent_pipex(char *cmd, char *output, t_envp path, int *fd)
 	exit(EXIT_FAILURE);
 }
 
-void	ft_pipex(char **argv, t_envp path)
+int	ft_pipex(char **argv, char **envp)
 {
 	int		fd[2];
 	pid_t	pid;
@@ -65,4 +65,5 @@ void	ft_pipex(char **argv, t_envp path)
 		wait(NULL);
 		parent_pipex(argv[3], argv[4], path, fd);
 	}
+	return (0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: min-kang <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/26 19:43:52 by min-kang          #+#    #+#             */
-/*   Updated: 2021/12/26 19:44:18 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/07 13:53:28 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,18 +19,23 @@
 # include <sys/types.h>
 # include <fcntl.h>
 
-typedef struct s_envp{
+typedef struct s_pipex{
+	int		input;
+	int		output;
+	char	*cmd1;
+	char	*cmd2;
+	char	**path;
 	char	**envp;
-	char	**paths;
-}	t_envp;
+}	t_pipex;
 
 char	*cmd_define(char *s);
 char	*pathname_creator(char *s, char **paths);
-int		path_detector(char *s);
-char	**possible_path(char **envp);
+char	**get_path(char **envp);
 void	child_pipex(char *cmd, char *input, t_envp path, int *fd);
 void	parent_pipex(char *cmd, char *output, t_envp path, int *fd);
 void	ft_putstr(char *s);
-void	ft_pipex(char **argv, t_envp path);
+int		ft_pipex(char **argv, char **envp);
+int		error(int code);
+t_pipex	parse(char **argv, char **envp);
 
 #endif

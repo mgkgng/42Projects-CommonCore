@@ -1,27 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex_utils.c                                      :+:      :+:    :+:   */
+/*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/24 16:29:37 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/07 13:28:32 by min-kang         ###   ########.fr       */
+/*   Created: 2022/03/07 13:39:34 by min-kang          #+#    #+#             */
+/*   Updated: 2022/03/07 13:40:46 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/pipex.h"
 
-void	ft_putchar(char c)
+int error(int code)
 {
-	write(1, &c, 1);
-}
-
-void	ft_putstr(char *s)
-{
-	int	i;
-
-	i = 0;
-	while (s[i])
-		ft_putchar(s[i++]);
+    if (code == 1)
+        ft_putstr_fd("Error 1: Wrong argument number\n", 2);
+    return (code);
 }
