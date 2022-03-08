@@ -3,32 +3,34 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: min-kang <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/27 18:39:44 by min-kang          #+#    #+#             */
-/*   Updated: 2021/11/01 11:24:06 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/08 12:31:13 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-char	*ft_strndup(char *s, int len)
+char	*get_line(char **r, int pos)
 {
 	int		i;
-	char	*result;
+	int		j;
+	char	*res;
+	char	*new_r;
 
-	result = malloc(len + 1);
-	i = 0;
-	while (s[i] && i < len)
-	{
-		result[i] = s[i];
-		i++;
-	}
-	result[i] = '\0';
-	return (result);
+	if (pos == -1)
+		return (NULL);
+	res = malloc(pos + 1);
+	i = -1;
+	while (++i < pos)
+		res[i] = *r[i];
+	if (pos < ft_strlen(*r))
+		
+	
 }
 
-size_t	ft_strlen(char *s)
+int	ft_strlen(char *s)
 {
 	int	i;
 
@@ -66,33 +68,13 @@ char	*ft_strjoin(char *s1, char *s2)
 	return (result);
 }
 
-int	nl_index(char *s)
+int	find_endl(char *s)
 {
 	int	i;
 
-	i = 0;
-	while (s[i])
-	{
+	i = -1;
+	while (s[++i])
 		if (s[i] == '\n')
 			return (i);
-		i++;
-	}
 	return (-1);
-}
-
-char	*ft_cut(char *s, int start)
-{
-	char	*result;
-	int		i;
-
-	i = 0;
-	result = malloc(ft_strlen(s + start) + 1);
-	while (s[start + i])
-	{
-		result[i] = s[start + i];
-		i++;
-	}
-	result[i] = '\0';
-	free(s);
-	return (result);
 }
