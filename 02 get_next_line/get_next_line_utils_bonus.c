@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/15 19:07:50 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/09 21:21:54 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/09 21:31:30 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ char	*ft_substr(char *s, int start, int end)
 	return (res);
 }
 
-char	*put_line(char *r, char *buf)
+char	*put_buf(char *r, char *buf)
 {
 	char	*nov;
 	int		i;

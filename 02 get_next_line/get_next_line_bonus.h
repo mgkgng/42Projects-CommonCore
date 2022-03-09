@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 15:01:56 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/09 21:22:20 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/09 21:31:44 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 
 int 	ft_strlen(char *s);
 int		find_endl(char *s);
-char	*put_line(char *r, char *buf);
+char	*put_buf(char *r, char *buf);
 char	*get_line(char **r);
 char	*get_next_line(int fd);
 
