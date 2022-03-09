@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_bonus.h                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: min-kang <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 15:01:56 by min-kang          #+#    #+#             */
-/*   Updated: 2021/11/03 18:49:53 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/09 21:22:20 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,10 @@
 # include <stdlib.h>
 # include <limits.h>
 
+int 	ft_strlen(char *s);
+int		find_endl(char *s);
+char	*put_line(char *r, char *buf);
+char	*get_line(char **r);
 char	*get_next_line(int fd);
-size_t	ft_strlen(char *s);
-char	*ft_strjoin(char *s1, char *s2);
-int		nl_index(char *s);
-char	*ft_strndup(char *s, int len);
-char	*ft_cut(char *s, int start);
 
 #endif

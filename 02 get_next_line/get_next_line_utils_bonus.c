@@ -3,32 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: min-kang <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/15 19:07:50 by min-kang          #+#    #+#             */
-/*   Updated: 2021/11/15 19:07:52 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/09 21:21:54 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line_bonus.h"
 
-char	*ft_strndup(char *s, int len)
-{
-	int		i;
-	char	*result;
-
-	result = malloc(len + 1);
-	i = 0;
-	while (s[i] && i < len)
-	{
-		result[i] = s[i];
-		i++;
-	}
-	result[i] = '\0';
-	return (result);
-}
-
-size_t	ft_strlen(char *s)
+int	ft_strlen(char *s)
 {
 	int	i;
 
@@ -38,59 +22,66 @@ size_t	ft_strlen(char *s)
 	return (i);
 }
 
-char	*ft_strjoin(char *s1, char *s2)
-{
-	int		i;
-	int		j;
-	char	*result;
-
-	i = 0;
-	j = 0;
-	if (!s1)
-		s1 = ft_strndup("", 0);
-	result = malloc((ft_strlen(s1) + ft_strlen(s2) + 1));
-	while (s1[i])
-	{
-		result[i] = s1[i];
-		i++;
-	}
-	while (s2[j])
-	{
-		result[i + j] = s2[j];
-		j++;
-	}
-	result[i + j] = '\0';
-	free(s1);
-	return (result);
-}
-
-int	nl_index(char *s)
+int	find_endl(char *s)
 {
 	int	i;
 
-	i = 0;
-	while (s[i])
-	{
+	i = -1;
+	while (s[++i])
 		if (s[i] == '\n')
 			return (i);
-		i++;
-	}
 	return (-1);
 }
 
-char	*ft_cut(char *s, int start)
+char	*ft_substr(char *s, int start, int end)
 {
-	char	*result;
+	char	*res;
 	int		i;
 
-	i = 0;
-	result = malloc(ft_strlen(s + start) + 1);
-	while (s[start + i])
-	{
-		result[i] = s[start + i];
-		i++;
-	}
-	result[i] = '\0';
-	free(s);
-	return (result);
+	if (start > end)
+		return (NULL);
+	res = malloc(end - start + 2);
+	i = -1;
+	while (++i + start <= end)
+		res[i] = s[start + i];
+	res[i] = '\0';
+	return (res);
+}
+
+char	*put_line(char *r, char *buf)
+{
+	char	*nov;
+	int		i;
+	int		j;
+
+	if (!r)
+		r = ft_substr("", 0, 0);
+	nov = malloc(ft_strlen(r) + ft_strlen(buf) + 1);
+	i = -1;
+	while (r[++i])
+		nov[i] = r[i];
+	j = 0;
+	while (buf[j])
+		nov[i++] = buf[j++];
+	nov[i] = '\0';
+	free(r);
+	return (nov);
+}
+
+char	*get_line(char **r)
+{
+	char	*res;
+	char	*nov;
+	int		pos;
+
+	if (!*r)
+		return (NULL);
+	pos = find_endl(*r);
+	if (pos == -1)
+		pos = ft_strlen(*r) - 1;
+	res = ft_substr(*r, 0, pos);
+	nov = ft_substr(*r, pos + 1, ft_strlen(*r) - 1);
+	free(*r);
+	*r = nov;
+	return (res);
 }

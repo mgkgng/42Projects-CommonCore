@@ -6,12 +6,11 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/27 18:38:41 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/09 14:50:44 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/09 21:15:09 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-#include <stdio.h>
 
 char	*get_next_line(int fd)
 {
@@ -19,16 +18,14 @@ char	*get_next_line(int fd)
 	int			bytes;
 	char		buf[BUFFER_SIZE + 1];
 
-	if (fd < 0 || BUFFER_SIZE < 1)
-		return (NULL);
 	bytes = read(fd, buf, BUFFER_SIZE);
 	while (bytes > 0)
 	{
 		buf[bytes] = '\0';
 		r = put_line(r, buf);
 		if (find_endl(r) != -1)
-			return (get_line(&r, find_endl(r)));
+			return (get_line(&r));
 		bytes = read(fd, buf, BUFFER_SIZE);
 	}
-	return (get_line(&r, ft_strlen(r) - 1));
+	return (get_line(&r));
 }
