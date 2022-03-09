@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/27 18:40:56 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/08 12:09:52 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/08 21:28:37 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,10 @@
 # include <stdlib.h>
 
 char	*get_next_line(int fd);
+char	*get_line(char **r, int pos);
+void	put_line(char **r, char *buf);
+
 int 	ft_strlen(char *s);
-char	*ft_strjoin(char *s1, char *s2);
 int		find_endl(char *s);
-char	*ft_strndup(char *s, int len);
-char	*ft_cut(char *s, int start);
 
 #endif

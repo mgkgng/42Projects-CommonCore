@@ -6,28 +6,74 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/27 18:39:44 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/08 12:31:13 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/08 22:04:34 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+#include <stdio.h>
+
+char	*ft_strdup(char *s)
+{
+	char	*res;
+	int		i;
+
+	res = malloc(ft_strlen(s) + 1);
+	i = -1;
+	while (s[++i])
+		res[i] = s[i];
+	res[i] = '\0';
+	return (res);
+}
+
+void	put_line(char **r, char *buf)
+{
+	char	*nov;
+	int		i;
+	int		j;
+
+	if (!*r)
+		*r = ft_strdup("");
+	nov = malloc(ft_strlen(*r) + ft_strlen(buf) + 1);
+	i = -1;
+	while (*r[++i])
+		nov[i] = *r[i];
+	j = 0;
+	while (buf[j])
+		nov[i++] = buf[j++];
+	nov[i] = '\0';
+	free(*r);
+	*r = nov;
+}
 
 char	*get_line(char **r, int pos)
 {
 	int		i;
 	int		j;
 	char	*res;
-	char	*new_r;
+	char	*nov;
 
-	if (pos == -1)
-		return (NULL);
-	res = malloc(pos + 1);
+	res = malloc(pos + 2);
 	i = -1;
-	while (++i < pos)
+	while (++i <= pos)
 		res[i] = *r[i];
-	if (pos < ft_strlen(*r))
-		
-	
+	res[i] = '\0';
+	if (i < ft_strlen(*r) - 1)
+	{
+		nov = malloc(ft_strlen(*r) - i);
+		j = 0;
+		while (*r[i])
+			nov[j++] = *r[i++];
+		nov[j] = '\0';
+		free(*r);
+		*r = nov;
+	}
+	else
+	{
+		free(*r);
+		*r = NULL;
+	}
+	return (res);
 }
 
 int	ft_strlen(char *s)
@@ -38,34 +84,6 @@ int	ft_strlen(char *s)
 	while (s[i])
 		i++;
 	return (i);
-}
-
-char	*ft_strjoin(char *s1, char *s2)
-{
-	int		i;
-	int		j;
-	char	*result;
-
-	i = 0;
-	j = 0;
-	if (!s1)
-		s1 = ft_strndup("", 0);
-	if (!s2)
-		return (s1);
-	result = malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
-	while (s1[i])
-	{
-		result[i] = s1[i];
-		i++;
-	}
-	while (s2[j])
-	{
-		result[i + j] = s2[j];
-		j++;
-	}
-	result[i + j] = '\0';
-	free(s1);
-	return (result);
 }
 
 int	find_endl(char *s)
