@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 17:42:43 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/06 11:38:41 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/10 17:46:37 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	plus_space(int flag)
 	return (ft_putchar(c));
 }
 
-int	instruction_d(int n, t_spec spec, int *ins)
+int	instruction_d(long long int n, t_spec spec, int *ins)
 {
 	int	len;
 	int	nbr_len;
@@ -35,9 +35,9 @@ int	instruction_d(int n, t_spec spec, int *ins)
 	while (ins[++i])
 	{
 		if (ins[i] == 1)
-			len += print_nbr(n, spec);
+			len += print_nbr(&n, spec);
 		else if (ins[i] == 2)
-			len += width_nbr(spec, n, nbr_len);
+			len += width_nbr(spec, &n, nbr_len);
 		else if (ins[i] == 3)
 			len += plus_space(spec.flag);
 	}
@@ -47,7 +47,7 @@ int	instruction_d(int n, t_spec spec, int *ins)
 
 int print_d(int n, t_spec spec)
 {
-	int	*ins;
+	int				*ins;
 
 	if (!(spec.flag % 2))
 	{

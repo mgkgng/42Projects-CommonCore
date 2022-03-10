@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/15 18:16:27 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/06 11:39:15 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/10 17:49:03 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,20 +73,31 @@ int	ft_putnbr(long long int n)
 	return (ft_nbrlen(n, 10));
 }
 
-int	print_nbr(long long int n, t_spec spec)
+int	print_nbr(long long int *n, t_spec spec)
+{
+	int	len;
+
+	if (!*n && !spec.precis)
+		return (0);
+	len = 0;
+	if (*n < 0)
+	{
+		ft_putchar('-');
+		len++;
+		*n *= -1;
+	}
+	len += print_precis_nbr(spec.precis, ft_nbrlen(*n, 10));
+	len += ft_putnbr(*n);
+	return (len);
+}
+
+int	print_unsigned(unsigned int n, t_spec spec)
 {
 	int	len;
 
 	if (!n && !spec.precis)
 		return (0);
-	len = 0;
-	if (n < 0)
-	{
-		ft_putchar('-');
-		len++;
-		n *= -1;
-	}
-	len += print_precis_nbr(spec.precis, ft_nbrlen(n, 10));
+	len = print_precis_nbr(spec.precis, ft_nbrlen(n, 10));
 	len += ft_putnbr(n);
 	return (len);
 }

@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/05 13:33:07 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/06 11:38:56 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/10 17:56:51 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,26 +25,32 @@ int	width_unsigned(t_spec spec, int nbr_len)
 	return (len);
 }
 
-int	width_nbr(t_spec spec, int n, int nbr_len)
+int	width_nbr(t_spec spec, long long int *n, int nbr_len)
 {
 	int		len;
 
-	/*if (!spec.width)
-		return (0);*/
+	if (!spec.width)
+		return (0);
 	len = 0;
-	if (n >= 0 && !(spec.flag % 7 && spec.flag % 11))
+	if (*n >= 0 && !(spec.flag % 7 && spec.flag % 11))
 		spec.width--;
 	if (spec.flag % 2 && !(spec.flag % 3)
-		&& (spec.precis <= nbr_len || spec.width < spec.precis))
+		&& (spec.precis <= nbr_len || spec.width < spec.precis)
+		&& !(!*n && !spec.precis))
 	{
-		if (n >= 0 && !(spec.flag % 7 && spec.flag % 11))
+		if (*n >= 0 && !(spec.flag % 7 && spec.flag % 11))
 			plus_space(spec.flag);
+		if (*n < 0)
+		{
+			len += ft_putchar('-');
+			*n *= -1;
+		}
 		len += print_width(spec.width, nbr_len, '0');
 	}
 	else
 	{
 		len += print_width(spec.width, nbr_len, ' ');
-		if (n >= 0 && !(spec.flag % 7 && spec.flag % 11))
+		if (*n >= 0 && !(spec.flag % 7 && spec.flag % 11))
 			plus_space(spec.flag);
 	}
 	return (len);

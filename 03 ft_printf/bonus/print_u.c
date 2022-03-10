@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/05 14:29:38 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/05 22:34:33 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/10 16:06:03 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	instruction_u(unsigned int n, t_spec spec, int *ins)
 	while (ins[++i])
 	{
 		if (ins[i] == 1)
-			len += print_nbr(n, spec);
+			len += print_unsigned(n, spec);
 		else
 			len += width_unsigned(spec, nbr_len);
 	}
