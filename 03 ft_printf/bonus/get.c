@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/15 18:15:53 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/05 22:42:21 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/10 19:47:55 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,15 @@ int	get_flag(const char *s, int *i)
 			res *= 2;
 		else if (s[*i] == '0')
 			res *= 3;
-		else if (s[*i] == ' ')
-			res *= 5;
 		else if (s[*i] == '#')
-			res *= 7;
+			res *= 5;
 		else if (s[*i] == '+')
+			res *= 7;
+		else if (s[*i] == ' ')
 			res *= 11;
 		*i += 1;
 	}
+	// how to ignore the doubled?
 	free(set);
 	return (res);
 }

@@ -18,7 +18,7 @@ int run_tests(int test_cat)
 	char *null_str = NULL;
 	int should_run = 1;
 
-	/*describe("basic test");
+	describe("basic test");
 
 	PRINTF(("1, 2, 3, -d test, testing, 0.4s sound, 1, 2, 3xp, sound, -*dtest"));
 
@@ -1321,7 +1321,7 @@ int run_tests(int test_cat)
 	PRINTF(("%#Xc", 4));
 	PRINTF(("c%#X-i", 42000));
 	PRINTF(("wait for it... %#Xp", 42));
-*/
+
 	right_cat = (g_all_bonus & CAT_BONUS_2) ? 1
 			: test_cat ? (test_cat & CAT_D && test_cat & CAT_BONUS_2)
 			: 1;
