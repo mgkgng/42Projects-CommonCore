@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/27 18:38:41 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/09 21:31:17 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/10 12:25:55 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char	*get_next_line(int fd)
 	while (bytes > 0)
 	{
 		buf[bytes] = '\0';
-		r = put_buf(r, buf);
+		put_buf(&r, buf);
 		if (find_endl(r) != -1)
 			return (get_line(&r));
 		bytes = read(fd, buf, BUFFER_SIZE);

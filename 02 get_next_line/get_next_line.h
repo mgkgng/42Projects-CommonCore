@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/27 18:40:56 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/09 21:31:23 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/10 12:28:43 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@
 # include <unistd.h>
 # include <stdlib.h>
 
-int 	ft_strlen(char *s);
+int		ft_strlen(char *s);
 int		find_endl(char *s);
-char	*put_buf(char *r, char *buf);
+void	put_buf(char **r, char *buf);
 char	*get_line(char **r);
 char	*get_next_line(int fd);
 

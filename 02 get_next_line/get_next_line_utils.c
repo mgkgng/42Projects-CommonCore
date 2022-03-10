@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/27 18:39:44 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/09 21:31:12 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/10 12:24:10 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,24 +48,24 @@ char	*ft_substr(char *s, int start, int end)
 	return (res);
 }
 
-char	*put_buf(char *r, char *buf)
+void	put_buf(char **r, char *buf)
 {
 	char	*nov;
 	int		i;
 	int		j;
 
-	if (!r)
-		r = ft_substr("", 0, 0);
-	nov = malloc(ft_strlen(r) + ft_strlen(buf) + 1);
+	if (!*r)
+		*r = ft_substr("", 0, 0);
+	nov = malloc(ft_strlen(*r) + ft_strlen(buf) + 1);
 	i = -1;
-	while (r[++i])
-		nov[i] = r[i];
+	while ((*r)[++i])
+		nov[i] = (*r)[i];
 	j = 0;
 	while (buf[j])
 		nov[i++] = buf[j++];
 	nov[i] = '\0';
-	free(r);
-	return (nov);
+	free(*r);
+	*r = nov;
 }
 
 char	*get_line(char **r)
