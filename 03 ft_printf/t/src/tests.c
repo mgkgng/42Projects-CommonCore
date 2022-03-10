@@ -957,7 +957,7 @@ int run_tests(int test_cat)
 	PRINTF(("%-4.5X%X%4X%-10X-X5%-.3X", -300000, -400000, -500000, -600000, -700000));
 	PRINTF(("%-4.5X%X%4X%-10X-X5%-.3X", 2147483647, 2141483647, 2141483647, 2141483647, 2141483647));
 	PRINTF(("%-4.5X%X%4X%-10X-X5%-.3X", -1, -1, -1, -1, -1));
-*/
+
 	right_cat = (g_all_bonus & CAT_BONUS_1) ? 1
 		: test_cat ? (test_cat & CAT_D && test_cat & CAT_BONUS_1)
 		: 1;
@@ -1321,7 +1321,7 @@ int run_tests(int test_cat)
 	PRINTF(("%#Xc", 4));
 	PRINTF(("c%#X-i", 42000));
 	PRINTF(("wait for it... %#Xp", 42));
-
+*/
 	right_cat = (g_all_bonus & CAT_BONUS_2) ? 1
 			: test_cat ? (test_cat & CAT_D && test_cat & CAT_BONUS_2)
 			: 1;

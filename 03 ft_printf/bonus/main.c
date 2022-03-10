@@ -7,6 +7,20 @@ int	main() {
 	printf("personal test -----------------------\n");
 	printf("real printf =========================\n");
 	printf("print result: \n");
-	printf("value : %d\n", printf("%#.x\n", 0));
-	printf("nbrlen test: %d\n", ft_nbrlen(-31, 10));
+	printf("value : %d\n", printf("%010.6d\n", 42000));
+	printf("print result: \n");
+	printf("value : %d\n", printf("%010.4d\n", 42000));
+	printf("print result: \n");
+	printf("value : %d\n", printf("%010.15d\n", 42000));
+	printf("print result: \n");
+	printf("value : %d\n", printf("%03.3d\n", 42000));
+	printf("print result: \n");
+	printf("value : %d\n", printf("%06.2d\n", 42000));
+	printf("print result: \n");
+	printf("value : %d\n", printf("%010d\n", 42000));
+	printf("print result: \n");
+	printf("value : %d\n", printf("%010.d\n", 42000));
+
+
+
 }

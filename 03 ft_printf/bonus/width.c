@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/05 13:33:07 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/10 17:56:51 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/10 19:36:27 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	width_unsigned(t_spec spec, int nbr_len)
 
 	len = 0;
 	if (spec.flag % 2 && !(spec.flag % 3)
-		&& (spec.precis <= nbr_len || spec.width < spec.precis))
+		&& spec.precis == -1)
 		len += print_width(spec.width, nbr_len, '0');
 	else
 		len += print_width(spec.width, nbr_len, ' ');
@@ -35,8 +35,7 @@ int	width_nbr(t_spec spec, long long int *n, int nbr_len)
 	if (*n >= 0 && !(spec.flag % 7 && spec.flag % 11))
 		spec.width--;
 	if (spec.flag % 2 && !(spec.flag % 3)
-		&& (spec.precis <= nbr_len || spec.width < spec.precis)
-		&& !(!*n && !spec.precis))
+		&& spec.precis == -1)
 	{
 		if (*n >= 0 && !(spec.flag % 7 && spec.flag % 11))
 			plus_space(spec.flag);
@@ -66,7 +65,7 @@ int	width_hex(t_spec spec, unsigned int n, int upper)
 	if (!(spec.flag % 7) && n && spec.precis)
 		spec.width -= 2;
 	if (spec.flag % 2 && !(spec.flag % 3)
-		&& (spec.precis <= nbr_len || spec.width < spec.precis))
+		&& spec.precis == -1)
 	{
 		if (!(spec.flag % 7) && n && spec.precis)
 			len += hashtag(upper);
