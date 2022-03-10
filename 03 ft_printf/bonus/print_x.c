@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 17:44:50 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/10 21:09:31 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/10 21:41:20 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	ft_pow(int nb, int pow)
 		return (nb * ft_pow(nb, pow - 1));
 }
 
-int	ft_printhex(unsigned int n, int precis, int flag)
+int	ft_printhex(unsigned int n, int precis, int upper)
 {
 	int				i;
 	char			*set;
@@ -28,7 +28,7 @@ int	ft_printhex(unsigned int n, int precis, int flag)
 
 	if (!n && !precis)
 		return (0);
-	if (!flag)
+	if (!upper)
 		set = ft_strdup("0123456789abcdef");
 	else
 		set = ft_strdup("0123456789ABCDEF");

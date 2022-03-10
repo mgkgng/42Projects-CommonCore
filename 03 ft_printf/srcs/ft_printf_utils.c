@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/16 11:08:24 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/05 15:23:43 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/10 21:59:57 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,9 @@ int	ft_putstr(char *s)
 {
 	int	i;
 
-	i = 0;
 	if (!s)
-	{
-		ft_putstr("(null)");
-		return (6);
-	}
+		return (ft_putstr("(null)"));
+	i = 0;
 	while (s[i])
 		ft_putchar((int) s[i++]);
 	return (i);
@@ -53,6 +50,9 @@ int	ft_nbrlen(long long int n, int base)
 
 int	ft_putnbr(long long int n)
 {
+	int	len;
+
+	len = ft_nbrlen(n, 10);
 	if (n < 0)
 	{
 		ft_putchar('-');
@@ -61,36 +61,47 @@ int	ft_putnbr(long long int n)
 	if (n > 9)
 		ft_putnbr(n / 10);
 	ft_putchar(n % 10 + '0');
-	return (ft_nbrlen(n, 10));
+	return (len);
 }
 
-int	ft_putnbr_base(unsigned long int n, char *base, char convert)
+int	ft_puthex(unsigned int n, int upper)
 {
-	int					count;
-	unsigned long int	save;
-	char				*str;
-	int					result;
+	char			*set;
 
-	save = n;
-	count = 1;
-	if (convert == 'p')
-		ft_putstr("0x");
-	while (save > (unsigned long int) ft_strlen(base) - 1)
-	{
-		count++;
-		save /= (unsigned long int) ft_strlen(base);
-	}
-	str = malloc(count + 1);
-	str[count--] = '\0';
-	while (n > (unsigned long int) ft_strlen(base) - 1)
-	{
-		str[count--] = base[n % (unsigned long int) ft_strlen(base)];
-		n /= (unsigned long int) ft_strlen(base);
-	}
-	str[count] = base[n % (unsigned long int) ft_strlen(base)];
-	result = ft_putstr(str);
-	free(str);
-	return (result);
+	if (!upper)
+		set = ft_strdup("0123456789abcdef");
+	else
+		set = ft_strdup("0123456789ABCDEF");
+	if (n > 15)
+		ft_puthex(n / 16, upper);
+	ft_putchar(set[n % 16]);
+	free(set);
+	return (ft_nbrlen(n, 16));
 }
 
-// should clean it
+int	ft_ptrlen(unsigned long long n)
+{
+	int	len;
+
+	len = 3;
+	while (n > 15)
+	{
+		n /= 16;
+		len++;
+	}
+	return (len);
+}
+
+int	ft_putptr(unsigned long long n, int on)
+{
+	char	*set;
+
+	set = ft_strdup("0123456789abcdef");
+	if (on)
+		ft_putstr("0x");
+	if (n > 15)
+		ft_putptr(n / 16, 0);
+	ft_putchar(set[n % 16]);
+	free(set);
+	return (ft_ptrlen(n));
+}

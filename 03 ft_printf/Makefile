@@ -1,6 +1,6 @@
 SRCS =	srcs/ft_printf.c \
 		srcs/ft_printf_utils.c \
-		srcs/verify_machine.c \
+		srcs/print.c \
 
 BSRCS = bonus/ft_printf_bonus.c \
 		bonus/utils_bonus.c \
