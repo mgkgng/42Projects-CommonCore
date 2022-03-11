@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
+/*   By: mgk <mgk@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/25 18:12:33 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/11 11:46:53 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/11 21:25:13 by mgk              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,23 @@
 
 void	here_doc(char *limiter)
 {
-	char	*w_line;
-	char	*r_data;
+	char	*line;
+	char	*r;
 	int		fd_tmp;
 
-	r_data = NULL;
+	r = NULL;
 	while (1)
 	{
-		w_line = get_next_line(STDIN_FILENO);
-		if (ft_strlen(limiter) == ft_strlen(w_line) - 1
-			&& !ft_strncmp(limiter, w_line, ft_strlen(limiter)))
+		line = get_next_line(STDIN_FILENO);
+		if (ft_strlen(limiter) == ft_strlen(line) - 1
+			&& !ft_strncmp(limiter, line, ft_strlen(limiter)))
 			break ;
-		r_data = ft_strjoin_gnl(r_data, w_line);
-		free(w_line);
+		put_buf(&r, line);
+		free(line);
 	}
 	fd_tmp = open("here_doc", O_CREAT | O_WRONLY | O_TRUNC, 0644);
-	write(fd_tmp, r_data, ft_strlen(r_data));
-	free(r_data);
+	write(fd_tmp, r, sizeof(r));
+	free(r);
 }
 
 void	pipe_define(int *fd, int fd_in, t_cmd cmds, int i)
@@ -59,16 +59,14 @@ void	pipe_define(int *fd, int fd_in, t_cmd cmds, int i)
 	close(fd[0]);
 }
 
-void	pipe_loop(t_cmd cmds, t_envp path)
+int	execute_loop(t_pipex pipex, int fd_in)
 {
 	int		fd[2];
 	pid_t	pid;
-	int		fd_in;
 	int		i;
 
-	fd_in = 0;
 	i = 0;
-	while (cmds.cmd[i])
+	while (pipex.cmds[i])
 	{
 		pipe(fd);
 		pid = fork();
@@ -76,7 +74,7 @@ void	pipe_loop(t_cmd cmds, t_envp path)
 		{
 			pipe_define(fd, fd_in, cmds, i);
 			execve(cmds.cmd[i], cmds.args[i], path.paths);
-			exit(0);
+			exit(1);
 		}
 		else
 		{
@@ -86,9 +84,22 @@ void	pipe_loop(t_cmd cmds, t_envp path)
 			i++;
 		}
 	}
+	return (terminate(pipex));
+}
+
+int	terminate(t_pipex pipex)
+{
+	int	i;
+
+	i = 0;
+	while (pipex.cmds[i])
+		free(pipex.cmds[i++]);
+	free(pipex.cmds);
+	unlink("here_doc");
+	return (0);
 }
 
 int	ft_pipex(t_pipex pipex)
 {
-	
+	return (execute_loop(pipex, STDIN_FILENO));
 }

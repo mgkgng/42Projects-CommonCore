@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
+/*   By: mgk <mgk@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/22 19:41:02 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/11 11:54:26 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/11 21:20:00 by mgk              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,9 @@ char	**ft_split(char const *s, char c);
 char	*ft_strchr(const char *s, int c);
 char	*ft_strdup(const char *s1);
 int		ft_strlen(const char *s);
+int		find_endl(char *s);
+void	put_buf(char **r, char *buf);
+char	*get_line(char **r);
+char	*get_next_line(int fd);
 
 #endif

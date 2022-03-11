@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
+/*   By: mgk <mgk@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/26 19:42:14 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/11 11:48:23 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/11 21:12:27 by mgk              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,32 +20,21 @@
 # include <fcntl.h>
 
 typedef struct s_pipex{
-	int		*in;
-	int		*out;
-	char	**cmd;
-	char	***args;
+	int		in;
+	int		out;
+	char	**cmds;
 	char	**paths;
 	char	**envp;
 }	t_pipex;
 
-typedef struct s_cmd{
-	char	**cmd;
-	char	***args;
-	char	*infile;
-	char	*outfile;
-}	t_cmd;
-
-char	*cmd_define(char *s);
-char	*pathname_creator(char *s, char **paths);
-int		path_detector(char *s);
-char	**possible_path(char **envp);
 void	ft_putchar(char c);
 void	ft_putstr(char *s);
 void	here_doc(char *limiter);
 char	*get_data(int fd);
 int		ft_strcmp(char *s1, char *s2);
-t_cmd	all_commands(int argc, char **argv, t_envp path);
-void	pipe_loop(t_cmd cmds, t_envp path);
-void	ft_free(t_cmd *result);
+char	**all_commands(int argc, char **argv);
+void	execute_loop(t_pipex pipex);
+t_pipex	parse(int argc, char **argv, char **envp);
+
 
 #endif
