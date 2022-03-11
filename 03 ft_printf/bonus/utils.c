@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf_utils.c                                  :+:      :+:    :+:   */
+/*   utils_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: min-kang <min-kang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/16 11:08:24 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/11 18:33:48 by min-kang         ###   ########.fr       */
+/*   Created: 2021/11/15 18:16:27 by min-kang          #+#    #+#             */
+/*   Updated: 2022/03/11 17:56:59 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "ft_printf_bonus.h"
 
 int	ft_putchar(int c)
 {
@@ -22,8 +22,6 @@ int	ft_putstr(char *s)
 {
 	int	i;
 
-	if (!s)
-		return (ft_putstr("(null)"));
 	i = 0;
 	while (s[i])
 		ft_putchar((int) s[i++]);
@@ -48,18 +46,29 @@ int	ft_nbrlen(long long int n, int base)
 	return (len);
 }
 
-int	ft_putnbr(long long int n)
+int	print_nbr_len(long long int n, t_spec spec, int base)
 {
+	int	minus;
 	int	len;
 
-	len = ft_nbrlen(n, 10);
+	if (!n && !spec.precis)
+		return (0);
+	minus = 0;
 	if (n < 0)
 	{
-		ft_putchar('-');
 		n *= -1;
+		minus++;
 	}
+	len = ft_nbrlen(n, base);
+	if (len < spec.precis)
+		return (spec.precis + minus);
+	return (len + minus);
+}
+
+int	ft_putnbr(long long int n)
+{
 	if (n > 9)
 		ft_putnbr(n / 10);
 	ft_putchar(n % 10 + '0');
-	return (len);
+	return (ft_nbrlen(n, 10));
 }

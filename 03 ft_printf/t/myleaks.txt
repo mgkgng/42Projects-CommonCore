@@ -1,1 +1,0 @@
-malloc_count ### exiting, total: 12839, peak: 128, current: 0

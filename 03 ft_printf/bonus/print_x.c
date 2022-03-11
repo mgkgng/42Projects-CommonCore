@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 17:44:50 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/10 21:41:20 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/11 17:29:13 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,5 +93,5 @@ int	print_x(unsigned int n, t_spec spec, int upper)
 	}
 	else
 		ins = get_instruction(2, 2, 1);
-	return (instruction_x(n, spec, upper, ins));	
+	return (instruction_x(n, spec, upper, ins));
 }

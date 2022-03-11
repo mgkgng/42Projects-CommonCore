@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf_bonus.h                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
+/*   By: min-kang <min-kang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/15 18:50:36 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/11 12:24:18 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/11 18:38:18 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,11 +63,11 @@ int	print_width(int width, int len, char c);
 /* utils */
 int	ft_putchar(int c);
 int	ft_putstr(char *s);
+int	ft_putnbr(long long int n);
 int	print_nbr(long long int *n, t_spec spec);
 int	print_unsigned(unsigned int n, t_spec spec);
 int	ft_nbrlen(long long int n, int base);
 int	print_precis_nbr(int precis, int len);
 int	print_nbr_len(long long int n, t_spec spec, int base);
-
 
 #endif

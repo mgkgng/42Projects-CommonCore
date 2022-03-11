@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 17:45:57 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/05 21:29:17 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/11 17:29:49 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	ft_printstr(char *s, int precis)
 {
 	int	i;
-	
+
 	if (precis == -1)
 		precis = ft_strlen(s);
 	i = 0;

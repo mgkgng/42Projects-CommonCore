@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
+/*   By: min-kang <min-kang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/15 18:15:53 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/11 12:23:39 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/11 18:40:14 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ int	get_flag(const char *s, int *i)
 
 	res = 1;
 	set = ft_strdup("0- #+");
-	while (ft_strchr(set, s[*(++i)]))
+	*i += 1;
+	while (ft_strchr(set, s[*i]))
 	{
 		if (s[*i] == '-' && res % 2)
 			res *= 2;
@@ -70,7 +71,7 @@ int	get_precis(const char *s, int *i)
 
 int	*get_instruction(int n, ...)
 {
-	va_list arg_n;
+	va_list	arg_n;
 	int		*ins;
 	int		i;
 

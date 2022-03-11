@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 17:42:43 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/10 20:58:43 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/11 17:30:12 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int	instruction_d(long long int n, t_spec spec, int *ins)
 	return (len);
 }
 
-int print_d(int n, t_spec spec)
+int	print_d(int n, t_spec spec)
 {
 	int				*ins;
 

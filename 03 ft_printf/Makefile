@@ -1,11 +1,13 @@
 SRCS =	srcs/ft_printf.c \
 		srcs/ft_printf_utils.c \
 		srcs/print.c \
+		srcs/print_utils.c
 
 BSRCS = bonus/ft_printf_bonus.c \
-		bonus/utils_bonus.c \
+		bonus/utils.c \
 		bonus/get.c \
 		bonus/print.c \
+		bonus/print_utils.c \
 		bonus/print_c.c \
 		bonus/print_d.c \
 		bonus/print_p.c \
