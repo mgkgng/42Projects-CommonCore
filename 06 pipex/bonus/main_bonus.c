@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: min-kang <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/25 18:36:37 by min-kang          #+#    #+#             */
-/*   Updated: 2021/12/26 19:07:27 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/11 11:46:47 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,9 @@ int	main(int argc, char **argv, char **envp)
 	t_cmd	cmds;
 
 	if (argc < 5)
-	{
-		perror("wrong number of arguments");
-		exit(0);
-	}
+		return (error(1));
+	return (ft_pipex(parse(argv, envp)));
+
 	path.paths = possible_path(envp);
 	path.envp = envp;
 	if (!ft_strcmp(argv[1], "here_doc"))
