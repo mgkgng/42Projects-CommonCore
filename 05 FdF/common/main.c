@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: remylachau <remylachau@student.42.fr>      +#+  +:+       +#+        */
+/*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/06 11:50:13 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/07 12:24:48 by remylachau       ###   ########.fr       */
+/*   Updated: 2022/03/11 11:27:46 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
-void	create_fdf(t_main main)
+void	fdf_initialise(t_main main)
 {
 	
 }
@@ -20,6 +20,7 @@ void	create_fdf(t_main main)
 int	main(int argc, char **argv)
 {
 	t_main	main;
+	t_map	map;
 	int		fd;
 
 	if (argc != 2)
@@ -27,7 +28,7 @@ int	main(int argc, char **argv)
 	fd = open(argv[1], O_RDONLY);
 	if (fd == -1)
 		return (error(2));
-	main.data = data_2d_matrice(fd);
+	map = parse(fd);
 	main.vars.mlx = mlx_init();
 	main.vars.win = mlx_new_window(main.vars.mlx, 1920, 1080, "FdF");
 	main.img.img = mlx_new_image(main.vars.mlx, 1920, 1080);

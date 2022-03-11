@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: remylachau <remylachau@student.42.fr>      +#+  +:+       +#+        */
+/*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/17 16:02:10 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/07 13:22:35 by remylachau       ###   ########.fr       */
+/*   Updated: 2022/03/11 11:29:50 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,15 +64,15 @@ char	*get_file(int fd)
 	return (res);
 }
 
-t_data	get_data(char *r)
+t_map	get_data(char *r)
 {
-	t_data	res;
+	t_map	res;
 	int		i;
 	int		j;
 	char	**line;
 	char	***col;
 
-	line = ft_split(gnl_data, '\n');
+	line = ft_split(r, '\n');
 	col = malloc(sizeof(char **) * size_count(line));
 	i = -1;
 	while (line[++i])
@@ -86,14 +86,13 @@ t_data	get_data(char *r)
 	return (res);
 }
 
-t_data	parse(int fd)
+t_map	parse(int fd)
 {
 	char	*r;
-	t_data	res;
-	int		i;
+	t_map	res;
 
 	r = get_file(fd);
-	res = get_data(gnl_data_line, gnl_data_colonne);
+	res = get_data(r);
 	res.max = max_find(result);
 	res.min = min_find(result);
 

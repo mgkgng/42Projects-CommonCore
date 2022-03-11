@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: remylachau <remylachau@student.42.fr>      +#+  +:+       +#+        */
+/*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/17 16:03:31 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/07 12:28:50 by remylachau       ###   ########.fr       */
+/*   Updated: 2022/03/11 11:28:46 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ typedef struct s_vars{
 	t_img	fdf;
 }				t_vars;
 
-typedef struct s_data{
+typedef struct s_map{
 	int		**mat_2d;
 	int		n_line;
 	int		len_line;
@@ -54,7 +54,7 @@ typedef struct s_data{
 	int		min;
 	t_3d	*mat_3d;
 	int		size;
-}			t_data;
+}	t_map;
 
 typedef struct s_point{
 	int	x;
@@ -123,5 +123,8 @@ void	ft_putstr(char *s);
 int		max_find(t_map data);
 int		min_find(t_map data);
 int		error(int code);
+
+/* parse */
+t_map	parse(int fd);
 
 #endif
