@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/15 18:50:36 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/10 16:13:27 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/11 12:24:18 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include <stdarg.h>
 # include <unistd.h>
 # include "../libft/libft.h"
-#include <stdio.h>
+# include <stdio.h>
 
 /* flag corresponding to a prime number
 - : 2

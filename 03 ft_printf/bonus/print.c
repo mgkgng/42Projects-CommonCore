@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 12:19:37 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/05 22:43:48 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/11 11:58:32 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,5 +41,5 @@ int	launch_print(const char *s, int *i, va_list arg_n)
 	spec.flag = get_flag(s, i);
 	spec.width = get_width(s, i, &spec.flag);
 	spec.precis = get_precis(s, i);
-	return (do_print(s[*i], arg_n, spec));
+	return (do_print(s[*(i++)], arg_n, spec));
 }

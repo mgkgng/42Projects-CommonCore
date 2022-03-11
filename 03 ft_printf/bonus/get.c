@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/15 18:15:53 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/10 19:47:55 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/11 12:23:39 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,21 +19,19 @@ int	get_flag(const char *s, int *i)
 
 	res = 1;
 	set = ft_strdup("0- #+");
-	while (ft_strchr(set, s[*i]))
+	while (ft_strchr(set, s[*(++i)]))
 	{
-		if (s[*i] == '-')
+		if (s[*i] == '-' && res % 2)
 			res *= 2;
-		else if (s[*i] == '0')
+		else if (s[*i] == '0' && res % 3)
 			res *= 3;
-		else if (s[*i] == '#')
+		else if (s[*i] == '#' && res % 5)
 			res *= 5;
-		else if (s[*i] == '+')
+		else if (s[*i] == '+' && res % 7)
 			res *= 7;
-		else if (s[*i] == ' ')
+		else if (s[*i] == ' ' && res % 11)
 			res *= 11;
-		*i += 1;
 	}
-	// how to ignore the doubled?
 	free(set);
 	return (res);
 }
