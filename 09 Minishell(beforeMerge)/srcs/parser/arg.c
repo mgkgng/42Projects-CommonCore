@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 14:24:20 by min-kang          #+#    #+#             */
-/*   Updated: 2022/02/27 14:44:23 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/12 20:51:56 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,17 @@ void	parse_cmd(t_node **node, char *new_arg)
 	t_node	*new;
 
 	if ((*node)->current_cmd)
-		arg_join(node, new_arg);
+	{
+		if ((*node)->current_cmd->left)
+			arg_join(node, new_arg);
+		else
+		{
+			new = ft_calloc(1, sizeof(t_node));
+			new->node_type = 0;
+			new->args = arg_begin(new_arg);
+			(*node)->current_cmd->left = new;
+		}
+	}
 	else
 	{
 		new = ft_calloc(1, sizeof(t_node));
