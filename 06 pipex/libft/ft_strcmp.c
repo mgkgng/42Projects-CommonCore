@@ -1,27 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex_utils.c                                      :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
+/*   By: mgk <mgk@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/24 16:29:37 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/07 13:28:32 by min-kang         ###   ########.fr       */
+/*   Created: 2022/03/12 14:56:58 by mgk               #+#    #+#             */
+/*   Updated: 2022/03/12 14:57:09 by mgk              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/pipex.h"
+#include "libft.h"
 
-void	ft_putchar(char c)
-{
-	write(1, &c, 1);
-}
-
-void	ft_putstr(char *s)
+int	ft_strcmp(char *s1, char *s2)
 {
 	int	i;
 
 	i = 0;
-	while (s[i])
-		ft_putchar(s[i++]);
+	while (s1[i] && s2[i] && s1[i] == s2[i])
+		i++;
+	return (s1[i] - s2[i]);
 }

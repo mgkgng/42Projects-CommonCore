@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
+/*   By: mgk <mgk@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 20:15:39 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/07 20:43:59 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/12 14:57:53 by mgk              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ int free_pipex(t_pipex pipex)
     free(pipex.cmd1);
     free(pipex.cmd2);
     i = -1;
-    while (!pipex.path[++i])
-        free(pipex.path[i]);
-    free(pipex.path);
+    while (!pipex.paths[++i])
+        free(pipex.paths[i]);
+    free(pipex.paths);
     return (0);
 }

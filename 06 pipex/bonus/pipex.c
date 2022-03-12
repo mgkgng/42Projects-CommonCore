@@ -6,17 +6,17 @@
 /*   By: mgk <mgk@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/25 18:12:33 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/12 14:10:47 by mgk              ###   ########.fr       */
+/*   Updated: 2022/03/12 14:58:38 by mgk              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/pipex_bonus.h"
 
-void	here_doc(char *limiter)
+int	heredoc(char *limiter)
 {
 	char	*line;
 	char	*r;
-	int		fd_tmp;
+	int		fd;
 
 	r = NULL;
 	while (1)
@@ -28,72 +28,71 @@ void	here_doc(char *limiter)
 		put_buf(&r, line);
 		free(line);
 	}
-	fd_tmp = open("here_doc", O_CREAT | O_WRONLY | O_TRUNC, 0644);
-	write(fd_tmp, r, sizeof(r));
+	fd = open("heredoc", O_CREAT | O_WRONLY | O_TRUNC, 0644);
+	write(fd, r, sizeof(r));
 	free(r);
-}
-
-void	pipe_define(int *fd, t_pipex pipex)
-{
-	int	file;
-
-		dup2(fd_in, 0);
-	if (cmds.cmd[i + 1])
-		dup2(fd[1], 1);
-	else
-	{
-		file = open(cmds.outfile, O_CREAT | O_WRONLY | O_TRUNC, 0644);
-		dup2(file, 1);
-	}
-	close(fd[0]);
-}
-
-int	execute_loop(t_pipex pipex)
-{
-	int		fd[2];
-	pid_t	pid;
-	int		i;
-
-	i = 0;
-	while (pipex.cmds[i])
-	{
-		pipe(fd);
-		pid = fork();
-		if (pid == 0)
-		{
-			if (!i)
-				fd[0] = pipex.in;
-			if (!pipex.cmds[i + 1])
-				fd[1] = pipex.out;
-			dup2(fd[0], STDIN_FILENO);
-			dup2(fd[1], STDOUT_FILENO);
-			execve(pipex.cmd[i], cmds.args[i], pipex.envp);
-			exit(1);
-		}
-		else
-		{
-			wait(NULL);
-			close(fd[1]);
-			fd_in = fd[0];
-			i++;
-		}
-	}
-	return (terminate(pipex));
+	return (fd);
 }
 
 int	terminate(t_pipex pipex)
 {
 	int	i;
+	int	j;
 
-	i = 0;
-	while (pipex.cmds[i])
-		free(pipex.cmds[i++]);
-	free(pipex.cmds);
-	unlink("here_doc");
+	i = -1;
+	while (pipex.args[++i])
+	{
+		j = -1;
+		while (pipex.args[i][++j])
+			free(pipex.args[i][j]);
+		free(pipex.args[i]);
+	}
+	i = -1;
+	while (pipex.cmdpaths[++i])
+		free(pipex.cmdpaths[i]);
+	free(pipex.cmdpaths);
+	close(pipex.in);
+	close(pipex.out);
+	unlink("heredoc");
 	return (0);
+}
+
+void	pipex_in_loop(t_pipex pipex, int *fd, int i)
+{
+	if (!i)
+		fd[0] = pipex.in;
+	if (i == pipex.size - 1)
+		fd[1] = pipex.out;
+	dup2(fd[0], STDIN_FILENO);
+	dup2(fd[1], STDOUT_FILENO);
+	close(fd[0]);
+	close(fd[1]);
+	execve(pipex.cmdpaths[i], pipex.args[i], pipex.envp);
+	exit(1);
 }
 
 int	ft_pipex(t_pipex pipex)
 {
-	return (execute_loop(pipex, STDIN_FILENO));
+	int		fd[2];
+	pid_t	pid;
+	int		i;
+
+	i = -1;
+	while (++i < pipex.size)
+	{
+		if (pipe(fd) < 0)
+			return (error(2));
+		pid = fork();
+		if (pid < 0)
+			return (error(3));
+		if (pid == 0)
+			pipex_in_loop(pipex, fd, i);
+		else
+		{
+			wait(NULL);
+			close(fd[0]);
+			close(fd[1]);
+		}
+	}
+	return (terminate(pipex));
 }

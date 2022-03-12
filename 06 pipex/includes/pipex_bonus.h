@@ -6,7 +6,7 @@
 /*   By: mgk <mgk@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/26 19:42:14 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/11 21:12:27 by mgk              ###   ########.fr       */
+/*   Updated: 2022/03/12 14:45:54 by mgk              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,15 @@
 typedef struct s_pipex{
 	int		in;
 	int		out;
-	char	**cmds;
-	char	**paths;
+	int		size;
+	char	***args;
+	char	**cmdpaths;
 	char	**envp;
 }	t_pipex;
 
 void	ft_putchar(char c);
 void	ft_putstr(char *s);
-void	here_doc(char *limiter);
+int		heredoc(char *limiter);
 char	*get_data(int fd);
 int		ft_strcmp(char *s1, char *s2);
 char	**all_commands(int argc, char **argv);
