@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_utils4.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
+/*   By: mgk <mgk@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/16 16:55:16 by min-kang          #+#    #+#             */
-/*   Updated: 2022/02/27 14:44:37 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/12 19:27:05 by mgk              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,4 +92,14 @@ char	*ft_itoa(int n)
 		n /= 10;
 	}
 	return (result);
+}
+
+char	*to_string(char c)
+{
+	char	*res;
+
+	res = malloc(2);
+	res[0] = c;
+	res[1] = '\0';
+	return (res);
 }

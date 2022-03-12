@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
+/*   By: mgk <mgk@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 10:50:45 by gkgpteam          #+#    #+#             */
-/*   Updated: 2022/02/27 15:09:45 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/12 19:27:38 by mgk              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,8 @@ void		ft_bzero(void *s, size_t n);
 void		*ft_calloc(size_t count, size_t size);
 char		*ft_strcat(char *s, char c);
 char		*ft_itoa(int n);
+char		*to_string(char c);
+
 
 /* lexer */
 t_token		*lexer(char *s, char **envp);
