@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/16 15:54:12 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/09 14:57:39 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/12 20:27:25 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,6 @@ int	parse_execute(t_token *begin, int index, char **envp)
 	node = parser(begin, index);
 	res = execute_loop(node->root, envp, 0);
 	unlink(HEREDOC);
-	free_node(node);
+	//free_node(node->root);
 	return (res);
 }
