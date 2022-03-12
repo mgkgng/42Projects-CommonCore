@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex_bonus.c                                      :+:      :+:    :+:   */
+/*   pipex.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mgk <mgk@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/25 18:12:33 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/11 21:25:13 by mgk              ###   ########.fr       */
+/*   Updated: 2022/03/12 14:10:47 by mgk              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,21 +33,10 @@ void	here_doc(char *limiter)
 	free(r);
 }
 
-void	pipe_define(int *fd, int fd_in, t_cmd cmds, int i)
+void	pipe_define(int *fd, t_pipex pipex)
 {
 	int	file;
 
-	if (i == 0)
-	{
-		file = open(cmds.infile, O_RDONLY);
-		if (file < 0)
-		{
-			perror("filename error");
-			exit(0);
-		}
-		dup2(file, 0);
-	}
-	else
 		dup2(fd_in, 0);
 	if (cmds.cmd[i + 1])
 		dup2(fd[1], 1);
@@ -59,7 +48,7 @@ void	pipe_define(int *fd, int fd_in, t_cmd cmds, int i)
 	close(fd[0]);
 }
 
-int	execute_loop(t_pipex pipex, int fd_in)
+int	execute_loop(t_pipex pipex)
 {
 	int		fd[2];
 	pid_t	pid;
@@ -72,8 +61,13 @@ int	execute_loop(t_pipex pipex, int fd_in)
 		pid = fork();
 		if (pid == 0)
 		{
-			pipe_define(fd, fd_in, cmds, i);
-			execve(cmds.cmd[i], cmds.args[i], path.paths);
+			if (!i)
+				fd[0] = pipex.in;
+			if (!pipex.cmds[i + 1])
+				fd[1] = pipex.out;
+			dup2(fd[0], STDIN_FILENO);
+			dup2(fd[1], STDOUT_FILENO);
+			execve(pipex.cmd[i], cmds.args[i], pipex.envp);
 			exit(1);
 		}
 		else
