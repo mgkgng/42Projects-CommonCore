@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 14:24:47 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/12 20:47:28 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/13 12:29:19 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,15 +102,24 @@ void	redir_join(t_node **node, int redir_type, char *redir_name)
 
 void	parse_redir(t_node **node, t_token **tokens)
 {
-	if (!(*node)->current_cmd)
+	t_node	*nov;
+
+	if ((*node)->current_cmd)
 	{
-		(*node)->current_cmd = ft_calloc(1, sizeof(t_node));
-		(*node)->current_cmd->node_type = 2;
-	}
-	if (!(*node)->current_cmd->right)
-		(*node)->current_cmd->right = redir_begin((*tokens)->token,
+		if ((*node)->current_cmd->right)
+			redir_join(node, (*tokens)->token, (*tokens)->next->content);
+		else
+			(*node)->current_cmd->right = redir_begin((*tokens)->token,
 				(*tokens)->next->content);
+	}
 	else
-		redir_join(node, (*tokens)->token, (*tokens)->next->content);
+	{
+		nov = ft_calloc(1, sizeof(t_node));
+		nov->node_type = 2;
+		nov->right = redir_begin((*tokens)->token, (*tokens)->next->content);
+		(*node)->current_cmd = nov;
+		if (!(*node)->root)
+			(*node)->root = nov;
+	}
 	*tokens = (*tokens)->next;
 }
