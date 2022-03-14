@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 14:23:42 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/14 11:38:02 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/14 12:23:12 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,17 @@
 char	*pathname_creator(char *s, char **paths)
 {
 	char		*cmd;
-	struct stat *stats;
+	struct stat stats;
 	int			i;
 
-	if (access(s, F_OK) == 0)
-		return (s);
-	else if (stat(s, stats) == 0)
+	if (stat(s, &stats) == 0 && S_ISDIR(stats.st_mode))
 	{
 		ft_putstr_fd(s, 2);
 		ft_putstr_fd(": is a directory\n", 2);
 		exit(126);
 	}
+	if (access(s, F_OK) == 0)
+		return (s);
 	i = -1;
 	while (paths[++i])
 	{
@@ -37,9 +37,13 @@ char	*pathname_creator(char *s, char **paths)
 			free(cmd);
 	}
 	ft_putstr_fd(s, 2);
-	ft_putstr_fd(": command not found\n", 2);
+	if (s[0] == '/')
+		ft_putstr_fd(": No such file or directory\n", 2);
+	else
+		ft_putstr_fd(": command not found\n", 2);
 	exit(127);
 }
+// anormalie 1 : why does "/ls" work?
 
 char	**possible_path(char **envp)
 {
