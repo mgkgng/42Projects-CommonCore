@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 14:23:42 by min-kang          #+#    #+#             */
-/*   Updated: 2022/02/27 13:12:40 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/14 11:38:02 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,18 @@
 
 char	*pathname_creator(char *s, char **paths)
 {
-	char	*cmd;
-	int		i;
+	char		*cmd;
+	struct stat *stats;
+	int			i;
 
 	if (access(s, F_OK) == 0)
 		return (s);
+	else if (stat(s, stats) == 0)
+	{
+		ft_putstr_fd(s, 2);
+		ft_putstr_fd(": is a directory\n", 2);
+		exit(126);
+	}
 	i = -1;
 	while (paths[++i])
 	{
@@ -29,8 +36,9 @@ char	*pathname_creator(char *s, char **paths)
 		else
 			free(cmd);
 	}
-	ft_putstr_fd("Error: command not found\n", 2);
-	return (NULL);
+	ft_putstr_fd(s, 2);
+	ft_putstr_fd(": command not found\n", 2);
+	exit(127);
 }
 
 char	**possible_path(char **envp)

@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 10:50:45 by gkgpteam          #+#    #+#             */
-/*   Updated: 2022/03/12 20:00:21 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/14 11:34:56 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <stdlib.h>
 # include <signal.h>
 # include <fcntl.h>
+# include <sys/types.h>
 # include <sys/stat.h>
 # include <readline/readline.h>
 # include <readline/history.h>
