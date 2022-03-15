@@ -6,6 +6,7 @@ SRCS =	srcs/main.c \
 		srcs/lexer/redir.c \
 		srcs/lexer/var.c \
 		srcs/lexer/free.c \
+		srcs/lexer/error.c \
 		srcs/parser/parser.c \
 		srcs/parser/parser_utils.c \
 		srcs/parser/arg.c \

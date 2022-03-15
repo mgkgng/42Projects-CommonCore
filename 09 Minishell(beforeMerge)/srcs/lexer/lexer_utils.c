@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/16 16:56:28 by min-kang          #+#    #+#             */
-/*   Updated: 2022/02/27 14:23:16 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/15 21:37:08 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,27 +49,6 @@ int	give_token(t_token **tokens, char *s, int i)
 		return (i + 2);
 	else
 		return (i + 1);
-}
-
-int	lexer_error(t_token *tokens)
-{
-	while (tokens)
-	{
-		if ((tokens->token >= CHEVRON_I && tokens->token <= P_OPEN)
-			&& !tokens->next)
-		{
-			ft_putstr_fd("Syntax error.\n", 2);
-			return (0);
-		}
-		if ((tokens->token >= PIPE && tokens->token <= AND)
-			&& (tokens->next->token >= PIPE && tokens->next->token <= AND))
-		{
-			ft_putstr_fd("Syntax error.\n", 2);
-			return (0);
-		}
-		tokens = tokens->next;
-	}
-	return (1);
 }
 
 void	put_token_index(t_token **tokens)
