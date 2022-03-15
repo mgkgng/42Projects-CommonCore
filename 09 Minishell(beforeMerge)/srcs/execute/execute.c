@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/16 15:54:12 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/14 11:29:08 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/15 16:07:22 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,32 +28,48 @@ int	cmd_execute(t_node *node, int fd_in, int fd_out, char **envp)
 	exit (127);
 }
 
+int	proc_child(t_node *node, char **envp, int fd_in, int *fd)
+{
+	close(fd[0]);
+	if (node->right && node->right->node_type > 1)
+		cmd_execute(node->left, fd_in, fd[1], envp);
+	else
+		cmd_execute(node, fd_in, 1, envp);
+	return (1);
+}
+
+int	proc_parent(t_node *node, char **envp, int *fd, pid_t pid)
+{
+	int	res;
+	int	res_child;
+
+	close(fd[1]);
+	res = execute_loop(node->right, envp, fd[0]);
+	close(fd[0]);
+	waitpid(pid, &res_child, 0);
+	res_child = WEXITSTATUS(res_child);
+	if (node->right && node->right->node_type > 1)
+		return (res);
+	return (res_child);
+}
+
 int	execute_loop(t_node *node, char **envp, int fd_in)
 {
 	int		fd[2];
 	pid_t	pid;
+	int		res;
 
+	res = 0;
 	if (node && node->node_type > 1)
 	{
 		pipe(fd);
 		pid = fork();
 		if (pid == 0)
-		{
-			close(fd[0]);
-			if (node->right && node->right->node_type > 1)
-				cmd_execute(node->left, fd_in, fd[1], envp);
-			else
-				cmd_execute(node, fd_in, 1, envp);
-		}
+			proc_child(node, envp, fd_in, fd);
 		else
-		{
-			close(fd[1]);
-			execute_loop(node->right, envp, fd[0]);
-			close(fd[0]);
-			waitpid(pid, &g_res, 0);
-		}
+			res = proc_parent(node, envp, fd, pid);
 	}
-	return (WEXITSTATUS(g_res));
+	return (res);
 }
 
 int	parse_execute(t_token *begin, int index, char **envp)
