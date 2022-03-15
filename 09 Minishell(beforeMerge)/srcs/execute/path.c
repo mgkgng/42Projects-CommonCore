@@ -6,17 +6,15 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 14:23:42 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/14 12:23:12 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/15 19:05:03 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-char	*pathname_creator(char *s, char **paths)
+void	check_isdir(char *s)
 {
-	char		*cmd;
 	struct stat stats;
-	int			i;
 
 	if (stat(s, &stats) == 0 && S_ISDIR(stats.st_mode))
 	{
@@ -24,14 +22,22 @@ char	*pathname_creator(char *s, char **paths)
 		ft_putstr_fd(": is a directory\n", 2);
 		exit(126);
 	}
+}
+
+char	*get_pathname(char *s, char **paths)
+{
+	char		*cmd;
+	int			i;
+
+	check_isdir(s);
 	if (access(s, F_OK) == 0)
 		return (s);
 	i = -1;
-	while (paths[++i])
+	while (paths[++i] && s[0] != '/')
 	{
 		cmd = ft_strjoin(paths[i], "/", 0);
 		cmd = ft_strjoin(cmd, s, 1);
-		if (access(cmd, F_OK) == 0)
+		if (access(cmd, X_OK) == 0)
 			return (cmd);
 		else
 			free(cmd);
@@ -45,7 +51,7 @@ char	*pathname_creator(char *s, char **paths)
 }
 // anormalie 1 : why does "/ls" work?
 
-char	**possible_path(char **envp)
+char	**get_paths(char **envp)
 {
 	int		i;
 	char	**result;
@@ -62,7 +68,7 @@ char	*path_define(char *cmd, char **envp)
 	char	*cmd_path;
 	char	**paths;
 
-	paths = possible_path(envp);
-	cmd_path = pathname_creator(cmd, paths);
+	paths = get_paths(envp);
+	cmd_path = get_pathname(cmd, paths);
 	return (cmd_path);
 }
