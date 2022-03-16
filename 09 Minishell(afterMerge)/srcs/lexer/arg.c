@@ -6,13 +6,13 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/16 17:02:06 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/16 16:31:38 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/16 20:25:10 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static int in_quote(char *s, int index, char **envp, char **res)
+static int	in_quote(char *s, int index, char **envp, char **res)
 {
 	int		quote;
 
@@ -31,7 +31,7 @@ static char	*put_arg_n_var(char *s, int index, char **envp, int *wflag)
 {
 	char	*res;
 
-	res = ft_strdup("");
+	res = NULL;
 	while (s && s[index] && s[index] != ' ' && is_arg(s[index]))
 	{
 		if (s[index] == '\'' || s[index] == '\"')

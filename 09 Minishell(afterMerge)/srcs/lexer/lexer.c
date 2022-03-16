@@ -6,15 +6,39 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/23 19:28:00 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/16 13:50:04 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/16 19:55:52 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+static int	str_err(char *s, int i)
+{
+	while (s[i] == ' ')
+		i++;
+	if (s[i] == '|' || s[i] == '&' || s[i] == ')')
+	{
+		ft_putstr_fd("Syntax error.\n", 2);
+		return (1);
+	}
+	return (0);
+}
+
+static int	check_err(char *s, int i)
+{
+	if (s[i] == '(' && s[i + 1] && (s[i + 1] == '|' || s[i + 1] == '&'))
+	{
+		ft_putstr_fd("Syntax error.\n", 2);
+		return (1);
+	}
+	return (0);
+}
+
 static int	do_lexer(int i, char *s, char **envp, t_token	**tokens)
 {
-	if (is_arg(s[i]))
+	if (check_err(s, i))
+		return (-1);
+	else if (is_arg(s[i]))
 		i = get_arg(tokens, s, i, envp);
 	else if (s[i] == '<')
 		i = redir_input(tokens, s, i);
@@ -42,11 +66,15 @@ t_token	*lexer(char *s, char **envp)
 
 	tokens = NULL;
 	i = 0;
+	if (str_err(s, i))
+		return (NULL);
 	while (i < ft_strlen(s))
 	{
 		while (s[i] == ' ')
 			i++;
 		i = do_lexer(i, s, envp, &tokens);
+		if (i == -1)
+			return (free_tokens(tokens));
 	}
 	if (!lexer_error(tokens))
 		return (free_tokens(tokens));

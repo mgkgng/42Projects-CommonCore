@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/16 15:54:12 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/15 17:18:28 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/16 20:46:01 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,17 @@ int	parse_execute(t_app *app, t_token *begin, int index)
 	int		res;
 
 	node = parser(begin, index);
+	if (!node->root)
+	{
+		free(node);
+		return (0);
+	}
+	else if (!node->root->left)
+	{
+		free_node(node->root);
+		free(node);
+		return (0);
+	}
 	if (node->root->node_type == 2 && builtin_check(node->root->left) != -1)
 		res = cmd_execute(app, node->root, (int [3]){0, 1, 1});
 	else

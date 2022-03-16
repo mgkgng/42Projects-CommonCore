@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   var.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgk <mgk@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/16 16:56:06 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/12 19:45:11 by mgk              ###   ########.fr       */
+/*   Updated: 2022/03/16 21:01:43 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,13 @@ char	*find_var(char *s, char **envp)
 		if (!ft_strncmp(compare, envp[i], ft_strlen(compare)))
 		{
 			free(compare);
+			free(s);
 			return (get_var_arg(envp[i]));
 		}
 	}
-	return (ft_strdup(""));
+	free(s);
+	free(compare);
+	return (NULL);
 }
 
 int	len_varname(char *s, int i)
@@ -84,14 +87,14 @@ int	put_var(char **res, char *s, int i, char **envp)
 	{
 		var = ft_itoa(g_res);
 		i += 2;
-		*res = ft_strjoin(*res, var, 0);
+		*res = ft_strjoin(*res, var, 1);
 		free(var);
 	}
 	else
 	{
 		var = get_var(s, i + 1, envp);
 		i = len_varname(s, i + 1);
-		*res = ft_strjoin(*res, var, 0);
+		*res = ft_strjoin(*res, var, 1);
 		free(var);
 	}
 	return (i - 1);

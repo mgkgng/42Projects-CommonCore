@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 14:23:47 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/16 15:25:35 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/16 21:28:44 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,16 +45,20 @@ int	here_doc(char *limiter)
 	txt = NULL;
 	while (1)
 	{
-		r = readline("");
+		r = readline("> ");
 		if (!ft_strcmp(limiter, r))
+		{
+			free(r);
 			break ;
+		}
 		txt = here_doc_join(txt, r);
 	}
 	fd_tmp = open(HEREDOC, O_CREAT | O_WRONLY | O_TRUNC, S_IRUSR | S_IWUSR);
 	write(fd_tmp, txt, ft_strlen(txt));
 	close(fd_tmp);
 	fd_tmp = open(HEREDOC, O_RDONLY);
-	free(txt);
+	if (txt)
+		free(txt);
 	return (fd_tmp);
 }
 

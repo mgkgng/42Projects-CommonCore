@@ -6,7 +6,7 @@
 /*   By: gphilipp <gphilipp@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/16 17:02:06 by gkgpteam          #+#    #+#             */
-/*   Updated: 2022/03/11 15:07:13 by gphilipp         ###   ########.fr       */
+/*   Updated: 2022/03/16 19:08:23 by gphilipp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,13 @@ static int	matching(char *pattern, char *file)
 	if (*pattern == -42)
 	{
 		if (!*file)
+		{
+			while (*pattern && *pattern == -42)
+				pattern++;
+			if (!*pattern)
+				return (1);
 			return (0);
+		}
 		else if (matching(pattern, file + 1))
 			return (1);
 	}

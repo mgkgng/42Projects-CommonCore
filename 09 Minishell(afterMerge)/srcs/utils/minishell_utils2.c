@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_utils2.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gphilipp <gphilipp@student.42.fr>          +#+  +:+       +#+        */
+/*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/16 16:54:34 by min-kang          #+#    #+#             */
-/*   Updated: 2022/02/22 10:23:50 by gphilipp         ###   ########.fr       */
+/*   Updated: 2022/03/16 20:17:03 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ char	*ft_strdup(char *s)
 	char	*dup;
 	int		i;
 
+	if (!s)
+		return (NULL);
 	i = 0;
 	dup = malloc(sizeof(char) * (ft_strlen(s) + 1));
 	if (!dup)

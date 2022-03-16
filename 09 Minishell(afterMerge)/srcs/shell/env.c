@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
+/*   By: gphilipp <gphilipp@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 13:24:44 by gkgpteam          #+#    #+#             */
-/*   Updated: 2022/03/15 16:54:21 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/16 18:07:13 by gphilipp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	init_env(t_app *app, char *const envp[])
 		}
 		*x = '\0';
 		keyval = malloc(sizeof(t_keyval));
-		*keyval = (t_keyval){ft_strdup(envp[i]), ft_strdup(x + 1)};
+		*keyval = (t_keyval){ft_strdup(envp[i]), ft_strdup(x + 1), 0};
 		*x = '=';
 		list_push(&app->env, keyval);
 	}
@@ -51,7 +51,7 @@ char	*ft_getenv(t_app *app, char *key)
 	return (NULL);
 }
 
-int	ft_setenv(t_app *app, char *key, char *val)
+int	ft_setenv(t_app *app, char *key, char *val, int not_d)
 {
 	t_list		**plist;
 	t_keyval	*keyval;
@@ -69,7 +69,7 @@ int	ft_setenv(t_app *app, char *key, char *val)
 		plist = &((*plist)->next);
 	}
 	keyval = malloc(sizeof(t_keyval));
-	*keyval = (t_keyval){ft_strdup(key), ft_strdup(val)};
+	*keyval = (t_keyval){ft_strdup(key), ft_strdup(val), !!not_d};
 	list_push(&app->env, keyval);
 	return (1);
 }

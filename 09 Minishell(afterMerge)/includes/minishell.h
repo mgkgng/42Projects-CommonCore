@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
+/*   By: gphilipp <gphilipp@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 10:50:45 by gkgpteam          #+#    #+#             */
-/*   Updated: 2022/03/15 16:53:54 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/16 18:10:39 by gphilipp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ typedef struct s_keyval
 {
 	char		*key;
 	char		*val;
+	int			not_d;
 }			t_keyval;
 
 /* prototypes */
@@ -44,7 +45,7 @@ char		*ft_getcwd(void);
 /* env.c */
 void		init_env(t_app *app, char *const envp[]);
 char		*ft_getenv(t_app *app, char *key);
-int			ft_setenv(t_app *app, char *key, char *val);
+int			ft_setenv(t_app *app, char *key, char *val, int not_d);
 int			ft_unsetenv(t_app *app, char *key);
 char		**list_env_to_2d(t_app *app);
 

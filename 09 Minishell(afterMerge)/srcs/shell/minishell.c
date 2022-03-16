@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
+/*   By: gphilipp <gphilipp@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 10:49:04 by gkgpteam          #+#    #+#             */
-/*   Updated: 2022/03/15 21:52:32 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/16 21:47:48 by gphilipp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ static void	accept(t_app *app, char *str_cmd)
 	if (str_cmd && *str_cmd)
 		add_history(str_cmd);
 	env = list_env_to_2d(app);
+	app->envp = env;
 	tokens = lexer(str_cmd, env);
 	if (tokens)
 	{
@@ -68,28 +69,11 @@ static int	ft_readline(t_app *app)
 	return (0);
 }
 
-static char	**get_env(char *const envp[])
-{
-	int		i;
-	char	**new;
-
-	i = 0;
-	while (envp[i])
-		i++;
-	new = malloc(sizeof(char *) * (i + 1));
-	i = -1;
-	while (envp[++i])
-		new[i] = ft_strdup(envp[i]);
-	new[i] = NULL;
-	return (new);
-}
-
 int	minishell(int argc, char const *argv[], char *const envp[])
 {
 	t_app			app;
 
 	init_app(&app);
-	app.envp = get_env(envp);
 	init_env(&app, envp);
 	(void) argv;
 	init_signal();
