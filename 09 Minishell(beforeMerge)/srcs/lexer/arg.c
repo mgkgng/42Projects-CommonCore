@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/16 17:02:06 by min-kang          #+#    #+#             */
-/*   Updated: 2022/02/27 13:18:47 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/16 13:17:41 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ int	arg_len(char *s, int i, int flag)
 	count = 0;
 	while (s[i] == ' ')
 		i++;
+	if ((!s[i] || !is_arg(s[i])) && flag)
+		return (-1);
 	while (s[i] && s[i] != ' ' && is_arg(s[i]))
 	{
 		quote = 0;
@@ -60,6 +62,8 @@ char	*put_arg(char *s, int index)
 	char	*result;
 
 	len = arg_len(s, index, 1);
+	if (len == -1)
+		return (NULL);
 	result = ft_calloc(1, sizeof(char) * (len + 1));
 	i = index;
 	while (s[i] == ' ')
