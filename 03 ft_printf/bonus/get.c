@@ -3,14 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   get.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: min-kang <min-kang@student.42.fr>          +#+  +:+       +#+        */
+/*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/15 18:15:53 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/11 18:40:14 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/17 11:05:47 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf_bonus.h"
+
+void	skip_space(const char *s, int *i)
+{
+	while (s[*i] && s[*i] == ' ')
+		(*i)++;
+}
 
 int	get_flag(const char *s, int *i)
 {
@@ -19,8 +25,7 @@ int	get_flag(const char *s, int *i)
 
 	res = 1;
 	set = ft_strdup("0- #+");
-	*i += 1;
-	while (ft_strchr(set, s[*i]))
+	while (s[*i] && ft_strchr(set, s[*i]))
 	{
 		if (s[*i] == '-' && res % 2)
 			res *= 2;
@@ -32,6 +37,7 @@ int	get_flag(const char *s, int *i)
 			res *= 7;
 		else if (s[*i] == ' ' && res % 11)
 			res *= 11;
+		(*i)++;
 	}
 	free(set);
 	return (res);
@@ -50,6 +56,7 @@ int	get_width(const char *s, int *i, int *flag)
 		*flag *= 2;
 	}
 	*i += ft_nbrlen(res, 10);
+	skip_space(s, i);
 	return (res);
 }
 
@@ -66,6 +73,7 @@ int	get_precis(const char *s, int *i)
 	*i += ft_nbrlen(res, 10);
 	if (res < 0)
 		res = -1;
+	skip_space(s, i);
 	return (res);
 }
 

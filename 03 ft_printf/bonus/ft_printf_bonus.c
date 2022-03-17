@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: min-kang <min-kang@student.42.fr>          +#+  +:+       +#+        */
+/*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/15 18:49:47 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/11 18:39:41 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/17 10:19:32 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	ft_printf(const char *s, ...)
 	len = 0;
 	while (s[i])
 	{
-		if (s[i] == '%')
+		if (s[i] == '%' && ++i)
 			len += launch_print(s, &i, arg_n);
 		else
 			len += ft_putchar(s[i++]);

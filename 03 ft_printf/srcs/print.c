@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: min-kang <min-kang@student.42.fr>          +#+  +:+       +#+        */
+/*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/05 12:10:56 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/11 18:35:35 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/17 11:13:21 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 int	print(char type, va_list arg_n)
 {
+	if (!type)
+		return (0);
 	if (type == 'd' || type == 'i')
 		return (ft_putnbr(va_arg(arg_n, int)));
 	else if (type == 'u')

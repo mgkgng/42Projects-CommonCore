@@ -4,7 +4,7 @@ SRCS =	srcs/ft_printf.c \
 		srcs/print_utils.c
 
 BSRCS = bonus/ft_printf_bonus.c \
-		bonus/utils.c \
+		bonus/ft_printf_utils.c \
 		bonus/get.c \
 		bonus/print.c \
 		bonus/print_utils.c \
@@ -39,7 +39,7 @@ bonus :
 			make WITH_BONUS=1 all
 
 .c.o:
-			gcc ${CFLAGS} -c $< -o ${<:.c=.o}
+			gcc ${CFLAGS} -Iincludes -c $< -o ${<:.c=.o}
 
 clean:
 			rm -f ${SRCS:.c=.o} ${BSRCS:.c=.o} 
