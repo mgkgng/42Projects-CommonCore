@@ -4,17 +4,17 @@ SRCS =	srcs/ft_printf.c \
 		srcs/print_utils.c
 
 BSRCS = bonus/ft_printf_bonus.c \
-		bonus/ft_printf_utils.c \
-		bonus/get.c \
-		bonus/print.c \
-		bonus/print_utils.c \
-		bonus/print_c.c \
-		bonus/print_d.c \
-		bonus/print_p.c \
-		bonus/print_s.c \
-		bonus/print_u.c \
-		bonus/print_x.c \
-		bonus/width.c
+		bonus/ft_printf_utils_bonus.c \
+		bonus/get_bonus.c \
+		bonus/print_bonus.c \
+		bonus/print_utils_bonus.c \
+		bonus/print_c_bonus.c \
+		bonus/print_d_bonus.c \
+		bonus/print_p_bonus.c \
+		bonus/print_s_bonus.c \
+		bonus/print_u_bonus.c \
+		bonus/print_x_bonus.c \
+		bonus/width_bonus.c
 
 ifndef WITH_BONUS
 	OBJS =	${SRCS:.c=.o}
@@ -23,6 +23,8 @@ else
 endif
 
 NAME =	libftprintf.a
+
+INCLUDES = ./includes/
 
 LIB_PATH = ./libft/
 
@@ -39,7 +41,7 @@ bonus :
 			make WITH_BONUS=1 all
 
 .c.o:
-			gcc ${CFLAGS} -Iincludes -c $< -o ${<:.c=.o}
+			gcc ${CFLAGS} -I${INCLUDES} -c $< -o ${<:.c=.o}
 
 clean:
 			rm -f ${SRCS:.c=.o} ${BSRCS:.c=.o} 

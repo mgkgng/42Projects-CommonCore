@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/16 11:08:06 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/17 11:12:52 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/17 14:43:26 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ int	ft_printf(const char *s, ...)
 	len = 0;
 	while (s[i])
 	{
-		if (s[i] == '%')
-			len += print(s[++i], arg_n);
+		if (s[i] == '%' && ++i)
+			len += print(s, &i, arg_n);
 		else
 			len += ft_putchar(s[i++]);
 	}
