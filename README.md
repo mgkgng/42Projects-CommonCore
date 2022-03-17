@@ -5,7 +5,7 @@ validated : Yes (125%)
 explain :
 
 **02 ft_printf**
-validated : Yes (122%)
+validated : Yes (125%)
 explain :
 
 **03 get_next_line**
