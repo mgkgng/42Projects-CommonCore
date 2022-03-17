@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/15 18:15:53 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/17 16:33:16 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/17 18:04:52 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ int	*get_instruction(int n, ...)
 	int		i;
 
 	va_start(arg_n, n);
-	ins = ft_calloc(n + 1, sizeof(int));
+	ins = malloc(sizeof(int) * (n + 1));
 	i = 0;
 	while (i < n)
 		ins[i++] = va_arg(arg_n, int);
