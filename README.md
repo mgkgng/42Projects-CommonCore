@@ -33,7 +33,7 @@ validated : Yes (125%)
 explain :
 
 **09 Minishell**
-validated : Not yet
+validated : Yes (125%)
 explain :
 
 **10 NetPractice**
