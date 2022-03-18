@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/25 13:52:43 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/18 16:00:57 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/18 21:33:07 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,22 @@
 
 int main(int argc, char **argv)
 {
+	std::cout << std::endl << "\033[1;34m** test 1 : normal declaration of the Zombie instance and making it announce itself**\033[0m" << std::endl;
+	
 	Zombie zomeo("Zomeo");
 	zomeo.announce();
 
+	std::cout << std::endl << "\033[1;34m** test 2 : using newZombie function**\033[0m" << std::endl;
+
 	Zombie *zuliette = newZombie("Zuliette");
+	zuliette->announce();
+	delete zuliette;
 	
-	delete test;
-	randomChump("Zomba");
+	std::cout << std::endl << "\033[1;34m** test 3 : using randomChump function**\033[0m" << std::endl;
+
+	randomChump("Zozo");
+
+	std::cout << std::endl << "\033[1;34m** test 4 : destructor activated with return **\033[0m" << std::endl;
+
 	return (0);
 }
