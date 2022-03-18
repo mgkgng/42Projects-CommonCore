@@ -6,14 +6,14 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/25 13:52:58 by min-kang          #+#    #+#             */
-/*   Updated: 2022/02/25 16:08:27 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/18 15:52:53 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Zombie.hpp"
 
 Zombie::Zombie(std::string zname) : name(zname){
-	this->announce();
+	std::cout << "Zombie " << this->name << " just appeared!" << std::endl;
 	return ;
 }
 

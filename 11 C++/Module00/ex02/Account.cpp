@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/25 12:11:07 by min-kang          #+#    #+#             */
-/*   Updated: 2022/02/25 13:49:45 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/18 17:46:52 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,12 @@ int Account::_totalNbDeposits = 0;
 int Account::_totalNbWithdrawals = 0;
 
 Account::Account(int initial_deposit) {
+	
 	// this init.
 	this->_accountIndex = _nbAccounts;
-	this->_amount += initial_deposit;
+	this->_amount = initial_deposit;
+	this->_nbDeposits = 0;
+	this->_nbWithdrawals = 0;
 
 	// static init.
 	this->_nbAccounts++;
@@ -90,9 +93,10 @@ bool	Account::makeWithdrawal( int withdrawal ){
 					<< ";p_amount:" << _amount
 					<< ";withdrawal:" << withdrawal
 					<< ";amount:" << _amount - withdrawal
-					<< ";nb_deposits:" << _nbWithdrawals + 1
+					<< ";nb_withdrawals:" << _nbWithdrawals + 1
 					<< std::endl;
 		this->_amount -= withdrawal;
+		this->_nbWithdrawals++;
 		this->_totalAmount -= withdrawal;
 		this->_totalNbWithdrawals++;
 		return (true);
@@ -101,7 +105,7 @@ bool	Account::makeWithdrawal( int withdrawal ){
 		_displayTimestamp();
 		std::cout	<< "index:" << _accountIndex 
 					<< ";p_amount:" << _amount
-					<< ";deposits:refused" << std::endl;
+					<< ";withdrawal:refused" << std::endl;
 		return (false);
 	}
 }

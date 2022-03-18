@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/25 16:14:11 by min-kang          #+#    #+#             */
-/*   Updated: 2022/02/25 19:16:01 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/18 15:50:54 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 int	main(void)
 {
-	Zombie		*zhorde;
 	int			n;
 	std::string	zname;
 
@@ -22,7 +21,11 @@ int	main(void)
 	std::cin >> n;
 	std::cout << "Put the zombie's name: ";
 	std::cin >> zname;
-	zhorde = zombieHorde(n, zname);
+
+	Zombie	*zhorde = zombieHorde(n, zname);
+	zhorde[0].announce();
+	zhorde[n - 1].announce();
 	delete [] zhorde;
+
 	return (0);
 }
