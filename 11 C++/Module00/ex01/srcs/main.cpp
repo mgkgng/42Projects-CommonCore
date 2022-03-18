@@ -1,21 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   phonebook.cpp                                      :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 15:04:03 by min-kang          #+#    #+#             */
-/*   Updated: 2022/02/24 15:14:29 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/18 12:04:19 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "PhoneBook.class.hpp"
+#include "main.hpp"
 
 int main(int argc, char **argv)
 {
 	std::string	add = "ADD", search = "SEARCH", exit = "EXIT";
-	Phonebook	phbk;
+	PhoneBook	phbk;
 
 	if (argc != 1)
 		return 1;
@@ -27,7 +27,8 @@ int main(int argc, char **argv)
 			phbk.saveContact();
 		else if (!search.compare(input)) {
 			phbk.showContact();
-			phbk.showInfo();
+			if (phbk.size)
+				phbk.showInfo();
 		}
 		else if (!exit.compare(input))
 			return 0;
