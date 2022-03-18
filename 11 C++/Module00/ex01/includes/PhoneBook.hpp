@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 11:53:54 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/18 12:35:26 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/18 20:33:45 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,7 @@
 class   PhoneBook {
 	
 	public:
-		Contact	contact[8];
-		int		size;
-	
+
 		PhoneBook(void);
 		~PhoneBook(void);
 		
@@ -28,6 +26,9 @@ class   PhoneBook {
 		void    showInfo(void);
 
 	private:
+		Contact	contact[8];
+		int		_size;
+
 		int			_updateContact(void);
 		std::string tabSize(std::string s);
 

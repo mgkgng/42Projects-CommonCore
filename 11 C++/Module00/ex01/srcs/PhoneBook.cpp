@@ -6,13 +6,13 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 15:03:55 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/18 12:19:16 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/18 21:13:26 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.hpp"
 
-PhoneBook::PhoneBook(void) : size(0) {
+PhoneBook::PhoneBook(void) : _size(0) {
 	return ;
 }
 
@@ -31,58 +31,62 @@ int    PhoneBook::_updateContact(void){
 
 void    PhoneBook::saveContact(void){
 	
-	int i = (this->size < 8) ? this->size : this->_updateContact();
+	int i = (this->_size < 8) ? this->_size : this->_updateContact();
 
+	std::string s;
 	std::cout << "First name : ";
-	std::cin >> this->contact[i].firstName;
+	std::cin >> s;
+	this->contact[i].setAttribute(0, s);
 	std::cout << "Last name : ";
-	std::cin >> this->contact[i].lastName;    
+	std::cin >> s;
+	this->contact[i].setAttribute(1, s);    
 	std::cout << "Nickname : ";
-	std::cin >> this->contact[i].nickName;    
+	std::cin >> s;
+	this->contact[i].setAttribute(2, s);    
 	std::cout << "Phone number : ";
-	std::cin >> this->contact[i].phoneNb;    
+	std::cin >> s;
+	this->contact[i].setAttribute(3, s);    
 	std::cout << "The darkest secret : ";
-	std::cin >> this->contact[i].darkestSecret;
+	std::cin >> s;
+	this->contact[i].setAttribute(4, s);
 
-	if (this->size < 8)
-		this->size++;
+	if (this->_size < 8)
+		this->_size++;
 }
 
-std::string PhoneBook::tabSize(std::string s){
+std::string PhoneBook::tabSize(std::string s) {
 
-	std::string  result = s;
+	std::string  res = s;
 
-	if (result.length() <= 10)
-		result.insert(0, 10 - result.length(), ' ');
-	else {
-		while(result.length() != 9)
-			result.pop_back();
-		result.append(".");
-	}
-	return result;
+	if (res.length() > 10)
+		res = res.substr(0, 8).append(".");
+	return (res);
 }
 
-void    PhoneBook::showContact(void){
+void    PhoneBook::showContact(void) {
 	
 	std::cout << std::endl;
 
-	if (!this->size) {
+	if (!this->_size) {
 		std::cout << "** Phonebook has no registered contact yet **" << std::endl << std::endl;
 		return ;
 	}
 	
 	std::cout << "|     Index| FirstName|  LastName|  Nickname|" << std::endl << "|";
 	int i = -1;
-	while (++i < this->size) {
-		std::cout << "         " << i << "|";
-		std::cout << this->tabSize(this->contact[i].firstName) << "|";
-		std::cout << this->tabSize(this->contact[i].lastName) << "|";
-		std::cout << this->tabSize(this->contact[i].nickName) << "|";
+	while (++i < this->_size) {
+		std::cout << std::setfill(' ') << std::setw(10) << i << "|";
+		std::cout << std::setfill(' ') << std::setw(10) << this->tabSize(this->contact[i].getAttribute(0)) << "|";
+		std::cout << std::setfill(' ') << std::setw(10) << this->tabSize(this->contact[i].getAttribute(1)) << "|";
+		std::cout << std::setfill(' ') << std::setw(10) << this->tabSize(this->contact[i].getAttribute(2)) << "|";
 		std::cout << std::endl;
-		if (i < this->size - 1)
+		if (i < this->_size - 1)
 			std::cout << "|";
 	}
 	std::cout << std::endl;
+
+	if (this->_size)
+		this->showInfo();
 }
 
 void    PhoneBook::showInfo(void)
@@ -94,18 +98,18 @@ void    PhoneBook::showInfo(void)
 		std::cout << "TYPE THE INDEX TO SEE FURTHER INFORMATION (TYPE 'QUIT' TO BREAK): ";
 		std::cin >> input;
 		if (input.size() == 1 && isdigit(input[0]) 
-		&& stoi(input) >= 0 && stoi(input) < this->size)
+		&& stoi(input) >= 0 && stoi(input) < this->_size)
 		{
-			std::cout << std::endl << "***" << this->contact[stoi(input)].firstName << "'s Personal Information ***" << std::endl;
-			std::cout << "First Name : " << this->contact[stoi(input)].firstName << std::endl;
-			std::cout << "Last Name : " << this->contact[stoi(input)].lastName << std::endl;
-			std::cout << "Nickname : " << this->contact[stoi(input)].nickName << std::endl;
-			std::cout << "Phone Number : " << this->contact[stoi(input)].phoneNb << std::endl;
-			std::cout << "Darkest secret : " << this->contact[stoi(input)].darkestSecret << std::endl << std::endl;
+			std::cout << std::endl << "***" << this->contact[stoi(input)].getAttribute(0) << "'s Personal Information ***" << std::endl;
+			std::cout << "First Name : " << this->contact[stoi(input)].getAttribute(0) << std::endl;
+			std::cout << "Last Name : " << this->contact[stoi(input)].getAttribute(1) << std::endl;
+			std::cout << "Nickname : " << this->contact[stoi(input)].getAttribute(2) << std::endl;
+			std::cout << "Phone Number : " << this->contact[stoi(input)].getAttribute(3) << std::endl;
+			std::cout << "Darkest secret : " << this->contact[stoi(input)].getAttribute(4) << std::endl << std::endl;
 		}
 		else if (!input.compare("QUIT"))
 			break;
 		else
-			std::cout << std::endl << "***INVALID INDEX***" << std::endl << std::endl;
+			std::cout << std::endl << "*** INVALID INDEX ***" << std::endl << std::endl;
 	}
 }
