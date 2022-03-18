@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 15:04:03 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/18 12:04:19 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/18 14:44:14 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int main(int argc, char **argv)
 		return 1;
 	while (1) {
 		std::string input;
-		std::cout << "TYPE YOUR COMMAND: ";
+		std::cout << "TYPE YOUR COMMAND (ADD / SEARCH / EXIT): ";
 		std::cin >> input;
 		if (!add.compare(input))
 			phbk.saveContact();
@@ -32,6 +32,8 @@ int main(int argc, char **argv)
 		}
 		else if (!exit.compare(input))
 			return 0;
+		else
+			std::cout << input << " is not a right command." << std::endl;
 	}
 		return 0;
 }
