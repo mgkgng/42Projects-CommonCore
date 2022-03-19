@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/25 21:33:42 by min-kang          #+#    #+#             */
-/*   Updated: 2022/02/26 15:56:46 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/19 19:15:05 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,10 @@ HumanB::~HumanB(void) {
 }
 
 void HumanB::attack(void) const {
-	std::cout	<< this->_name << " attacks with his "
-				<< *(this->_weapon) << std::endl;
+	if (this->_weapon) 
+		std::cout	<< this->_name << " attacks with his " << *(this->_weapon) << std::endl;
+	else
+		std::cout	<< this->_name << " has no weapon yet!" << std::endl;
 }
 
 void HumanB::setWeapon(Weapon &weapon) {
