@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 15:04:03 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/18 21:14:39 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/19 18:41:47 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,20 +19,17 @@ int main(int argc, char **argv)
 		return 1;
 
 	std::string input;
-	std::string	add = "ADD", search = "SEARCH", exit = "EXIT";
 	PhoneBook	phbk;
 
-	while (1) {
+	do {
 		std::cout << "TYPE YOUR COMMAND (ADD / SEARCH / EXIT): ";
-		std::cin >> input;
-		if (!add.compare(input))
+		getline(std::cin, input);
+		if (input == "ADD")
 			phbk.saveContact();
-		else if (!search.compare(input))
+		else if (input == "SEARCH")
 			phbk.showContact();
-		else if (!exit.compare(input))
-			return 0;
-		else if (std::cin)
+		else if (input != "" && input != "EXIT")
 			std::cout << input << " is not a right command." << std::endl;
-	}
+	} while (input != "EXIT" && !std::cin.eof());
 		return 0;
 }

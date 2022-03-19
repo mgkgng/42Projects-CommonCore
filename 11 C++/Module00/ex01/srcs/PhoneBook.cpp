@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 15:03:55 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/18 21:13:26 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/19 18:43:26 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,19 +35,19 @@ void    PhoneBook::saveContact(void){
 
 	std::string s;
 	std::cout << "First name : ";
-	std::cin >> s;
+	getline(std::cin, s);
 	this->contact[i].setAttribute(0, s);
 	std::cout << "Last name : ";
-	std::cin >> s;
+	getline(std::cin, s);
 	this->contact[i].setAttribute(1, s);    
 	std::cout << "Nickname : ";
-	std::cin >> s;
+	getline(std::cin, s);
 	this->contact[i].setAttribute(2, s);    
 	std::cout << "Phone number : ";
-	std::cin >> s;
+	getline(std::cin, s);
 	this->contact[i].setAttribute(3, s);    
 	std::cout << "The darkest secret : ";
-	std::cin >> s;
+	getline(std::cin, s);
 	this->contact[i].setAttribute(4, s);
 
 	if (this->_size < 8)
@@ -91,13 +91,13 @@ void    PhoneBook::showContact(void) {
 
 void    PhoneBook::showInfo(void)
 {
-	std::string  input;
-	int     i;
+	std::string	input;
+	int     	i;
 
-	while (1) {
+	do {
 		std::cout << "TYPE THE INDEX TO SEE FURTHER INFORMATION (TYPE 'QUIT' TO BREAK): ";
-		std::cin >> input;
-		if (input.size() == 1 && isdigit(input[0]) 
+		getline(std::cin, input);
+		if (input != "" && input.size() == 1 && isdigit(input[0]) 
 		&& stoi(input) >= 0 && stoi(input) < this->_size)
 		{
 			std::cout << std::endl << "***" << this->contact[stoi(input)].getAttribute(0) << "'s Personal Information ***" << std::endl;
@@ -107,9 +107,7 @@ void    PhoneBook::showInfo(void)
 			std::cout << "Phone Number : " << this->contact[stoi(input)].getAttribute(3) << std::endl;
 			std::cout << "Darkest secret : " << this->contact[stoi(input)].getAttribute(4) << std::endl << std::endl;
 		}
-		else if (!input.compare("QUIT"))
-			break;
-		else
+		else if (input != "" && input != "QUIT")
 			std::cout << std::endl << "*** INVALID INDEX ***" << std::endl << std::endl;
-	}
+	} while (input != "QUIT" && !std::cin.eof());
 }
