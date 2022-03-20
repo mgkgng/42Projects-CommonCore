@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 14:25:07 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/20 15:07:35 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/20 15:49:08 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,15 @@ char	**get_env(char **envp)
 	return (new);
 }
 
+void	free_env(char **envp)
+{
+	int	i;
+
+	i = -1;
+	while (envp[++i])
+		free(envp[i]);
+}
+
 int	main(int argc, char const *argv[], char **envp)
 {
 	char	*r;
@@ -47,9 +56,15 @@ int	main(int argc, char const *argv[], char **envp)
 		if (!r)
 			break ;
 		tokens = lexer(r, env);
-		g_res = minishell(tokens, 0, env);
-		free_tokens(tokens);
+		if (tokens)
+		{
+			g_res = minishell(tokens, 0, env);
+			free(tokens);
+		}
+		else
+			g_res = 258;
 		free(r);
 	}
+	free(env);
 	return (g_res);
 }
