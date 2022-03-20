@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/27 21:21:56 by min-kang          #+#    #+#             */
-/*   Updated: 2022/02/28 14:13:57 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/20 21:07:06 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ class	Fixed {
 
 	private:
 		int	_n;
-		static const int _f;
-
-		
+		static const int _f = 8;
+	
 };
