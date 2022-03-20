@@ -1,31 +1,21 @@
 # 42ProjectsCommonCore
 
-**01  libft**
-validated : Yes (125%)
+**01  libft** (125%)
 
-**02  ft_printf**
-validated : Yes (125%)
+**02  ft_printf** (125%)
 
-**03  get_next_line**
-validated : Yes (125%)
+**03  get_next_line** (125%)
 
-**04  Born2beroot**
-validated : Yes (125%)
+**04  Born2beroot** (125%)
 
-**05  FdF**
-validated : Yes (125%)
+**05  FdF** (125%)
 
-**06  pipex**
-validated : Yes (125%)
+**06  pipex** (125%)
 
-**07  push_swap**
-validated : Yes (125%)
+**07  push_swap** (125%)
 
-**08  Philosophers**
-validated : Yes (125%)
+**08  Philosophers** (125%)
 
-**09  Minishell**
-validated : Yes (125%)
+**09  Minishell** (125%)
 
-**10  C++ Modules**
-validated : (Not yet / Not yet / Not yet / Not yet / Not yet/ Not yet / Not yet / Not yet / Not yet)
+**10  C++ Modules** ( n / n / n / n / n / n / n / n / n )
