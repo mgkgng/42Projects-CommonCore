@@ -13,34 +13,38 @@ SRCS =	srcs/main.c \
 		srcs/parser/pipe.c \
 		srcs/parser/redir.c \
 		srcs/execute/execute.c \
+		srcs/execute/proc.c \
 		srcs/execute/path.c \
 		srcs/execute/redir.c \
 		srcs/execute/free.c \
+		srcs/execute/error.c \
 		srcs/utils/minishell_utils1.c \
 		srcs/utils/minishell_utils2.c \
 		srcs/utils/minishell_utils3.c \
 		srcs/utils/minishell_utils4.c
 
-OBJS  = $(SRCS:.c=.o)
+INCLUDE = ./includes/
+
+OBJS  = ${SRCS:.c=.o}
 
 NAME  = minishell
 
 CFLAGS = -Wall -Wextra -Werror
 
-all: $(NAME)
+all: ${NAME}
 
 %.o:	%.c
-		gcc -o $@ -c $< $(CFLAGS) -fsanitize=address
+		gcc ${CFLAGS} -I${INCLUDE} -o $@ -c $< -fsanitize=address
 
-$(NAME):	$(OBJS)
-			gcc $(CFLAGS) -lreadline -o $(NAME) $(OBJS) -fsanitize=address
+${NAME}:	${OBJS}
+			gcc ${CFLAGS} -lreadline -o ${NAME} ${OBJS} -fsanitize=address
 
 clean:
-		rm -f $(OBJS)
+		rm -f ${OBJS}
 
 fclean:	clean
-		rm -f $(NAME)
+		rm -f ${NAME}
 
 re: fclean all
 
-.PHONY: all clean dclean fclean debug sanitize leaks libs readline list libs_clean libs_fclean re
+.PHONY: all bonus clean fclean re

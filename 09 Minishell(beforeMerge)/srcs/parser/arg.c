@@ -6,11 +6,11 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 14:24:20 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/13 12:29:42 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/20 15:29:04 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minishell.h"
+#include "minishell.h"
 
 t_node	*arg_begin(char *s)
 {
@@ -48,6 +48,8 @@ void	parse_cmd(t_node **node, char *new_arg)
 {
 	t_node	*new;
 
+	if (!new_arg)
+		return ;
 	if ((*node)->current_cmd)
 	{
 		if ((*node)->current_cmd->left)

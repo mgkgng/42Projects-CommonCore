@@ -6,11 +6,11 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 14:24:32 by min-kang          #+#    #+#             */
-/*   Updated: 2022/02/27 14:44:21 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/20 15:07:12 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minishell.h"
+#include "minishell.h"
 
 t_node	*last_node(t_node *node)
 {

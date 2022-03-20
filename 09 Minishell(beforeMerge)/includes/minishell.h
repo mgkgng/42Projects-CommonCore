@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 10:50:45 by gkgpteam          #+#    #+#             */
-/*   Updated: 2022/03/16 11:25:35 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/20 15:38:28 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,6 +112,9 @@ int			lexer_error(t_token *tokens);
 void		*free_tokens(t_token *tokens);
 void		put_token_index(t_token **tokens);
 void		put_begin(t_token **tokens);
+int			str_err(char *s, int i);
+int			check_err(char *s, int i);
+
 
 /* parser */
 void		parse_cmd(t_node **node, char *new_arg);
@@ -137,7 +140,10 @@ char		*define_path(char *cmd, char **paths);
 
 /* execute */
 int			parse_execute(t_token *begin, int index, char **envp);
+int			cmd_execute(t_node *node, int fd_in, int fd_out, char **envp);
 int			execute_loop(t_node *node, char **envp, int fd_in);
+int			proc_child(t_node *node, char **envp, int fd_in, int *fd);
+int			proc_parent(t_node *node, char **envp, int *fd, pid_t pid);
 char		*pathname_creator(char *s, char **paths);
 char		**possible_path(char **envp);
 char		*path_define(char *cmd, char **envp);
@@ -146,5 +152,6 @@ int			here_doc(char *limiter);
 t_redir		redir_initialize(int fd_in, int fd_out);
 void		redir_define(t_redir *redir, char **name, int *type);
 void		free_node(t_node *node);
+void		print_error(char *s, int type);
 
 #endif

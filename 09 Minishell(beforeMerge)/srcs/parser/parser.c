@@ -6,11 +6,11 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 13:24:50 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/12 20:41:53 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/20 15:07:09 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minishell.h"
+#include "minishell.h"
 
 t_node	*parser(t_token *tokens, int index)
 {

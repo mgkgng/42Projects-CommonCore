@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_cd.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gphilipp <gphilipp@student.42.fr>          +#+  +:+       +#+        */
+/*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 12:14:24 by gkgpteam          #+#    #+#             */
-/*   Updated: 2022/03/09 22:38:18 by gphilipp         ###   ########.fr       */
+/*   Updated: 2022/03/20 14:46:33 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,9 @@ int	ft_cd(char *path)
 		ft_putstr_fd("minshell: ", 2);
 		ft_putstr_fd(path, 2);
 		ft_putstr_fd(": ", 2);
-		ft_putstr_fd(strerror(errno), 2);
+		ft_putstr_fd("No such file or directory", 2);
 		ft_putstr_fd("\n", 2);
-		return (errno);
+		return (1);
 	}
 	return (0);
 }

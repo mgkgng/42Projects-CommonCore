@@ -6,11 +6,11 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/16 16:55:48 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/16 11:18:00 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/20 15:06:55 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minishell.h"
+#include "minishell.h"
 
 int	redir_input(t_token **tokens, char *s, int index)
 {

@@ -6,11 +6,11 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/16 16:51:43 by min-kang          #+#    #+#             */
-/*   Updated: 2022/02/27 14:44:33 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/20 15:07:22 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minishell.h"
+#include "minishell.h"
 
 void	ft_putchar_fd(char c, int fd)
 {

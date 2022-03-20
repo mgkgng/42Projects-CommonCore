@@ -6,11 +6,11 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 14:24:47 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/15 21:23:18 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/20 15:30:11 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minishell.h"
+#include "minishell.h"
 
 t_node	*redir_begin(int redir_type, char *redir_name)
 {
@@ -31,13 +31,11 @@ t_node	*redir_begin(int redir_type, char *redir_name)
 	return (new);
 }
 
-void	redir_join(t_node **node, int redir_type, char *redir_name)
+void	redir_join(t_node **node, int redir_type, char *redir_name, int i)
 {
 	int		*new_type;
 	char	**new_name;
-	int		i;
-
-	i = 0;
+	
 	while ((*node)->current_cmd->right->redir_type[i] != -1)
 		i++;
 	new_type = malloc(sizeof(int) * (i + 2));
@@ -68,7 +66,7 @@ void	parse_redir(t_node **node, t_token **tokens)
 	if ((*node)->current_cmd)
 	{
 		if ((*node)->current_cmd->right)
-			redir_join(node, (*tokens)->token, (*tokens)->next->content);
+			redir_join(node, (*tokens)->token, (*tokens)->next->content, 0);
 		else
 			(*node)->current_cmd->right = redir_begin((*tokens)->token,
 				(*tokens)->next->content);

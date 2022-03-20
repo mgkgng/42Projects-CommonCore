@@ -6,11 +6,11 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/16 16:55:16 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/12 19:59:33 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/20 15:07:31 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minishell.h"
+#include "minishell.h"
 
 int	ft_chr_count(char *s, char c)
 {

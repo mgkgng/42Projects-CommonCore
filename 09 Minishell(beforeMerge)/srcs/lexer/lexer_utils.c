@@ -6,11 +6,11 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/16 16:56:28 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/15 21:37:08 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/20 15:06:49 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minishell.h"
+#include "minishell.h"
 
 void	token_addback(t_token **tokens, t_token *new)
 {

@@ -6,11 +6,11 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/16 17:02:06 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/16 13:17:41 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/20 15:20:10 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minishell.h"
+#include "minishell.h"
 
 int	is_arg(char c)
 {
@@ -36,13 +36,11 @@ int	arg_len(char *s, int i, int flag)
 		return (-1);
 	while (s[i] && s[i] != ' ' && is_arg(s[i]))
 	{
-		quote = 0;
 		if (s[i] == '\'' || s[i] == '\"')
-			quote = s[i];
-		if (quote)
 		{
-			while (s[++i] != quote)
-				count++;
+			quote = s[i];
+			while (s[i] && s[++i] != quote)
+					count++;
 			if (!s[++i] || s[i] == ' ')
 				break ;
 		}

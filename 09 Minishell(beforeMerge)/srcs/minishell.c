@@ -6,19 +6,24 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 14:25:23 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/15 15:59:17 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/20 15:32:34 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "minishell.h"
 
-int	p_couple(t_token *tokens)
+static int	p_couple(t_token *tokens)
 {
 	int	count;
 
 	count = 1;
 	while (count)
 	{
+		if (!tokens->next && tokens->token != P_CLOSE && count)
+		{
+			ft_putstr_fd("corresponding ) not found\n", 2);
+			return (-1);
+		}
 		tokens = tokens->next;
 		if (tokens->token == P_OPEN)
 			count++;
@@ -28,7 +33,7 @@ int	p_couple(t_token *tokens)
 	return (tokens->index);
 }
 
-void	p_jump(t_token **tokens)
+static void	p_jump(t_token **tokens)
 {
 	int	p_end;
 
@@ -38,16 +43,26 @@ void	p_jump(t_token **tokens)
 	*tokens = (*tokens)->next;
 }
 
+int	break_or_continue(int res, int token)
+{
+	if ((res && token == AND) || (!res && token == OR))
+		return (0);
+	else
+		return (1);
+}
+
 int	subshell(t_token **tokens, char **envp)
 {
 	pid_t	pid;
 	int		p_end;
 	int		res;
 
+	p_end = p_couple(*tokens);
+	if (p_end < 0)
+		return (258);
 	pid = fork();
 	if (pid == 0)
 	{
-		p_end = p_couple(*tokens);
 		res = minishell((*tokens)->next, p_end, envp);
 		exit(res);
 	}
@@ -55,14 +70,6 @@ int	subshell(t_token **tokens, char **envp)
 		waitpid(pid, &res, 0);
 	p_jump(tokens);
 	return (WEXITSTATUS(res));
-}
-
-int	break_or_continue(int res, int token)
-{
-	if ((res && token == AND) || (!res && token == OR))
-		return (0);
-	else
-		return (1);
 }
 
 int	minishell(t_token *tokens, int index, char **envp)
