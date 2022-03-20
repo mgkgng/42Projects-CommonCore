@@ -27,8 +27,5 @@ validated : Yes (125%)
 **09  Minishell**
 validated : Yes (125%)
 
-**10  NetPractice**
-validated : Not yet
-
-**11  C++ Modules**
-validated : Not yet
+**10  C++ Modules**
+validated : (Not yet / Not yet / Not yet / Not yet / Not yet/ Not yet / Not yet / Not yet / Not yet)
