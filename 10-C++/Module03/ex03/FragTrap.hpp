@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/21 21:21:09 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/21 22:51:25 by min-kang         ###   ########.fr       */
+/*   Created: 2022/03/21 22:22:32 by min-kang          #+#    #+#             */
+/*   Updated: 2022/03/21 22:24:05 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,7 @@ class FragTrap : public ClapTrap {
 		~FragTrap(void);
 
 		void	highFivesGuys(void);
+
+	private :
 	
 };

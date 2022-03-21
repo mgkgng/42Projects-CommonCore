@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 15:05:58 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/21 17:42:22 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/21 22:41:53 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,11 @@ ClapTrap &ClapTrap::operator=(ClapTrap const &rhs) {
 
 void	ClapTrap::attack(const std::string &target) {
 	
+	if (!this->_hitPoints) {
+		std::cout << "ClapTrap " << this->_name << " is knocked out, it can't do anything!" << std::endl;
+		return ;
+	}
+	
 	if (!this->_energyPoints) {
 		std::cout	<< "ClapTrap " << this->_name << " needs more EP to attack." << std::endl;
 		return ;
@@ -86,7 +91,7 @@ void	ClapTrap::takeDamage(unsigned int amount) {
 void	ClapTrap::beRepaired(unsigned int amount) {
 	
 	if (!this->_energyPoints) {
-		std::cout	<< "ClapTrap " << this->_name << " needs more EP to be repaired." << std::endl;
+		std::cout << "ClapTrap " << this->_name << " needs more EP to be repaired." << std::endl;
 		return ;
 	}
 
@@ -106,9 +111,10 @@ void	ClapTrap::beRepaired(unsigned int amount) {
 		std::cout << "ClapTrap " << this->_name << " is now in a perfect shape! " << std::endl;
 	}
 
+	this->_energyPoints--;
 	if (!this->_energyPoints)
-		std::cout << "ClapTrap " << this->_name << " has no more EP left.";
+		std::cout << "ClapTrap " << this->_name << " has no more EP left." << std::endl;
 	else
-		std::cout << "ClapTrap " << this->_name << " has " << this->_energyPoints << " EP left.";
+		std::cout << "ClapTrap " << this->_name << " has " << this->_energyPoints << " EP left." << std::endl;
 
 }

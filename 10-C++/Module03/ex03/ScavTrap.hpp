@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   FragTrap.hpp                                       :+:      :+:    :+:   */
+/*   ScavTrap.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/21 21:21:09 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/21 22:51:25 by min-kang         ###   ########.fr       */
+/*   Created: 2022/03/21 22:22:28 by min-kang          #+#    #+#             */
+/*   Updated: 2022/03/21 22:24:31 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,17 @@
 
 #include "main.hpp"
 
-class FragTrap : public ClapTrap {
-	
+class ScavTrap : public ClapTrap {
+
 	public:
+		
+		ScavTrap(void);
+		ScavTrap(std::string n);
+		ScavTrap(ScavTrap const &);
+		ScavTrap& operator=(ScavTrap const &);
+		~ScavTrap(void);
+		
+		void	guardGate(void);
 
-		FragTrap(void);
-		FragTrap(std::string n);
-		FragTrap(FragTrap const &);
-		FragTrap& operator=(FragTrap const &);
-		~FragTrap(void);
-
-		void	highFivesGuys(void);
-	
+	private:
 };
