@@ -5,13 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/28 14:50:44 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/21 18:37:39 by min-kang         ###   ########.fr       */
+/*   Created: 2022/03/21 17:43:45 by min-kang          #+#    #+#             */
+/*   Updated: 2022/03/21 18:37:48 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
-#include <string>
+#include "main.hpp"
 
 class ClapTrap {
 	
@@ -27,7 +26,7 @@ class ClapTrap {
 		void takeDamage(unsigned int amount);
 		void beRepaired(unsigned int amount);
 		
-	private:
+	protected:
 		std::string		_name;
 		unsigned int	_hitPoints;
 		unsigned int	_energyPoints;

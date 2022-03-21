@@ -6,14 +6,18 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 12:57:44 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/03 13:58:10 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/21 18:39:15 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ScavTrap.hpp"
+#include "main.hpp"
 
-ScavTrap::ScavTrap(std::string name) {
-	this->_name = name;
+ScavTrap::~ScavTrap() {
+	
+}
+
+ScavTrap::ScavTrap(std::string n) {
+	this->_name = n;
 	this->_hitPoints = 100;
 	this->_energyPoints = 50;
 	this->_attackDamage = 20;
@@ -25,10 +29,6 @@ ScavTrap::ScavTrap(std::string name) {
 				<< std::endl;
 }
 
-ScavTrap::~ScavTrap() {
-	
-}
-
 void	ScavTrap::guardGate(void) {
-	std::cout << "ScavTrap " << 
+	std::cout << "ScavTrap " << this->_name << " has entered into Gate keeper mode!"  << std::endl;
 }
