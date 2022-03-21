@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/20 14:08:24 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/20 14:28:09 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/21 16:45:24 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,22 +25,19 @@ int	karenFilter(std::string s) {
 	switch (msg) {
 		case DEBUG :
 			std::cout << std::endl << "[ DEBUG ]" << std::endl;
-			k.complain(s);
+			k.complain("DEBUG");
 			std::cout << std::endl;
-			break;
 		case INFO :
 			std::cout << std::endl << "[ INFO ]" << std::endl;
-			k.complain(s);
+			k.complain("INFO");
 			std::cout << std::endl;
-			break;
 		case WARNING :
 			std::cout << std::endl << "[ WARNING ]" << std::endl;
-			k.complain(s);
+			k.complain("WARNING");
 			std::cout << std::endl;
-			break;
 		case ERROR :
 			std::cout << std::endl << "[ ERROR ]" << std::endl;
-			k.complain(s);
+			k.complain("ERROR");
 			std::cout << std::endl;
 			break;
 		default :

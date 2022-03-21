@@ -1,7 +1,7 @@
 SRCS =	./main.cpp \
 		./Zombie.cpp \
 		./newZombie.cpp \
-		./randomChump.cpp \
+		./randomChump.cpp
 
 OBJS =	${SRCS:.cpp=.o}
 
@@ -14,7 +14,7 @@ CPPFLAG =	-std=c++98
 all:	${NAME}
 
 %.o:	%.cpp 
-		clang++ -c $< -o $@
+		clang++ ${CFLAGS} ${CPPFLAG} -c $< -o $@
 
 ${NAME}:	${OBJS}
 			clang++ ${CFLAGS} ${CPPFLAG} -o ${NAME} ${OBJS}
