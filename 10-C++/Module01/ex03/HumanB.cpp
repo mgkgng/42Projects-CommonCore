@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/25 21:33:42 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/19 19:15:05 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/22 17:02:19 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 HumanB::HumanB(std::string name) : _name(name) {
 	std::cout << this->_name << " is created." << std::endl;
+	this->_weapon = NULL;
 }
 
 HumanB::~HumanB(void) {

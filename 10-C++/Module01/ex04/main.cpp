@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/25 23:08:20 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/21 16:59:19 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/22 18:56:17 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,27 +16,35 @@
 #include <string>
 #include <ios>
 
-int main(void) {
+int main(int argc, char **argv) {
+
+	if (argc != 4) {
+		std::cout << "Error: Wrong number of arguments." << std::endl;
+		return (1);
+	}
 
 	std::ifstream input;
-	std::string s1 = "The Balrog", s2 = "Eric Zemmour";
-	std::string filename = "Gandalf";
+	std::string s1 = argv[2], s2 = argv[3];
+	std::string filename = argv[1];
+
+	if (!filename.length() || !s1.length() || !s2.length()) {
+		std::cout << "Error: Wrong argument." << std::endl;
+		return (2);
+	}
 
 	input.open(filename);
 	if (!input) {
 		std::cout << "Cannot read the file" << std::endl;
-		exit(EXIT_FAILURE);
+		return (4);
 	}
 
 	std::string r;
 	r = std::string((std::istreambuf_iterator<char>(input)), std::istreambuf_iterator<char>());
 
-	size_t	i = r.find(s1);
-	while (i != std::string::npos) {
-		r.erase(i, s1.length());
-		r.insert(i, s2);
-		i = r.find(s1);
-	}
+	size_t		i;
+	std::string	res;
+	for (i = r.find(s1); i != std::string::npos; r = r.substr(i + s1.length(), r.length() - i))
+		res += r.substr(0, i);
 
 	std::ofstream output;
 	output.open(filename + ".replace");
@@ -46,4 +54,5 @@ int main(void) {
 	output.close();
 
 	return (0);
+
 }
