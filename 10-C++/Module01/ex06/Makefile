@@ -1,9 +1,9 @@
 SRCS =	./main.cpp \
-		./Karen.cpp
+		./Harl.cpp
 
 OBJS =	${SRCS:.cpp=.o}
 
-NAME =	karenFilter
+NAME =	harlFilter
 
 CFLAGS	= -Wall -Wextra -Werror
 

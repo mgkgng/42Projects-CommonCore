@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Karen.hpp                                          :+:      :+:    :+:   */
+/*   Harl.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/20 14:08:16 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/20 14:12:17 by min-kang         ###   ########.fr       */
+/*   Created: 2022/03/22 14:48:55 by min-kang          #+#    #+#             */
+/*   Updated: 2022/03/22 14:48:57 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,10 @@ typedef enum e_level {
 	ERROR
 }	t_level;
 
-class	Karen {
+class	Harl {
 	public:
-		Karen(void);
-		~Karen(void);
+		Harl(void);
+		~Harl(void);
 		void complain(std::string level);
 
 	private:
