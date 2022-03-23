@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/25 23:08:20 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/22 18:56:17 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/23 11:23:43 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,14 +41,19 @@ int main(int argc, char **argv) {
 	std::string r;
 	r = std::string((std::istreambuf_iterator<char>(input)), std::istreambuf_iterator<char>());
 
-	size_t		i;
+	size_t		i = r.find(s1);
 	std::string	res;
-	for (i = r.find(s1); i != std::string::npos; r = r.substr(i + s1.length(), r.length() - i))
-		res += r.substr(0, i);
+	while (i != std::string::npos) {
+		res += r.substr(0, i) + s2;
+		r.erase(0, i + s1.length());
+		i = r.find(s1);
+	}
+	if (r.length())
+		res += r;
 
 	std::ofstream output;
 	output.open(filename + ".replace");
-	output << r;
+	output << res;
 
 	input.close();
 	output.close();

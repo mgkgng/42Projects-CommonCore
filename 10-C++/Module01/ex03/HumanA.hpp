@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/25 21:28:38 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/19 18:53:16 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/23 10:55:29 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,6 @@ class HumanA {
 		void attack(void);
 
 	private:
-		std::string 		_name;
-		std::string const	&_weapon;
+		std::string _name;
+		Weapon&		_weapon;
 };
