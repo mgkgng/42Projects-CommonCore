@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/27 21:21:56 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/21 13:15:57 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/23 12:23:52 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ class	Fixed {
 		void	setRawBits(int const raw);
 
 	private:
-		int					n;
-		static const int	f = 8;
+		int					_rawBits;
+		static const int	_fractionalBits = 8;
 	
 };
