@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 19:25:52 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/23 19:25:54 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/23 22:14:49 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,51 @@ Fixed & Fixed::operator=(Fixed const & right) {
 std::ostream	&operator<<(std::ostream &out, Fixed const & right) {
 	out << right.toFloat();
 	return (out);
+}
+
+bool	Fixed::operator>(Fixed const & right) {
+	return (this->getRawBits() > right.getRawBits());
+}
+
+bool	Fixed::operator<(Fixed const & right) {
+	return (this->getRawBits() < right.getRawBits());
+}
+
+bool	Fixed::operator>=(Fixed const & right) {
+	return (this->getRawBits() >= right.getRawBits());
+}
+
+bool	Fixed::operator<=(Fixed const & right) {
+	return (this->getRawBits() <= right.getRawBits());
+}
+
+bool	Fixed::operator==(Fixed const & right) {
+	return (this->getRawBits() == right.getRawBits());
+}
+
+bool	Fixed::operator!=(Fixed const & right) {
+	return (this->getRawBits() != right.getRawBits());
+}
+
+int	Fixed::operator+(Fixed const & right) {
+	return (this->getRawBits() + right.getRawBits());
+}
+
+int	Fixed::operator-(Fixed const & right) {
+	return (this->getRawBits() - right.getRawBits());
+}
+
+int	Fixed::operator*(Fixed const & right) {
+	return (this->getRawBits() * right.getRawBits());
+}
+
+int	Fixed::operator/(Fixed const & right) {
+	return (this->getRawBits() / right.getRawBits());
+}
+
+Fixed&	Fixed::operator++(void) {
+	this->_rawBits += 1 * pow(2, this->_fractionalBits);
+	return (*this);
 }
 
 int	Fixed::getRawBits(void) const {
