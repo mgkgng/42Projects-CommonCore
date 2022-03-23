@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 13:18:12 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/23 19:25:30 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/23 20:17:20 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,11 @@ Fixed::Fixed(Fixed const &src) {
 	*this = src;
 }
 
-Fixed::Fixed(int const nb) : _rawBits(nb << 8) {
+Fixed::Fixed(int const nb) : _rawBits(nb << this->_fractionalBits) {
 	std::cout << "Int constructor called" << std::endl;
 }
 
-Fixed::Fixed(float const f) : _rawBits((int) roundf(f * 256)){
+Fixed::Fixed(float const f) : _rawBits((int) roundf(f * pow(2, this->_fractionalBits))){
 	std::cout << "Float constructor called" << std::endl;
 }
 
@@ -41,7 +41,7 @@ Fixed & Fixed::operator=(Fixed const & right) {
 	return (*this);
 }
 
-std::ostream	&operator<<(std::ostream &out, Fixed const & right) {
+std::ostream &operator<<(std::ostream &out, Fixed const & right) {
 	out << right.toFloat();
 	return (out);
 }
@@ -56,9 +56,9 @@ void	Fixed::setRawBits(int const raw) {
 }
 
 float	Fixed::toFloat(void) const {
-	return ( (float) this->_rawBits / 256.0f );
+	return ( (float) this->_rawBits / pow(2.0f, this->_fractionalBits) );
 }
 
 int	Fixed::toInt(void) const {
-	return ( this->_rawBits / 256 );
+	return ( this->_rawBits / pow(2, this->_fractionalBits) );
 }
