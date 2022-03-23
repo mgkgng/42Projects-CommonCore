@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/25 21:32:07 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/19 19:14:43 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/23 11:50:48 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,21 +18,25 @@ int	main() {
 
 	std::cout << std::endl << "\033[1;34m** test 1 : Human A **\033[0m" << std::endl;
 	Weapon club1 = Weapon("crude spiked club");
-	HumanA romeo("Romeo", club1);
-	romeo.attack();
+	HumanA buendia("Jose Arcadio Buendia", club1);
+	buendia.attack();
 	club1.setType("some other type of club");
-	romeo.attack();
+	buendia.attack();
 
 	std::cout << std::endl << "\033[1;34m** test 2 : Human B trying to attack without setting weapon **\033[0m" << std::endl;
 	Weapon club2 = Weapon("crude spiked club");
-	HumanB juliette("Juliette");
-	juliette.attack();
+	HumanB melquiades("Melquiades");
+	melquiades.attack();
 	
 	std::cout << std::endl << "\033[1;34m** test 3 : Human B trying to attack after setting weapon **\033[0m" << std::endl;
-	juliette.setWeapon(club2);
-	juliette.attack();
+	melquiades.setWeapon(club2);
+	melquiades.attack();
 	club2.setType("some other type of club");
-	juliette.attack();
+	melquiades.attack();
+
+	std::cout << std::endl << "\033[1;34m** test 4 : trying to disarm Human B **\033[0m" << std::endl;
+	melquiades.disarm();
+	melquiades.attack();
 
 	std::cout << std::endl;
 
