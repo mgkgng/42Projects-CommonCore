@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 19:25:52 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/24 01:14:45 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/24 15:10:35 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,26 +83,47 @@ Fixed	Fixed::operator-(Fixed const & right) {
 }
 
 Fixed	Fixed::operator*(Fixed const & right) {
-	int	res = 0;
-	int	leftv = this->getRawBits();
-	int	rightv = right.getRawBits();
+	
+	int	v = 0;
+	int	lv = this->_rawBits;
+	int	rv = right._rawBits;
 
-	while (rightv > 0) {
-		if (rightv & 1)
-			res += leftv;
-		leftv = leftv << 1;
-		rightv = rightv >> 1;
+	while (rv > 0) {
+		if (rv & 1)
+			v += lv;
+		lv <<= 1;
+		rv >>= 1;
 	}
 	
-	Fixed f;
-	f.setRawBits(res / 256.0f);
-	return (f);
+	Fixed res;
+	res.setRawBits(v >> this->_fractionalBits);
+	return (res);
+
 }
 
 Fixed	Fixed::operator/(Fixed const & right) {
-	Fixed	res;
-	res.setRawBits(this->getRawBits() + right.getRawBits());
-	return (res);}
+
+	int	v = 0;
+	int	tmp = 1;
+	int	lv = this->_rawBits;
+	int	rv = right._rawBits;
+	
+	while (rv <= lv) {
+		rv <<= 1;
+		tmp <<= 1;
+	}
+	while (tmp > 1) {
+		rv >>= 1;
+		tmp >>= 1;
+		if (lv >= rv) {
+			lv -= rv;
+			v += tmp;
+		}
+	}
+	
+	Fixed res(v);
+	return (res);
+}
 
 Fixed&	Fixed::operator++(void) {
 	this->_rawBits += 1;
