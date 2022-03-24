@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/08 16:06:25 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/24 13:23:33 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/24 21:30:17 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	min_index_put(t_stack **lst, int min, int min_index)
 	begin = *lst;
 	while ((*lst)->content != min && *lst)
 		*lst = (*lst)->next;
-	(*lst)->index = min_index;
+	(*lst)->pos = min_index;
 	*lst = begin;
 }
 
@@ -49,7 +49,7 @@ void	swap_index(t_stack **lst)
 	begin = *lst;
 	while (*lst)
 	{
-		(*lst)->swap_index = i++;
+		(*lst)->index = i++;
 		(*lst) = (*lst)->next;
 	}
 	*lst = begin;
@@ -61,7 +61,7 @@ t_stack	*new_stack(t_stack *lst)
 
 	res = malloc(sizeof(t_stack));
 	res->content = lst->content;
+	res->pos = lst->pos;
 	res->index = lst->index;
-	res->swap_index = lst->swap_index;
 	return (res);
 }

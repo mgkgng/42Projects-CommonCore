@@ -6,21 +6,22 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/31 16:05:57 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/24 13:15:56 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/24 21:24:59 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-# include "../libft/libft.h"
 # include <stdio.h>
+
+# include "libft.h"
 
 typedef struct s_stack
 {
 	int				content;
+	int				pos;
 	int				index;
-	int				swap_index;
 	struct s_stack	*next;
 }	t_stack;
 

@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/31 16:05:51 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/24 13:25:34 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/24 21:29:32 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,11 @@ void	mini_swap(t_stack **lst_a, t_stack **lst_b)
 {
 	while (ft_lstsize(*lst_a) > 3)
 		push_b(lst_a, lst_b);
-	if ((*lst_a)->index > (*lst_a)->next->index
-		&& (*lst_a)->next->index < ft_lstlast(*lst_a)->index
+	if ((*lst_a)->pos > (*lst_a)->next->pos
+		&& (*lst_a)->next->pos < ft_lstlast(*lst_a)->pos
 		&& max_find(*lst_a) == (*lst_a)->content)
 		rotate_a(lst_a);
-	else if (((*lst_a)->index > (*lst_a)->next->index)
+	else if (((*lst_a)->pos > (*lst_a)->next->pos)
 		|| (max_find(*lst_a) == (*lst_a)->next->content
 			&& first_min_find(*lst_a) == (*lst_a)->content))
 		swap_a(lst_a);

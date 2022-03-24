@@ -6,72 +6,72 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/08 16:05:14 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/24 14:14:58 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/24 21:27:10 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_index	get_the_biggest_chunk(t_stack *lst)
+t_index	get_chunk(t_stack *st)
 {
-	t_index	result;
+	t_index	res;
 	t_index	tmp;
 	int		dist;
 
 	dist = 0;
-	tmp.start = lst->swap_index;
-	result.start = 0;
-	result.end = 0;
-	while (lst->next)
+	tmp.start = st->index;
+	res.start = 0;
+	res.end = 0;
+	while (st->next)
 	{
-		if (lst->index < lst->next->index)
+		if (st->pos < st->next->pos)
 		{
-			tmp.end = lst->next->swap_index;
+			tmp.end = st->next->index;
 			if (dist < tmp.end - tmp.start)
 			{
 				dist = tmp.end - tmp.start;
-				result.start = tmp.start;
-				result.end = tmp.end;
+				res.start = tmp.start;
+				res.end = tmp.end;
 			}
 		}
 		else
-			tmp.start = lst->next->swap_index;
-		lst = lst->next;
+			tmp.start = st->next->index;
+		st = st->next;
 	}
-	return (result);
+	return (res);
 }
 
-int	chunk_limit(t_stack *lst, t_index chunk, int i)
+int	chunk_limit(t_stack *st, t_index chunk, int i)
 {
-	int		result;
+	int		res;
 	int		count;
 
-	result = ft_lstsize(lst) * i / 3;
+	res = ft_lstsize(st) * i / 3;
 	count = 0;
-	while (lst && lst->swap_index <= chunk.end)
+	while (st && st->index <= chunk.end)
 	{
-		if (lst->swap_index >= chunk.start && lst->index < result)
+		if (st->index >= chunk.start && st->pos < res)
 			count++;
-		lst = lst->next;
+		st = st->next;
 	}
-	return (result - count);
+	return (res - count);
 }
 
 void	push_or_rotate(t_stack **lst_a, t_stack **lst_b, t_index chunk, int i)
 {	
 	if (!i)
 	{
-		if ((*lst_a)->swap_index < chunk.start
-			|| (*lst_a)->swap_index > chunk.end)
+		if ((*lst_a)->index < chunk.start
+			|| (*lst_a)->index > chunk.end)
 			push_b(lst_a, lst_b);
 		else
 			rotate_a(lst_a);
 	}
 	else
 	{
-		if (((*lst_a)->swap_index < chunk.start
-				|| (*lst_a)->swap_index > chunk.end)
-			&& (*lst_a)->index < chunk.entire * i / 3)
+		if (((*lst_a)->index < chunk.start
+				|| (*lst_a)->index > chunk.end)
+			&& (*lst_a)->pos < chunk.entire * i / 3)
 			push_b(lst_a, lst_b);
 		else
 			rotate_a(lst_a);
