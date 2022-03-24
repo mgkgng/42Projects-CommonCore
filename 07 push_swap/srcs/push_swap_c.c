@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap_c.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: min-kang <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/08 16:05:22 by min-kang          #+#    #+#             */
-/*   Updated: 2022/01/08 16:05:23 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/24 13:18:20 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/push_swap.h"
+#include "push_swap.h"
 
 void	opt_define(t_move **move, t_move **opt, t_dirty *dirty)
 {

@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   op_aff2.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: min-kang <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/08 19:19:14 by min-kang          #+#    #+#             */
-/*   Updated: 2022/01/08 19:19:34 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/24 13:17:58 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/push_swap.h"
+#include "push_swap.h"
 
 void	rotate_a(t_list **a)
 {

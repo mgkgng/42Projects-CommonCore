@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap_a.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: min-kang <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/08 16:05:14 by min-kang          #+#    #+#             */
-/*   Updated: 2022/01/08 16:33:26 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/24 13:18:14 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/push_swap.h"
+#include "push_swap.h"
 
 t_index	get_the_biggest_chunk(t_list *lst)
 {

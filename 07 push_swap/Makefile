@@ -20,29 +20,30 @@ BSRCS =	bonus/main.c			\
 		bonus/checker.c
 
 NAME =	push_swap
-
 BNAME = checker
 
 MOBJS = $(MSRCS:.c=.o)
 OBJS = ${SRCS:.c=.o}
 BOBJS = $(BSRCS:.c=.o)
 
+INCLUDES = ./includes/
+
 CFLAGS = -Wall -Wextra -Werror
 
 LIB_PATH = ./libft/
 
 %.o:	%.c
-		gcc -o $@ -c $< $(CFLAGS)
+		gcc -o $@ -c $< $(CFLAGS) -I${INCLUDES}
 
 all : $(NAME)
 
 bonus	:	$(OBJS) $(BOBJS)
 			make all -C $(LIB_PATH)
-			gcc $(CFLAGS) -o $(BNAME) $(BOBJS) $(OBJS) libft/libft.a
+			gcc $(CFLAGS) -I${INCLUDES} -o $(BNAME) $(BOBJS) $(OBJS) libft/libft.a
 
 $(NAME) :	$(OBJS) $(MOBJS)
 			make all -C $(LIB_PATH)
-			gcc $(CFLAGS) -o $(NAME) $(MOBJS) $(OBJS) libft/libft.a
+			gcc $(CFLAGS) -I${INCLUDES} -o $(NAME) $(MOBJS) $(OBJS) libft/libft.a
 
 clean :
 			rm -f $(MOBJS) $(OBJS) $(BOBJS)

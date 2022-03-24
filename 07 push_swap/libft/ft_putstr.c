@@ -1,21 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstmap.c                                        :+:      :+:    :+:   */
+/*   ft_putstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: min-kang <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/21 18:22:39 by min-kang          #+#    #+#             */
-/*   Updated: 2021/10/27 14:43:36 by min-kang         ###   ########.fr       */
+/*   Created: 2022/03/24 13:18:47 by min-kang          #+#    #+#             */
+/*   Updated: 2022/03/24 13:19:19 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
+void	ft_putstr(char *s)
 {
-	(void) lst;
-	(void) f;
-	(void) del;
-	return (lst);
+	int	i;
+
+	i = 0;
+	while (s[i])
+		ft_putchar(s[i++]);
 }

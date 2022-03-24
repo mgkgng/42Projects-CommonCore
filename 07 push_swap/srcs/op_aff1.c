@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   op_aff1.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: min-kang <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/08 19:18:36 by min-kang          #+#    #+#             */
-/*   Updated: 2022/01/08 19:19:05 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/24 13:17:55 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/push_swap.h"
+#include "push_swap.h"
 
 void	swap_a(t_list **a)
 {

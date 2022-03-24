@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap_utils2.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: min-kang <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/08 16:06:25 by min-kang          #+#    #+#             */
-/*   Updated: 2022/01/08 17:12:39 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/24 13:23:33 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/push_swap.h"
+#include "push_swap.h"
 
-void	min_index_put(t_list **lst, int min, int min_index)
+void	min_index_put(t_stack **lst, int min, int min_index)
 {
-	t_list	*begin;
+	t_stack	*begin;
 
 	begin = *lst;
 	while ((*lst)->content != min && *lst)
@@ -23,7 +23,7 @@ void	min_index_put(t_list **lst, int min, int min_index)
 	*lst = begin;
 }
 
-void	put_index(t_list **lst)
+void	put_index(t_stack **lst)
 {
 	int	index;
 	int	min;
@@ -40,9 +40,9 @@ void	put_index(t_list **lst)
 	}
 }
 
-void	swap_index(t_list **lst)
+void	swap_index(t_stack **lst)
 {
-	t_list	*begin;
+	t_stack	*begin;
 	int		i;
 
 	i = 0;
@@ -55,23 +55,13 @@ void	swap_index(t_list **lst)
 	*lst = begin;
 }
 
-t_list	*new_list(t_list *lst)
+t_stack	*new_stack(t_stack *lst)
 {
-	t_list	*result;
+	t_stack	*res;
 
-	result = malloc(sizeof(t_list));
-	result->content = lst->content;
-	result->index = lst->index;
-	result->swap_index = lst->swap_index;
-	return (result);
-}
-
-int	ft_strcmp(char *s1, char *s2)
-{
-	int	i;
-
-	i = 0;
-	while (s1[i] && s2[i] && s1[i] == s2[i])
-		i++;
-	return (s1[i] - s2[i]);
+	res = malloc(sizeof(t_stack));
+	res->content = lst->content;
+	res->index = lst->index;
+	res->swap_index = lst->swap_index;
+	return (res);
 }

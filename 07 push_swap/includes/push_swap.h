@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/31 16:05:57 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/24 01:49:58 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/24 13:15:56 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,6 @@ void	swap_index(t_stack **lst);
 t_stack	*new_list(t_stack *lst);
 int		first_min_find(t_stack *lst);
 int		next_min_find(t_stack *lst, int already);
-void	check_error(int argc, char **argv);
 int		digit_check(char *s);
 int		ft_strcmp(char *s1, char *s2);
 void	exit_error(void);
@@ -115,5 +114,8 @@ void	rrb(t_stack **lst_b);
 void	rrr(t_stack **lst_a, t_stack **lst_b);
 
 /* error */
+int		check_error(int argc, char **argv);
+int		print_error(void);
+
 
 #endif

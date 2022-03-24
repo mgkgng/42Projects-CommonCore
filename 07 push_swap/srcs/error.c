@@ -6,23 +6,16 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/08 17:11:16 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/24 01:49:30 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/24 13:17:42 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/push_swap.h"
+#include "push_swap.h"
 
-int	exit_error(void)
+int	print_error(void)
 {
 	ft_putstr_fd("Error\n", 2);
-	exit(EXIT_FAILURE);
-}
-
-void	too_big(char *s)
-{
-	int	lol;
-
-	lol = ft_atoi(s);
+	return (1);
 }
 
 int	check_error(int argc, char **argv)

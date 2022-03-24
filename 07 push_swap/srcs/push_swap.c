@@ -6,22 +6,22 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/31 16:05:51 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/24 01:47:58 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/24 13:25:34 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/push_swap.h"
+#include "push_swap.h"
 
-int	max_find(t_stack *lst)
+int	max_find(t_stack *st)
 {
 	int	max;
 
 	max = INT32_MIN;
-	while (lst)
+	while (st)
 	{
-		if (lst->content > max)
-			max = lst->content;
-		lst = lst->next;
+		if (st->content > max)
+			max = st->content;
+		st = st->next;
 	}
 	return (max);
 }
