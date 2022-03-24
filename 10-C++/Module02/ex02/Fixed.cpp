@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 19:25:52 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/23 22:14:49 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/24 01:14:45 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,25 +70,60 @@ bool	Fixed::operator!=(Fixed const & right) {
 	return (this->getRawBits() != right.getRawBits());
 }
 
-int	Fixed::operator+(Fixed const & right) {
-	return (this->getRawBits() + right.getRawBits());
+Fixed	Fixed::operator+(Fixed const & right) {
+	Fixed	res;
+	res.setRawBits(this->getRawBits() + right.getRawBits());
+	return (res);
 }
 
-int	Fixed::operator-(Fixed const & right) {
-	return (this->getRawBits() - right.getRawBits());
+Fixed	Fixed::operator-(Fixed const & right) {
+	Fixed	res;
+	res.setRawBits(this->getRawBits() + right.getRawBits());
+	return (res);
 }
 
-int	Fixed::operator*(Fixed const & right) {
-	return (this->getRawBits() * right.getRawBits());
+Fixed	Fixed::operator*(Fixed const & right) {
+	int	res = 0;
+	int	leftv = this->getRawBits();
+	int	rightv = right.getRawBits();
+
+	while (rightv > 0) {
+		if (rightv & 1)
+			res += leftv;
+		leftv = leftv << 1;
+		rightv = rightv >> 1;
+	}
+	
+	Fixed f;
+	f.setRawBits(res / 256.0f);
+	return (f);
 }
 
-int	Fixed::operator/(Fixed const & right) {
-	return (this->getRawBits() / right.getRawBits());
-}
+Fixed	Fixed::operator/(Fixed const & right) {
+	Fixed	res;
+	res.setRawBits(this->getRawBits() + right.getRawBits());
+	return (res);}
 
 Fixed&	Fixed::operator++(void) {
-	this->_rawBits += 1 * pow(2, this->_fractionalBits);
+	this->_rawBits += 1;
 	return (*this);
+}
+
+Fixed	Fixed::operator++(int) {
+	Fixed	res;
+	res.setRawBits(this->getRawBits() + 1);
+	return (res);
+}
+
+Fixed&	Fixed::operator--(void) {
+	this->_rawBits -= 1 * pow(2, this->_fractionalBits);
+	return (*this);
+}
+
+Fixed	Fixed::operator--(int) {
+	Fixed	res;
+	res.setRawBits(this->getRawBits() - 1);
+	return (res);
 }
 
 int	Fixed::getRawBits(void) const {

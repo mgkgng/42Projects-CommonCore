@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 19:26:09 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/23 22:11:33 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/24 01:07:48 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,10 @@ class	Fixed {
 		bool	operator==(Fixed const & right);
 		bool	operator!=(Fixed const & right);
 
-		int		operator+(Fixed const & right);
-		int		operator-(Fixed const & right);
-		int		operator*(Fixed const & right);
-		int		operator/(Fixed const & right);
+		Fixed	operator+(Fixed const & right);
+		Fixed	operator-(Fixed const & right);
+		Fixed	operator*(Fixed const & right);
+		Fixed	operator/(Fixed const & right);
 
 		Fixed&	operator++(void);
 		Fixed	operator++(int);
@@ -50,6 +50,12 @@ class	Fixed {
 
 		float	toFloat(void) const;
 		int		toInt(void) const;
+
+		static Fixed&	min(Fixed const & left, Fixed const & right);
+		static Fixed&	min(Fixed &left, Fixed &right);
+		static Fixed&	max(Fixed const & left, Fixed const & right);
+		static Fixed&	max(Fixed &left, Fixed &right);
+
 
 	private:
 		int					_rawBits;
