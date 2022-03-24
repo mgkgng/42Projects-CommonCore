@@ -1,40 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing.c                                          :+:      :+:    :+:   */
+/*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/31 16:06:14 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/24 13:37:29 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/24 21:44:54 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-int	there_is_digit(char *s)
-{
-	int	i;
-
-	i = -1;
-	while (s[++i])
-		if (ft_isdigit(s[i]))
-			return (1);
-	return (0);
-}
-
-int	digit_check(char *s)
-{
-	int	i;
-
-	if (!there_is_digit(s))
-		return (0);
-	i = -1;
-	while (s[++i])
-		if (!ft_isdigit(s[i]) && s[i] != '-' && s[i] != '+')
-			return (0);
-	return (1);
-}
 
 static t_stack	*parse1(char **argv)
 {
@@ -44,24 +20,13 @@ static t_stack	*parse1(char **argv)
 static t_stack	*parse2(int argc, char **argv)
 {
 	int		i;
-	t_stack	*st;
-	t_stack	*begin;
+	t_stack	*res;
 
-	st = malloc(sizeof(t_stack));
-	begin = st;
+	res = malloc(sizeof(t_stack));
 	i = 0;
 	while (++i < argc)
-	{
-		st->content = ft_atoi(argv[i]);
-		if (i < argc - 1)
-		{
-			st->next = malloc(sizeof(t_stack));
-			st = st->next;
-		}
-		else
-			st->next = NULL;
-	}
-	return (begin);
+		ft_lstadd_back(&res, ft_lstnew(ft_atoi(argv[i])));
+	return (res);
 }
 
 t_stack	*parse(int argc, char **argv)

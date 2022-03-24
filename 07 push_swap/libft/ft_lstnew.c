@@ -3,24 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: min-kang <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/21 15:04:19 by min-kang          #+#    #+#             */
-/*   Updated: 2021/10/25 20:34:24 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/24 21:41:03 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdlib.h>
 
-t_list	*ft_lstnew(void *content)
+t_stack	*ft_lstnew(void *content)
 {
-	t_list	*result;
+	t_stack	*res;
 
-	result = malloc(sizeof(t_list));
-	if (result == NULL)
+	res = malloc(sizeof(t_stack));
+	if (res == NULL)
 		return (NULL);
-	result->content = (int) content;
-	result->next = NULL;
-	return (result);
+	res->nb = (int) content;
+	res->next = NULL;
+	return (res);
 }

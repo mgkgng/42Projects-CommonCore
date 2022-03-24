@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/31 16:05:57 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/24 21:24:59 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/24 21:37:21 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 
 typedef struct s_stack
 {
-	int				content;
+	int				nb;
 	int				pos;
 	int				index;
 	struct s_stack	*next;
