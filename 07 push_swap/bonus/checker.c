@@ -6,63 +6,63 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/08 19:14:37 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/17 21:37:45 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/24 14:11:44 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/checker.h"
+#include "checker.h"
 
-void	operation(t_list **lst_a, t_list **lst_b, char *instruction)
+void	operation(t_stack **a, t_stack **b, char *to_do)
 {
-	if (!ft_strcmp(instruction, "sa"))
-		sa(lst_a);
-	else if (!ft_strcmp(instruction, "sb"))
-		sb(lst_b);
-	else if (!ft_strcmp(instruction, "ss"))
-		ss(lst_a, lst_b);
-	else if (!ft_strcmp(instruction, "pa"))
-		pa(lst_a, lst_b);
-	else if (!ft_strcmp(instruction, "pb"))
-		pb(lst_a, lst_b);
-	else if (!ft_strcmp(instruction, "ra"))
-		ra(lst_a);
-	else if (!ft_strcmp(instruction, "rb"))
-		rb(lst_b);
-	else if (!ft_strcmp(instruction, "rr"))
-		rr(lst_a, lst_b);
-	else if (!ft_strcmp(instruction, "rra"))
-		rra(lst_a);
-	else if (!ft_strcmp(instruction, "rrb"))
-		rrb(lst_b);
-	else if (!ft_strcmp(instruction, "rrr"))
-		rrr(lst_a, lst_b);
+	if (!ft_strcmp(to_do, "sa"))
+		sa(a);
+	else if (!ft_strcmp(to_do, "sb"))
+		sb(b);
+	else if (!ft_strcmp(to_do, "ss"))
+		ss(a, b);
+	else if (!ft_strcmp(to_do, "pa"))
+		pa(a, b);
+	else if (!ft_strcmp(to_do, "pb"))
+		pb(a, b);
+	else if (!ft_strcmp(to_do, "ra"))
+		ra(a);
+	else if (!ft_strcmp(to_do, "rb"))
+		rb(b);
+	else if (!ft_strcmp(to_do, "rr"))
+		rr(a, b);
+	else if (!ft_strcmp(to_do, "rra"))
+		rra(a);
+	else if (!ft_strcmp(to_do, "rrb"))
+		rrb(b);
+	else if (!ft_strcmp(to_do, "rrr"))
+		rrr(a, b);
 	else
 		exit_error();
 }
 
-void	execute(t_list **lst_a, t_list **lst_b, char *s)
+void	execute(t_stack **a, t_stack **b, char *s)
 {
-	char	**instruction;
+	char	**to_do;
 	int		i;
 
 	if (!s)
-		check_free_exit(*lst_a, *lst_b);
-	instruction = ft_split(s, '\n');
+		check_free_exit(*a, *b);
+	to_do = ft_split(s, '\n');
 	i = -1;
-	while (instruction[++i])
-		operation(lst_a, lst_b, instruction[i]);
-	check_free_exit(*lst_a, *lst_b);
+	while (to_do[++i])
+		operation(a, b, to_do[i]);
+	check_free_exit(*a, *b);
 }
 
-int	checker(t_list *lst_a, t_list *lst_b)
+int	checker(t_stack *a, t_stack *b)
 {
-	while (lst_a->next)
+	while (a->next)
 	{
-		if (lst_a->content > lst_a->next->content)
+		if (a->content > a->next->content)
 			return (0);
-		lst_a = lst_a->next;
+		a = a->next;
 	}
-	if (lst_b)
+	if (b)
 		return (0);
 	return (1);
 }

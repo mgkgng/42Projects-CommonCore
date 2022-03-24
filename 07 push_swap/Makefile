@@ -7,14 +7,14 @@ MSRCS =	srcs/main.c				\
 		srcs/push_swap_b.c		\
 		srcs/push_swap_c.c
 
-SRCS =	srcs/push_swap_utils.c	\
-		srcs/push_swap_utils2.c	\
-		srcs/operation1.c		\
-		srcs/operation2.c		\
-		srcs/operation3.c		\
-		srcs/free.c				\
-		srcs/error.c			\
-		srcs/parsing.c
+CSRCS =	common/push_swap_utils.c	\
+		common/push_swap_utils2.c	\
+		common/operation1.c		\
+		common/operation2.c		\
+		common/operation3.c		\
+		common/free.c			\
+		common/error.c			\
+		common/parse.c
 
 BSRCS =	bonus/main.c			\
 		bonus/checker.c
@@ -23,7 +23,7 @@ NAME =	push_swap
 BNAME = checker
 
 MOBJS = $(MSRCS:.c=.o)
-OBJS = ${SRCS:.c=.o}
+COBJS = ${CSRCS:.c=.o}
 BOBJS = $(BSRCS:.c=.o)
 
 INCLUDES = ./includes/
@@ -37,16 +37,16 @@ LIB_PATH = ./libft/
 
 all : $(NAME)
 
-bonus	:	$(OBJS) $(BOBJS)
+bonus	:	$(COBJS) $(BOBJS)
 			make all -C $(LIB_PATH)
-			gcc $(CFLAGS) -I${INCLUDES} -o $(BNAME) $(BOBJS) $(OBJS) libft/libft.a
+			gcc $(CFLAGS) -I${INCLUDES} -o $(BNAME) $(BOBJS) $(COBJS) libft/libft.a
 
-$(NAME) :	$(OBJS) $(MOBJS)
+$(NAME) :	$(COBJS) $(MOBJS)
 			make all -C $(LIB_PATH)
-			gcc $(CFLAGS) -I${INCLUDES} -o $(NAME) $(MOBJS) $(OBJS) libft/libft.a
+			gcc $(CFLAGS) -I${INCLUDES} -o $(NAME) $(MOBJS) $(COBJS) libft/libft.a
 
 clean :
-			rm -f $(MOBJS) $(OBJS) $(BOBJS)
+			rm -f $(MOBJS) $(COBJS) $(BOBJS)
 			make clean -C $(LIB_PATH)
 
 fclean :	clean

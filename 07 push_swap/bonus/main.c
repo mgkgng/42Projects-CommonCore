@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: min-kang <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/08 19:16:09 by min-kang          #+#    #+#             */
-/*   Updated: 2022/01/11 17:25:04 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/24 14:08:39 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/checker.h"
+#include "checker.h"
 
 void	exit_ok(void)
 {
@@ -24,22 +24,22 @@ void	exit_ko(void)
 	exit(EXIT_FAILURE);
 }
 
-void	check_free_exit(t_list *lst_a, t_list *lst_b)
+void	check_free_exit(t_stack *a, t_stack *b)
 {
-	if (checker(lst_a, lst_b))
+	if (checker(a, b))
 	{
-		free_stack(lst_a);
+		free_stack(a);
 		exit_ok();
 	}
-	free(lst_a);
-	free(lst_b);
+	free(a);
+	free(b);
 	exit_ko();
 }
 
 int	main(int argc, char **argv)
 {
-	t_list	*stack_a;
-	t_list	*stack_b;
+	t_stack	*a;
+	t_stack	*b;
 	char	buf[BUFFER_SIZE];
 	int		ret;
 	char	*r_data;
@@ -47,17 +47,17 @@ int	main(int argc, char **argv)
 	if (argc < 2)
 		return (0);
 	check_error(argc, argv);
-	stack_a = parsing_list(argc, argv);
-	stack_b = NULL;
+	a = parse(argc, argv);
+	b = NULL;
 	r_data = NULL;
 	ret = read(0, &buf, BUFFER_SIZE);
 	if (ret < 0)
-		execute(&stack_a, &stack_b, r_data);
+		execute(&a, &b, r_data);
 	while (ret)
 	{
 		buf[ret] = '\0';
 		r_data = ft_strjoin_gnl(r_data, buf);
 		ret = read(0, &buf, BUFFER_SIZE);
 	}
-	execute(&stack_a, &stack_b, r_data);
+	execute(&a, &b, r_data);
 }

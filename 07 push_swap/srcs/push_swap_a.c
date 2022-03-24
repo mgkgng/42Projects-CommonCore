@@ -6,13 +6,13 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/08 16:05:14 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/24 13:18:14 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/24 14:14:58 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_index	get_the_biggest_chunk(t_list *lst)
+t_index	get_the_biggest_chunk(t_stack *lst)
 {
 	t_index	result;
 	t_index	tmp;
@@ -41,7 +41,7 @@ t_index	get_the_biggest_chunk(t_list *lst)
 	return (result);
 }
 
-int	chunk_limit(t_list *lst, t_index chunk, int i)
+int	chunk_limit(t_stack *lst, t_index chunk, int i)
 {
 	int		result;
 	int		count;
@@ -57,7 +57,7 @@ int	chunk_limit(t_list *lst, t_index chunk, int i)
 	return (result - count);
 }
 
-void	push_or_rotate(t_list **lst_a, t_list **lst_b, t_index chunk, int i)
+void	push_or_rotate(t_stack **lst_a, t_stack **lst_b, t_index chunk, int i)
 {	
 	if (!i)
 	{
@@ -78,7 +78,7 @@ void	push_or_rotate(t_list **lst_a, t_list **lst_b, t_index chunk, int i)
 	}
 }
 
-void	push_everything_in_b(t_list **lst_a, t_list **lst_b, t_index chunk)
+void	push_everything_in_b(t_stack **lst_a, t_stack **lst_b, t_index chunk)
 {
 	int	chunk1;
 	int	chunk2;

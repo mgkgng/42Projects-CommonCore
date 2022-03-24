@@ -6,13 +6,13 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/08 19:19:42 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/24 13:18:01 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/24 14:14:54 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	reverse_rotate_rotate(t_list **a, t_list **b)
+void	reverse_rotate_rotate(t_stack **a, t_stack **b)
 {
 	rrr(a, b);
 	ft_putstr("rrr\n");

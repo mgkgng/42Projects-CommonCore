@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/08 16:05:22 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/24 13:18:20 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/24 14:15:08 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	opt_define(t_move **move, t_move **opt, t_dirty *dirty)
 	}
 }
 
-void	ft_shit(t_list **lst_a, t_list **lst_b, t_dirty *dirty, t_shit *shit)
+void	ft_shit(t_stack **lst_a, t_stack **lst_b, t_dirty *dirty, t_shit *shit)
 {
 	*lst_a = dirty->begin_a;
 	dirty->last_a = ft_lstlast(*lst_a)->index;
@@ -57,7 +57,7 @@ void	ft_shit(t_list **lst_a, t_list **lst_b, t_dirty *dirty, t_shit *shit)
 	}
 }
 
-void	optimal_move(t_list **lst_a, t_list **lst_b)
+void	optimal_move(t_stack **lst_a, t_stack **lst_b)
 {
 	t_dirty	dirty;
 	t_shit	shit;
@@ -76,7 +76,7 @@ void	optimal_move(t_list **lst_a, t_list **lst_b)
 	free(shit.opt);
 }
 
-void	push_everything_back_in_a(t_list **lst_a, t_list **lst_b)
+void	push_everything_back_in_a(t_stack **lst_a, t_stack **lst_b)
 {
 	while (*lst_b)
 	{
@@ -91,7 +91,7 @@ void	push_everything_back_in_a(t_list **lst_a, t_list **lst_b)
 	}
 }
 
-void	get_a_in_order(t_list **lst_a)
+void	get_a_in_order(t_stack **lst_a)
 {
 	int	size;
 
