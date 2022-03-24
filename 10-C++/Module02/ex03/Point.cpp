@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 01:20:45 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/24 17:24:06 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/24 20:51:34 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,28 @@ Point::Point(Point const & right) {
 	*this = right;
 }
 
+Point&	Point::operator=(Point const & right) {
+	(Fixed) this->_x = right.getFixedX();
+	(Fixed) this->_y = right.getFixedY();
+	return (*this);
+}
+
 Point::~Point(void) {
 	std::cout << "Destructor called." << std::endl;
 }
 
-Fixed Point::getX(void) const {
+float Point::getX(void) const {
+	return (this->_x.toFloat());
+}
+
+float Point::getY(void) const {
+	return (this->_y.toFloat());
+}
+
+Fixed	Point::getFixedX(void) const {
 	return (this->_x);
 }
 
-Fixed Point::getY(void) const {
+Fixed	Point::getFixedY(void) const {
 	return (this->_y);
 }

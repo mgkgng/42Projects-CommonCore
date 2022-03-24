@@ -6,28 +6,27 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 01:24:48 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/24 19:52:09 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/24 21:15:46 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Point.hpp"
 
-float sign (Point const a, Point const b, Point const c)
+/*static float	sign(Point const a, Point const b, Point const c)
 {
-    return ((a.getX().toFloat() - c.getX().toFloat()) * (b.getY().toFloat() - c.getY().toFloat())
-        - (b.getX().toFloat() - c.getX().toFloat()) * (a.getY().toFloat() - c.getY().toFloat()));
-}
+    return ((a.getX() - c.getX()) * (b.getY() - c.getY())
+        - (b.getX() - c.getX()) * (a.getY() - c.getY()));
+}*/
 
-bool	bsp(Point const a, Point const b, Point const c, Point const point) {
-	float d1, d2, d3;
-    bool has_neg, has_pos;
 
-    d1 = sign(point, a, b);
-    d2 = sign(point, b, c);
-    d3 = sign(point, c, a);
+bool	bsp(Point const a, Point const b, Point const c, Point const p) {
 
-    has_neg = (d1 < 0) || (d2 < 0) || (d3 < 0);
-    has_pos = (d1 > 0) || (d2 > 0) || (d3 > 0);
+    float s = (a.getX() - c.getX()) * (p.getY() - c.getY()) - (a.getY() - c.getY()) * (p.getX() - c.getX());
+    float t = (b.getX() - a.getX()) * (p.getY() - a.getY()) - (b.getY() - a.getY()) * (p.getX() - a.getX());
 
-    return !(has_neg && has_pos);
+    if ((s < 0) != (t < 0) && s != 0 && t != 0)
+        return false;
+
+    float d = (c.getX() - b.getX()) * (p.getY() - b.getY()) - (c.getY() - b.getY()) * (p.getX() - b.getX());
+    return d == 0 || (d < 0) == (s + t <= 0);
 }

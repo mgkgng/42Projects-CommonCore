@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 16:24:13 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/24 16:24:17 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/24 20:36:58 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ Fixed::Fixed(float const f) : _rawBits((int) roundf(f * 256)){
 }
 
 Fixed::~Fixed(void) {
-	std::cout << "Destructor called" << std::endl;
+	std::cout << "Destructor called." << std::endl;
 	return ;
 }
 
