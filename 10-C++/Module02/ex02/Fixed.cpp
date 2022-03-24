@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 19:25:52 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/24 15:10:35 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/24 16:17:10 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,24 +126,24 @@ Fixed	Fixed::operator/(Fixed const & right) {
 }
 
 Fixed&	Fixed::operator++(void) {
-	this->_rawBits += 1;
+	this->_rawBits++;
 	return (*this);
 }
 
 Fixed	Fixed::operator++(int) {
-	Fixed	res;
-	res.setRawBits(this->getRawBits() + 1);
+	Fixed	res = *this;
+	++*this;
 	return (res);
 }
 
 Fixed&	Fixed::operator--(void) {
-	this->_rawBits -= 1 * pow(2, this->_fractionalBits);
+	this->_rawBits--;
 	return (*this);
 }
 
 Fixed	Fixed::operator--(int) {
-	Fixed	res;
-	res.setRawBits(this->getRawBits() - 1);
+	Fixed	res = *this;
+	--*this;
 	return (res);
 }
 
@@ -162,4 +162,28 @@ float	Fixed::toFloat(void) const {
 
 int	Fixed::toInt(void) const {
 	return ( this->_rawBits / 256 );
+}
+
+Fixed&	Fixed::min(Fixed const & left, Fixed const & right) {
+	if ((Fixed) left < (Fixed) right)
+		return ((Fixed &) left);
+	return ((Fixed &) right);
+}
+
+Fixed&	Fixed::min(Fixed &left, Fixed &right) {
+	if (left < right)
+		return (left);
+	return (right);
+}
+
+Fixed&	Fixed::max(Fixed const & left, Fixed const & right) {
+	if ((Fixed) left > (Fixed) right)
+		return ((Fixed &) left);
+	return ((Fixed &) right);
+}
+
+Fixed&	Fixed::max(Fixed &left, Fixed &right) {
+	if (left > right)
+		return (left);
+	return (right);
 }

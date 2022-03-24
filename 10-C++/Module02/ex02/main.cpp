@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 00:39:40 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/24 15:05:03 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/24 16:13:25 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,5 @@ int	main(void) {
 
 	std::cout << b << std::endl;
 
-	//std::cout << Fixed::max(a,b) << std::endl;
+	std::cout << Fixed::max(a,b) << std::endl;
 }
