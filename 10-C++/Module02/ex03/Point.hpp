@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 01:17:31 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/24 01:20:37 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/24 17:23:58 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,9 @@ class Point {
 		~Point(void);
 
 		Point&	operator=(Point const &);
-		
+
+		Fixed getX(void) const;
+		Fixed getY(void) const;
 
 	private:
 		Fixed const _x;

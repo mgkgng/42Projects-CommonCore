@@ -6,11 +6,17 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 01:24:48 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/24 01:26:51 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/24 17:25:34 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Point.hpp"
+
+float sign (Point const a, Point const b, Point const c)
+{
+	
+    return (a.getX() - c.getX()) * (b.getY() - c.getY()) - (b.getX() - c.getX()) * (a.getY() - c.getY());
+}
 
 bool	bsp(Point const a, Point const b, Point const c, Point const point) {
 	
