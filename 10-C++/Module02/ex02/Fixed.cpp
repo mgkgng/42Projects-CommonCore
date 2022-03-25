@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 19:25:52 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/24 20:37:23 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/25 17:25:05 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -164,10 +164,10 @@ int	Fixed::toInt(void) const {
 	return ( this->_rawBits / 256 );
 }
 
-Fixed&	Fixed::min(Fixed const & left, Fixed const & right) {
+Fixed const &	Fixed::min(Fixed const & left, Fixed const & right) {
 	if ((Fixed) left < (Fixed) right)
-		return ((Fixed &) left);
-	return ((Fixed &) right);
+		return (left);
+	return (right);
 }
 
 Fixed&	Fixed::min(Fixed &left, Fixed &right) {
@@ -176,10 +176,10 @@ Fixed&	Fixed::min(Fixed &left, Fixed &right) {
 	return (right);
 }
 
-Fixed&	Fixed::max(Fixed const & left, Fixed const & right) {
+Fixed const &	Fixed::max(Fixed const & left, Fixed const & right) {
 	if ((Fixed) left > (Fixed) right)
-		return ((Fixed &) left);
-	return ((Fixed &) right);
+		return (left);
+	return (right);
 }
 
 Fixed&	Fixed::max(Fixed &left, Fixed &right) {

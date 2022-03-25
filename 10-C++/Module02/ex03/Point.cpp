@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 01:20:45 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/24 20:51:34 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/25 17:12:56 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ Point::Point(Point const & right) {
 }
 
 Point&	Point::operator=(Point const & right) {
-	(Fixed) this->_x = right.getFixedX();
-	(Fixed) this->_y = right.getFixedY();
+	(Fixed &) this->_x = right.getFixedX();
+	(Fixed &) this->_y = right.getFixedY();
 	return (*this);
 }
 
