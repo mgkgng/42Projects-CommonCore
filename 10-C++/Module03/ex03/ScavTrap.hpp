@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/21 22:22:28 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/21 22:24:31 by min-kang         ###   ########.fr       */
+/*   Created: 2022/03/25 23:59:51 by min-kang          #+#    #+#             */
+/*   Updated: 2022/03/26 00:01:54 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,10 @@ class ScavTrap : public ClapTrap {
 		ScavTrap(ScavTrap const &);
 		ScavTrap& operator=(ScavTrap const &);
 		~ScavTrap(void);
-		
+
+		void 	attack(const std::string &target);
+		void 	takeDamage(unsigned int amount);
+		void 	beRepaired(unsigned int amount);
 		void	guardGate(void);
 
-	private:
 };

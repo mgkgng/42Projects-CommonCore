@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 22:22:32 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/21 22:24:05 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/26 00:01:37 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,9 @@ class FragTrap : public ClapTrap {
 		FragTrap& operator=(FragTrap const &);
 		~FragTrap(void);
 
+		void 	attack(const std::string &target);
+		void 	takeDamage(unsigned int amount);
+		void	beRepaired(unsigned int amount);
 		void	highFivesGuys(void);
-
-	private :
 	
 };
