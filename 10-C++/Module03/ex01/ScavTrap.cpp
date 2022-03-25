@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 12:57:44 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/25 23:31:18 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/25 23:54:28 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 ScavTrap::ScavTrap() : ClapTrap() {
 	std::cout	<< "Default constructor activated." << std::endl;
-
 }
 
 ScavTrap::ScavTrap(std::string n) : ClapTrap(n) {
@@ -29,12 +28,17 @@ ScavTrap::ScavTrap(std::string n) : ClapTrap(n) {
 				<< std::endl;
 }
 
+ScavTrap::ScavTrap(ScavTrap const & copy) : ClapTrap(copy) {
+	std::cout << "Copy constructor activated" << std::endl;
+	*this = copy;
+}
+
 ScavTrap::~ScavTrap() {
 	std::cout << "ScavTrap " << this->_name << " got destroyed!" << std::endl;
 }
 
-ScavTrap& ScavTrap::operator=(ScavTrap const &rhs) {
-	ClapTrap::operator=(rhs);
+ScavTrap& ScavTrap::operator=(ScavTrap const & right) {
+	ClapTrap::operator=(right);
 	return (*this);
 }
 

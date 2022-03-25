@@ -4,7 +4,7 @@ SRCS =	./main.cpp \
 
 OBJS =	${SRCS:.cpp=.o}
 
-NAME =	ScavTrap	
+NAME =	FragTrap	
 
 CFLAGS	= -Wall -Wextra -Werror
 
