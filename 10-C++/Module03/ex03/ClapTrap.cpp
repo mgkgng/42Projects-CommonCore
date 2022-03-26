@@ -6,11 +6,11 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 00:00:41 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/26 00:01:12 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/26 12:36:42 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "main.hpp"
+#include "ClapTrap.hpp"
 
 ClapTrap::ClapTrap(void) {
 

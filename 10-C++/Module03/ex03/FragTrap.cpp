@@ -6,11 +6,11 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 22:22:34 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/26 00:01:32 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/26 12:36:56 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "main.hpp"
+#include "FragTrap.hpp"
 
 FragTrap::FragTrap(void) : ClapTrap() {
 	std::cout << "Default constructor activated." << std::endl;

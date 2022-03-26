@@ -6,11 +6,11 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 23:59:45 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/26 00:01:47 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/26 12:37:16 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "main.hpp"
+#include "ScavTrap.hpp"
 
 ScavTrap::ScavTrap() : ClapTrap() {
 	std::cout	<< "Default constructor activated." << std::endl;
@@ -42,7 +42,7 @@ ScavTrap& ScavTrap::operator=(ScavTrap const & right) {
 	return (*this);
 }
 
-void	ScavTrap::attack(const std::string &target) {
+void	ScavTrap::attack(std::string const &target) {
 	
 	if (!this->_energyPoints) {
 		std::cout	<< "ScavTrap " << this->_name << " needs more EP to attack." << std::endl;

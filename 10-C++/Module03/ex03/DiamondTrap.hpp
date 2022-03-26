@@ -6,22 +6,28 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 22:22:38 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/26 00:27:55 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/26 12:36:36 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#pragma once
+
 #include "main.hpp"
+#include "ClapTrap.hpp"
+#include "ScavTrap.hpp"
+#include "FragTrap.hpp"
 
 class DiamondTrap : public ScavTrap, public FragTrap {
 	
 	public:
 		DiamondTrap(void);
-		DiamondTrap(std::string);
+		DiamondTrap(std::string const);
 		DiamondTrap(DiamondTrap const &);
 		~DiamondTrap(void);
 
 		DiamondTrap& operator=(DiamondTrap const &);
 
+		void	attack(std::string const &target);
 		void	whoAmI(void);
 
 	private:

@@ -6,15 +6,16 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 23:59:51 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/26 00:01:54 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/26 12:37:13 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
 #include "main.hpp"
+#include "ClapTrap.hpp"
 
-class ScavTrap : public ClapTrap {
+class ScavTrap : virtual public ClapTrap {
 
 	public:
 		
@@ -24,7 +25,7 @@ class ScavTrap : public ClapTrap {
 		ScavTrap& operator=(ScavTrap const &);
 		~ScavTrap(void);
 
-		void 	attack(const std::string &target);
+		void 	attack(std::string const &target);
 		void 	takeDamage(unsigned int amount);
 		void 	beRepaired(unsigned int amount);
 		void	guardGate(void);
