@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 21:24:00 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/26 17:35:28 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/26 18:13:10 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,12 +40,13 @@ FragTrap::FragTrap(std::string n) : ClapTrap(n) {
 }
 
 FragTrap::FragTrap(FragTrap const & copy) : ClapTrap(copy) {
-	std::cout << "FragTrap copy constructor activated" << std::endl;
 	*this = copy;
+	std::cout << "FragTrap copy constructor activated" << std::endl;
 }
 
 FragTrap::~FragTrap(void) {
-	std::cout << "FragTrap destrcutor activiated" << std::endl;
+	std::cout << "FragTrap destrcutor activiated." << std::endl;
+	std::cout << "FragTrap " << this->_name << " got destroyed." << std::endl;
 }
 
 FragTrap&	FragTrap::operator=(FragTrap const & right) {

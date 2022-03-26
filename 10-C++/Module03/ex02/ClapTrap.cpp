@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 21:19:08 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/26 17:34:32 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/26 18:12:31 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ ClapTrap::ClapTrap(ClapTrap const &src) {
 
 ClapTrap::~ClapTrap(void) {
 	std::cout	<< "ClapTrap destructor activated." << std::endl;
-	std::cout	<< "ClapTrap " << this->_name << " has been destroyed."
+	std::cout	<< "ClapTrap " << this->_name << " got destroyed."
 				<< std::endl;
 }
 

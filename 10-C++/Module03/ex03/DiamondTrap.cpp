@@ -6,14 +6,14 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 22:22:40 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/26 17:46:07 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/26 18:06:32 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "DiamondTrap.hpp"
 
 DiamondTrap::DiamondTrap(void) : ClapTrap(), ScavTrap(), FragTrap() {
-	this->_name = "default";
+	this->_name = "(default)";
 	this->_hitPoints = 	this->FragTrap::_hitPoints;
 	this->_energyPoints = this->ScavTrap::_energyPoints;
 	this->_attackDamage = this->FragTrap::_energyPoints;
@@ -24,12 +24,12 @@ DiamondTrap::DiamondTrap(void) : ClapTrap(), ScavTrap(), FragTrap() {
 				<< std::endl;	
 }
 
-DiamondTrap::DiamondTrap(std::string const n) : ClapTrap(n), ScavTrap(n), FragTrap(n) {
+DiamondTrap::DiamondTrap(std::string const n) : ClapTrap(n + "_clap_name"), ScavTrap(n), FragTrap(n) {
 	
-	this->_name = n + "_clap_name";
-	this->_hitPoints = this->FragTrap::_hitPoints;
-	this->_energyPoints = this->ScavTrap::_energyPoints;
-	this->_attackDamage = this->FragTrap::_attackDamage;
+	this->_name = n;
+	this->_hitPoints = 100;
+	this->_energyPoints = 50;
+	this->_attackDamage = 30;
 
 	std::cout	<< "DiamondTrap " << this->_name << " has been created." << std::endl;
 	std::cout	<< "HP[" << this->_hitPoints << "] / EP[" << this->_energyPoints
@@ -38,11 +38,13 @@ DiamondTrap::DiamondTrap(std::string const n) : ClapTrap(n), ScavTrap(n), FragTr
 }
 
 DiamondTrap::DiamondTrap(DiamondTrap const & copy) : ClapTrap(copy), ScavTrap(copy), FragTrap(copy) {
-	std::cout << "Copy constructor activated." << std::endl;
+	*this = copy;
+	std::cout << "DiamondTrap copy constructor activated." << std::endl;
 }
 
 DiamondTrap::~DiamondTrap(void) {
-	std::cout << "Destructor activated" << std::endl;
+	std::cout << "DiamondTrap destructor activated" << std::endl;
+	std::cout << "DiamondTrap " << this->_name << " got destoryed!" << std::endl; 
 }
 
 DiamondTrap& DiamondTrap::operator=(DiamondTrap const & right) {

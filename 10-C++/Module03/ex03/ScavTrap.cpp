@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 23:59:45 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/26 17:36:16 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/26 18:15:01 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,5 +133,5 @@ void	ScavTrap::beRepaired(unsigned int amount) {
 }
 
 void	ScavTrap::guardGate(void) {
-	std::cout << "ScavTrap " << this->_name << " has entered into Gate keeper mode!"  << std::endl;
+	std::cout << "Gate keeper mode!"  << std::endl;
 }

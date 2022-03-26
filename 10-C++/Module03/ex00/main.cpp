@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/02 17:15:57 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/21 22:39:03 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/26 18:07:30 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int main() {
 	Tom.beRepaired(1);
 	Tom.beRepaired(1);
 
-	std::cout << std::endl << "\033[1;34m** test 3 : Destructor called with return **\033[0m" << std::endl;
+	std::cout << std::endl << "\033[1;34m** test 5 : Destructor called with return **\033[0m" << std::endl;
 
 	return (0);
 }
