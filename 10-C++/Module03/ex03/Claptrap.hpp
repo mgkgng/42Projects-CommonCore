@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 00:00:40 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/26 00:01:23 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/26 15:35:22 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ class ClapTrap {
 	
 	public:
 		ClapTrap(void);
-		ClapTrap(std::string n);
+		ClapTrap(std::string const);
 		ClapTrap(ClapTrap const &src);
 		~ClapTrap(void);
 

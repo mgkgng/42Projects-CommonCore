@@ -6,34 +6,55 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 12:57:44 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/25 23:54:28 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/26 17:34:03 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.hpp"
 
-ScavTrap::ScavTrap() : ClapTrap() {
-	std::cout	<< "Default constructor activated." << std::endl;
+ScavTrap::ScavTrap(void) : ClapTrap() {
+
+	this->_name = "(default)";
+	this->_hitPoints = 100;
+	this->_energyPoints = 50;
+	this->_attackDamage = 20;
+
+	std::cout	<< "ScavTrap default constructor activated." << std::endl;
+	std::cout	<< "ScavTrap " << this->_name << " has been created." << std::endl;
+	std::cout	<< "HP[" << this->_hitPoints << "] / EP[" << this->_energyPoints
+				<< "] / Attack Damage[" << this->_attackDamage << "]"
+				<< std::endl;	
 }
 
 ScavTrap::ScavTrap(std::string n) : ClapTrap(n) {
+
 	this->_name = n;
 	this->_hitPoints = 100;
 	this->_energyPoints = 50;
 	this->_attackDamage = 20;
 
+	std::cout	<< "ScavTrap name constructor activated." << std::endl;
+	std::cout	<< "ScavTrap " << this->_name << " has been created." << std::endl;
+	std::cout	<< "HP[" << this->_hitPoints << "] / EP[" << this->_energyPoints
+				<< "] / Attack Damage[" << this->_attackDamage << "]"
+				<< std::endl;
+
+}
+
+ScavTrap::ScavTrap(ScavTrap const & copy) : ClapTrap(copy) {
+
+	*this = copy;
+
+	std::cout << "ScavTrap copy constructor activated" << std::endl;
+	std::cout	<< "ScavTrap name constructor activated." << std::endl;
 	std::cout	<< "ScavTrap " << this->_name << " has been created." << std::endl;
 	std::cout	<< "HP[" << this->_hitPoints << "] / EP[" << this->_energyPoints
 				<< "] / Attack Damage[" << this->_attackDamage << "]"
 				<< std::endl;
 }
 
-ScavTrap::ScavTrap(ScavTrap const & copy) : ClapTrap(copy) {
-	std::cout << "Copy constructor activated" << std::endl;
-	*this = copy;
-}
-
 ScavTrap::~ScavTrap() {
+	std::cout << "ScavTrap destructor activated." << std::endl;
 	std::cout << "ScavTrap " << this->_name << " got destroyed!" << std::endl;
 }
 

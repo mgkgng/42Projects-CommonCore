@@ -6,20 +6,30 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 22:22:40 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/26 12:36:48 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/26 17:46:07 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "DiamondTrap.hpp"
 
 DiamondTrap::DiamondTrap(void) : ClapTrap(), ScavTrap(), FragTrap() {
-	
-}
-
-DiamondTrap::DiamondTrap(std::string const n) : ClapTrap(n + "_clap_name"), ScavTrap(n), FragTrap(n) {
+	this->_name = "default";
 	this->_hitPoints = 	this->FragTrap::_hitPoints;
 	this->_energyPoints = this->ScavTrap::_energyPoints;
 	this->_attackDamage = this->FragTrap::_energyPoints;
+
+	std::cout	<< "DiamondTrap " << this->_name << " has been created." << std::endl;
+	std::cout	<< "HP[" << this->_hitPoints << "] / EP[" << this->_energyPoints
+				<< "] / Attack Damage[" << this->_attackDamage << "]"
+				<< std::endl;	
+}
+
+DiamondTrap::DiamondTrap(std::string const n) : ClapTrap(n), ScavTrap(n), FragTrap(n) {
+	
+	this->_name = n + "_clap_name";
+	this->_hitPoints = this->FragTrap::_hitPoints;
+	this->_energyPoints = this->ScavTrap::_energyPoints;
+	this->_attackDamage = this->FragTrap::_attackDamage;
 
 	std::cout	<< "DiamondTrap " << this->_name << " has been created." << std::endl;
 	std::cout	<< "HP[" << this->_hitPoints << "] / EP[" << this->_energyPoints
@@ -42,6 +52,57 @@ DiamondTrap& DiamondTrap::operator=(DiamondTrap const & right) {
 
 void	DiamondTrap::attack(std::string const &target) {
 	this->ScavTrap::attack(target);
+}
+
+void	DiamondTrap::takeDamage(unsigned int amount) {
+
+	if (!this->_hitPoints) {
+		std::cout << "DiamondTrap " << this->_name << " is already knocked out! (0 HP)" << std::endl;
+		return ;
+	}
+
+	std::cout << "DiamondTrap " << this->_name << " took damage of " << amount << "! ";
+
+	if (this->_hitPoints > amount) {
+		this->_hitPoints -= amount;
+		std::cout << "(" << this->_hitPoints << " HP)" << std::endl; 
+	}	
+	else {
+		this->_hitPoints = 0;
+		std::cout << this->_name << " is knocked out! (0 HP)" << std::endl;
+	}
+	
+}
+
+void	DiamondTrap::beRepaired(unsigned int amount) {
+	
+	if (!this->_energyPoints) {
+		std::cout	<< "DiamondTrap " << this->_name << " needs more EP to be repaired." << std::endl;
+		return ;
+	}
+
+	if (this->_hitPoints == 10) {
+		std::cout << "DiamondTrap " << this->_name << " doesn't need any repair." << std::endl;
+		return ;
+	}
+
+	std::cout << "DiamondTrap " << this->_name << " got repaired! ";
+
+	if (10 - this->_hitPoints > amount) {
+		this->_hitPoints += amount;
+		std::cout << "(" << this->_hitPoints << " HP / "; 
+	}	
+	else {
+		this->_hitPoints = 10;
+		std::cout << "(10 HP / ";
+	}
+
+	this->_energyPoints--;
+	if (!this->_energyPoints)
+		std::cout << "0 EP)" << std::endl;
+	else
+		std::cout << this->_energyPoints << " EP)" << std::endl;
+
 }
 
 void	DiamondTrap::whoAmI(void) {

@@ -6,14 +6,24 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 21:24:00 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/25 23:56:42 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/26 17:35:28 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.hpp"
 
 FragTrap::FragTrap(void) : ClapTrap() {
-	std::cout << "Default constructor activated." << std::endl;
+
+	this->_name = "(default)";
+	this->_hitPoints = 100;
+	this->_energyPoints = 100;
+	this->_attackDamage = 30;
+
+	std::cout << "FragTrap default constructor activated." << std::endl;
+	std::cout	<< "FragTrap " << this->_name << " has been created." << std::endl;
+	std::cout	<< "HP[" << this->_hitPoints << "] / EP[" << this->_energyPoints
+				<< "] / Attack Damage[" << this->_attackDamage << "]"
+				<< std::endl;	
 }
 
 FragTrap::FragTrap(std::string n) : ClapTrap(n) {
@@ -22,7 +32,7 @@ FragTrap::FragTrap(std::string n) : ClapTrap(n) {
 	this->_energyPoints = 100;
 	this->_attackDamage = 30;
 
-	std::cout	<< "Default constructor activated." << std::endl;
+	std::cout	<< "FragTrap name constructor activated." << std::endl;
 	std::cout	<< "FragTrap " << this->_name << " has been created." << std::endl;
 	std::cout	<< "HP[" << this->_hitPoints << "] / EP[" << this->_energyPoints
 				<< "] / Attack Damage[" << this->_attackDamage << "]"
@@ -30,17 +40,17 @@ FragTrap::FragTrap(std::string n) : ClapTrap(n) {
 }
 
 FragTrap::FragTrap(FragTrap const & copy) : ClapTrap(copy) {
-	std::cout << "Copy constructor activated" << std::endl;
+	std::cout << "FragTrap copy constructor activated" << std::endl;
 	*this = copy;
+}
+
+FragTrap::~FragTrap(void) {
+	std::cout << "FragTrap destrcutor activiated" << std::endl;
 }
 
 FragTrap&	FragTrap::operator=(FragTrap const & right) {
 	ClapTrap::operator=(right);
 	return (*this);
-}
-
-FragTrap::~FragTrap(void) {
-	std::cout << "Destrcutor activiated" << std::endl;
 }
 
 void	FragTrap::attack(const std::string &target) {

@@ -1,11 +1,12 @@
 SRCS =	./main.cpp \
 		./ClapTrap.cpp \
+		./ScavTrap.cpp \
 		./FragTrap.cpp \
 		./DiamondTrap.cpp
 
 OBJS =	${SRCS:.cpp=.o}
 
-NAME =	FragTrap	
+NAME =	DiamondTrap
 
 CFLAGS	= -Wall -Wextra -Werror
 
