@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 15:05:58 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/26 18:12:44 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/26 20:44:22 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,34 +14,19 @@
 
 ClapTrap::ClapTrap(void) : _name("(default)"), _hitPoints(10), _energyPoints(10), _attackDamage(0) {
 	std::cout	<< "ClapTrap default constructor activated." << std::endl;
-	std::cout	<< "ClapTrap " << this->_name << " has been created." << std::endl;
-	std::cout	<< "HP[" << this->_hitPoints << "] / EP[" << this->_energyPoints
-				<< "] / Attack Damage[" << this->_attackDamage << "]"
-				<< std::endl;	
 }
 
 ClapTrap::ClapTrap(std::string n) : _name(n), _hitPoints(10), _energyPoints(10), _attackDamage(0) {
 	std::cout	<< "ClapTrap name constructor activated." << std::endl;
-	std::cout	<< "ClapTrap " << this->_name << " has been created." << std::endl;
-	std::cout	<< "HP[" << this->_hitPoints << "] / EP[" << this->_energyPoints
-				<< "] / Attack Damage[" << this->_attackDamage << "]"
-				<< std::endl;
 }
 
 ClapTrap::ClapTrap(ClapTrap const &src) {
 	*this = src;
 	std::cout	<< "ClapTrap copy constructor activated." << std::endl;
-	std::cout	<< "ClapTrap " << this->_name << " has been created." << std::endl;
-	std::cout	<< "HP[" << this->_hitPoints << "] / EP[" << this->_energyPoints
-				<< "] / Attack Damage [" << this->_attackDamage << "]"
-				<< std::endl;
-
 }
 
 ClapTrap::~ClapTrap(void) {
 	std::cout	<< "ClapTrap destructor activated." << std::endl;
-	std::cout	<< "ClapTrap " << this->_name << " got destroyed."
-				<< std::endl;
 }
 
 ClapTrap &ClapTrap::operator=(ClapTrap const &rhs) {

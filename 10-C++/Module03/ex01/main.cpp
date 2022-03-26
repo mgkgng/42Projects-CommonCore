@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 18:34:38 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/26 18:14:02 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/26 20:42:00 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ int main() {
 
 	std::cout << std::endl << "\033[1;34m** test 5 : make the scavtrap activate its special function **\033[0m" << std::endl;
 	Tom.guardGate();
+
 
 	std::cout << std::endl << "\033[1;34m** test 6 : Destructor called with return **\033[0m" << std::endl;
 

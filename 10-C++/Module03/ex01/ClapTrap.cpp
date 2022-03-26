@@ -6,43 +6,28 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 17:43:31 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/26 18:12:53 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/26 21:01:39 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.hpp"
 
 ClapTrap::ClapTrap(void) : _name("(default)"), _hitPoints(10), _energyPoints(10), _attackDamage(0) {
-	std::cout	<< "ClapTrap default constructor activated." << std::endl;
-	std::cout	<< "ClapTrap " << this->_name << " has been created." << std::endl;
-	std::cout	<< "HP[" << this->_hitPoints << "] / EP[" << this->_energyPoints
-				<< "] / Attack Damage[" << this->_attackDamage << "]"
-				<< std::endl;	
+	std::cout << "ClapTrap default constructor activated." << std::endl;
 }
 
-ClapTrap::ClapTrap(std::string const n)
-: _name(n), _hitPoints(10), _energyPoints(10), _attackDamage(0) {
-	std::cout	<< "ClapTrap name constructor activated." << std::endl;
-	std::cout	<< "ClapTrap " << this->_name << " has been created." << std::endl;
-	std::cout	<< "HP[" << this->_hitPoints << "] / EP[" << this->_energyPoints
-				<< "] / Attack Damage[" << this->_attackDamage << "]"
-				<< std::endl;
+ClapTrap::ClapTrap(std::string const n): _name(n), _hitPoints(10), _energyPoints(10), _attackDamage(0) {
+	std::cout << "ClapTrap name constructor activated." << std::endl;
 }
 
 ClapTrap::ClapTrap(ClapTrap const &src) {
 	
 	std::cout	<< "ClapTrap copy constructor activated." << std::endl;
-	std::cout	<< "ClapTrap " << this->_name << " has been created." << std::endl;
-	std::cout	<< "HP[" << this->_hitPoints << "] / EP[" << this->_energyPoints
-				<< "] / Attack Damage [" << this->_attackDamage << "]"
-				<< std::endl;
 	*this = src;
 }
 
 ClapTrap::~ClapTrap(void) {
 	std::cout	<< "ClapTrap destructor activated." << std::endl;
-	std::cout	<< "ClapTrap " << this->_name << " got destroyed."
-				<< std::endl;
 }
 
 ClapTrap &ClapTrap::operator=(ClapTrap const &rhs) {
@@ -116,8 +101,8 @@ void	ClapTrap::beRepaired(unsigned int amount) {
 
 	this->_energyPoints--;
 	if (!this->_energyPoints)
-		std::cout << "0 EP)";
+		std::cout << "0 EP)" << std::endl;
 	else
-		std::cout << this->_energyPoints << " EP)";
+		std::cout << this->_energyPoints << " EP)" << std::endl;
 
 }

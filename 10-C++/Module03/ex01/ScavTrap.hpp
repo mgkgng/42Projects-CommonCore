@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 12:57:46 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/25 21:38:15 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/26 20:40:43 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,6 @@ class ScavTrap : public ClapTrap {
 		~ScavTrap(void);
 
 		void 	attack(const std::string &target);
-		void 	takeDamage(unsigned int amount);
-		void 	beRepaired(unsigned int amount);
 		void	guardGate(void);
 
 };
