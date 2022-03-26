@@ -1,27 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Animal.hpp                                         :+:      :+:    :+:   */
+/*   Cat.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/03 16:35:30 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/03 16:41:35 by min-kang         ###   ########.fr       */
+/*   Created: 2022/03/26 21:48:49 by min-kang          #+#    #+#             */
+/*   Updated: 2022/03/26 22:12:16 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
-#include <string>
+#include "Animal.hpp"
 
-class Animal {
-
-	public:
-		Animal(void);
-		Animal(Animal const &src);
-		Animal &operator=(Animal const &rhs);
-		~Animal(void);
+class	Cat : public Animal {
 	
-	protected:
-		std::string type;
+	public:
+		Cat(void);
+		Cat(Cat const &);
+		~Cat(void);
+		
+		Cat& operator=(Cat const &);
+
+		void	makeSound(void) const;
 };

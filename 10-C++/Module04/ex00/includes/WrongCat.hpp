@@ -1,19 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   WrongCat.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/03 16:39:32 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/03 16:42:37 by min-kang         ###   ########.fr       */
+/*   Created: 2022/03/26 22:02:38 by min-kang          #+#    #+#             */
+/*   Updated: 2022/03/26 22:12:34 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Animal.hpp"
-#include "Dog.hpp"
-#include "Cat.hpp"
+#pragma once
 
-int main() {
+#include "WrongAnimal.hpp"
+
+class	WrongCat : public WrongAnimal {
 	
-}
+	public:
+		WrongCat(void);
+		WrongCat(WrongCat const &);
+		~WrongCat(void);
+		
+		WrongCat& operator=(WrongCat const &);
+
+		void	makeSound(void) const;
+};

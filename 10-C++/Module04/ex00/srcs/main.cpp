@@ -1,26 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Cat.hpp                                            :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/03 16:39:25 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/03 16:40:42 by min-kang         ###   ########.fr       */
+/*   Created: 2022/03/03 16:39:32 by min-kang          #+#    #+#             */
+/*   Updated: 2022/03/26 22:26:03 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#pragma once
+#include "Dog.hpp"
+#include "Cat.hpp"
+#include "WrongCat.hpp"
 
-#include "Animal.hpp"
+int main() {
+	const Animal*	meta = new Animal();
+	const Animal*	j = new Dog();
+	const Animal*	i = new Cat();
 
-class Cat : public Animal {
-
-	public:
-		Cat(void);
-		Cat(Cat const &);
-		Cat &operator=(Cat const &);
-		~Cat(void);
-
-		void	makeSound(void);
-};
+	std::cout << j->getType() << " " << std::endl;
+	std::cout << i->getType() << " " << std::endl;
+}

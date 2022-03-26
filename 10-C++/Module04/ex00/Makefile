@@ -1,8 +1,13 @@
-SRCS =	main.cpp \
+SRCS =	srcs/main.cpp \
+		srcs/Animal.cpp \
+		srcs/Cat.cpp \
+		srcs/Dog.cpp \
+		srcs/WrongAnimal.cpp \
+		srcs/WrongCat.cpp
 
 OBJS =	${SRCS:.cpp=.o}
 
-NAME =	
+NAME =	Animal
 
 INCLUDE = ./includes/
 
