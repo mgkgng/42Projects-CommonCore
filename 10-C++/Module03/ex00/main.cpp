@@ -6,11 +6,12 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/02 17:15:57 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/26 18:07:30 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/26 22:58:22 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ClapTrap.hpp"
+
 int main() {
 
 	std::cout << std::endl << "\033[1;34m** test 1 : Creating a claptrap object **\033[0m" << std::endl;

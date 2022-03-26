@@ -6,13 +6,14 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 17:43:45 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/26 15:31:39 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/26 22:54:01 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
-#include "main.hpp"
+#include <iostream>
+#include <string>
 
 class ClapTrap {
 	

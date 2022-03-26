@@ -6,11 +6,11 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 21:24:00 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/26 20:45:38 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/26 22:55:20 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "main.hpp"
+#include "FragTrap.hpp"
 
 FragTrap::FragTrap(void) : ClapTrap() {
 

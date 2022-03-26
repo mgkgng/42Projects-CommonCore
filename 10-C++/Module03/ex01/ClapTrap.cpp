@@ -6,11 +6,11 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 17:43:31 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/26 21:01:39 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/26 22:54:08 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "main.hpp"
+#include "ClapTrap.hpp"
 
 ClapTrap::ClapTrap(void) : _name("(default)"), _hitPoints(10), _energyPoints(10), _attackDamage(0) {
 	std::cout << "ClapTrap default constructor activated." << std::endl;
