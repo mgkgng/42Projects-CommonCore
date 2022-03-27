@@ -6,14 +6,13 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/27 12:09:57 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/27 12:18:45 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/27 19:00:58 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
 #include "AMateria.hpp"
-#include "ICharacter.hpp"
 
 class Ice : public AMateria {
 	
@@ -27,4 +26,4 @@ class Ice : public AMateria {
 
 		AMateria*	clone(void) const;
 		void		use(ICharacter& target);
-}
+};

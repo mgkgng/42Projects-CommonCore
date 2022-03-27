@@ -6,9 +6,11 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/27 16:47:56 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/27 18:24:26 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/27 19:06:17 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#pragma once
 
 #include "AMateria.hpp"
 

@@ -6,15 +6,17 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/27 18:12:03 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/27 18:24:37 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/27 19:36:55 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#pragma once
+
 #include "IMateriaSource.hpp"
 
-class MateriaSource : public IMateriaSrouce {
+class MateriaSource : public IMateriaSource {
 	private:
-		AMateria*	src[4];
+		AMateria*	src[];
 	
 	public:
 		MateriaSource(void);
@@ -25,4 +27,7 @@ class MateriaSource : public IMateriaSrouce {
 
 		void		learnMateria(AMateria*);
 		AMateria*	createMateria(std::string const & type);
-}
+
+		void		cloneSource(MateriaSource const & copy);
+
+};

@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/27 15:24:31 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/27 17:45:47 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/27 18:53:47 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ Character::Character(std::string name) : _name(name) {
 
 Character::Character(Character const & copy) {
 	std::cout << "Copy Character constructor called." << std::endl;
-	*this = copy;
+	this->_name = copy.getName();
+	this->cloneSlot(copy);
 }
 
 Character::~Character(void) {
@@ -41,7 +42,9 @@ std::string const &	Character::getName(void) const {
 
 void	Character::equip(AMateria* m) {
 	int	i;
-	for (i = 0; this->_inventorySlot[i] && i < 4; i++);
+	for (i = 0; i < 4 && this->_inventorySlot[i]; i++);
+	if (i < 4 && this->_inventorySlot[3])
+		return ;
 	this->_inventorySlot[i] = m;
 }
 

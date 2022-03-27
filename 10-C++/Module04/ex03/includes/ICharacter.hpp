@@ -6,11 +6,16 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/27 12:20:07 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/27 15:25:32 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/27 19:06:47 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "AMateria.hpp"
+#pragma once
+
+#include <iostream>
+#include <string>
+
+class AMateria;
 
 class ICharacter {
 	public:
