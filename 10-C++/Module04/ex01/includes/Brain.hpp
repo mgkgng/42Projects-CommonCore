@@ -6,15 +6,16 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 22:43:58 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/26 22:47:41 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/27 12:00:53 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
-#include "Animal.hpp"
+#include <iostream>
+#include <string>
 
-class	Brain : public Animal {
+class	Brain {
 	
 	public:
 		Brain(void);

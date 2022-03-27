@@ -1,8 +1,13 @@
-SRCS =	main.cpp \
+SRCS =	srcs/main.cpp \
+		srcs/AMateria.cpp \
+		srcs/Ice.cpp \
+		srcs/Cure.cpp \
+		srcs/Character.cpp \
+		srcs/MateriaSource.cpp
 
 OBJS =	${SRCS:.cpp=.o}
 
-NAME =	
+NAME =	Character
 
 INCLUDE = ./includes/
 

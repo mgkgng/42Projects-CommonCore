@@ -1,31 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   WrongAnimal.hpp                                    :+:      :+:    :+:   */
+/*   ICharacter.hpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/26 22:00:25 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/26 22:15:34 by min-kang         ###   ########.fr       */
+/*   Created: 2022/03/27 12:20:07 by min-kang          #+#    #+#             */
+/*   Updated: 2022/03/27 12:23:06 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#pragma once
+#include "AMateria.hpp"
 
-#include <iostream>
-#include <string>
-
-class	WrongAnimal {
-	
+class ICharacter {
 	public:
-		WrongAnimal(void);
-		WrongAnimal(WrongAnimal const &);
-		~WrongAnimal(void);
+		virtual ~ICharacter(void) {}
 		
-		WrongAnimal& operator=(WrongAnimal const &);
-
-		std::string getType(void) const;
-
-	protected:
-		std::string	_type;
-};
+		virtual std::string const &	getName() const = 0;
+		virtual void equip(AMateria* m) = 0;
+		virtual void unequip(int idx) = 0;
+		virtual void use(int idx, ICharacter& target) = 0;
+}
