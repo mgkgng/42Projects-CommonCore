@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   AMateria.hpp                                       :+:      :+:    :+:   */
+/*   main.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/27 12:03:45 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/27 16:26:57 by min-kang         ###   ########.fr       */
+/*   Created: 2022/03/26 18:37:23 by min-kang          #+#    #+#             */
+/*   Updated: 2022/03/26 18:37:37 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,3 @@
 
 #include <iostream>
 #include <string>
-
-class AMateria {
-	
-	protected:
-		std::string	_type;
-
-	public:
-		AMateria(void);
-		AMateria(std::string const & type);
-		AMateria(AMateria const & copy);
-		~AMateria(void);
-
-		AMateria& operator=(AMateria const &);
-
-		std::string const & getType() const;
-
-		virtual AMateria*	clone() const = 0;
-		virtual void		use(ICharacter& target);
-};

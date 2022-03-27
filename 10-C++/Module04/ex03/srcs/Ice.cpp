@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/27 12:09:54 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/27 12:18:54 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/27 16:59:04 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,4 +33,8 @@ Ice& Ice::operator=(Ice const & right) {
 
 AMateria*	Ice::clone(void) const {
 	return (new Ice());
+}
+
+void		Ice::use(ICharacter& target) {
+	std::cout << "* shoots an ice bolt at " << target.getName() << " *" << std::endl;
 }

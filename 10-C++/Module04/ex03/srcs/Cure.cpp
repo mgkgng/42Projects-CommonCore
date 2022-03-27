@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/27 12:16:04 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/27 12:19:43 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/27 15:22:54 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,4 +33,8 @@ Cure& Cure::operator=(Cure const & right) {
 
 AMateria*	Cure::clone(void) const {
 	return (new Cure());
+}
+
+void	Cure::use(ICharacter& target) {
+	std::cout << "* heals " << target.getName() << "'s wounds *" << std::endl;
 }

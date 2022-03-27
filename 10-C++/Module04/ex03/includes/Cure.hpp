@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/27 12:12:54 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/27 12:18:39 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/27 15:21:56 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,4 +27,4 @@ class Cure : public AMateria {
 
 		AMateria*	clone() const;
 		void		use(ICharacter& target);
-}
+};
