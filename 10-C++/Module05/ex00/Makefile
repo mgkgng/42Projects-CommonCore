@@ -1,5 +1,5 @@
-SRCS =	srcs/main.cpp \
-		srcs/Bureaucrat
+SRCS =	main.cpp \
+		Bureaucrat.cpp
 
 OBJS =	${SRCS:.cpp=.o}
 
