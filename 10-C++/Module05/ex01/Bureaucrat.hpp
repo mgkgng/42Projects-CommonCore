@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/27 23:42:33 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/27 23:42:34 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/28 20:11:18 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,14 +38,14 @@ class Bureaucrat {
 		class GradeTooHighException : public std::exception {
 			public:
 				const char *what() const throw() {
-					return ("ERROR: GRADE TOO HIGH");
+					return ("ERROR-BUREAUCRAT: GRADE TOO HIGH");
 				}
 		};
 		
 		class GradeTooLowException : public std::exception {
 			public:
 				const char *what() const throw() {
-					return ("ERROR: GRADE TOO LOW");
+					return ("ERROR-BUREAUCRAT: GRADE TOO LOW");
 				}
 		};
 };

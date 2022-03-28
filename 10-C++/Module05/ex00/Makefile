@@ -14,7 +14,7 @@ CPPFLAG =	-std=c++98
 all:	${NAME}
 
 %.o:	%.cpp 
-		clang++ ${CLFAGS} ${CPPFLAG} -I${INCLUDE} -c $< -o $@
+		clang++ ${CFLAGS} ${CPPFLAG} -I${INCLUDE} -c $< -o $@
 
 ${NAME}:	${OBJS}
 			clang++ ${CFLAGS} ${CPPFLAG} -o ${NAME} ${OBJS}

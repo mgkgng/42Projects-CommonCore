@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 01:38:42 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/28 20:08:03 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/28 20:29:58 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,20 @@ Form& Form::operator=(Form const & right) {
 }
 
 std::ostream& operator<<(std::ostream& out, Form const & one) {
-	out << one.getName() << ", Form grade " << one.getGrade() << ".";
+	out	<< "Form < " << one.getName() << " >, grade required to sign : " << one.getGrade() << "."
+		<< ", grade required to execute: " << one.getExecuteGrade() << ", signed: ";
+	if (one.getSigned())
+		out << "yes";
+	else
+		out << "no";
 	return (out);
+}
+
+void	Form::beSigned(Bureaucrat& b) {
+	if (b.getGrade() <= this->_signGrade) {
+		this->_signed = true;
+	} else
+		throw Form::GradeTooHighException();
 }
 
 std::string	const Form::getName() const {
@@ -50,4 +62,10 @@ bool Form::getSigned() const {
 	return (this->_signed);
 }
 
-unsigned int Form::getSignGrade() const
+unsigned int const Form::getSignGrade() const {
+	return (this->_signGrade);
+}
+
+unsigned int const Form::getExecuteGrade() const {
+	return (this->_executeGrade);
+}
