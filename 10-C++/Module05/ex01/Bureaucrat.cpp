@@ -6,11 +6,12 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/27 23:42:22 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/27 23:42:23 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/28 23:15:32 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
+#include "Form.hpp"
 
 Bureaucrat::Bureaucrat(void) : _name("(default)") {
 	std::cout << "Default Bureaucrat constructor called." << std::endl;
@@ -67,4 +68,12 @@ void	Bureaucrat::DownGrade(void) {
 		return ;
 	}
 	this->_grade++;
+}
+
+void	Bureaucrat::signForm(Form& form) {
+	form.beSigned(*this);
+	if (this->_grade <= form.getSignGrade())
+		std::cout << this->_name << " signed " << form.getName() << std::endl;
+	else
+		std::cout << this->_name << " couldn't sign " << form.getName() << " because of low level" << std::endl;
 }

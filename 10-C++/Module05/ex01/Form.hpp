@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/27 23:42:58 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/28 20:24:26 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/28 23:08:08 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ class Form {
 
 		Form& operator=(Form const &);
 
-		void	beSigned(Bureaucrat &);
+		void	beSigned(Bureaucrat const &);
 
 		std::string	const	getName();
 		bool				getSigned();
