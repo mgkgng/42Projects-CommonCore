@@ -6,24 +6,26 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/27 23:42:58 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/27 23:47:58 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/28 01:43:23 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
 #include <string>
 #include <stdexcept>
+#include "Bureaucrat"
 
 class Form {
+	
 	private:
-		std::string constant _name;
+		std::string const _name;
 		bool _signed;
 		unsigned int const _signGrade;
 		unsigned int const _executeGrade;
 		
 	public:
 		Form();
-		Form(std::string, );
+		Form(std::string name);
 		Form(Form const &);
 		~Form();
 
@@ -31,6 +33,11 @@ class Form {
 
 		void beSigned(Bureaucrat const &);
 		void signForm();
+
+		void	getName();
+		void	getSigned();
+		void	getSignGrade();
+		void	getExecuteGrade();
 
 	class GradeTooHighException : public std::exception {
 		
