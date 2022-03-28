@@ -6,11 +6,9 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 23:59:57 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/26 22:57:14 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/28 14:03:16 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include "main.hpp"
 
 #include "DiamondTrap.hpp"
 

@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 22:22:40 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/26 20:53:35 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/28 14:04:09 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ DiamondTrap::DiamondTrap(std::string const n) : ClapTrap(n + "_clap_name"), Scav
 	this->_energyPoints = 50;
 	this->_attackDamage = 30;
 
-	std::cout	<< "DiamondTrap default constructor activated." << std::endl;
+	std::cout	<< "DiamondTrap name constructor activated." << std::endl;
 }
 
 DiamondTrap::DiamondTrap(DiamondTrap const & copy) : ClapTrap(copy), ScavTrap(copy), FragTrap(copy) {
