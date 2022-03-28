@@ -6,15 +6,16 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 21:47:44 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/26 21:58:16 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/28 18:50:19 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Dog.hpp"
 
 Dog::Dog(void) : Animal() {
-	this->_type = "Dog";
 	std::cout << "Default Dog constructor called." << std::endl;
+	this->_type = "Dog";
+	this->_brain = new Brain();
 }
 
 Dog::Dog(Dog const & src) : Animal(src) {
@@ -24,13 +25,20 @@ Dog::Dog(Dog const & src) : Animal(src) {
 
 Dog::~Dog(void) {
 	std::cout << "Dog destructor called." <<std::endl;
+	delete this->_brain;
 }
 
 Dog& Dog::operator=(Dog const & right) {
 	this->_type = right._type;
+	delete this->_brain;
+	this->_brain = new Brain(*right._brain);
 	return (*this);
 }
 
 void	Dog::makeSound(void) const {
 	std::cout << "Wouf wouf" << std::endl;
+}
+
+Brain*	Dog::getBrain() const {
+	return (this->_brain);
 }

@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/27 18:22:37 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/27 19:50:50 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/28 19:33:46 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,11 @@ AMateria*	MateriaSource::createMateria(std::string const & type) {
 void	MateriaSource::cloneSource(MateriaSource const & copy) {
 	int	i;
 	for (i = 0; i < 4; i++) {
-		delete this->src[i];
-		this->src[i] = copy.src[i]->clone();
+		if (!copy.src[i])
+			this->src[i] = NULL;
+		else {
+			delete this->src[i];
+			this->src[i] = copy.src[i]->clone();
+		}
 	}
 }

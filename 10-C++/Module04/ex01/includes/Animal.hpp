@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 21:42:45 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/26 22:23:55 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/28 18:10:36 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ class	Animal {
 	public:
 		Animal(void);
 		Animal(Animal const &);
-		~Animal(void);
+		virtual ~Animal(void);
 		
 		Animal& operator=(Animal const &);
 
@@ -30,4 +30,5 @@ class	Animal {
 
 	protected:
 		std::string	_type;
+
 };

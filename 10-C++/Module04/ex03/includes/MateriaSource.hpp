@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/27 18:12:03 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/27 19:36:55 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/28 18:58:18 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 class MateriaSource : public IMateriaSource {
 	private:
-		AMateria*	src[];
+		AMateria*	src[4];
 	
 	public:
 		MateriaSource(void);

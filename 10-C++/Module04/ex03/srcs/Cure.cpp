@@ -6,20 +6,22 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/27 12:16:04 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/27 15:22:54 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/28 19:23:34 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Cure.hpp"
 
-Cure::Cure(void) {
+Cure::Cure(void) : AMateria("cure") {
 	std::cout << "Default Cure constructor called." << std::endl;
-	this->_type = "Cure";
 }
 
-Cure::Cure(Cure const & src) {
+Cure::Cure(std::string const & type) : AMateria(type) {
+	std::cout << "Type Cure constructor called." << std::endl;
+}
+
+Cure::Cure(Cure const & src) : AMateria(src) {
 	std::cout << "Copy Cure constructor called." << std::endl;
-	*this = src;
 }
 
 Cure::~Cure(void) {
@@ -32,7 +34,7 @@ Cure& Cure::operator=(Cure const & right) {
 }
 
 AMateria*	Cure::clone(void) const {
-	return (new Cure());
+	return (new Cure(*this));
 }
 
 void	Cure::use(ICharacter& target) {

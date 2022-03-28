@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 01:38:42 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/28 01:43:28 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/28 20:08:03 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,12 @@ std::ostream& operator<<(std::ostream& out, Form const & one) {
 	return (out);
 }
 
-std::string	const Form::getName(void) const {
+std::string	const Form::getName() const {
 	return (this->_name);
 }
 
-unsigned int Form::getGrade(void) const {
-	return (this->_grade);
+bool Form::getSigned() const {
+	return (this->_signed);
 }
+
+unsigned int Form::getSignGrade() const

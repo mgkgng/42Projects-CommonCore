@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/27 15:24:31 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/27 18:53:47 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/28 19:33:41 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,8 @@ void	Character::equip(AMateria* m) {
 }
 
 void	Character::unequip(int idx) {
+	if (idx < 0 || idx > 3)
+		return ;
 	this->_inventorySlot[idx] = NULL;
 }
 
@@ -59,7 +61,11 @@ void 	Character::use(int idx, ICharacter& target) {
 void	Character::cloneSlot(Character const & copy) {
 	int	i;
 	for (i = 0; i < 4; i++) {
-		delete this->_inventorySlot[i];
-		this->_inventorySlot[i] = copy._inventorySlot[i]->clone();
+		if (!copy._inventorySlot[i])
+			this->_inventorySlot[i] = NULL;
+		else {
+			delete this->_inventorySlot[i];
+			this->_inventorySlot[i] = copy._inventorySlot[i]->clone();
+		}
 	}
 }

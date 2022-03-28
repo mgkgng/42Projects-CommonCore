@@ -6,14 +6,18 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/27 12:07:00 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/27 12:08:57 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/28 19:25:59 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "AMateria.hpp"
 
-AMateria::AMateria(void) {
+AMateria::AMateria() {
 	std::cout << "Default Materia constructor called." << std::endl;
+}
+
+AMateria::AMateria(std::string const & type) : _type(type) {
+	std::cout << "Type Materia constructor called." << std::endl;
 }
 
 AMateria::AMateria(AMateria const & src) {
@@ -35,5 +39,5 @@ std::string	const & AMateria::getType(void) const {
 }
 
 void	AMateria::use(ICharacter& target) {
-	
+	std::cout << "not defined skill to ..." << target.getName() <<  "..." << std::endl;	
 }

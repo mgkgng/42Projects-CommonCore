@@ -6,13 +6,13 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 22:43:58 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/27 12:00:14 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/28 18:55:32 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
-#include "Animal.hpp"
+#include "AAnimal.hpp"
 
 class	Brain {
 	
@@ -22,7 +22,7 @@ class	Brain {
 		~Brain(void);
 		
 		Brain& operator=(Brain const &);
-		std::string* getIdeas(void);
+		std::string const & getIdea(int index) const;
 
 	private:
 		std::string	_ideas[100];

@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 16:39:32 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/26 22:26:03 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/28 19:00:09 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,4 +21,14 @@ int main() {
 
 	std::cout << j->getType() << " " << std::endl;
 	std::cout << i->getType() << " " << std::endl;
+
+	meta->makeSound();
+	i->makeSound();
+	j->makeSound();
+
+	delete meta;
+	delete j;
+	delete i;
+
+	return (0);
 }

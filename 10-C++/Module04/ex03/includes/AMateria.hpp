@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/27 12:03:45 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/27 19:09:56 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/28 19:25:03 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ class AMateria {
 		std::string	_type;
 
 	public:
-		AMateria(void);
+		AMateria();
 		AMateria(std::string const & type);
 		AMateria(AMateria const & copy);
 		virtual ~AMateria(void);

@@ -6,20 +6,22 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/27 12:09:54 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/27 16:59:04 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/28 19:24:38 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Ice.hpp"
 
-Ice::Ice(void) {
+Ice::Ice(void) : AMateria("ice") {
 	std::cout << "Default Ice constructor called." << std::endl;
-	this->_type = "ice";
 }
 
-Ice::Ice(Ice const & src) {
+Ice::Ice(std::string const & type) : AMateria(type) {
+	std::cout << "Type Ice constructor called." << std::endl;
+}
+
+Ice::Ice(Ice const & src) : AMateria(src) {
 	std::cout << "Copy Ice constructor called." << std::endl;
-	*this = src;
 }
 
 Ice::~Ice(void) {
@@ -32,7 +34,7 @@ Ice& Ice::operator=(Ice const & right) {
 }
 
 AMateria*	Ice::clone(void) const {
-	return (new Ice());
+	return (new Ice(*this));
 }
 
 void		Ice::use(ICharacter& target) {

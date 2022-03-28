@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 21:47:21 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/27 11:58:22 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/28 18:53:51 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ Cat::Cat(void) : AAnimal() {
 
 Cat::Cat(Cat const & src) : AAnimal(src) {
 	std::cout << "Copy Cat constructor called." << std::endl;
-	*this = src;
+	(*this) = src;
 }
 
 Cat::~Cat(void) {
@@ -30,9 +30,15 @@ Cat::~Cat(void) {
 
 Cat& Cat::operator=(Cat const & right) {
 	this->_type = right._type;
+	delete this->_brain;
+	this->_brain = new Brain(*right._brain);
 	return (*this);
 }
 
 void	Cat::makeSound(void) const {
 	std::cout << "Miaou miaou" << std::endl;
+}
+
+Brain*	Cat::getBrain() const {
+	return (this->_brain);
 }

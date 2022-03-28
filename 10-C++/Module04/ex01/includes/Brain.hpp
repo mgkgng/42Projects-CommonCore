@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 22:43:58 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/27 12:00:53 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/28 18:28:08 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ class	Brain {
 		~Brain(void);
 		
 		Brain& operator=(Brain const &);
-		std::string* getIdeas(void);
+		std::string const & getIdea(int index) const;
 
 	private:
 		std::string	_ideas[100];
