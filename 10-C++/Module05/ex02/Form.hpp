@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/27 23:42:58 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/29 01:53:48 by min-kang         ###   ########.fr       */
+/*   Created: 2022/03/29 01:51:30 by min-kang          #+#    #+#             */
+/*   Updated: 2022/03/29 01:59:04 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,16 +27,17 @@ class Form {
 		Form();
 		Form(std::string name);
 		Form(Form const &);
-		~Form();
+		virtual ~Form();
 
 		Form& operator=(Form const &);
 
 		void	beSigned(Bureaucrat const &);
+		virtual void execute(Bureaucrat const & executor) const = 0;
 
-		std::string	const	getName() const;
-		bool				getSigned() const;
-		unsigned int const	getSignGrade() const;
-		unsigned int const	getExecuteGrade() const;
+		std::string	const	getName();
+		bool				getSigned();
+		unsigned int const	getSignGrade();
+		unsigned int const	getExecuteGrade();
 
 	class GradeTooHighException : public std::exception {
 		public:
