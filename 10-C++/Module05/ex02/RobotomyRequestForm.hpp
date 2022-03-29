@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 01:57:26 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/29 18:38:25 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/29 19:39:01 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 #include <fstream>
 #include <cstdlib>
+#include <ctime>
 #include "Form.hpp"
 
 class RobotomyRequestForm : public Form {

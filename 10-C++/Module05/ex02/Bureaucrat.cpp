@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 15:54:22 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/29 18:58:43 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/29 19:27:51 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,13 @@ Bureaucrat::Bureaucrat() : _name("(default)") {
 	std::cout << "Default Bureaucrat constructor called." << std::endl;
 }
 
-Bureaucrat::Bureaucrat(std::string name, unsigned int grade) : _name(name) {
+Bureaucrat::Bureaucrat(std::string name, unsigned int grade) {
 	if (grade < 1)
 		throw Bureaucrat::GradeTooHighException();
 	if (grade > 150)
 		throw Bureaucrat::GradeTooLowException();
 	std::cout << "Grade Bureaucrat constructor called." << std::endl;
+	(std::string &) _name = name;
 	this->_grade = grade;
 }
 
@@ -79,9 +80,10 @@ void	Bureaucrat::signForm(Form& form) {
 }
 
 void	Bureaucrat::executeForm(Form const & form) {
-	form.execute(*this);
-	if (form.getSigned() == true && form.getSigned() >= this->_grade)
+	if (form.getSigned() == true && form.getExecGrade() >= this->_grade)
 		std::cout << this->_name << " executed " << form.getName() << std::endl;
 	else
 		std::cout << "THE FORM COULDN'T BE EXECUTED!!" << std::endl;
+	form.execute(*this);
+
 }

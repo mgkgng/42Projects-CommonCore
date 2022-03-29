@@ -6,17 +6,17 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 18:03:10 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/29 18:40:49 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/29 19:39:49 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "RobotomyRequestForm.hpp"
 
-RobotomyRequestForm::RobotomyRequestForm() : _target("default"), Form("RobotomyRequestForm", 72, 45) {
+RobotomyRequestForm::RobotomyRequestForm() : Form("RobotomyRequestForm", 72, 45), _target("default") {
 	std::cout << "Default RobotomyRequestForm constructor called." << std::endl;
 }
 
-RobotomyRequestForm::RobotomyRequestForm(std::string target) : _target(target), Form("RobotomyRequestForm", 72, 45) {
+RobotomyRequestForm::RobotomyRequestForm(std::string target) : Form("RobotomyRequestForm", 72, 45), _target(target) {
 	std::cout << "Name RobotomyRequestForm constructor called." << std::endl;
 }
 
@@ -48,8 +48,9 @@ void	RobotomyRequestForm::execute(Bureaucrat const & executor) const {
 		return ;
 	}
 	
-	int randNb = rand() % 10 + 1;
-	if (randNb % 2)
+	srand(time(NULL));
+	int randNb = rand() % 2;
+	if (randNb)
 		std::cout << "Drrrrrrr.... " << this->_target << " has been robotomized..." << std::endl;
 	else
 		std::cout << "....ROBOTOMY FAILED." << std::endl;

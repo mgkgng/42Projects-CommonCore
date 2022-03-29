@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 01:54:04 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/29 18:55:52 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/29 19:18:33 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	Form::beSigned(Bureaucrat const & b) {
 	if (b.getGrade() <= this->_signGrade) {
 		this->_signed = true;
 	} else
-		throw Form::GradeTooHighException();
+		throw Form::GradeTooLowException();
 }
 
 std::string	const Form::getName() const {
