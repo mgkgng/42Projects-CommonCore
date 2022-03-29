@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 01:54:04 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/29 18:10:32 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/29 18:55:52 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ Form::Form(std::string name, unsigned int sg, unsigned int eg) : _name(name), _s
 	this->_signed = false;
 }
 
-Form::Form(Form const & copy) : _name(copy._name), _signGrade(copy._signGrade), _execGrade(copy._executeGrade) {
+Form::Form(Form const & copy) : _name(copy._name), _signGrade(copy._signGrade), _execGrade(copy._execGrade) {
 	std::cout << "Copy Form constructor called." << std::endl;
 	*this = copy;
 }
@@ -67,20 +67,4 @@ unsigned int Form::getSignGrade() const {
 
 unsigned int Form::getExecGrade() const {
 	return (this->_execGrade);
-}
-
-void	Form::setName(std::string name) {
-	(std::string &) this->_name = name;
-}
-
-void	Form::setSigned(bool sign) {
-	this->_signed = sign;
-}
-
-void	Form::setSignGrade(unsigned int grade) {
-	this->_signGrade = grade;
-}
-
-void	Form::setExecGrade(unsigned int grade) {
-	this->_execGrade = grade;
 }

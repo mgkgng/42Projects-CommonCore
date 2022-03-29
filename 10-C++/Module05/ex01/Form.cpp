@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 01:38:42 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/29 17:55:19 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/29 18:50:41 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ Form::Form(std::string name, unsigned int sg, unsigned int eg) : _name(name), _s
 	this->_signed = false;
 }
 
-Form::Form(Form const & copy) : _name(copy._name), _signGrade(copy._signGrade), _execGrade(copy._executeGrade) {
+Form::Form(Form const & copy) : _name(copy._name), _signGrade(copy._signGrade), _execGrade(copy._execGrade) {
 	std::cout << "Copy Form constructor called." << std::endl;
 	*this = copy;
 }
@@ -50,7 +50,7 @@ void	Form::beSigned(Bureaucrat const & b) {
 	if (b.getGrade() <= this->_signGrade) {
 		this->_signed = true;
 	} else
-		throw Form::GradeTooHighException();
+		throw Form::GradeTooLowException();
 }
 
 std::string	const Form::getName() const {

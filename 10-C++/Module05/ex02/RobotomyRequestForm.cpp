@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 18:03:10 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/29 18:18:20 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/29 18:40:49 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,4 +36,21 @@ RobotomyRequestForm& RobotomyRequestForm::operator=(RobotomyRequestForm const & 
 
 std::string	const RobotomyRequestForm::getTarget() const {
 	return (this->_target);
+}
+
+void	RobotomyRequestForm::execute(Bureaucrat const & executor) const {
+	if (this->getSigned() == false) {
+		throw RobotomyRequestForm::NotSignedException();
+		return ;
+	}
+	if (this->getExecGrade() < executor.getGrade()) {
+		throw RobotomyRequestForm::GradeTooLowException();
+		return ;
+	}
+	
+	int randNb = rand() % 10 + 1;
+	if (randNb % 2)
+		std::cout << "Drrrrrrr.... " << this->_target << " has been robotomized..." << std::endl;
+	else
+		std::cout << "....ROBOTOMY FAILED." << std::endl;
 }

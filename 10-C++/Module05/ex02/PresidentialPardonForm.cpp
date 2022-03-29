@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 01:58:21 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/29 18:18:31 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/29 18:40:37 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,4 +36,17 @@ PresidentialPardonForm& PresidentialPardonForm::operator=(PresidentialPardonForm
 
 std::string	const PresidentialPardonForm::getTarget() const {
 	return (this->_target);
+}
+
+void	PresidentialPardonForm::execute(Bureaucrat const & executor) const {
+	if (this->getSigned() == false) {
+		throw PresidentialPardonForm::NotSignedException();
+		return ;
+	}
+	if (this->getExecGrade() < executor.getGrade()) {
+		throw PresidentialPardonForm::GradeTooLowException();
+		return ;
+	}
+
+	std::cout << this->_target << " has been pardoned by Zaphod Beeblebrox" << std::endl;
 }

@@ -9,7 +9,6 @@ OBJS =	${SRCS:.cpp=.o}
 
 NAME =	Forms
 
-I
 CFLAGS	= -Wall -Wextra -Werror
 
 CPPFLAG =	-std=c++98

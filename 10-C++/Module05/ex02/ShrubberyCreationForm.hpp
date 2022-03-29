@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 01:56:52 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/29 18:30:02 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/29 19:01:23 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,5 +37,4 @@ class ShrubberyCreationForm : public Form {
 					return ("ERROR: NOT SIGNED");
 				}
 		};
-
 };

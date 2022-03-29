@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 01:51:30 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/29 18:10:20 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/29 18:56:00 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,6 @@ class Form {
 		bool				getSigned() const;
 		unsigned int	getSignGrade() const;
 		unsigned int	getExecGrade() const;
-
-		void	setName(std::string name);
-		void	setSigned(bool sign);
-		void	setSignGrade(unsigned int grade);
-		void	setExecGrade(unsigned int grade);
 
 	class GradeTooHighException : public std::exception {
 		public:
