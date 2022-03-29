@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/27 20:01:31 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/27 23:19:24 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/29 15:49:14 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,13 @@ Bureaucrat::Bureaucrat(void) : _name("(default)") {
 	std::cout << "Default Bureaucrat constructor called." << std::endl;
 }
 
-Bureaucrat::Bureaucrat(std::string name, unsigned int grade) : _name(name) {
-	std::cout << "Grade Bureaucrat constructor called." << std::endl;
+Bureaucrat::Bureaucrat(std::string name, unsigned int grade) {
 	if (grade < 1)
 		throw Bureaucrat::GradeTooHighException();
 	if (grade > 150)
 		throw Bureaucrat::GradeTooLowException();
+	std::cout << "Grade Bureaucrat constructor called." << std::endl;
+	(std::string &) this->_name = name;
 	this->_grade = grade;
 }
 

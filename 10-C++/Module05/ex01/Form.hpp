@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/27 23:42:58 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/29 01:53:48 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/29 14:25:28 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ class Form {
 		
 	public:
 		Form();
-		Form(std::string name);
+		Form(std::string name, unsigned int sg, unsigned int eg);
 		Form(Form const &);
 		~Form();
 

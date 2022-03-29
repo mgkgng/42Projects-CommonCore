@@ -6,11 +6,9 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 22:43:30 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/28 18:51:41 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/29 15:35:53 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include "Brain.hpp"
 
 #include "Brain.hpp"
 
