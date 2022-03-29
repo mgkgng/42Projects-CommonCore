@@ -5,8 +5,6 @@ OBJS =	${SRCS:.cpp=.o}
 
 NAME =	
 
-INCLUDE = ./includes/
-
 CFLAGS	= -Wall -Wextra -Werror
 
 CPPFLAG =	-std=c++98
