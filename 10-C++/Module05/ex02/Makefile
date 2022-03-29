@@ -9,8 +9,7 @@ OBJS =	${SRCS:.cpp=.o}
 
 NAME =	Forms
 
-INCLUDE = ./includes/
-
+I
 CFLAGS	= -Wall -Wextra -Werror
 
 CPPFLAG =	-std=c++98

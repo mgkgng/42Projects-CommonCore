@@ -6,23 +6,23 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 01:38:42 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/29 17:14:52 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/29 17:55:19 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Form.hpp"
 
-Form::Form(void) : _name("(default)"), _signGrade(1), _executeGrade(1) {
+Form::Form(void) : _name("(default)"), _signGrade(1), _execGrade(1) {
 	std::cout << "Default Form constructor called." << std::endl;
 	this->_signed = false;
 }
 
-Form::Form(std::string name, unsigned int sg, unsigned int eg) : _name(name), _signGrade(sg), _executeGrade(eg) {
+Form::Form(std::string name, unsigned int sg, unsigned int eg) : _name(name), _signGrade(sg), _execGrade(eg) {
 	std::cout << "Name Form constructor called." << std::endl;
 	this->_signed = false;
 }
 
-Form::Form(Form const & copy) : _name(copy._name), _signGrade(copy._signGrade), _executeGrade(copy._executeGrade) {
+Form::Form(Form const & copy) : _name(copy._name), _signGrade(copy._signGrade), _execGrade(copy._executeGrade) {
 	std::cout << "Copy Form constructor called." << std::endl;
 	*this = copy;
 }
@@ -35,13 +35,13 @@ Form& Form::operator=(Form const & right) {
 	(std::string &) this->_name = right._name;
 	this->_signed = right._signed;
 	this->_signGrade = right._signGrade;
-	this->_executeGrade = right._executeGrade;
+	this->_execGrade = right._execGrade;
 	return (*this);
 }
 
 std::ostream& operator<<(std::ostream& out, Form const & one) {
 	out	<< "Form < " << one.getName() << " >, grade required to sign : " << one.getSignGrade() << "."
-		<< ", grade required to execute: " << one.getExecuteGrade() << ", signed: ";
+		<< ", grade required to execute: " << one.getExecGrade() << ", signed: ";
 	(one.getSigned()) ? out << "yes" : out << "no";
 	return (out);
 }
@@ -65,6 +65,6 @@ unsigned int Form::getSignGrade() const {
 	return (this->_signGrade);
 }
 
-unsigned int Form::getExecuteGrade() const {
-	return (this->_executeGrade);
+unsigned int Form::getExecGrade() const {
+	return (this->_execGrade);
 }

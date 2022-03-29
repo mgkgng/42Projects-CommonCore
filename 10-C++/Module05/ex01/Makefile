@@ -6,8 +6,6 @@ OBJS =	${SRCS:.cpp=.o}
 
 NAME =	Bureaucrat
 
-INCLUDE = ./includes/
-
 CFLAGS	= -Wall -Wextra -Werror
 
 CPPFLAG =	-std=c++98
@@ -15,7 +13,7 @@ CPPFLAG =	-std=c++98
 all:	${NAME}
 
 %.o:	%.cpp 
-		clang++ ${CFLAGS} ${CPPFLAG} -I${INCLUDE} -c $< -o $@
+		clang++ ${CFLAGS} ${CPPFLAG} -c $< -o $@
 
 ${NAME}:	${OBJS}
 			clang++ ${CFLAGS} ${CPPFLAG} -o ${NAME} ${OBJS}

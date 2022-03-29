@@ -6,9 +6,11 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/27 23:42:58 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/29 17:15:09 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/29 18:03:50 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#pragma once
 
 #include <iostream>
 #include <string>
@@ -21,7 +23,7 @@ class Form {
 		std::string const _name;
 		bool _signed;
 		unsigned int _signGrade;
-		unsigned int _executeGrade;
+		unsigned int _execGrade;
 		
 	public:
 		Form();
@@ -36,7 +38,7 @@ class Form {
 		std::string	const	getName() const;
 		bool				getSigned() const;
 		unsigned int	getSignGrade() const;
-		unsigned int	getExecuteGrade() const;
+		unsigned int	getExecGrade() const;
 
 	class GradeTooHighException : public std::exception {
 		public:

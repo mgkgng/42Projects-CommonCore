@@ -6,21 +6,23 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 01:54:04 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/29 16:00:00 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/29 18:10:32 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Form.hpp"
 
-Form::Form(void) : _name("(default)"), _signGrade(1){
+Form::Form(void) : _name("(default)"), _signGrade(1), _execGrade(1) {
 	std::cout << "Default Form constructor called." << std::endl;
+	this->_signed = false;
 }
 
-Form::Form(std::string name) : _name(name) {
+Form::Form(std::string name, unsigned int sg, unsigned int eg) : _name(name), _signGrade(sg), _execGrade(eg) {
 	std::cout << "Name Form constructor called." << std::endl;
+	this->_signed = false;
 }
 
-Form::Form(Form const & copy) {
+Form::Form(Form const & copy) : _name(copy._name), _signGrade(copy._signGrade), _execGrade(copy._executeGrade) {
 	std::cout << "Copy Form constructor called." << std::endl;
 	*this = copy;
 }
@@ -30,24 +32,21 @@ Form::~Form(void) {
 }
 
 Form& Form::operator=(Form const & right) {
-	(std::string) this->_name = right._name;
+	(std::string &) this->_name = right._name;
 	this->_signed = right._signed;
-	(unsigned int &) this->_signGrade = right._signGrade;
-	(unsigned int &) this->_executeGrade = right._executeGrade;
+	this->_signGrade = right._signGrade;
+	this->_execGrade = right._execGrade;
 	return (*this);
 }
 
 std::ostream& operator<<(std::ostream& out, Form const & one) {
-	out	<< "Form < " << one.getName() << " >, grade required to sign : " << one.getGrade() << "."
-		<< ", grade required to execute: " << one.getExecuteGrade() << ", signed: ";
-	if (one.getSigned())
-		out << "yes";
-	else
-		out << "no";
+	out	<< "Form < " << one.getName() << " >, grade required to sign : " << one.getSignGrade() << "."
+		<< ", grade required to execute: " << one.getExecGrade() << ", signed: ";
+	(one.getSigned()) ? out << "yes" : out << "no";
 	return (out);
 }
 
-void	Form::beSigned(Bureaucrat& b) {
+void	Form::beSigned(Bureaucrat const & b) {
 	if (b.getGrade() <= this->_signGrade) {
 		this->_signed = true;
 	} else
@@ -62,10 +61,26 @@ bool Form::getSigned() const {
 	return (this->_signed);
 }
 
-unsigned int const Form::getSignGrade() const {
+unsigned int Form::getSignGrade() const {
 	return (this->_signGrade);
 }
 
-unsigned int const Form::getExecuteGrade() const {
-	return (this->_executeGrade);
+unsigned int Form::getExecGrade() const {
+	return (this->_execGrade);
+}
+
+void	Form::setName(std::string name) {
+	(std::string &) this->_name = name;
+}
+
+void	Form::setSigned(bool sign) {
+	this->_signed = sign;
+}
+
+void	Form::setSignGrade(unsigned int grade) {
+	this->_signGrade = grade;
+}
+
+void	Form::setExecGrade(unsigned int grade) {
+	this->_execGrade = grade;
 }
