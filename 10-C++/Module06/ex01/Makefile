@@ -1,11 +1,8 @@
 SRCS =	main.cpp \
 
-
 OBJS =	${SRCS:.cpp=.o}
 
-NAME =	
-
-INCLUDE = ./includes/
+NAME =	Serialization
 
 CFLAGS	= -Wall -Wextra -Werror
 
@@ -14,7 +11,7 @@ CPPFLAG =	-std=c++98
 all:	${NAME}
 
 %.o:	%.cpp 
-		clang++ ${CLFAGS} ${CPPFLAG} -I${INCLUDE} -c $< -o $@
+		clang++ ${CLFAGS} ${CPPFLAG} -c $< -o $@
 
 ${NAME}:	${OBJS}
 			clang++ ${CFLAGS} ${CPPFLAG} -o ${NAME} ${OBJS}

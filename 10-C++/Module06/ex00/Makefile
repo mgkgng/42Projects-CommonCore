@@ -1,5 +1,6 @@
 SRCS =	main.cpp \
-		check.cpp
+		check.cpp \
+		convert.cpp
 
 OBJS =	${SRCS:.cpp=.o}
 
