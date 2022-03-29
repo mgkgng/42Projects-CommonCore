@@ -6,34 +6,11 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 23:22:59 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/29 23:37:13 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/30 00:31:32 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
-
-bool	check_displayable(std::string s) {
-	for (int i = 0; i < s.length(); i++)
-		if (!isprint(s.at(i)))
-			return (false);
-	return (true);
-}
-
-bool	is_char(std::string s) {
-	return (s.length() == 1 && !isdigit(s.at(0))) ? true : false;
-}
-
-bool	is_int(std::string s) {
-	
-}
-
-bool	is_float(std::string s) {
-	
-}
-
-bool	is_double(std::string s) {
-	
-}
+#include "check.hpp"
 
 int	main(int argc, char **argv) {
 	
@@ -49,6 +26,22 @@ int	main(int argc, char **argv) {
 
 	if (!check_displayable(arg)) {
 		std::cerr << "Error: Non displayable character found." << std::endl;
+		return (3);
 	}
-	if (is_char(arg))
+
+	std::cout << is_double(arg) << std::endl;
+	/*
+	if (is_char(arg)) {
+		
+	} else if (is_int(arg)) {
+		
+	} else if (is_float(arg)) {
+		
+	} else if (is_double(arg)) {
+		
+	} else {
+		std::cerr << "Error: type does not match." << std::endl;
+		return (4);
+	}*/
+	return (0);
 }
