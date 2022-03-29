@@ -6,13 +6,13 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 01:54:04 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/29 01:54:07 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/29 16:00:00 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Form.hpp"
 
-Form::Form(void) : _name("(default)") {
+Form::Form(void) : _name("(default)"), _signGrade(1){
 	std::cout << "Default Form constructor called." << std::endl;
 }
 
@@ -32,8 +32,8 @@ Form::~Form(void) {
 Form& Form::operator=(Form const & right) {
 	(std::string) this->_name = right._name;
 	this->_signed = right._signed;
-	(unsigned int) this->_signGrade = right._signGrade;
-	(unsigned int) this->_executeGrade = right._executeGrade;
+	(unsigned int &) this->_signGrade = right._signGrade;
+	(unsigned int &) this->_executeGrade = right._executeGrade;
 	return (*this);
 }
 

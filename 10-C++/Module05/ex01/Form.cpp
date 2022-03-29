@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 01:38:42 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/29 15:43:02 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/29 17:14:52 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ Form::Form(std::string name, unsigned int sg, unsigned int eg) : _name(name), _s
 	this->_signed = false;
 }
 
-Form::Form(Form const & copy) {
+Form::Form(Form const & copy) : _name(copy._name), _signGrade(copy._signGrade), _executeGrade(copy._executeGrade) {
 	std::cout << "Copy Form constructor called." << std::endl;
 	*this = copy;
 }
@@ -32,24 +32,21 @@ Form::~Form(void) {
 }
 
 Form& Form::operator=(Form const & right) {
-	(std::string) this->_name = right._name;
+	(std::string &) this->_name = right._name;
 	this->_signed = right._signed;
-	(unsigned int &) this->_signGrade = right._signGrade;
-	(unsigned int &) this->_executeGrade = right._executeGrade;
+	this->_signGrade = right._signGrade;
+	this->_executeGrade = right._executeGrade;
 	return (*this);
 }
 
 std::ostream& operator<<(std::ostream& out, Form const & one) {
-	out	<< "Form < " << one.getName() << " >, grade required to sign : " << one.getGrade() << "."
+	out	<< "Form < " << one.getName() << " >, grade required to sign : " << one.getSignGrade() << "."
 		<< ", grade required to execute: " << one.getExecuteGrade() << ", signed: ";
-	if (one.getSigned())
-		out << "yes";
-	else
-		out << "no";
+	(one.getSigned()) ? out << "yes" : out << "no";
 	return (out);
 }
 
-void	Form::beSigned(Bureaucrat& b) {
+void	Form::beSigned(Bureaucrat const & b) {
 	if (b.getGrade() <= this->_signGrade) {
 		this->_signed = true;
 	} else
@@ -64,10 +61,10 @@ bool Form::getSigned() const {
 	return (this->_signed);
 }
 
-unsigned int const Form::getSignGrade() const {
+unsigned int Form::getSignGrade() const {
 	return (this->_signGrade);
 }
 
-unsigned int const Form::getExecuteGrade() const {
+unsigned int Form::getExecuteGrade() const {
 	return (this->_executeGrade);
 }
