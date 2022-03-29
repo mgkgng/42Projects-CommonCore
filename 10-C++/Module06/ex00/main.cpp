@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 23:22:59 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/30 00:31:32 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/30 00:41:45 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,10 @@ int	main(int argc, char **argv) {
 		return (3);
 	}
 
-	std::cout << is_double(arg) << std::endl;
-	/*
+	bool	*f1[4](std::string) = {&is_char, &is_int, &is_float, &is_double};
+	void	*f2[4]
 	if (is_char(arg)) {
-		
+	
 	} else if (is_int(arg)) {
 		
 	} else if (is_float(arg)) {

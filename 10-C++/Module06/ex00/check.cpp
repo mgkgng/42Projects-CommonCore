@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 23:44:41 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/30 00:31:11 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/30 00:38:01 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,9 @@ bool	is_char(std::string s) {
 }
 
 bool	is_int(std::string s) {
+	if (s == "inff" || s == "-inff" || s == "nanf")
+		return (true);
+
 	int i = (s.at(0) == '-') ? 1 : 0;
 
 	while (i < s.length())
@@ -38,6 +41,9 @@ bool	is_int(std::string s) {
 }
 
 bool	is_float(std::string s) {
+	if (s == "inf" || s == "-inf" || s == "nan")
+		return (true);
+
 	int i = (s.at(0) == '-') ? 1 : 0;
 	
 	if (s.at(s.length() - 1) != 'f' || s.find('.') == std::string::npos)
