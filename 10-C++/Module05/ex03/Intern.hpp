@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 19:46:23 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/29 20:19:22 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/30 12:27:57 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,10 @@ class Intern {
 
 		Form*	makeForm(std::string fName, std::string target);
 
-	private:
-		Form*	makeShruberry(std::string target) const;
-		Form*	makeRobotomy(std::string target) const;
-		Form*	makePresident(std::string taget) const;
+		class NoFormMatch : public std::exception {
+			public:
+				const char *what() const throw() {
+					return ("DOES NOT MATCH THE NAME FORM");
+				}
+		};
 };

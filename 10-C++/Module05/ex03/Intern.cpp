@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 19:51:06 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/29 20:22:52 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/30 12:32:00 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,29 +26,25 @@ Intern::~Intern(void) {
 }
 
 Intern & Intern::operator=(Intern const & right) {
+	(void) right;
 	return (*this);
 }
 
 Form*	Intern::makeForm(std::string fName, std::string target) {
 	std::string fType[3] = {"shrubbery creation", "robotomy request", "president pardon"};
-	Form* *(Intern::*Intern::f[3])(std::string target) = {&Intern::makeShruberry, &Intern::makeRobotomy, &Intern::makePresident};
 	
 	for (int i = 0; i < 3; i++) {
 		if (fName == fType[i]) {
 			std::cout << "Intern creates " << fName << std::endl;
-			return (this->f[3])(target);
+			switch (i) {
+				case 0:
+					return (new ShrubberyCreationForm(target));
+				case 1:
+					return (new RobotomyRequestForm(target));
+				case 2:
+					return (new PresidentialPardonForm(target));
+			}
 		}
 	}
-}
-
-Form*	Intern::makeShruberry(std::string target) const {
-	return (new ShrubberyCreationForm(target));
-}
-
-Form*	Intern::makeRobotomy(std::string target) const {
-	return (new RobotomyRequestForm(target));
-}
-
-Form*	Intern::makePresident(std::string target) const {
-	return (new PresidentialPardonForm(target));
+	throw Intern::NoFormMatch();
 }
