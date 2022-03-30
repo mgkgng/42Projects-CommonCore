@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 23:44:41 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/30 00:38:01 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/30 11:38:31 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ bool	is_double(std::string s) {
 		if (!isdigit(s.at(i)))
 			return (false);
 	try {
-		std::stof(s);
+		std::stod(s);
 	} catch (std::out_of_range &e) {
 		return (false);
 	}
