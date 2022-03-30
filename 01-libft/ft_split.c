@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/18 17:33:35 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/01 18:36:12 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/30 14:55:18 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ char	**ft_split(char const *s, char c)
 			s++;
 		start = s;
 		len = 0;
-		while (*s && *s != c && len++ != -1)
+		while (*s && *s != c && len++)
 			s++;
 		if (*(s - 1) != c)
 			res[i++] = ft_substr(start, 0, len);
