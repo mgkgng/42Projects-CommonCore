@@ -6,20 +6,16 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/30 01:31:02 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/30 01:34:37 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/30 21:47:40 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
 #include "Base.hpp"
+#include <iostream>
 
 class B : public Base {
-	
 	public:
-		B();
-		B(B const &);
-		~B();
-
-		B& operator=(B const &);
+		~B() {};
 };

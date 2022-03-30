@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/30 01:28:32 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/30 01:34:29 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/30 21:45:09 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,5 @@
 
 class Base {
 	public:
-		virtual ~Base();
-}
+		virtual ~Base() {};
+};
