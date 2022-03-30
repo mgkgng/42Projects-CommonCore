@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 23:22:59 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/30 18:53:43 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/30 23:17:53 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ int	main(int argc, char **argv) {
 
 	try {
 		Scalar scalar(arg);
+		std::cout << scalar;
 		
 	} catch (std::exception &e) {
 		std::cerr << e.what() << std::endl;

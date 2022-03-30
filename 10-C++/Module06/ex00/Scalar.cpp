@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/30 15:38:43 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/30 19:40:21 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/30 23:33:12 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,12 +50,8 @@ Scalar& Scalar::operator=(Scalar const & right) {
 	return (*this);
 }
 
-std::string Scalar::getArg() const {
-	return (this->_arg);
-}
-
 bool	Scalar::is_displayable(std::string s) {
-	for (int i = 0; i < s.length(); i++)
+	for (size_t i = 0; i < s.length(); i++)
 		if (!isprint(s.at(i)))
 			return (false);
 	return (true);
@@ -69,7 +65,7 @@ bool	Scalar::is_int(std::string s) {
 	if (s == "inff" || s == "-inff" || s == "nanf")
 		return (true);
 
-	int i = (s.at(0) == '-') ? 1 : 0;
+	size_t i = (s.at(0) == '-') ? 1 : 0;
 
 	while (i < s.length())
 		if (!isdigit(s.at(i++)))
@@ -86,7 +82,7 @@ bool	Scalar::is_float(std::string s) {
 	if (s == "inf" || s == "-inf" || s == "nan")
 		return (true);
 
-	int i = (s.at(0) == '-') ? 1 : 0;
+	size_t i = (s.at(0) == '-') ? 1 : 0;
 	
 	if (s.at(s.length() - 1) != 'f' || s.find('.') == std::string::npos)
 		return (false);
@@ -105,7 +101,7 @@ bool	Scalar::is_float(std::string s) {
 }
 
 bool	Scalar::is_double(std::string s) {
-	int i = (s.at(0) == '-') ? 1 : 0;
+	size_t i = (s.at(0) == '-') ? 1 : 0;
 	
 	if (s.find('.') == std::string::npos)
 		return (false);
@@ -130,10 +126,16 @@ std::string	Scalar::to_char() {
 			return ("impossible");
 	
 	try {
-		char c = static_cast<char>(std::stoi(this->_arg));
-		return (isprint(c)) ? "'" + std::to_string(c) + "'" : "Non displayable";
-	} catch (std::bad_cast &bc) {
-		std::cout << "Error, bad cast" << std::endl;
+		int n = std::stoi(this->_arg);
+		if (!(n >= 0 && n <= 255))
+			return ("impossible");
+		char c = static_cast<char>(n);
+		if (isprint(c))
+			return ("'" + std::to_string(c) + "'");
+		else
+			return ("Non displayable");
+	} catch (std::out_of_range &e) {
+		return ("impossible");
 	}
 }
 
@@ -143,9 +145,9 @@ std::string	Scalar::to_int() {
 			return ("impossible");
 
 	try {
-		return (std::to_string(std::stoi(this->_arg)));
-	} catch (std::bad_cast &bc) {
-		std::cout << "Error, bad cast" << std::endl;
+		return std::to_string(std::stoi(this->_arg));
+	} catch (std::out_of_range &e) {
+		return "impossible";
 	}
 
 }
@@ -153,26 +155,28 @@ std::string	Scalar::to_int() {
 std::string	Scalar::to_float() {
 	try {
 		return (std::to_string(std::stof(this->_arg)));
-	} catch (std::bad_cast &bc) {
-		std::cout << "Error, bad cast" << std::endl;
+	} catch (std::out_of_range &e) {
+		return "impossible";
 	}
 }
 
 std::string	Scalar::to_double() {
 	try {
 		return (std::to_string(std::stod(this->_arg)));
-	} catch (std::bad_cast &bc) {
-		std::cout << "Error, bad cast" << std::endl;
+	} catch (std::out_of_range &e) {
+		return "impossible";
 	}
 }
 
-std::string Scalar::getStr(int i) const {
+std::string Scalar::getStr(int i) {
 	std::string (Scalar::*func[4])() = {&Scalar::to_char, &Scalar::to_int, &Scalar::to_float, &Scalar::to_double};
-	return (this->*func[i])();
+	return ((this->*func[i])());
 }
 
-std::ostream& operator<<(std::ostream& out, Scalar const & scalar) {
+std::ostream& operator<<(std::ostream& out, Scalar & scalar) {
 	std::string	type[4] = {"char", "int", "float", "double"};
-	for (int i = 0; i < 4; i++)
-		std::cout << type[i] << ": " << scalar.getStr(i) << std::endl;
+	for (int i = 0; i < 4; i++) {
+		out << type[i] << ": " << std::fixed << std::setprecision(2) << scalar.getStr(i) << std::endl;
+	}
+	return (out);
 }

@@ -6,13 +6,13 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/30 15:14:17 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/30 19:39:45 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/30 23:21:32 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
 #include <string>
-
+#include <iomanip>
 
 class Scalar {
 	
@@ -38,9 +38,7 @@ class Scalar {
 		std::string	to_float();
 		std::string	to_double();
 
-		std::string	getStr(int i) const;
-
-		std::string getArg() const;
+		std::string	getStr(int i);
 
 		class NotDisplayable : public std::exception {
 			public:
@@ -57,4 +55,4 @@ class Scalar {
 		};
 };
 
-std::ostream& operator<<(std::ostream& out, Scalar const &);
+std::ostream& operator<<(std::ostream& out, Scalar &);
