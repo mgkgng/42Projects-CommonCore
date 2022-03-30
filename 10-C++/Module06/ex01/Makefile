@@ -1,4 +1,6 @@
 SRCS =	main.cpp \
+		serialization.cpp \
+		Data.cpp
 
 OBJS =	${SRCS:.cpp=.o}
 
@@ -11,7 +13,7 @@ CPPFLAG =	-std=c++98
 all:	${NAME}
 
 %.o:	%.cpp 
-		clang++ ${CLFAGS} ${CPPFLAG} -c $< -o $@
+		clang++ ${CFLAGS} ${CPPFLAG} -c $< -o $@
 
 ${NAME}:	${OBJS}
 			clang++ ${CFLAGS} ${CPPFLAG} -o ${NAME} ${OBJS}

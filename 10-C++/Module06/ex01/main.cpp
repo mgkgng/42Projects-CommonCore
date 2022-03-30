@@ -6,13 +6,20 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/30 01:19:20 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/30 01:26:59 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/30 20:04:13 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "serialization.hpp"
 
-int	main(int argc, int argv) {
+int	main() {
+	
+	Data*		a = new Data(6);
+	uintptr_t	b = serialize(a);
+
+	std::cout << a << std::endl;
+	std::cout << serialize(a) << std::endl;
+	std::cout << deserialize(b) << std::endl;
 	
 	return (0);
 }

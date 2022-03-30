@@ -1,21 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   serialization.cpp                                  :+:      :+:    :+:   */
+/*   Data.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/30 01:25:10 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/30 19:54:38 by min-kang         ###   ########.fr       */
+/*   Created: 2022/03/30 19:55:45 by min-kang          #+#    #+#             */
+/*   Updated: 2022/03/30 19:57:19 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "serialization.hpp"
+#pragma once
 
-uintptr_t	serialize(Data *ptr) {
-	return (reinterpret_cast<uintptr_t>(ptr));
-}
+#include <iostream>
+#include <string>
 
-Data*	deserialize(uintptr_t raw) {
-	return (reinterpret_cast<Data *>(raw));
-}
+struct Data {
+	
+	private:
+		int			wtf;
+	
+	public:
+		Data();
+		Data(int);
+		Data(Data const &);
+		~Data();
+
+		Data& operator=(Data const &);
+	
+};
