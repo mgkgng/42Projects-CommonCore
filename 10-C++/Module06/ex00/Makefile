@@ -1,6 +1,5 @@
 SRCS =	main.cpp \
-		check.cpp \
-		convert.cpp
+		Scalar.cpp
 
 OBJS =	${SRCS:.cpp=.o}
 

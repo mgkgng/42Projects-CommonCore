@@ -6,11 +6,13 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/30 15:38:43 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/30 16:56:00 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/30 19:40:21 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Scalar.hpp"
+
+std::string special[6] = {"inf", "-inf", "nan", "inff", "-inff", "nanf"};
 
 Scalar::Scalar() {
 	std::cout << "Scalar default constrcutor called." << std::endl;
@@ -25,8 +27,10 @@ Scalar::Scalar(std::string arg) : _arg(arg) {
 	bool (Scalar::*func[4])(std::string) = {&Scalar::is_char, &Scalar::is_int, &Scalar::is_float, &Scalar::is_double};
 	std::string type[4] = {"char", "int", "float", "double"};
 	for (int i = 0; i < 4; i++) {
-		if ((this->*func[i])(arg))
+		if ((this->*func[i])(arg)) {
 			this->_type = type[i];
+			return ;
+		}
 	}
 	throw Scalar::TypeNotFound();
 }
@@ -119,3 +123,56 @@ bool	Scalar::is_double(std::string s) {
 	return (true);
 }
 
+std::string	Scalar::to_char() {
+
+	for (int i = 0; i < 6; i++)
+		if (this->_arg == special[i])
+			return ("impossible");
+	
+	try {
+		char c = static_cast<char>(std::stoi(this->_arg));
+		return (isprint(c)) ? "'" + std::to_string(c) + "'" : "Non displayable";
+	} catch (std::bad_cast &bc) {
+		std::cout << "Error, bad cast" << std::endl;
+	}
+}
+
+std::string	Scalar::to_int() {
+	for (int i = 0; i < 6; i++)
+		if (this->_arg == special[i])
+			return ("impossible");
+
+	try {
+		return (std::to_string(std::stoi(this->_arg)));
+	} catch (std::bad_cast &bc) {
+		std::cout << "Error, bad cast" << std::endl;
+	}
+
+}
+
+std::string	Scalar::to_float() {
+	try {
+		return (std::to_string(std::stof(this->_arg)));
+	} catch (std::bad_cast &bc) {
+		std::cout << "Error, bad cast" << std::endl;
+	}
+}
+
+std::string	Scalar::to_double() {
+	try {
+		return (std::to_string(std::stod(this->_arg)));
+	} catch (std::bad_cast &bc) {
+		std::cout << "Error, bad cast" << std::endl;
+	}
+}
+
+std::string Scalar::getStr(int i) const {
+	std::string (Scalar::*func[4])() = {&Scalar::to_char, &Scalar::to_int, &Scalar::to_float, &Scalar::to_double};
+	return (this->*func[i])();
+}
+
+std::ostream& operator<<(std::ostream& out, Scalar const & scalar) {
+	std::string	type[4] = {"char", "int", "float", "double"};
+	for (int i = 0; i < 4; i++)
+		std::cout << type[i] << ": " << scalar.getStr(i) << std::endl;
+}

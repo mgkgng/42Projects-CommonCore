@@ -6,12 +6,11 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 23:22:59 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/30 15:38:32 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/30 18:53:43 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Scalar.hpp"
-#include "convert.hpp"
 
 int	main(int argc, char **argv) {
 	
@@ -24,14 +23,16 @@ int	main(int argc, char **argv) {
 	}
 
 	std::string arg = static_cast<std::string>(argv[1]);
-
-
-	void*	ptr;
-
-	to_char(ptr);
-	to_int(ptr);
-	to_float(ptr);
-	to_double(ptr);
 	
+	float a = 0.0;
+	std::cout << a << "lololo" << std::endl;
+
+	try {
+		Scalar scalar(arg);
+		
+	} catch (std::exception &e) {
+		std::cerr << e.what() << std::endl;
+	}
+
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/30 15:14:17 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/30 16:55:47 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/30 19:39:45 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,12 @@ class Scalar {
 		bool	is_float(std::string arg);
 		bool	is_double(std::string arg);
 
-		void	to_char();
-		void	to_int();
-		void	to_float();
-		void	to_double();
+		std::string	to_char();
+		std::string	to_int();
+		std::string	to_float();
+		std::string	to_double();
+
+		std::string	getStr(int i) const;
 
 		std::string getArg() const;
 
@@ -52,5 +54,7 @@ class Scalar {
 				const char *what() const throw() {
 					return ("Error: type does not match.");
 				}
-		}
+		};
 };
+
+std::ostream& operator<<(std::ostream& out, Scalar const &);
