@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 13:08:53 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/31 14:08:47 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/31 14:28:18 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ bool	Scalar::is_char(std::string s) {
 }
 
 bool	Scalar::is_int(std::string s) {
-	if (s == "inff" || s == "-inff" || s == "nanf")
+	if (s == "inff" || s == "-inff" || s == "nanf" || s == "+inff")
 		return (true);
 
 	size_t i = (s.at(0) == '-') ? 1 : 0;
@@ -96,7 +96,7 @@ bool	Scalar::is_int(std::string s) {
 }
 
 bool	Scalar::is_float(std::string s) {
-	if (s == "inf" || s == "-inf" || s == "nan")
+	if (s == "inf" || s == "-inf" || s == "nan" || s == "+inf")
 		return (true);
 
 	size_t i = (s.at(0) == '-') ? 1 : 0;
@@ -137,7 +137,7 @@ bool	Scalar::is_double(std::string s) {
 }
 
 char	Scalar::to_char() const {
-	if (isnan(this->_raw) || isinf(this->_raw) || this->_raw < 0 || this->_raw > 255)
+	if (isnan(this->_raw) || isinf(this->_raw) || this->_raw < -128 || this->_raw > 127)
 		throw Scalar::Impossible();
 	
 	if (!isprint(static_cast<int>(this->_raw)))
@@ -181,14 +181,14 @@ std::ostream& operator<<(std::ostream& out, Scalar const & scalar) {
 				float f;
 				f = scalar.getRaw();
 				out << f;
-				if (f - static_cast<int>(f) == 0)
+				if (f - static_cast<int>(f) == 0 && f < 1000000 && f > -1000000)
 					out << ".0";
 				out << "f";
 				break;
 			case 3:
 				double d = scalar.to_double();
 				out << d;
-				if (d - static_cast<int>(d) == 0)
+				if (d - static_cast<int>(d) == 0 && d < 1000000 && d > -1000000)
 					out << ".0";
 				break;
 		}
