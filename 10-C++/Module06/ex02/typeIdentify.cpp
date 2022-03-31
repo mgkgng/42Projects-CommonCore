@@ -6,21 +6,22 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/30 01:34:51 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/30 21:55:23 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/31 14:39:32 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "typeIdentify.hpp"
 
 Base *generate(void) {
-	srand(time(NULL));
-	int rNb = rand() % 3 + 1;
-	if (rNb == 1) {
-		return (new A());
-	} else if (rNb == 2) {
-		return (new B());
-	} else {
-		return (new C());
+	switch (rand() % 3) {
+		case 0:
+			return (new A());
+		case 1:
+			return (new B());
+		case 2:
+			return (new C());
+		default:
+			return (NULL);
 	}
 }
 

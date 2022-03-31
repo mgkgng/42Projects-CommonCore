@@ -3,7 +3,7 @@ SRCS =	main.cpp \
 
 OBJS =	${SRCS:.cpp=.o}
 
-NAME =	Conversion
+NAME =	Scalar
 
 CFLAGS	= -Wall -Wextra -Werror
 
