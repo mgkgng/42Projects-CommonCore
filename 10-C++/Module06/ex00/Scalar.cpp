@@ -6,13 +6,11 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 13:08:53 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/31 13:20:32 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/31 14:08:47 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Scalar.hpp"
-
-std::string special[6] = {"inf", "-inf", "nan", "inff", "-inff", "nanf"};
 
 Scalar::Scalar() {
 	std::cout << "Scalar default constrcutor called." << std::endl;
@@ -51,15 +49,22 @@ Scalar& Scalar::operator=(Scalar const & right) {
 	return (*this);
 }
 
+float	Scalar::getRaw() const {
+	return (this->_raw);
+}
+
 void	Scalar::setRaw(std::string arg) {
+	this->_double_raw = 0;
 	if (this->_type == "char")
 		this->_raw = static_cast<float>(arg.at(0));
 	else if (this->_type == "int")
-		this->_raw = static_cast<int>(std::stoi(arg));
+		this->_raw = static_cast<float>(std::stoi(arg));
 	else if (this->_type == "float")
 		this->_raw = std::stof(arg);
-	else
-		this->_raw = static_cast<double>(std::stod(arg));
+	else {
+		this->_raw = static_cast<float>(std::stod(arg));
+		this->_double_raw = std::stod(arg);
+	}
 }
 
 bool	Scalar::is_displayable(std::string s) {
@@ -131,3 +136,63 @@ bool	Scalar::is_double(std::string s) {
 	return (true);
 }
 
+char	Scalar::to_char() const {
+	if (isnan(this->_raw) || isinf(this->_raw) || this->_raw < 0 || this->_raw > 255)
+		throw Scalar::Impossible();
+	
+	if (!isprint(static_cast<int>(this->_raw)))
+		throw Scalar::NotDisplayable();
+
+	return (static_cast<char>(this->_raw));
+}
+
+int		Scalar::to_int() const {
+	if (isnan(this->_raw) || (isinf(this->_raw)) || this->_raw > INT32_MAX || this->_raw < INT32_MIN)
+		throw Scalar::Impossible();	
+	
+	return (static_cast<int>(this->_raw));
+}
+
+double	Scalar::to_double() const {
+	return ((this->_double_raw) ? this->_double_raw : static_cast<double>(this->_raw));
+}
+
+std::ostream& operator<<(std::ostream& out, Scalar const & scalar) {
+	std::string type[4] = {"char", "int", "float", "double"};
+	for (int i = 0; i < 4; i++) {
+		out << type[i] << ": ";
+		switch (i) {
+			case 0:
+				try {
+					char c = scalar.to_char();
+					out << "'" << c << "'";
+				} catch (std::exception &e) {
+					out << e.what();
+				}
+				break;
+			case 1:
+				try {
+					out << scalar.to_int();
+				} catch (std::exception &e) {
+					out << e.what();
+				}
+				break;
+			case 2:
+				float f;
+				f = scalar.getRaw();
+				out << f;
+				if (f - static_cast<int>(f) == 0)
+					out << ".0";
+				out << "f";
+				break;
+			case 3:
+				double d = scalar.to_double();
+				out << d;
+				if (d - static_cast<int>(d) == 0)
+					out << ".0";
+				break;
+		}
+		out << std::endl;
+	}
+	return (out);
+}

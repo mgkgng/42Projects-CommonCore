@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 13:09:50 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/31 13:22:22 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/31 13:58:38 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 #include <iostream>
 #include <string>
+#include <cmath>
+#include <iomanip>
 
 class Scalar {
 	
@@ -21,6 +23,7 @@ class Scalar {
 		std::string _arg;
 		std::string _type;
 		float		_raw;
+		double		_double_raw;
 
 		bool	is_displayable(std::string arg);
 		bool	is_char(std::string arg);
@@ -36,12 +39,12 @@ class Scalar {
 
 		Scalar& operator=(Scalar const &);
 
-		std::string	to_char();
-		std::string	to_int();
-		std::string	to_float();
-		std::string	to_double();
+		char	to_char() const;
+		int		to_int() const;
+		float	to_float() const;
+		double	to_double() const;
 
-		std::string	getStr(int i);
+		float	getRaw() const;
 		void	setRaw(std::string arg);
 
 		class NotDisplayable : public std::exception {
@@ -56,7 +59,7 @@ class Scalar {
 				const char *what() const throw() {
 					return ("Impossible");
 				}
-		}
+		};
 		
 		class TypeNotFound : public std::exception {
 			public:
@@ -66,4 +69,4 @@ class Scalar {
 		};
 };
 
-std::ostream& operator<<(std::ostream& out, Scalar &);
+std::ostream& operator<<(std::ostream& out, Scalar const &);
