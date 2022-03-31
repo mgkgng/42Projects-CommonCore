@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/30 01:19:20 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/30 20:25:15 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/31 16:52:29 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ int	main() {
 	std::cout << a << std::endl;
 	std::cout << serialize(a) << std::endl;
 	std::cout << deserialize(b) << std::endl;
-	
+
+	delete a;
+		
 	return (0);
 }
