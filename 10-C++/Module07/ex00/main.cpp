@@ -6,30 +6,11 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 02:03:28 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/31 02:04:43 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/03/31 19:35:42 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
-#include <string>
-
-template<typename T>
-
-T	swap(T &a, T &b) {
-	T tmp = a;
-	a = b;
-	b = tmp;
-}
-
-template<typename MN>
-MN	min(MN const &a, MN const &b) {
-	return ((a < b) ? a : b);
-}
-
-template<typename MX>
-MX	max(MX const &a, MX const &b) {
-	return ((a > b) ? a : b);
-}
+#include "whatever.hpp"
 
 int main() {
 	int a = 2;
