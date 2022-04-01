@@ -2,7 +2,7 @@ SRCS =	main.cpp \
 
 OBJS =	${SRCS:.cpp=.o}
 
-NAME =	
+NAME =	Array
 
 CFLAGS	= -Wall -Wextra -Werror
 
