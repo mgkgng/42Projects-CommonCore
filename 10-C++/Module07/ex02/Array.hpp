@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/01 02:23:58 by min-kang          #+#    #+#             */
-/*   Updated: 2022/04/01 03:05:05 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/04/01 13:49:41 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include <string>
 #include <stdexcept>
 
-template <typename T=int>
+template <typename T>
 class Array {
 	
 	private:
