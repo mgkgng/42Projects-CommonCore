@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/01 16:27:33 by min-kang          #+#    #+#             */
-/*   Updated: 2022/04/01 18:05:00 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/04/01 21:47:45 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,17 @@
 #include <list>
 #include <map>
 #include <vector>
+#include <stdexcept>
 
-bool	compare(int n1, int n2) {
-	return (!static_cast<bool>(n1 - n2));
-}
+class NbNotFound : public std::exception {
+	public:
+		const char*	what() const throw() {return ("Number not found.");}
+};
 
 template<typename T>
-T easyfind(T c, int n) {
-	T = find_if(c.begin(), c.end(), compare());
-
+typename T::iterator easyfind(T& c, int n) {
+	typename T::iterator res = find(c.begin(), c.end(), n);
+	if (res == c.end())
+		throw NbNotFound();
+	return (res);
 }
