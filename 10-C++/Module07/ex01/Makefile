@@ -1,8 +1,8 @@
-SRCS =	main.cpp \
+SRCS =	main.cpp
 
 OBJS =	${SRCS:.cpp=.o}
 
-NAME =	
+NAME =	iter
 
 CFLAGS	= -Wall -Wextra -Werror
 
