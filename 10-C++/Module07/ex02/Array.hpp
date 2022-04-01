@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/01 02:23:58 by min-kang          #+#    #+#             */
-/*   Updated: 2022/04/01 13:49:41 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/04/01 16:16:15 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ class Array {
 		Array() : _size(0), _elem(NULL) {}
 		Array(unsigned int n) : _size(n), _elem(new T[n]) {}
 		Array(Array const & src) {*this = src;}
+		~Array() {}
 		
 		Array&	operator=(Array const & copy) {
-			delete[] this->_elem;
 			this->_elem = copy._elem;
 			this->_size = copy._size;
 			return (*this);
