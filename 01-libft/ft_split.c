@@ -6,55 +6,49 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/18 17:33:35 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/30 14:55:18 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/04/01 12:30:51 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	index_count(char const *s, char c)
+static int	count_size(char const *s, char c)
 {
 	size_t	i;
 	size_t	count;
 
-	i = 0;
+	i = -1;
 	count = 0;
-	while (s[i])
-	{
-		if (s[i] != c)
-		{
+	while (s[++i])
+		if (s[i] == c && s[i + 1] && s[i + 1] != c)
 			count++;
-			while (s[i] && s[i] != c)
-				i++;
-		}
-		i++;
-	}
 	return (count);
 }
 
 char	**ft_split(char const *s, char c)
 {
-	char		**res;
-	char const	*start;
-	int			i;
-	int			len;
+	char	**res;
+	int		i;
+	int		start;
+	int 	len;
 
 	if (!s)
 		return (NULL);
-	i = 0;
-	res = malloc(sizeof(char *) * (index_count(s, c) + 1));
+	res = malloc(sizeof(char *) * (count_size(s, c) + 1));
 	if (!res)
 		return (NULL);
-	while (*s)
+	start = 0;
+	i = 0;
+	while (s[start])
 	{
-		while (*s && *s == c)
-			s++;
-		start = s;
+		while (s[start] == c)
+			start++;
 		len = 0;
-		while (*s && *s != c && len++)
-			s++;
-		if (*(s - 1) != c)
-			res[i++] = ft_substr(start, 0, len);
+		while (s[start + len] && s[start + len] != c)
+			len++;
+		if (s[start])
+			res[i++] = ft_substr(s, start, len);
+		start += len;
 	}
 	res[i] = NULL;
 	return (res);
