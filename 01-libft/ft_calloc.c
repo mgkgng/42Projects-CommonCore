@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/20 17:01:39 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/01 18:14:25 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/04/01 13:50:25 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void	*ft_calloc(size_t count, size_t size)
 {
-	int		i;
 	void	*res;
 
 	res = malloc(count * size);
