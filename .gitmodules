@@ -1,0 +1,3 @@
+[submodule "MiniRT"]
+	path = MiniRT
+	url = git@github.com:mgkgng/project42_miniRT.git
