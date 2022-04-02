@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/01 16:37:33 by min-kang          #+#    #+#             */
-/*   Updated: 2022/04/01 21:57:33 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/04/02 20:12:43 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,4 +28,5 @@ int	main() {
 	} catch (std::exception &e) {
 		std::cerr << e.what() << std::endl;
 	}
+	return (0);
 }

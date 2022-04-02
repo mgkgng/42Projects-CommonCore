@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 01:28:27 by min-kang          #+#    #+#             */
-/*   Updated: 2022/04/02 17:04:22 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/04/02 20:12:08 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,4 @@ class MutantStack : public std::stack<T, Container> {
 			this->c = right.c;
 			return (*this);
 		}
-
-		
 };
