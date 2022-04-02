@@ -6,11 +6,12 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 01:07:50 by min-kang          #+#    #+#             */
-/*   Updated: 2022/04/02 01:19:55 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/04/02 17:42:48 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Span.hpp"
+#include <vector>
 
 int main() {
 	Span test(5);
@@ -23,10 +24,10 @@ int main() {
 		std::cout << e.what() << std::endl;
 	}
 
-	test.addNumber(-101);
-	test.addNumber(7);
-	test.addNumber(6);
-	test.addNumber(92);
+	int arr[] = { -101, 6, 7, 92 };
+    int n = sizeof(arr) / sizeof(arr[0]);
+    std::vector<int> vect(arr, arr + n);
+	test.addIterator(vect);
 
 	std::cout << std::endl << "\033[1;34m** test 2 : trying to find a span inside an array fully filled **\033[0m" << std::endl;		
 	try {

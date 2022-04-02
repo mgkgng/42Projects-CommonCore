@@ -6,23 +6,17 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/01 22:03:37 by min-kang          #+#    #+#             */
-/*   Updated: 2022/04/02 01:21:02 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/04/02 17:57:30 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Span.hpp"
 
-Span::Span() : _max(0) {}
+Span::Span() : _nb(NULL), _size(0), _max(0) {}
 
-Span::Span(unsigned int N) {
-	this->_nb = new int[N];
-	this->_size = 0;
-	this->_max = N;
-}
+Span::Span(unsigned int N) : _nb(new int[N]), _size(0), _max(N) {}
 
-Span::Span(Span const & src) { 
-	*this = src;
-}
+Span::Span(Span const & src) {*this = src;}
 
 Span::~Span() {
 	if (this->_size)

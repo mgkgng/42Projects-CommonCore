@@ -2,7 +2,7 @@ SRCS =	main.cpp
 
 OBJS =	${SRCS:.cpp=.o}
 
-NAME =	
+NAME =	MutantStack	
 
 CFLAGS	= -Wall -Wextra -Werror
 

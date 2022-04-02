@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/01 18:27:01 by min-kang          #+#    #+#             */
-/*   Updated: 2022/04/02 01:18:32 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/04/02 17:57:10 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ class Span {
 		unsigned int	_size;
 		unsigned int	_max;
 		Span();
+		
 	public:
 		Span(unsigned int N);
 		Span(Span const & src);
@@ -32,6 +33,11 @@ class Span {
 		void	addNumber(int n);
 		unsigned int	shortestSpan();
 		unsigned int	longestSpan();
+
+		template<typename T> void addIterator(T& c) {
+			for (typename T::iterator it = c.begin(); it != c.end(); it++)
+				this->addNumber(*it);
+		}
 
 		class NoFreeSpace : public std::exception {
 			public:
