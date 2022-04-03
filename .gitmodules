@@ -10,3 +10,9 @@
 [submodule "01-libft"]
 	path = 01-libft
 	url = git@github.com:mgkgng/42Projects-libft.git
+[submodule "02-get_next_line"]
+	path = 02-get_next_line
+	url = git@github.com:mgkgng/42Projects-get_next_line.git
+[submodule "03-ft_printf"]
+	path = 03-ft_printf
+	url = git@github.com:mgkgng/42Projects-ft_printf.git
