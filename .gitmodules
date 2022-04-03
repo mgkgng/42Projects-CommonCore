@@ -4,3 +4,6 @@
 [submodule "11-miniRT"]
 	path = 11-miniRT
 	url = git@github.com:mgkgng/project42_miniRT.git
+[submodule "10-CPP_Modules"]
+	path = 10-CPP_Modules
+	url = git@github.com:mgkgng/42Projects-CPP_Modules.git
