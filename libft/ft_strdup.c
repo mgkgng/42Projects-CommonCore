@@ -1,58 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_itoa.c                                          :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/18 18:09:04 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/30 14:55:02 by min-kang         ###   ########.fr       */
+/*   Created: 2021/10/18 18:34:35 by min-kang          #+#    #+#             */
+/*   Updated: 2022/04/03 16:06:53 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	ft_nbrlen(long long int n)
+char	*ft_strdup(const char *s1)
 {
-	int	len;
+	char	*res;
+	int		i;
 
-	len = 0;
-	if (n < 0)
-	{
-		len++;
-		n *= -1;
-	}
-	while (n > 9)
-	{
-		len++;
-		n /= 10;
-	}
-	return (len);
-}
-
-char	*ft_itoa(int n)
-{
-	char			*res;
-	int				begin;
-	int				len;
-	long long int	tmp;
-
-	tmp = n;
-	len = ft_nbrlen(n);
-	res = malloc(len + 1);
+	res = ft_calloc(ft_strlen(s1) + 1, sizeof(char));
 	if (!res)
 		return (NULL);
-	begin = 0;
-	if (tmp < 0)
-	{
-		res[begin++] = '-';
-		tmp *= -1;
-	}
-	res[len--] = '\0';
-	while (len >= begin)
-	{
-		res[len--] = tmp % 10 + '0';
-		tmp /= 10;
-	}
+	i = -1;
+	while (s1[++i])
+		res[i] = s1[i];
 	return (res);
 }

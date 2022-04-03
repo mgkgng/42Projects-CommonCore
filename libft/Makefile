@@ -56,9 +56,7 @@ all:		${NAME}
 ${NAME}:	${OBJS}
 			ar rc ${NAME} ${OBJS}
 
-bonus:		ball
-
-ball:		${OBJS} ${BOJS}
+bonus:		${OBJS} ${BOJS}
 			ar rc ${NAME} ${OBJS} ${BOJS}
 			
 .c.o:

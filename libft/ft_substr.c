@@ -1,42 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strnstr.c                                       :+:      :+:    :+:   */
+/*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/19 17:53:29 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/01 18:42:46 by min-kang         ###   ########.fr       */
+/*   Created: 2021/10/20 17:10:56 by min-kang          #+#    #+#             */
+/*   Updated: 2022/04/03 16:03:29 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
+char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
 	size_t	i;
-	size_t	j;
-	int		check;
+	char	*res;
 
-	if (ft_strncmp(needle, "", ft_strlen(needle)) == 0)
-		return ((char *) haystack);
+	if (!s)
+		return (NULL);
+	if (ft_strlen(s + start) < len)
+		len = ft_strlen(s + start);
+	if (ft_strlen(s) <= start)
+		return (ft_strdup(""));
+	res = ft_calloc(len + 1, sizeof(char));
+	if (!res)
+		return (NULL);
 	i = 0;
-	while (haystack[i] && i < len)
+	while (s[start + i] && i < len)
 	{
-		j = 0;
-		check = 1;
-		if (haystack[i] == needle[j])
-		{
-			while (needle[j])
-			{
-				if (needle[j] != haystack[i + j] || i + j >= len)
-					check = 0;
-				j++;
-			}
-			if (check == 1)
-				return ((char *) haystack + i);
-		}
+		res[i] = (char) s[start + i];
 		i++;
 	}
-	return (NULL);
+	return (res);
 }

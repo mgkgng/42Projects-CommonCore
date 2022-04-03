@@ -1,38 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstmap.c                                        :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/21 18:22:39 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/01 18:29:18 by min-kang         ###   ########.fr       */
+/*   Created: 2021/10/18 16:01:22 by min-kang          #+#    #+#             */
+/*   Updated: 2022/04/03 16:06:17 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	t_list	*begin;
-	t_list	*result;
+	char	*res;
+	int		i;
+	int		j;
 
-	if (!lst || !f)
+	if (!s1)
 		return (NULL);
-	begin = ft_lstnew(f(lst->content));
-	lst = lst->next;
-	result = begin;
-	while (lst)
-	{
-		begin->next = ft_lstnew(f(lst->content));
-		begin = begin->next;
-		if (!begin)
-		{
-			ft_lstclear(&result, del);
-			return (NULL);
-		}
-		lst = lst->next;
-	}
-	begin->next = NULL;
-	return (result);
+	res = ft_calloc(ft_strlen(s1) + ft_strlen(s2) + 1, sizeof(char));
+	if (!res)
+		return (NULL);
+	i = -1;
+	while (s1[++i])
+		res[i] = s1[i];
+	j = -1;
+	while (s2[++j])
+		res[i + j] = s2[j];
+	return (res);
 }

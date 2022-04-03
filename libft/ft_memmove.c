@@ -1,24 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/20 17:31:54 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/01 18:35:32 by min-kang         ###   ########.fr       */
+/*   Created: 2021/10/19 19:17:59 by min-kang          #+#    #+#             */
+/*   Updated: 2022/04/03 17:44:10 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putstr_fd(char *s, int fd)
+void	*ft_memmove(void *dst, const void *src, size_t len)
 {
-	int	i;
+	char	*p_dst;
+	char	*p_src;
 
-	i = 0;
-	if (!s)
-		return ;
-	while (s[i])
-		ft_putchar_fd(s[i++], fd);
+	if (!len)
+		return (dst);
+	if (!dst && !src)
+		return (NULL);
+	if (dst < src)
+		return (ft_memcpy(dst, src, len));
+	p_dst = (char *) dst + len - 1;
+	p_src = (char *) src + len - 1;
+		while (len-- > 0)
+			*p_dst-- = *p_src--;
+	return (dst);
 }

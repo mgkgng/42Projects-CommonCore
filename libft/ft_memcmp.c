@@ -1,34 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/18 16:01:22 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/01 18:38:41 by min-kang         ###   ########.fr       */
+/*   Created: 2021/10/19 17:41:24 by min-kang          #+#    #+#             */
+/*   Updated: 2022/04/03 18:06:26 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strjoin(char const *s1, char const *s2)
+int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	char	*res;
-	int		i;
-	int		j;
+	unsigned char	*p_s1;
+	unsigned char	*p_s2;
 
-	if (!s1)
-		return (NULL);
-	res = malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
-	if (!res)
-		return (NULL);
-	i = -1;
-	while (s1[++i])
-		res[i] = s1[i];
-	j = -1;
-	while (s2[++j])
-		res[i + j] = s2[j];
-	res[i + j] = '\0';
-	return (res);
+	p_s1 = (unsigned char *) s1;
+	p_s2 = (unsigned char *) s2;
+	if (!n)
+		return (0);
+	while (n-- > 0)
+		if (*p_s1++ != *p_s2++)
+			return (p_s1[-1] - p_s2[-1]);
+	return (0);
 }
