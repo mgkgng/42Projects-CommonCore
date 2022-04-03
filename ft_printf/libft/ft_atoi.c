@@ -6,31 +6,28 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/18 18:15:01 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/17 16:33:36 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/04/03 22:20:55 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_atoi(const char *str)
+int ft_atoi(const char *str)
 {
-	int	result;
+	int	res;
 	int	i;
-	int	minus;
+	int	neg;
 
+	res = 0;
 	i = 0;
-	minus = 1;
-	result = 0;
 	while ((str[i] >= 9 && str[i] <= 13) || str[i] == ' ')
 		i++;
-	if (str[i] == '-')
-	{
-		minus *= -1;
-		i++;
-	}
+	neg = 1;
+	if (str[i] == '-' && ++i)
+		neg *= -1;
 	else if (str[i] == '+')
 		i++;
 	while (str[i] && ft_isdigit(str[i]))
-		result = result * 10 + (str[i++] - '0');
-	return (result * minus);
+		res = res * 10 + (str[i++] - '0');
+	return (res * neg);
 }
