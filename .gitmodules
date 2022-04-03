@@ -7,3 +7,6 @@
 [submodule "11-cub3D"]
 	path = 11-cub3D
 	url = git@github.com:mgkgng/42Projects-cub3D.git
+[submodule "01-libft"]
+	path = 01-libft
+	url = git@github.com:mgkgng/42Projects-libft.git
