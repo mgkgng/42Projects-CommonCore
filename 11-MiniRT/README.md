@@ -1,1 +1,0 @@
-# 42Projects-miniRT
