@@ -1,6 +1,0 @@
-[submodule "vendor/liblist"]
-	path = vendor/liblist
-	url = git@github.com:GlaceCoding/liblist.git
-[submodule "vendor/minilibx"]
-	path = vendor/minilibx
-	url = git@github.com:GlaceCoding/minilibx_macos_10.14_modified

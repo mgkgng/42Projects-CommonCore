@@ -1,8 +1,0 @@
-.gitignore
-.gitmodules
-.vogignore
-.github/
-/test/
-/vendor/liblist/test/
-/hooks/
-README.md
