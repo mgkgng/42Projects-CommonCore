@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/26 19:43:52 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/07 20:44:21 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/04/03 01:48:03 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@
 # include <fcntl.h>
 
 typedef struct s_pipex{
-	int		in;
-	int		out;
+	char	*in;
+	char	*out;
 	char	*cmd1;
 	char	*cmd2;
 	char	**paths;

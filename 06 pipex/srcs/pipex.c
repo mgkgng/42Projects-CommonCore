@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/24 16:27:33 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/07 20:50:04 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/04/03 01:58:54 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,15 @@ void	child_pipex(t_pipex pipex, int *fd)
 {
 	char	**args;
 	char	*cmdpath;
+	int		in;
 
-	dup2(pipex.in, STDIN_FILENO);
+	in = open(pipex.in, O_RDONLY);
+	if (in < 0) {
+		ft_putstr_fd(pipex.in, 2);
+		ft_putstr_fd(": Cannot read file.\n", 2);
+		exit(EXIT_FAILURE);
+	}
+	dup2(in, STDIN_FILENO);
 	dup2(fd[1], STDOUT_FILENO);
 	close(fd[0]);
 	close(fd[1]);
@@ -32,15 +39,17 @@ void	parent_pipex(t_pipex pipex, int *fd)
 {
 	char	**args;
 	char	*cmdpath;
+	int		out;
 
+	out = open(pipex.out, O_CREAT | O_WRONLY | O_TRUNC, 0644);
 	dup2(fd[0], STDIN_FILENO);
-	dup2(pipex.out, STDOUT_FILENO);
+	dup2(out, STDOUT_FILENO);
 	close(fd[0]);
 	close(fd[1]);
 	args = ft_split(pipex.cmd2, ' ');
 	cmdpath = get_cmdpath(args[0], pipex.paths);
 	execve(cmdpath, args, pipex.envp);
-	ft_putstr_fd("Error 8: exec failed in parent process.\n", 2);
+	ft_putstr_fd("Error: exec failed in parent process.\n", 2);
 	exit(8);
 }
 
@@ -61,5 +70,5 @@ int	ft_pipex(t_pipex pipex)
 		wait(NULL);
 		parent_pipex(pipex, fd);
 	}
-	return (free_pipex(pipex));
+	return (terminate(pipex));
 }

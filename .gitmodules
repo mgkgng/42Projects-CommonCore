@@ -1,3 +1,9 @@
 [submodule "MiniRT"]
 	path = MiniRT
 	url = git@github.com:mgkgng/project42_miniRT.git
+[submodule "13-ft_container"]
+	path = 13-ft_container
+	url = git@github.com:mgkgng/42Projects-ft_container.git
+[submodule "13-ft_containers"]
+	path = 13-ft_containers
+	url = git@github.com:mgkgng/42Projects-ft_containers.git
