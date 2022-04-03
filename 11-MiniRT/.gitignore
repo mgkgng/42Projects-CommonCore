@@ -1,0 +1,11 @@
+*.out
+*.o
+*.a
+*.dSYM
+/minirt
+/minirt_bonus
+/minirt_debug
+/minirt_sanitize
+/minirt-tester
+/*.txt
+.tmp_*
