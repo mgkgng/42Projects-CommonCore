@@ -16,3 +16,9 @@
 [submodule "03-ft_printf"]
 	path = 03-ft_printf
 	url = git@github.com:mgkgng/42Projects-ft_printf.git
+[submodule "06-pipex"]
+	path = 06-pipex
+	url = git@github.com:mgkgng/42Projects-pipex.git
+[submodule "07-push_swap"]
+	path = 07-push_swap
+	url = git@github.com:mgkgng/42Projects-push_swap.git
