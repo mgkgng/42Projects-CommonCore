@@ -22,3 +22,6 @@
 [submodule "07-push_swap"]
 	path = 07-push_swap
 	url = git@github.com:mgkgng/42Projects-push_swap.git
+[submodule "13-Inception"]
+	path = 13-Inception
+	url = git@github.com:mgkgng/42Projects-Inception.git
