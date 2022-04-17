@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/31 16:05:57 by min-kang          #+#    #+#             */
-/*   Updated: 2022/04/18 00:58:46 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/04/18 01:31:36 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ typedef struct s_move
 	int	rb;
 	int	rra;
 	int	rrb;
+	int	sum;
 }	t_move;
 
 typedef struct s_shit {

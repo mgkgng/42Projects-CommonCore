@@ -6,27 +6,11 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/08 16:05:18 by min-kang          #+#    #+#             */
-/*   Updated: 2022/04/18 00:49:03 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/04/18 01:36:14 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-/*int	that_is_the_place(t_list *a, t_list *b)
-{
-	t_list	*last;
-
-	if (!a || !b)
-		return (0);
-	last = ft_lstlast(a);
-	if (a->nb > b->nb && a->nb < last->nb)
-		return (1);
-	else if (a->nb > b->nb && b->nb > last->nb)
-		return (1);
-	else if (a->nb < last->nb && b->nb > last->nb)
-		return (1);
-	return (0);
-}*/
 
 int	push_condition(int first_a, int last_a, int first_b)
 {
@@ -39,46 +23,46 @@ int	push_condition(int first_a, int last_a, int first_b)
 	return (0);
 }
 
-void	rotate_at_the_same_time(t_list **a, t_list **b, t_move **move)
+void	rotate_at_the_same_time(t_stack *stack, t_move **move)
 {
 	while ((*move)->ra > 0 && (*move)->rb > 0)
 	{
-		rotate_rotate(a, b);
+		ops(stack, 5, "rr");
 		(*move)->ra--;
 		(*move)->rb--;
 	}
 	while ((*move)->rra > 0 && (*move)->rrb > 0)
 	{
-		reverse_rotate_rotate(a, b);
+		ops(stack, 8, "rrr");
 		(*move)->rra--;
 		(*move)->rrb--;
 	}
 }
 
-void	make_move(t_list **a, t_list **b, t_move *move)
+void	make_move(t_stack *stack, t_move *move)
 {
-	rotate_at_the_same_time(a, b, &move);
+	rotate_at_the_same_time(stack, &move);
 	while (move->ra > 0)
 	{
-		rotate_a(a);
+		ops(stack, 3, "ra");
 		move->ra--;
 	}
 	while (move->rb > 0)
 	{
-		rotate_b(b);
+		ops(stack, 4, "rb");
 		move->rb--;
 	}
 	while (move->rra > 0)
 	{
-		reverse_rotate_a(a);
+		ops(stack, 6, "rra");
 		move->rra--;
 	}
 	while (move->rrb > 0)
 	{
-		reverse_rotate_b(b);
+		ops(stack, 7, "rrb");
 		move->rrb--;
 	}
-	push_a(a, b);
+	ops(stack, 9, "pa");
 }
 
 void	ft_dirty(t_list *a, t_list *b, t_dirty *dirty)
@@ -88,5 +72,4 @@ void	ft_dirty(t_list *a, t_list *b, t_dirty *dirty)
 	dirty->begin_a = a;
 	dirty->begin_b = b;
 	dirty->min = INT32_MAX;
-	dirty->last_a = ft_lstlast(a)->pos;
 }
