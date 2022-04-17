@@ -6,16 +6,16 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/08 19:14:37 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/24 14:11:44 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/04/17 20:52:11 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "checker.h"
 
-void	operation(t_stack **a, t_stack **b, char *to_do)
+void	operation(t_stack stack, char *to_do)
 {
 	if (!ft_strcmp(to_do, "sa"))
-		sa(a);
+		ops(stack.a, "sa");
 	else if (!ft_strcmp(to_do, "sb"))
 		sb(b);
 	else if (!ft_strcmp(to_do, "ss"))

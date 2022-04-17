@@ -3,36 +3,32 @@
 /*                                                        :::      ::::::::   */
 /*   pipex_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgk <mgk@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/26 19:42:14 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/12 14:45:54 by mgk              ###   ########.fr       */
+/*   Updated: 2022/04/17 20:30:32 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PIPEX_BONUS_H
 # define PIPEX_BONUS_H
 
-# include "../libft/libft.h"
 # include <stdio.h>
-# include <unistd.h>
 # include <sys/types.h>
 # include <fcntl.h>
+# include "libft.h"
+
 
 typedef struct s_pipex{
-	int		in;
-	int		out;
+	int		filename[2];
 	int		size;
 	char	***args;
 	char	**cmdpaths;
 	char	**envp;
 }	t_pipex;
 
-void	ft_putchar(char c);
-void	ft_putstr(char *s);
 int		heredoc(char *limiter);
 char	*get_data(int fd);
-int		ft_strcmp(char *s1, char *s2);
 char	**all_commands(int argc, char **argv);
 void	execute_loop(t_pipex pipex);
 t_pipex	parse(int argc, char **argv, char **envp);

@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 13:39:34 by min-kang          #+#    #+#             */
-/*   Updated: 2022/04/17 20:00:43 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/04/17 20:29:31 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,26 +58,11 @@ char	**get_paths(char **envp)
 	return (res);
 }
 
-int error(int code, char *supp)
+int terminate(t_pipex pipex)
 {
-    if (code == 1)
-        ft_putstr_fd("Error 1: Wrong argument number\n", 2);
-    if (code == 2)
-    {
-        ft_putstr_fd(supp, 2);
-        ft_putendl_fd(": Cannot read file.", 2);
-    }
-    if (code == 3)
-        ft_putendl_fd("Error occured with execve", 2);
-    exit(EXIT_FAILURE);
-}
-
-int terminate(t_pipex pipex, int *fd)
-{
+    // question. Do i have to free it?
     free(pipex.arg[0]);
     free(pipex.arg[1]);
     free(pipex.paths);
-    close(fd[0]);
-    close(fd[1]);
     return (0);
 }

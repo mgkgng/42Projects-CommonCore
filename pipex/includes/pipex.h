@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/26 19:43:52 by min-kang          #+#    #+#             */
-/*   Updated: 2022/04/17 19:59:31 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/04/17 20:28:56 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,9 @@ typedef struct s_pipex{
 	char	**envp;
 }	t_pipex;
 
-t_pipex parse(char **argv, char **envp)
+t_pipex parse(char **argv, char **envp);
 char	*get_cmdpath(char *s, char **paths);
 char	**get_paths(char **envp);
-int		error(int code, char *supp);
-int 	terminate(t_pipex pipex, int *fd);
+int 	terminate(t_pipex pipex);
 
 #endif

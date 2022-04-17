@@ -6,13 +6,13 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/08 16:06:48 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/24 21:38:18 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/04/17 20:45:52 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_stack	*ft_lst_before_last(t_stack *lst)
+t_list	*ft_lst_before_last(t_list *lst)
 {
 	if (!lst)
 		return (NULL);
@@ -21,10 +21,10 @@ t_stack	*ft_lst_before_last(t_stack *lst)
 	return (lst);
 }
 
-int	first_min_find(t_stack *lst)
+int	first_min_find(t_list *lst)
 {
 	int		min;
-	t_stack	*begin;
+	t_list	*begin;
 
 	begin = lst;
 	min = INT32_MAX;
@@ -38,10 +38,10 @@ int	first_min_find(t_stack *lst)
 	return (min);
 }
 
-int	next_min_find(t_stack *l, int already)
+int	next_min_find(t_list *l, int already)
 {
 	int		min;
-	t_stack	*begin;
+	t_list	*begin;
 
 	begin = l;
 	while (l->nb <= already)

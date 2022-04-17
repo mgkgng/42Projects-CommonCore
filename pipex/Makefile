@@ -1,5 +1,4 @@
-SRCS =	srcs/main.c				\
-		srcs/pipex.c			\
+SRCS =	srcs/pipex.c			\
 		srcs/pipex_utils.c		\
 
 BSRCS =	bonus/main_bonus.c			\
@@ -17,16 +16,18 @@ NAME = pipex
 
 CFLAGS = -Wall -Wextra -Werror
 
+INCLUDE = -I ./includes/
+
 LIB_PATH = ./libft/
 
 %.o :	%.c
-		gcc -o $@ -c $< $(CFLAGS) -fsanitize=address
+		gcc -o $@ -c $< $(CFLAGS)
 
 all : $(NAME)
 
 $(NAME) :	$(OBJS)
 			make all -C $(LIB_PATH)
-			gcc $(CFLAGS) -o $(NAME) $(OBJS) libft/libft.a -fsanitize=address
+			gcc $(CFLAGS) -o $(NAME) $(OBJS) libft/libft.a
 
 bonus :
 			make WITH_BONUS=1 all

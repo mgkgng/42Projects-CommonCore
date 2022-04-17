@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/08 17:11:16 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/24 21:45:24 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/04/17 20:31:30 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	print_error(void)
 {
-	ft_putstr_fd("Error\n", 2);
+	ft_putendl_fd("Error", 2);
 	return (1);
 }
 

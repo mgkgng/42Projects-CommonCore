@@ -6,15 +6,15 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/08 16:06:25 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/24 21:30:17 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/04/17 20:45:57 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	min_index_put(t_stack **lst, int min, int min_index)
+void	min_index_put(t_list **lst, int min, int min_index)
 {
-	t_stack	*begin;
+	t_list	*begin;
 
 	begin = *lst;
 	while ((*lst)->content != min && *lst)
@@ -23,7 +23,7 @@ void	min_index_put(t_stack **lst, int min, int min_index)
 	*lst = begin;
 }
 
-void	put_index(t_stack **lst)
+void	put_index(t_list **lst)
 {
 	int	index;
 	int	min;
@@ -40,9 +40,9 @@ void	put_index(t_stack **lst)
 	}
 }
 
-void	swap_index(t_stack **lst)
+void	swap_index(t_list **lst)
 {
-	t_stack	*begin;
+	t_list	*begin;
 	int		i;
 
 	i = 0;
@@ -55,11 +55,11 @@ void	swap_index(t_stack **lst)
 	*lst = begin;
 }
 
-t_stack	*new_stack(t_stack *lst)
+t_list	*new_list(t_list *lst)
 {
-	t_stack	*res;
+	t_list	*res;
 
-	res = malloc(sizeof(t_stack));
+	res = malloc(sizeof(t_list));
 	res->content = lst->content;
 	res->pos = lst->pos;
 	res->index = lst->index;

@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/24 16:27:33 by min-kang          #+#    #+#             */
-/*   Updated: 2022/04/17 20:08:43 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/04/17 20:23:09 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,11 @@ void	pipex_proc(t_pipex pipex, int *pipe_fd, int proc)
 
 	fd = open(pipex.filename[proc], O_RDONLY);
 	if (fd < 0)
-		error(2, pipex.filename[proc]);
+	{
+		ft_putstr_fd(pipex.filename[proc], 2);
+		ft_putendl_fd(": Cannot read file.", 2);
+		exit(EXIT_FAILURE);
+	}
 	if (!proc)
 	{
 		dup2(fd, STDIN_FILENO);
@@ -32,10 +36,11 @@ void	pipex_proc(t_pipex pipex, int *pipe_fd, int proc)
 	close(pipe_fd[0]);
 	close(pipe_fd[1]);
 	execve(get_cmdpath(pipex.arg[proc][0], pipex.paths), pipex.arg[proc], pipex.envp);
-	error(3, NULL);
+	ft_putendl_fd("Error: execve didn't work expectedly.", 2);
+	exit(EXIT_FAILURE);
 }
 
-int	pipex(t_pipex pipex)
+int	ft_pipex(t_pipex pipex)
 {
 	int		fd[2];
 	pid_t	pid;
@@ -54,9 +59,10 @@ int	pipex(t_pipex pipex)
 
 int	main(int argc, char **argv, char **envp)
 {
-	t_pipex	pipex;
-
 	if (argc != 5)
-		return (error(1, NULL));
-	return (pipex(parse(argv, envp)));
+	{
+        ft_putendl_fd("Error: Wrong argument number", 2);
+		exit(EXIT_FAILURE);
+	}
+	return (ft_pipex(parse(argv, envp)));
 }
