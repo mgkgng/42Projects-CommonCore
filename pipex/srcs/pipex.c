@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/24 16:27:33 by min-kang          #+#    #+#             */
-/*   Updated: 2022/04/17 19:41:56 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/04/17 19:59:46 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	pipex_proc(t_pipex pipex, int *pipe_fd, int proc)
 	error(3, NULL);
 }
 
-int	ft_pipex(t_pipex pipex)
+int	pipex(t_pipex pipex)
 {
 	int		fd[2];
 	pid_t	pid;
@@ -50,4 +50,13 @@ int	ft_pipex(t_pipex pipex)
 		pipex_proc(pipex, fd, 1);
 	}
 	return (terminate(pipex));
+}
+
+int	main(int argc, char **argv, char **envp)
+{
+	t_pipex	pipex;
+
+	if (argc != 5)
+		return (error(1, NULL));
+	return (pipex(parse(argv, envp)));
 }

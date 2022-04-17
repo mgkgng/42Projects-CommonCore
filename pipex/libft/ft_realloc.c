@@ -1,21 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr.c                                        :+:      :+:    :+:   */
+/*   ft_realloc.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/11 11:52:22 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/11 11:52:47 by min-kang         ###   ########.fr       */
+/*   Created: 2022/04/17 19:55:37 by min-kang          #+#    #+#             */
+/*   Updated: 2022/04/17 19:55:37 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putstr(char *s)
+void	*ft_realloc(void *ptr, size_t new_size)
 {
-	int	i;
+	size_t	current_size;
+	void	*new_ptr;
 
-	while (s[i])
-		ft_putchar(s[i++]);
+	if (!ptr)
+		return (malloc(new_size));	
+	current_size = ft_strlen((char *) ptr);
+	if (current_size > new_size)
+		return (ptr);
+	new_ptr = malloc(new_size);
+	new_ptr = ft_memcpy(new_ptr, ptr, current_size);
+	free(ptr);
+	return (new_ptr);
 }

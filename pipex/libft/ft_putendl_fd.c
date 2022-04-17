@@ -1,22 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/24 16:32:59 by min-kang          #+#    #+#             */
-/*   Updated: 2022/04/17 19:43:18 by min-kang         ###   ########.fr       */
+/*   Created: 2022/04/17 19:56:38 by min-kang          #+#    #+#             */
+/*   Updated: 2022/04/17 19:57:40 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "libft.h"
 
-int	main(int argc, char **argv, char **envp)
+void	ft_putendl_fd(char *s, int fd)
 {
-	t_pipex	pipex;
-
-	if (argc != 5)
-		return (error(1, NULL));
-	return (ft_pipex(parse(argv, envp)));
+	ft_putstr_fd(s, fd);
+	write(fd, "\n", 1);
 }
