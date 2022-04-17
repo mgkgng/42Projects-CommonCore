@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/08 16:05:14 by min-kang          #+#    #+#             */
-/*   Updated: 2022/04/17 22:28:18 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/04/18 00:43:47 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ t_index	get_chunk(t_list *lst)
 	res.end = 0;
 	while (lst->next)
 	{
-		if (lst->pos < lst->next->pos)
+		if (lst->nb < lst->next->nb)
 		{
 			tmp.end = lst->next->index;
 			if (dist < tmp.end - tmp.begin)
@@ -65,7 +65,7 @@ void	push_or_rotate(t_stack *stack, t_index chunk, int limit, int divide)
 	i = -1;
 	if (!divide)
 	{
-		if ((*lst_a)->index < chunk.begin
+		if (stack->a->index < chunk.begin
 			|| (*lst_a)->index > chunk.end)
 			ops(stack, "pb", 1);
 			push_b(lst_a, lst_b);
@@ -86,13 +86,13 @@ void	push_or_rotate(t_stack *stack, t_index chunk, int limit, int divide)
 void	push_everything_in_b(t_stack *stack, t_index chunk)
 {
 	if (ft_lstsize(&stack->a) < 100)
-		while (*lst_a && ft_lstsize(*lst_a) != chunk.size)
-			push_or_rotate(lst_a, lst_b, chunk, 0);
+		while (stack->a && ft_lstsize(stack->a) != chunk.size)
+			push_or_rotate(stack, chunk, 0);
 	else
 	{
-		while (ft_lstsize(*lst_b) < chunk_limit(*lst_a, chunk, 1))
+		while (ft_lstsize(stack->b) < chunk_limit(stack->a, chunk, 1))
 			push_or_rotate(stack, chunk, 1);
-		while (ft_lstsize(*lst_b) < 
+		while (ft_lstsize(stack->b) < 
 			push_or_rotate(stack, chunk, 2);
 		while (ft_lstsize(*lst_a) != chunk.size)
 			push_or_rotate(lst_a, lst_b, chunk, 0);

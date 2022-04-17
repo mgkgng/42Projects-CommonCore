@@ -6,40 +6,40 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/08 16:05:18 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/24 21:28:01 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/04/18 00:49:03 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	that_is_the_place(t_stack *a, t_stack *b)
+/*int	that_is_the_place(t_list *a, t_list *b)
 {
-	t_stack	*last_stack;
+	t_list	*last;
 
 	if (!a || !b)
 		return (0);
-	last_stack = ft_lstlast(a);
-	if (a->pos > b->pos && a->pos < last_stack->pos)
+	last = ft_lstlast(a);
+	if (a->nb > b->nb && a->nb < last->nb)
 		return (1);
-	else if (a->pos > b->pos && b->pos > last_stack->pos)
+	else if (a->nb > b->nb && b->nb > last->nb)
 		return (1);
-	else if (a->pos < last_stack->pos && b->pos > last_stack->pos)
+	else if (a->nb < last->nb && b->nb > last->nb)
 		return (1);
 	return (0);
-}
+}*/
 
-int	that_is_the_place2(int a, int last_a, int b)
+int	push_condition(int first_a, int last_a, int first_b)
 {
-	if (a > b && a < last_a)
+	if (first_a > first_b && first_a < last_a)
 		return (1);
-	else if (a > b && b > last_a)
+	else if (first_a > first_b && first_b > last_a)
 		return (1);
-	else if (a < last_a && b > last_a)
+	else if (first_a < last_a && first_b > last_a)
 		return (1);
 	return (0);
 }
 
-void	rotate_at_the_same_time(t_stack **a, t_stack **b, t_move **move)
+void	rotate_at_the_same_time(t_list **a, t_list **b, t_move **move)
 {
 	while ((*move)->ra > 0 && (*move)->rb > 0)
 	{
@@ -55,7 +55,7 @@ void	rotate_at_the_same_time(t_stack **a, t_stack **b, t_move **move)
 	}
 }
 
-void	make_move(t_stack **a, t_stack **b, t_move *move)
+void	make_move(t_list **a, t_list **b, t_move *move)
 {
 	rotate_at_the_same_time(a, b, &move);
 	while (move->ra > 0)
@@ -81,7 +81,7 @@ void	make_move(t_stack **a, t_stack **b, t_move *move)
 	push_a(a, b);
 }
 
-void	ft_dirty(t_stack *a, t_stack *b, t_dirty *dirty)
+void	ft_dirty(t_list *a, t_list *b, t_dirty *dirty)
 {
 	dirty->size_a = ft_lstsize(a);
 	dirty->size_b = ft_lstsize(b);

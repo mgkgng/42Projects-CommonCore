@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/31 16:05:27 by min-kang          #+#    #+#             */
-/*   Updated: 2022/04/17 22:21:45 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/04/18 00:14:26 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static void	push(t_list **from, t_list **to)
 	*to = tmp;
 }
 
-static void	rotate(t_list **l)
+static void	rotate(t_list **l, int reverse)
 {
 	t_list	*last;
 	t_list	*tmp;
@@ -44,70 +44,53 @@ static void	rotate(t_list **l)
 	if (ft_lstsize(*l) < 2)
 		return ;
 	last = ft_lstlast(*l);
-	tmp = (*l)->next;
 	last->next = *l;
-	(*l)->next = NULL;
-	*l = tmp;
-}
-
-// maybe there could be a way to unify rotate and reverse_rotate by using a flag
-static void	reverse_rotate(t_list **l)
-{
-	t_list	*last;
-	t_list	*second_last;
-
-	if (ft_lstsize(*l) < 2)
-		return ;
-	last = ft_lstlast(*l);
-	second_last = ft_before_last(*l);
-	last->next = *l;
-	second_last->next = NULL;
-	*l = last;
+	if (!reverse)
+	{
+		tmp = (*l)->next;
+		(*l)->next = NULL;
+		*l = tmp;
+	}
+	else
+	{
+		tmp = ft_before_last(*l);
+		tmp->next = NULL;
+		*l = last;
+	}
 }
 
 //* 0 -> sa
 //* 1 - > sb
-//* 2 -> ra
-//* 3 -> rb
-//* 4 -> rra
-//* 5 -> rrb
-//* 6 -> 
-//*
-//*
-//*
-//*
-//*
-//*
-// should find an elegant and simple way to distribute the execution of operations
+//* 2 -> ss
+//* 3 -> ra
+//* 4 -> rb
+//* 5 -> rr
+//* 6 -> rra
+//* 7 -> rrb
+//* 8 -> rrr
+//* 9 -> pa
+//* 10 -> pb
+
 void	ops(t_stack *stack, int op, char *s)
 {
 	t_list	*obj;
 
-	if (op < 6 && !(op % 2))
-		obj = &stack->a;
-	else if (op < 6 && op % 2)
-		obj = &stack->b;
-	if (op / 2 == 0)
-		swap(obj);
-	if (op / 2 == 1)
-		rotate(obj);
-	if (op / 2 == 2)
-		reverse_rotate(obj);
-	if (!ft_strcmp(s, "ss"))
-	{
-		swap(a);
-		swap(b);
-	}
-	if (!ft_strcmp(s, "ss"))
-	{
-		rotate(a);
-		rotate(b);
-	}
-	if (!ft_strcmp(s, "ss"))
-	{
-		reverse_rotate(a);
-		reverse_rotate(b);
-	}
 	if (s)
 		ft_putstr(s);
+	if (!(op % 3))
+		obj = &stack->a;
+	else
+		obj = &stack->b;
+	if (!(op / 3))
+		swap(obj);
+	else if (op / 3 == 1)
+		rotate(obj, 0);
+	else if (op / 3 == 2)
+		rotate(obj, 1);
+	if (op < 9 && op % 3 == 2)
+		ops(stack, op - 2, NULL);
+	if (op == 10)
+		push(&stack->b, &stack->a);
+	else if (op == 11)
+		push(&stack->a, &stack->b);
 }

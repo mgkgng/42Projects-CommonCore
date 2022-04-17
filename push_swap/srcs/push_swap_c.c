@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/08 16:05:22 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/24 21:29:02 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/04/18 00:56:48 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,13 @@ void	opt_define(t_move **move, t_move **opt, t_dirty *dirty)
 	}
 }
 
-void	ft_shit(t_stack **lst_a, t_stack **lst_b, t_dirty *dirty, t_shit *shit)
+void	ft_shit(t_stack *stack, t_dirty *dirty, t_shit *shit)
 {
 	*lst_a = dirty->begin_a;
 	dirty->last_a = ft_lstlast(*lst_a)->pos;
 	while (*lst_a)
 	{
-		if (that_is_the_place2((*lst_a)->pos, dirty->last_a, (*lst_b)->pos))
+		if (push_condition(stack->a->nb, ft_lstlast(stack->a)->nb, stack->b->nb))
 			opt_define(&shit->move, &shit->opt, dirty);
 		dirty->last_a = (*lst_a)->pos;
 		*lst_a = (*lst_a)->next;
@@ -57,7 +57,7 @@ void	ft_shit(t_stack **lst_a, t_stack **lst_b, t_dirty *dirty, t_shit *shit)
 	}
 }
 
-void	optimal_move(t_stack **lst_a, t_stack **lst_b)
+void	optimal_move(t_list **lst_a, t_list **lst_b)
 {
 	t_dirty	dirty;
 	t_shit	shit;
@@ -76,7 +76,7 @@ void	optimal_move(t_stack **lst_a, t_stack **lst_b)
 	free(shit.opt);
 }
 
-void	push_everything_back_in_a(t_stack **lst_a, t_stack **lst_b)
+void	push_everything_back_in_a(t_list **lst_a, t_list **lst_b)
 {
 	while (*lst_b)
 	{
@@ -91,21 +91,18 @@ void	push_everything_back_in_a(t_stack **lst_a, t_stack **lst_b)
 	}
 }
 
-void	get_a_in_order(t_stack **lst_a)
+void	get_a_in_order(t_stack *stack)
 {
 	int	size;
 
-	if ((*lst_a)->pos == 0)
+	if (stack->a->pos == find_min(stack->a))
 		return ;
-	size = ft_lstsize(*lst_a);
-	if ((*lst_a)->pos < size / 2)
-	{
-		while ((*lst_a)->pos != 0)
-			reverse_rotate_a(lst_a);
-	}
+	put_index(&stack->a);
+	size = ft_lstsize(stack->a);
+	if (stack->a->pos < size / 2)
+		while (stack->a->pos != 0)
+			ops(stack, 6, "rra");
 	else
-	{
-		while ((*lst_a)->pos != 0)
-			rotate_a(lst_a);
-	}
+		while (stack->a->pos != 0)
+			ops(stack, 3, "ra");
 }

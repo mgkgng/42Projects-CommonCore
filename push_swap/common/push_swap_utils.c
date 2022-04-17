@@ -6,11 +6,58 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/08 16:06:48 by min-kang          #+#    #+#             */
-/*   Updated: 2022/04/17 20:45:52 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/04/18 00:36:30 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+int	find_max(t_list *l)
+{
+	int	max;
+
+	max = l->nb;
+	while (l)
+	{
+		if (l->nb > max)
+			max = l->nb;
+		l = l->next;
+	}
+	return (max);
+}
+
+int	find_min(t_list *l)
+{
+	int		min;
+
+	min = l->nb;
+	while (l)
+	{
+		if (l->nb < min)
+			min = l->nb;
+		l = l->next;
+	}
+	return (min);
+}
+
+int	find_next_min(t_list *l, int before)
+{
+	int		min;
+	t_list	*begin;
+
+	begin = l;
+	while (l->nb <= before)
+		l = l->next;
+	min = l->nb;
+	while (l)
+	{
+		if (l->nb < min && l->nb > before)
+			min = l->nb;
+		l = l->next;
+	}
+	l = begin;
+	return (min);
+}
 
 t_list	*ft_lst_before_last(t_list *lst)
 {
@@ -19,40 +66,4 @@ t_list	*ft_lst_before_last(t_list *lst)
 	while (lst->next->next)
 		lst = lst->next;
 	return (lst);
-}
-
-int	first_min_find(t_list *lst)
-{
-	int		min;
-	t_list	*begin;
-
-	begin = lst;
-	min = INT32_MAX;
-	while (lst)
-	{
-		if (lst->nb < min)
-			min = lst->nb;
-		lst = lst->next;
-	}
-	lst = begin;
-	return (min);
-}
-
-int	next_min_find(t_list *l, int already)
-{
-	int		min;
-	t_list	*begin;
-
-	begin = l;
-	while (l->nb <= already)
-	l = l->next;
-	min = l->nb;
-	while (l)
-	{
-		if (l->nb < min && l->nb > already)
-			min = l->nb;
-		l = l->next;
-	}
-	l = begin;
-	return (min);
 }
