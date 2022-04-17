@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgk <mgk@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/25 18:12:33 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/12 14:58:38 by mgk              ###   ########.fr       */
+/*   Updated: 2022/04/17 20:02:16 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/pipex_bonus.h"
+#include "pipex_bonus.h"
 
 int	heredoc(char *limiter)
 {
@@ -25,7 +25,7 @@ int	heredoc(char *limiter)
 		if (ft_strlen(limiter) == ft_strlen(line) - 1
 			&& !ft_strncmp(limiter, line, ft_strlen(limiter)))
 			break ;
-		put_buf(&r, line);
+		ft_strcat(r, line);
 		free(line);
 	}
 	fd = open("heredoc", O_CREAT | O_WRONLY | O_TRUNC, 0644);
