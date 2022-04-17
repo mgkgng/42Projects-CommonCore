@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/26 19:43:52 by min-kang          #+#    #+#             */
-/*   Updated: 2022/04/03 01:48:03 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/04/17 19:40:27 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,8 @@
 # include <fcntl.h>
 
 typedef struct s_pipex{
-	char	*in;
-	char	*out;
-	char	*cmd1;
-	char	*cmd2;
+	char	*filename[2];
+	char	**arg[2];
 	char	**paths;
 	char	**envp;
 }	t_pipex;
@@ -36,7 +34,7 @@ void	child_pipex(t_pipex pipex, int *fd);
 void	parent_pipex(t_pipex pipex, int *fd);
 void	ft_putstr(char *s);
 int		ft_pipex(t_pipex pipex);
-int		error(int code);
+int		error(int code, char *s);
 t_pipex	parse(char **argv, char **envp);
 int free_pipex(t_pipex pipex);
 

@@ -1,7 +1,6 @@
 SRCS =	srcs/main.c				\
 		srcs/pipex.c			\
 		srcs/pipex_utils.c		\
-		srcs/path.c
 
 BSRCS =	bonus/main_bonus.c			\
 		bonus/pipex_bonus.c			\
