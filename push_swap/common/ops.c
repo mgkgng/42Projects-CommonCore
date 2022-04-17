@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/31 16:05:27 by min-kang          #+#    #+#             */
-/*   Updated: 2022/04/17 20:59:26 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/04/17 22:21:45 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,25 +65,34 @@ static void	reverse_rotate(t_list **l)
 	*l = last;
 }
 
+//* 0 -> sa
+//* 1 - > sb
+//* 2 -> ra
+//* 3 -> rb
+//* 4 -> rra
+//* 5 -> rrb
+//* 6 -> 
+//*
+//*
+//*
+//*
+//*
+//*
 // should find an elegant and simple way to distribute the execution of operations
-void	ops(t_stack *stack, char *s, int print)
+void	ops(t_stack *stack, int op, char *s)
 {
-	if (!ft_strcmp(s, "sa"))
-		swap(&stack->a);
-	if (!ft_strcmp(s, "sb"))
-		swap(&stack->b);
-	if (!ft_strcmp(s, "pa"))
-		push(b, a);
-	if (!ft_strcmp(s, "pb"))
-		push(a, b);
-	if (!ft_strcmp(s, "ra"))
-		rotate(a);
-	if (!ft_strcmp(s, "rb"))
-		rotate(b);
-	if (!ft_strcmp(s, "rra"))
-		reverse_rotate(a);
-	if (!ft_strcmp(s, "rrb"))
-		reverse_rotate(b);
+	t_list	*obj;
+
+	if (op < 6 && !(op % 2))
+		obj = &stack->a;
+	else if (op < 6 && op % 2)
+		obj = &stack->b;
+	if (op / 2 == 0)
+		swap(obj);
+	if (op / 2 == 1)
+		rotate(obj);
+	if (op / 2 == 2)
+		reverse_rotate(obj);
 	if (!ft_strcmp(s, "ss"))
 	{
 		swap(a);
@@ -99,6 +108,6 @@ void	ops(t_stack *stack, char *s, int print)
 		reverse_rotate(a);
 		reverse_rotate(b);
 	}
-	if (print)
+	if (s)
 		ft_putstr(s);
 }

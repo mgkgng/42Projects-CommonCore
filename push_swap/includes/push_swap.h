@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/31 16:05:57 by min-kang          #+#    #+#             */
-/*   Updated: 2022/04/17 20:50:51 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/04/17 22:14:47 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ typedef struct s_list {
 }	t_list;
 
 typedef struct s_stack {
-	t_list	a;
-	t_list	b;
+	t_list	*a;
+	t_list	*b;
 }	t_stack;
 
 typedef struct s_dirty {
@@ -57,11 +57,12 @@ typedef struct s_value {
 }	t_value;
 
 typedef struct s_index {
-	int	start;
+	int	begin;
 	int	end;
 	int	size;
-	int	entire;
 }	t_index;
+
+void	ops(t_stack *stack, char *s, int print);
 
 t_list	*parsing_list(int argc, char **argv);
 t_list	*ft_lst_before_last(t_list *lst);
