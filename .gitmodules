@@ -28,3 +28,6 @@
 [submodule "05-FdF"]
 	path = 05-FdF
 	url = git@github.com:mgkgng/42Projects-FdF.git
+[submodule "09-Minishell"]
+	path = 09-Minishell
+	url = git@github.com:mgkgng/42Projects-Minishell.git
