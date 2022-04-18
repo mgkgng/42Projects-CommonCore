@@ -6,11 +6,13 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/31 16:06:14 by min-kang          #+#    #+#             */
-/*   Updated: 2022/04/17 20:49:07 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/04/18 11:55:46 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+// if error, return NULL;
 
 static t_list	*parse1(char **argv)
 {
