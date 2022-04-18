@@ -6,13 +6,43 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/08 16:06:25 by min-kang          #+#    #+#             */
-/*   Updated: 2022/04/18 13:42:24 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/04/18 18:56:14 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-/*void	min_index_put(t_list **lst, int min, int min_index)
+int	find_min(t_list *l)
+{
+	int		min;
+
+	min = l->nb;
+	while (l)
+	{
+		if (l->nb < min)
+			min = l->nb;
+		l = l->next;
+	}
+	return (min);
+}
+
+int	find_next_min(t_list *l, int before)
+{
+	int		min;
+
+	while (l->nb <= before)
+		l = l->next;
+	min = l->nb;
+	while (l)
+	{
+		if (l->nb < min && l->nb > before)
+			min = l->nb;
+		l = l->next;
+	}
+	return (min);
+}
+
+void	min_index_put(t_list **lst, int min, int min_index)
 {
 	t_list	*begin;
 
@@ -31,14 +61,14 @@ void	put_pos(t_list **lst)
 
 	index = 0;
 	size = ft_lstsize(*lst);
-	min = first_min_find(*lst);
+	min = find_min(*lst);
 	min_index_put(lst, min, index++);
 	while (index < size)
 	{
-		min = next_min_find(*lst, min);
+		min = find_next_min(*lst, min);
 		min_index_put(lst, min, index++);
 	}
-}*/
+}
 
 void	put_index(t_list **lst)
 {

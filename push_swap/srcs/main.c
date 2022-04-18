@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/31 16:06:11 by min-kang          #+#    #+#             */
-/*   Updated: 2022/04/17 20:46:18 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/04/18 14:51:46 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,11 @@
 
 int	main(int argc, char **argv)
 {
-	t_list	*a;
-	t_list	*b;
+	t_stack	stack;
 
 	if (argc < 2)
 		return (0);
-	a = parse(argc, argv);
-	if (!a)
-		return (print_error());
-	b = NULL;
-	return (push_swap(&a, &b));
+	stack.a = parse(argc, argv);
+	stack.b = NULL;
+	return (push_swap(&stack));
 }

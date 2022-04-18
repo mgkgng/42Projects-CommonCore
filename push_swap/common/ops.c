@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/31 16:05:27 by min-kang          #+#    #+#             */
-/*   Updated: 2022/04/18 00:14:26 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/04/18 18:45:15 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static void	push(t_list **from, t_list **to)
 	*to = tmp;
 }
 
-static void	rotate(t_list **l, int reverse)
+static void	rotate(t_list **l)
 {
 	t_list	*last;
 	t_list	*tmp;
@@ -45,18 +45,25 @@ static void	rotate(t_list **l, int reverse)
 		return ;
 	last = ft_lstlast(*l);
 	last->next = *l;
-	if (!reverse)
-	{
-		tmp = (*l)->next;
-		(*l)->next = NULL;
-		*l = tmp;
-	}
-	else
-	{
-		tmp = ft_before_last(*l);
-		tmp->next = NULL;
-		*l = last;
-	}
+	tmp = (*l)->next;
+	(*l)->next = NULL;
+	*l = tmp;
+}
+
+static void	reverse_rotate(t_list **l)
+{
+	t_list	*last;
+	t_list	*tmp;
+
+	if (ft_lstsize(*l) < 2)
+		return ;
+	last = ft_lstlast(*l);
+	last->next = *l;
+	tmp = *l;
+	while (tmp->next->next)
+		tmp = tmp->next;
+	tmp->next = NULL;
+	*l = last;
 }
 
 //* 0 -> sa
@@ -84,9 +91,9 @@ void	ops(t_stack *stack, int op, char *s)
 	if (!(op / 3))
 		swap(obj);
 	else if (op / 3 == 1)
-		rotate(obj, 0);
+		rotate(obj);
 	else if (op / 3 == 2)
-		rotate(obj, 1);
+		reverse_rotate(obj);
 	if (op < 9 && op % 3 == 2)
 		ops(stack, op - 2, NULL);
 	if (op == 10)

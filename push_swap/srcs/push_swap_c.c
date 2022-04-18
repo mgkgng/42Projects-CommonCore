@@ -6,13 +6,13 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/08 16:05:22 by min-kang          #+#    #+#             */
-/*   Updated: 2022/04/18 14:21:31 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/04/18 18:46:52 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	push_condition(int first_a, int last_a, int first_b)
+int	check_push(int first_a, int last_a, int first_b)
 {
 	if (first_a > first_b && first_a < last_a)
 		return (1);
@@ -23,7 +23,7 @@ int	push_condition(int first_a, int last_a, int first_b)
 	return (0);
 }
 
-void	push_everything_in_b(t_stack *stack, t_index chunk)
+void	algo_pushB(t_stack *stack, t_index chunk)
 {
 	int	i;
 	int	limit;
@@ -34,11 +34,10 @@ void	push_everything_in_b(t_stack *stack, t_index chunk)
 	chunkSize = 3;
 	if (sizeA > 99)
 	{
-		i = 1;
-		while (i < chunkSize)
+		i = 0;
+		while (++i < chunkSize)
 		{
-			if ((stack->a->index < chunk.begin
-				|| stack->a->index > chunk.end)
+			if ((stack->a->index < chunk.begin || stack->a->index > chunk.end)
 				&& stack->a->pos < sizeA * i / chunkSize)
 				ops(stack, 10, "pb");
 			else
@@ -49,14 +48,13 @@ void	push_everything_in_b(t_stack *stack, t_index chunk)
 		ops(stack, 10, "pb");
 	else
 		ops(stack, 3, "ra");
-
 }
 
-void	push_everything_back_in_a(t_stack *stack)
+void	algo_pushA(t_stack *stack)
 {
 	while (stack->b)
 	{
-		if (push_condition(stack->a->nb, ft_lstlast(stack->a)->nb, stack->b->nb))
+		if (check_push(stack->a->nb, ft_lstlast(stack->a)->nb, stack->b->nb))
 			ops(stack, 9, "pa");
 		else
 		{
@@ -67,7 +65,7 @@ void	push_everything_back_in_a(t_stack *stack)
 	}
 }
 
-void	get_a_in_order(t_stack *stack)
+void	algo_rotateA(t_stack *stack)
 {
 	int	size;
 	int	minIndex;

@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/08 19:14:37 by min-kang          #+#    #+#             */
-/*   Updated: 2022/04/18 14:43:07 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/04/18 18:23:03 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,10 +51,7 @@ void	execute_op(t_stack *stack, char *to_do)
 	else if (!ft_strcmp(to_do, "pb"))
 		ops(stack, 10, NULL);
 	else
-	{
-		ft_putendl_fd("Error", STDERR_FILENO);
-		exit(EXIT_FAILURE);
-	}
+		error_exit();
 }
 
 void	execute(t_stack *stack, char *s)

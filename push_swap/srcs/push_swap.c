@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/31 16:05:51 by min-kang          #+#    #+#             */
-/*   Updated: 2022/04/18 00:58:32 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/04/18 18:49:40 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	mini_swap(t_stack *stack)
 		ops(stack, 0, "sa");
 	if (first_min_find(stack->a) == stack->a->next->nb)
 		ops(stack, 3, "ra");
-	else if (first_min_find(stack->a) == ft_lstlast(stack->a)->content)
+	else if (first_min_find(stack->a) == ft_lstlast(stack->a)->nb)
 		ops(stack, 6, "rra");
 }
 
@@ -38,14 +38,13 @@ int	push_swap(t_stack *stack)
 		return (0);
 	put_index(&stack->a);
 	// do we really need it? put_nb(&stack->a);
-	chunk = get_the_biggest_chunk(stack->a);
-	chunk.size = chunk.end - chunk.begin + 1;
-	if (chunk.size < 3)
+	chunk = get_chunk(stack->a);
+	if (chunk.end - chunk.begin + 1 < 3)
 		mini_swap(stack);
 	else
-		push_everything_in_b(stack, chunk);
-	push_everything_back_in_a(stack);
-	get_a_in_order(stack);
+		algo_pushB(stack, chunk);
+	algo_pushA(stack);
+	algo_rotateA(stack);
 	free_list(stack);
 	return (0);
 }
