@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   list.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/11 10:49:04 by gkgpteam          #+#    #+#             */
-/*   Updated: 2022/03/12 19:58:43 by min-kang         ###   ########.fr       */
+/*   Created: 2022/04/18 12:48:03 by min-kang          #+#    #+#             */
+/*   Updated: 2022/04/18 12:48:25 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#ifndef LIST_H
+# define LIST_H
 
-int	main(int argc, char const *argv[], char *const envp[])
-{
-	return (minishell(argc - 1, &argv[1], envp));
-}
+
+
+#endif

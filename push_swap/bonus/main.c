@@ -6,40 +6,39 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/08 19:16:09 by min-kang          #+#    #+#             */
-/*   Updated: 2022/03/24 14:08:39 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/04/18 12:45:04 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "checker.h"
 
-void	exit_ok(void)
+void	terminate(int ok)
 {
-	ft_putstr("OK\n");
-	exit(EXIT_SUCCESS);
-}
-
-void	exit_ko(void)
-{
-	ft_putstr_fd("KO\n", 2);
+	if (ok)
+	{
+		ft_putstr("OK\n");
+		exit(EXIT_SUCCESS);
+	}
+	ft_putstr_fd("KO\n", STDERR_FILENO);
 	exit(EXIT_FAILURE);
 }
 
-void	check_free_exit(t_stack *a, t_stack *b)
+void	check_free_exit(t_list *a, t_list *b)
 {
 	if (checker(a, b))
 	{
-		free_stack(a);
-		exit_ok();
+		free_list(a);
+		terminate(1);
 	}
 	free(a);
 	free(b);
-	exit_ko();
+	terminate(0);
 }
 
 int	main(int argc, char **argv)
 {
-	t_stack	*a;
-	t_stack	*b;
+	t_list	*a;
+	t_list	*b;
 	char	buf[BUFFER_SIZE];
 	int		ret;
 	char	*r_data;
