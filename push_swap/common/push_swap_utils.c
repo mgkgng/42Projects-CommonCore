@@ -6,25 +6,11 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/08 16:06:48 by min-kang          #+#    #+#             */
-/*   Updated: 2022/04/18 11:49:43 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/04/18 14:20:29 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-int	find_max(t_list *l)
-{
-	int	max;
-
-	max = l->nb;
-	while (l)
-	{
-		if (l->nb > max)
-			max = l->nb;
-		l = l->next;
-	}
-	return (max);
-}
 
 int	find_min(t_list *l)
 {

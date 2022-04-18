@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/08 16:05:22 by min-kang          #+#    #+#             */
-/*   Updated: 2022/04/18 11:49:02 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/04/18 13:42:59 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,39 @@ int	push_condition(int first_a, int last_a, int first_b)
 	return (0);
 }
 
+void	push_everything_in_b(t_stack *stack, t_index chunk)
+{
+	int	i;
+	int	limit;
+	int	sizeA;
+	int	chunkSize;
+
+	sizeA = ft_lstsize(stack->a);
+	chunkSize = 3;
+	if (sizeA > 99)
+	{
+		i = 1;
+		while (i < chunkSize)
+		{
+			if ((stack->a->index < chunk.begin
+				|| stack->a->index > chunk.end)
+				&& stack->a->pos < sizeA * i / chunkSize)
+				ops(stack, 10, "pb");
+			else
+				ops(stack, 3, "ra");
+		}
+	}
+	if (stack->a->index < chunk.begin || stack->a->index > chunk.end)
+		ops(stack, 10, "pb");
+	else
+		ops(stack, 3, "ra");
+
+}
 
 void	push_everything_back_in_a(t_stack *stack)
 {
 	while (stack->b)
+	{
 		if (push_condition(stack->a->nb, ft_lstlast(stack->a)->nb, stack->b->nb))
 			ops(stack, 9, "pa");
 		else
