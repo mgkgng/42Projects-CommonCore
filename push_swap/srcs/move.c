@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap_b.c                                      :+:      :+:    :+:   */
+/*   move.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/08 16:05:18 by min-kang          #+#    #+#             */
-/*   Updated: 2022/04/18 11:47:26 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/04/18 14:21:17 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	rotate_both(t_stack *stack, t_move *move)
 		move->ra--;
 		move->rb--;
 	}
-	while ((*move)->rra > 0 && move->rrb > 0)
+	while (move->rra > 0 && move->rrb > 0)
 	{
 		ops(stack, 8, "rrr");
 		move->rra--;

@@ -6,13 +6,27 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/08 19:14:37 by min-kang          #+#    #+#             */
-/*   Updated: 2022/04/18 12:42:53 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/04/18 14:43:07 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "checker.h"
 
-void	operation(t_stack *stack, char *to_do)
+void	terminate(t_list *a, t_list *b)
+{
+	if (checker(a, b))
+	{
+		free_list(a);
+		ft_putstr("OK\n");
+		exit(EXIT_SUCCESS);
+	}
+	free_list(a);
+	free_list(b);
+	ft_putstr_fd("KO\n", STDERR_FILENO);
+	exit(EXIT_FAILURE);
+}
+
+void	execute_op(t_stack *stack, char *to_do)
 {
 	if (!ft_strcmp(to_do, "sa"))
 		ops(stack, 0, NULL);
@@ -37,7 +51,10 @@ void	operation(t_stack *stack, char *to_do)
 	else if (!ft_strcmp(to_do, "pb"))
 		ops(stack, 10, NULL);
 	else
-		exit_error();
+	{
+		ft_putendl_fd("Error", STDERR_FILENO);
+		exit(EXIT_FAILURE);
+	}
 }
 
 void	execute(t_stack *stack, char *s)
@@ -46,12 +63,12 @@ void	execute(t_stack *stack, char *s)
 	int		i;
 
 	if (!s)
-		check_free_exit(*a, *b);
+		terminate(stack->a, stack->b);
 	to_do = ft_split(s, '\n');
 	i = -1;
 	while (to_do[++i])
-		operation(stack, to_do[i]);
-	check_free_exit(stack->a, stack->b);
+		execute_op(stack, to_do[i]);
+	terminate(stack->a, stack->b);
 }
 
 int	checker(t_list *a, t_list *b)

@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/08 16:05:22 by min-kang          #+#    #+#             */
-/*   Updated: 2022/04/18 13:42:59 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/04/18 14:21:31 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ void	get_a_in_order(t_stack *stack)
 	put_index(&stack->a);
 	minValue = find_min(stack->a, 1);
 	size = ft_lstsize(stack->a);
-	if (min < size / 2)
+	if (minIndex < size / 2)
 		while (stack->a->nb != minValue)
 			ops(stack, 6, "rra");
 	else

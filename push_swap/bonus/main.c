@@ -6,34 +6,11 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/08 19:16:09 by min-kang          #+#    #+#             */
-/*   Updated: 2022/04/18 12:45:04 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/04/18 14:42:22 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "checker.h"
-
-void	terminate(int ok)
-{
-	if (ok)
-	{
-		ft_putstr("OK\n");
-		exit(EXIT_SUCCESS);
-	}
-	ft_putstr_fd("KO\n", STDERR_FILENO);
-	exit(EXIT_FAILURE);
-}
-
-void	check_free_exit(t_list *a, t_list *b)
-{
-	if (checker(a, b))
-	{
-		free_list(a);
-		terminate(1);
-	}
-	free(a);
-	free(b);
-	terminate(0);
-}
 
 int	main(int argc, char **argv)
 {
