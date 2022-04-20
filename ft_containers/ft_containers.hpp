@@ -1,18 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
+/*   ft_containers.hpp                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: min-kang <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/20 17:30:14 by min-kang          #+#    #+#             */
-/*   Updated: 2021/10/20 17:31:47 by min-kang         ###   ########.fr       */
+/*   Created: 2022/04/21 00:48:46 by min-kang          #+#    #+#             */
+/*   Updated: 2022/04/21 01:09:45 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#pragma once
 
-void	ft_putchar_fd(char c, int fd)
-{
-	write(fd, &c, 1);
+#include <iostream>
+#include <string>
+#include <allocator>
+
+namespace {
+	class vector;
+	class map;
+	class stack;
+	class pair;
 }
