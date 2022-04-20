@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.c                                            :+:      :+:    :+:   */
+/*   pipex_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/25 18:12:33 by min-kang          #+#    #+#             */
-/*   Updated: 2022/04/17 20:02:16 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/04/20 12:59:58 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	heredoc(char *limiter)
 		ft_strcat(r, line);
 		free(line);
 	}
-	fd = open("heredoc", O_CREAT | O_WRONLY | O_TRUNC, 0644);
+	fd = open("heredoc", O_CREAT | O_WRONLY | O_APPEND, 0644);
 	write(fd, r, sizeof(r));
 	free(r);
 	return (fd);
@@ -37,22 +37,11 @@ int	heredoc(char *limiter)
 int	terminate(t_pipex pipex)
 {
 	int	i;
-	int	j;
 
 	i = -1;
 	while (pipex.args[++i])
-	{
-		j = -1;
-		while (pipex.args[i][++j])
-			free(pipex.args[i][j]);
 		free(pipex.args[i]);
-	}
-	i = -1;
-	while (pipex.cmdpaths[++i])
-		free(pipex.cmdpaths[i]);
-	free(pipex.cmdpaths);
-	close(pipex.in);
-	close(pipex.out);
+	free(pipex.paths);
 	unlink("heredoc");
 	return (0);
 }
@@ -80,12 +69,9 @@ int	ft_pipex(t_pipex pipex)
 	i = -1;
 	while (++i < pipex.size)
 	{
-		if (pipe(fd) < 0)
-			return (error(2));
+		pipe(fd);
 		pid = fork();
-		if (pid < 0)
-			return (error(3));
-		if (pid == 0)
+		if (!pid)
 			pipex_in_loop(pipex, fd, i);
 		else
 		{

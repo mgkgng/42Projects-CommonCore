@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/11 11:48:05 by min-kang          #+#    #+#             */
-/*   Updated: 2022/04/17 20:03:33 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/04/20 12:57:54 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,11 @@ t_pipex	parse(int argc, char **argv, char **envp)
 	t_pipex	res;
 
 	if (!ft_strcmp(argv[1], "here_doc"))
-		res.in = heredoc(argv[2]);
+		res.filename[0] = argv[2];
 	else
-		res.in = open(argv[1], O_RDONLY);
-	res.out = open(argv[argc - 1], O_CREAT | O_WRONLY | O_TRUNC, 0644);
+		res.filename[0] = argv[1];
+	res.filename[1] = argv[argc - 1];
 	res.args = get_args(argc, argv);
-	res.cmdpaths = get_cmdpaths(res.args, envp);
+	res.paths = get_paths(envp);
 	res.envp = envp;
 }

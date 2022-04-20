@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/26 19:42:14 by min-kang          #+#    #+#             */
-/*   Updated: 2022/04/17 20:30:32 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/04/20 12:58:08 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ typedef struct s_pipex{
 	int		filename[2];
 	int		size;
 	char	***args;
-	char	**cmdpaths;
+	char	**paths;
 	char	**envp;
 }	t_pipex;
 
