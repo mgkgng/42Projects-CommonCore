@@ -6,11 +6,14 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 00:49:40 by min-kang          #+#    #+#             */
-/*   Updated: 2022/04/21 03:43:10 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/04/21 04:19:06 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
+
+//** simple but very delicate object of comprehension here is the concept of validity. 
+//** should understand completely what it does mean to remain valid, or the iterator get invalidated, etc.
 
 #include "ft_containers.hpp"
 
@@ -29,9 +32,9 @@ class vector {
 			this->currentSize = 0;
 			this->capacity = 1;
 		};
-		~vector(
-			Alloc.de
-		);
+		~vector() {
+			delete [] this->value;
+		}
 	
 		vector& operator=(const vector & rhs) {
 			this->value = rhs.value;
@@ -68,7 +71,15 @@ class vector {
 			return (!this->currentSize) ? true : false;
 		}
 		void	shrink_to_fit() {}
-		void	reserve() {}
+
+		void reserve(size_type new_cap) {
+			if (this->capacity >= new_cap)
+				return ;
+			T *newVec = new T[new_cap];
+			memcpy(newVec, this->value, sizeof(T) * this->capacity);
+			delete [] this->value;
+			this->value = newVec;
+		}
 
 		T&	operator[](int n) {}
 		T&	at(int n) {
@@ -88,6 +99,7 @@ class vector {
 			return (static_cast<const T*>(this->value);			
 		}
 
+		//** should be nice if there is something like memset or bzero
 
 		void assign(size_type count, const T& value) {
 			delete [] this->value;
@@ -124,20 +136,34 @@ class vector {
 			this->value[currentSize--] = NULL;
 		}
 
+
 		void	insert() {}
-		void	erase() {}
-		void	swap() {}
+
+		iterator erase( iterator pos );
+		iterator erase( iterator first, iterator last );
+		
+		void 	swap( vector& other ) {
+			vector tmp = other;
+			other = *this;
+			*this = tmp;
+			//* don't need to really be worried about leaks because it's only about assigning the address of memory when it comes to value array.
+		} 
+
 		void	clear() {
 			//** is it enough to give NULL value to the pointer to invalidate the iterator?
 			//** here i can myself use the iterator begin and end
 			//** capacity shouldn't be changed
+			bzero(static_cast<void *>(this->value), sizeof(T) * capacity);
 			this->currentSize = 0;
 		}
 		void	emplace() {}
 		void	emplace_back() {}
 
 
+
 };
+
+//* what to check? do i need a getter? vector<T> is the right form of value? maybe iterator itself should be put?
 
 template <typename T>
 bool	operator==(vector<T> lhs, vector<T> rhs) {
