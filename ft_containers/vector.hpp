@@ -6,7 +6,7 @@
 /*   By: min-kang <minguk.gaang@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 00:49:40 by min-kang          #+#    #+#             */
-/*   Updated: 2022/04/21 01:17:06 by min-kang         ###   ########.fr       */
+/*   Updated: 2022/04/21 02:26:32 by min-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,16 @@ template<typename T>
 class vector {
 
 	private:
-		T					value;
-		size_t				size;
+		T					*value;
+		size_t				currentSize;
 		size_t				allocated;
 		std::allocator<T>	Alloc;
 
 	public:
 		vector() {
-			this->size = 0;
-			this->allocated = 0;
+			this->value = new T[1];
+			this->currentSize = 0;
+			this->allocated = 1;
 		};
 		~vector(
 			Alloc.de
@@ -34,40 +35,64 @@ class vector {
 	
 		vector& operator=() {}
 
-		// iterators
+		/*// iterators
 		class iterator {}
-		class const_iterator {}
 		class reverse_iterator {}
-		class const_reverse_iterator {}
 
 		vector<T>::iterator begin() {}
 		vector<T>::iterator end() {}
 		vector<T>::reverse_iterator rbegin(){}
-		vector<T>::reverse_iterator rend(){}
-		vector<T>::const_iterator cbegin() {}
-		vector<T>::const_iterator cend() {}
-		vector<T>::const_reverse_iterator crbegin() {}
-		vector<T>::const_reverse_iterator crend() {}
+		vector<T>::reverse_iterator rend(){}*/
 
-		size_t	size() const {}
+		size_t	size() const {
+			return (this->currentSize);
+		}
 		size_t	max_size() const {}
-		size_t	capacity() const {}
+		size_t	capacity() const {
+			return (this->allocated);
+		}
 		void	resize(int n) {}
 		bool	empty() {
-			return (!this->size) ? true : false;
+			return (!this->currentSize) ? true : false;
 		}
 		void	shrink_to_fit() {}
 		void	reserve() {}
 
 		T&	operator[](int n) {}
-		T&	at(int n) {}
-		T&	front() {}
-		T&	back() {}
+		T&	at(int n) {
+			return (this->value[n]);
+		}
+		T&	front() {
+			return (this->value[0]);
+		}
+		T&	back() {
+			return (this->value[this->currentSize])
+		}
 		T*	data() {}
 
-		void	assign() {}
-		void	push_back() {}
-		void	pop_back() {}
+		void assign(size_type count, const T& value) {
+			
+		};
+		
+		template <class InputIt>
+		void assign(InputIt first, InputIt last);
+
+		void	push_back(const T& value) {
+			if (this->currentSize == this->allocated) {
+				T	*newVector = new T[this->allocated * 2];
+				for (int i = 0; i < this->allocated; i++)
+					newVector[i] = value[i];
+				delete [] value;
+				value = newVector;
+				this->allocated *= 2;
+			}
+			value[++(this->currentSize)] = value;
+		}
+
+		void	pop_back() {
+			this->value[currentSize--] = NULL;
+		}
+
 		void	insert() {}
 		void	erase() {}
 		void	swap() {}
@@ -79,23 +104,24 @@ class vector {
 };
 
 template <typename T>
-bool	operator==(vector<T> left, vector<T> right) {
+bool	operator==(vector<T> lhs, vector<T> rhs) {
+	
 }
 
 template <typename T>
-bool	operator!=
+bool	operator!=(vector<T> lhs, vector<T> rhs) {}
 
 template <typename T>
-bool	operator<
+bool	operator<(vector<T> lhs, vector<T> rhs) {}
 
 template <typename T>
-bool	operator<=
+bool	operator<=(vector<T> lhs, vector<T> rhs) {}
 
 template <typename T>
-bool	operator>
+bool	operator>(vector<T> lhs, vector<T> rhs) {}
 
 template <typename T>
-bool	operator>=
+bool	operator>=(vector<T> lhs, vector<T> rhs) {}
 
 template <typename T>
-bool	operator<=>
+bool	operator<=>(vector<T> lhs, vector<T> rhs) {}
