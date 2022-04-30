@@ -20,9 +20,9 @@
 
 **10  C++ Modules** ( 100% / 100% / 100% / 100% / 100% / 100% / 100% / 100% / 100% )
 
-**11  cub3D** (Not yet)
+**11  NetPractice** (100%)
 
-**12  NetPractice** (Not yet)
+**12  cub3D** (Not yet)
 
 **13  ft_containers** (Not yet)
 
