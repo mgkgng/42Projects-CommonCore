@@ -5,7 +5,7 @@
 	path = 10-CPP_Modules
 	url = git@github.com:mgkgng/42Projects-CPP_Modules.git
 [submodule "11-cub3D"]
-	path = 11-cub3D
+	path = 12-cub3D
 	url = git@github.com:mgkgng/42Projects-cub3D.git
 [submodule "01-libft"]
 	path = 01-libft
