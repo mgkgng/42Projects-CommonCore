@@ -22,7 +22,7 @@
 
 **11  NetPractice** (100%)
 
-**12  cub3D** (Not yet)
+**12  cub3D** (125%)
 
 **13  ft_containers** (Not yet)
 
